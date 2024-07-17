@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqau48rkay4iy"]
+
+[ext_resource type="Script" path="res://Entieties/dixer.gd" id="1_f68nq"]
+[ext_resource type="PackedScene" uid="uid://bnls0har28lt" path="res://Entieties/player.tscn" id="1_qdst0"]
+[ext_resource type="PackedScene" uid="uid://c6ej43o5qgo20" path="res://Entieties/NPC.tscn" id="2_pqawe"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_f68nq")
+
+[node name="Player" parent="." instance=ExtResource("1_qdst0")]
+position = Vector2(134, 193)
+
+[node name="NPC" parent="." instance=ExtResource("2_pqawe")]
+position = Vector2(854, 395)
+
+[connection signal="showDialog" from="NPC" to="." method="_on_npc_show_dialog"]

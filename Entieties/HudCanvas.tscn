@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnkdmoayvsxjx"]
+
+[ext_resource type="PackedScene" uid="uid://btwspjfodubbu" path="res://Entieties/DialogHud.tscn" id="1_6ggqa"]
+[ext_resource type="Script" path="res://Entieties/HudCanvas.gd" id="1_whruv"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_whruv")
+
+[node name="Control" parent="." instance=ExtResource("1_6ggqa")]
+
+[connection signal="next_line" from="Control" to="." method="_on_control_next_line"]

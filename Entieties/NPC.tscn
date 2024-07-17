@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6ej43o5qgo20"]
+
+[ext_resource type="Script" path="res://Entieties/NPC.gd" id="1_0p6s7"]
+[ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="1_78d1c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8awxa"]
+size = Vector2(205, 183)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vjr74"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("1_78d1c")
+}, {
+"duration": 3.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="NPC" type="StaticBody2D"]
+disable_mode = 1
+input_pickable = true
+script = ExtResource("1_0p6s7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_78d1c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8awxa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(60, -81)
+scale = Vector2(0.625, 0.625)
+sprite_frames = SubResource("SpriteFrames_vjr74")
+frame_progress = 0.95516
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
