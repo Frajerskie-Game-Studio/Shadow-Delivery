@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnls0har28lt"]
+[gd_scene load_steps=5 format=3 uid="uid://bnls0har28lt"]
 
+[ext_resource type="Script" path="res://Entieties/player.gd" id="1_231py"]
 [ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="1_rlupw"]
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_ymo11"]
 
@@ -7,6 +8,7 @@
 size = Vector2(156, 154)
 
 [node name="Player" type="Node2D"]
+script = ExtResource("1_231py")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_ymo11")

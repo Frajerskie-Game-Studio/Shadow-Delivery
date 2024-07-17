@@ -25,6 +25,12 @@ func get_input():
 		speed = 300.0
 		
 	return Vector2(directionX, directionY)
+	
+func unlock_movement():
+	can_move = true
+	
+func lock_movement():
+	can_move = false
 
 func _physics_process(delta):
 	#moving player (if he can)
