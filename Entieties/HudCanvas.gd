@@ -7,8 +7,7 @@ var dialog_index = 0
 signal end_dialog
 func _ready():
 	pass
-
-#loading data to canvas layer (parent can't see Control node, but can se CanvasLayer)
+	
 func load_data(npc_name, npc_text):
 	dialog_name = npc_name
 	text = npc_text
@@ -17,7 +16,6 @@ func load_data(npc_name, npc_text):
 func _process(delta):
 	pass
 
-#loading next line and if not exist ending dialog end deleting dialog window
 func _on_control_next_line():
 	dialog_index+=1
 	if dialog_index < len(text):
