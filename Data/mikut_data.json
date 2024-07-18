@@ -1,7 +1,7 @@
 {
-	"name": "Mikut",
-	"texture": "",
-	"hp": 80,
-	"max_hp": 100,
-	"skills": []
+	"hp": 100,
+	"max_hp": 80,
+	"name": "Player",
+	"skills": [],
+	"texture": ""
 }
