@@ -29,7 +29,7 @@ func _ready():
 	#array of dialog states (look at npc_test.json)
 	dialogStates = npc_data["dialogStates"]
 	#position of dialog state
-	current_dialog_position = npc_data["currentDialogState"] - 1
+	current_dialog_position = npc_data["currentDialogState"]
 	
 func _process(delta):
 	if ableToTalk and !block:

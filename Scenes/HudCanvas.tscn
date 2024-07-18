@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://cnkdmoayvsxjx"]
 
 [ext_resource type="PackedScene" uid="uid://btwspjfodubbu" path="res://Scenes/DialogHud.tscn" id="1_6ggqa"]
-[ext_resource type="Script" path="res://Scripts/HudCanvas.gd" id="1_whruv"]
+[ext_resource type="Script" path="res://scripts/HudCanvas.gd" id="1_py2no"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
-script = ExtResource("1_whruv")
+script = ExtResource("1_py2no")
 
 [node name="Control" parent="." instance=ExtResource("1_6ggqa")]
 

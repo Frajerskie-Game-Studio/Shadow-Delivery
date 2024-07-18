@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c6ej43o5qgo20"]
 
-[ext_resource type="Script" path="res://Scripts/Actors/NPC.gd" id="1_0p6s7"]
-[ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="1_78d1c"]
+[ext_resource type="Script" path="res://scripts/Actors/NPC.gd" id="1_8lub0"]
+[ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="2_cshfy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8awxa"]
 size = Vector2(205, 183)
@@ -10,7 +10,7 @@ size = Vector2(205, 183)
 animations = [{
 "frames": [{
 "duration": 3.0,
-"texture": ExtResource("1_78d1c")
+"texture": ExtResource("2_cshfy")
 }, {
 "duration": 3.0,
 "texture": null
@@ -23,13 +23,13 @@ animations = [{
 [node name="NPC" type="StaticBody2D"]
 disable_mode = 1
 input_pickable = true
-script = ExtResource("1_0p6s7")
+script = ExtResource("1_8lub0")
 
-[node name="Collision" type="CollisionShape2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cshfy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8awxa")
-
-[node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_78d1c")
 
 [node name="FaggotIndicator" type="AnimatedSprite2D" parent="."]
 visible = false

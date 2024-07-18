@@ -5,7 +5,7 @@ var Hp
 var Skills
 
 func saveData():
-	var file = FileAccess.open("res://Data/player_data.json", FileAccess.WRITE)
+	var file = FileAccess.open("res://Data/lucjan_data.json", FileAccess.WRITE)
 	var temp_data = {
 		"name": name,
 		"texture": "",
@@ -14,9 +14,10 @@ func saveData():
 	}
 	file.store_string(JSON.stringify(temp_data, "\t"))
 	file.close()
+	
 
 func _ready():
-	var text = FileAccess.get_file_as_string("res://Data/player_data.json")
+	var text = FileAccess.get_file_as_string("res://Data/lucjan_data.json")
 	var temp_data = JSON.parse_string(text)
 	Name = temp_data["name"]
 	Hp = temp_data["hp"]
@@ -30,11 +31,6 @@ func get_skills():
 	
 func get_hp():
 	return Hp
-
-func unlock():
-	$PlayerBody.unlock_movement()
-func lock():
-	$PlayerBody.lock_movement()
 
 func _process(delta):
 	pass

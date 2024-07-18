@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cr5ybqyggurpr"]
+
+[ext_resource type="Script" path="res://scripts/Actors/Lucjan.gd" id="1_ceorf"]
+[ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="2_abwvj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23s6j"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ceorf")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_23s6j")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("2_abwvj")
