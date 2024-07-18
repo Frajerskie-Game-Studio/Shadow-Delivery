@@ -1,10 +1,10 @@
 {
 	"teammates": [
-		"./Data/player_data.json",
+		"./Data/mikut_data.json",
 		"./Data/lucjan_data.json"
 	],
-	"items": [
-		{"red_brew": ["Very weak healing potion", 0, 20, 1]}, 
-		{"magnesium_grenade": ["Simple magnesium conentrate, highly explosive", 15, 0, 2]}
-	]
+	"items": {
+		"red_brew": ["Very weak healing potion", 0, 20, 1], 
+		"magnesium_grenade": ["Simple magnesium conentrate, highly explosive", 15, 0, 2]
+	}
 }

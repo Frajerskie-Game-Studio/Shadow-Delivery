@@ -2,25 +2,38 @@ extends Node2D
 
 var Name
 var Hp
+var MaxHp
 var Skills
 
 func saveData():
-	var file = FileAccess.open("res://Data/player_data.json", FileAccess.WRITE)
+	var file = FileAccess.open("res://Data/mikut_data.json", FileAccess.WRITE)
 	var temp_data = {
 		"name": name,
 		"texture": "",
 		"hp": Hp,
+		"max_hp": MaxHp,
 		"skills": Skills,
 	}
 	file.store_string(JSON.stringify(temp_data, "\t"))
 	file.close()
 
-func _ready():
-	var text = FileAccess.get_file_as_string("res://Data/player_data.json")
+func load_data():
+	var text = FileAccess.get_file_as_string("res://Data/mikut_data.json")
 	var temp_data = JSON.parse_string(text)
 	Name = temp_data["name"]
 	Hp = temp_data["hp"]
+	MaxHp = temp_data["hp"]
 	Skills = temp_data["skills"]
+
+func _ready():
+	load_data()
+
+func use_item(item):
+	if item[1] != 0:
+		Hp -= int(item[1])
+	elif item[2] != 0:
+		Hp += int(item[2])
+	saveData()
 
 func get_entity_name():
 	return Name

@@ -2,27 +2,41 @@ extends CanvasLayer
 
 @onready var profile = preload("res://Scenes/Menus/Profile.tscn")
 var Items
+var Teammates
+var item_to_use
+var using_item = false
+signal itemUsed(item_name, entity_name)
 
-func load_profiles(teammates):
-	for teammate in teammates:
+
+func load_profiles():
+	for teammate in Teammates:
 		var text = FileAccess.get_file_as_string(teammate)
 		var temp_data = JSON.parse_string(text)
 		var new_profile = profile.instantiate()
 		
-		new_profile.load_data(temp_data.name, temp_data.hp)
+		new_profile.load_data(temp_data.name, temp_data.hp, temp_data.max_hp)
+		new_profile.selectTeammate.connect(_on_entityChossed)
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.add_child(new_profile)
 		
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles .add_child(new_profile)
+func refresh_data():
+	var text = FileAccess.get_file_as_string("res://Data/party_data.json")
+	var temp_data = JSON.parse_string(text)
+	Items = temp_data["items"]
+	Teammates = temp_data["teammates"]
+	add_items()
 
 func add_items():
-	for item in Items:
-		var key = item.keys()[0]
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList.clear()
+	for key in Items:
 		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList.add_item(str(key).replace("_", " "))
 
 func _ready():
 	var text = FileAccess.get_file_as_string("res://Data/party_data.json")
 	var temp_data = JSON.parse_string(text)
 	Items = temp_data["items"]
-	load_profiles(temp_data["teammates"])
+	Teammates = temp_data["teammates"]
+	print(Items)
+	load_profiles()
 	add_items()
 
 func _process(delta):
@@ -31,22 +45,50 @@ func _process(delta):
 func unshowCards():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items.visible = false
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = false
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/HBoxContainer/ItemDesc.text = ""
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/HBoxContainer/ItemAmmount.text = ""
 
 func _on_item_list_item_clicked(index, at_position, mouse_button_index):
-	var item = Items[index]
-	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/HBoxContainer/ItemDesc.text = item[item.keys()[0]][0]
-	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/HBoxContainer/ItemAmmount.text = "Ammount: " + str(item[item.keys()[0]][3])
+	var item = Items.keys()[index]
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/HBoxContainer/ItemDesc.text = Items[item][0]
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/HBoxContainer/ItemAmmount.text = "Ammount: " + str(Items[item][3])
 
 
 func _on_item_list_item_activated(index):
-	print("active")
+	item_to_use = Items.keys()[index]
+	using_item = true
+	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
+		profile.unlock_choosing()
+	unshowCards()
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = true
 
 
 func _on_button_pressed():
-	if $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items.visible:
-		unshowCards()
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = true
-	else:
-		unshowCards()
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items.visible = true
+	if !using_item:
+		if $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items.visible:
+			unshowCards()
+			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = true
+		else:
+			unshowCards()
+			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items.visible = true
+			
+func _on_entityChossed(entity_name):
+	itemUsed.emit(item_to_use, entity_name)
+
+
+func _on_world_item_done():
+	using_item = false
+	unshowCards()
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = true
+	refresh_data()
+	
+	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
 		
+		profile.lock_choosing()
+		for teammate in Teammates:
+			if teammate.contains(profile.Name.to_lower()):
+				var text = FileAccess.get_file_as_string(teammate)
+				var temp_data = JSON.parse_string(text)
+				profile.load_data(temp_data.name, temp_data.hp, temp_data.max_hp)
+				profile.set_values()
+
