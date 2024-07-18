@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bnls0har28lt"]
 
-[ext_resource type="Script" path="res://Entieties/player.gd" id="1_231py"]
+[ext_resource type="Script" path="res://Scripts/Actors/Player.gd" id="1_231py"]
 [ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="1_rlupw"]
-[ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_ymo11"]
+[ext_resource type="Script" path="res://Scripts/Player_movement.gd" id="1_ymo11"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uor6i"]
 size = Vector2(156, 154)
@@ -10,11 +10,11 @@ size = Vector2(156, 154)
 [node name="Player" type="Node2D"]
 script = ExtResource("1_231py")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="PlayerBody" type="CharacterBody2D" parent="."]
 script = ExtResource("1_ymo11")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="Collision" type="CollisionShape2D" parent="PlayerBody"]
 shape = SubResource("RectangleShape2D_uor6i")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite" type="Sprite2D" parent="PlayerBody"]
 texture = ExtResource("1_rlupw")

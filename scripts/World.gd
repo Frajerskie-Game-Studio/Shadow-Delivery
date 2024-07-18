@@ -1,6 +1,6 @@
 extends Node
 
-@onready var dialog_hud = preload("res://Entieties/HudCanvas.tscn")
+@onready var dialog_hud = preload("res://Scenes/HudCanvas.tscn")
 
 var current_dialog_npc
 

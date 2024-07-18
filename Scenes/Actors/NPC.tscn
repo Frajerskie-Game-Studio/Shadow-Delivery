@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c6ej43o5qgo20"]
 
-[ext_resource type="Script" path="res://Entieties/NPC.gd" id="1_0p6s7"]
+[ext_resource type="Script" path="res://Scripts/Actors/NPC.gd" id="1_0p6s7"]
 [ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="1_78d1c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8awxa"]
@@ -25,13 +25,13 @@ disable_mode = 1
 input_pickable = true
 script = ExtResource("1_0p6s7")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_78d1c")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8awxa")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_78d1c")
+
+[node name="FaggotIndicator" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(60, -81)
 scale = Vector2(0.625, 0.625)

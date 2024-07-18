@@ -6,9 +6,9 @@ func _ready():
 	pass # Replace with function body.
 
 func unlock():
-	$CharacterBody2D.unlock_movement()
+	$PlayerBody.unlock_movement()
 func lock():
-	$CharacterBody2D.lock_movement()
+	$PlayerBody.lock_movement()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
