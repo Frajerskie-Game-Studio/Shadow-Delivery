@@ -4,6 +4,7 @@ extends CharacterBody2D
 var speed = 300.0
 #variable allowing player to move
 var can_move = true
+var last_vector:Vector2
 
 func get_input():
 	#var directionX =  Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -13,9 +14,13 @@ func get_input():
 	
 	#setting Y axis if player is not moving in X axis
 	if Input.get_action_strength("move_right") - Input.get_action_strength("move_left") == 0 and Input.get_action_strength("move_down") - Input.get_action_strength("move_up") != 0 :
-		directionY =  Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+		directionY = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	#setting X axis if player is not moving in Y axis
 	elif Input.get_action_strength("move_right") - Input.get_action_strength("move_left") != 0 and Input.get_action_strength("move_down") - Input.get_action_strength("move_up") == 0:
+		directionX = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	elif last_vector.x == 0:
+		directionY = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+	else:
 		directionX = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	
 	#setting player speed
@@ -23,7 +28,7 @@ func get_input():
 		speed = 380.0
 	else:
 		speed = 300.0
-		
+	last_vector = Vector2(directionX, directionY)
 	return Vector2(directionX, directionY)
 	
 func unlock_movement():
