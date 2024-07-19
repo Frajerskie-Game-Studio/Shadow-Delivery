@@ -51,6 +51,7 @@ func add_items():
 func _ready():
 	var text = FileAccess.get_file_as_string("res://Data/party_data.json")
 	var temp_data = JSON.parse_string(text)
+	
 	Items = temp_data["items"]
 	Teammates = temp_data["teammates"]
 	PartyEq = temp_data["equipment"]
