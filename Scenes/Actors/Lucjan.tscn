@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cr5ybqyggurpr"]
+[gd_scene load_steps=5 format=3 uid="uid://cr5ybqyggurpr"]
 
 [ext_resource type="Script" path="res://scripts/Actors/Lucjan.gd" id="1_ceorf"]
 [ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="2_abwvj"]
+[ext_resource type="PackedScene" uid="uid://cpsu8wxbqyj34" path="res://Scenes/Menus/actor_attack_menu.tscn" id="3_no4uv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23s6j"]
 
@@ -14,4 +15,17 @@ script = ExtResource("1_ceorf")
 shape = SubResource("RectangleShape2D_23s6j")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("2_abwvj")
+
+[node name="MarginContainer" parent="." instance=ExtResource("3_no4uv")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -150.0
+offset_bottom = 0.0
+grow_vertical = 0
+
+[node name="CheckSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -193)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_abwvj")

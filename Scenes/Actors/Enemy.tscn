@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3aev84jsnw05"]
+
+[ext_resource type="Script" path="res://scripts/Actors/Enemy.gd" id="1_ucwuh"]
+[ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="2_h2lks"]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_ucwuh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_h2lks")
+
+[node name="CheckSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -193)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_h2lks")

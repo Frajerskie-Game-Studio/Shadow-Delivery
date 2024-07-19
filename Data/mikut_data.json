@@ -1,8 +1,9 @@
 {
 	"name": "Mikut",
 	"texture": "",
-	"hp": 90,
-	"max_hp": 90,
+	"hp": 100,
+	"max_hp": 100,
+	"attack": {"dmg": 45, "wait_time": 2},
 	"skills": {
 
 	},
@@ -13,14 +14,15 @@
 			30
 		],
 		"Range_weapon": [
+			"Magnesium grenade",
+			"Crude design, explosive effect",
+			50,
+			2
+		],
+		"Armor": [
 			"",
 			"",
 			0
-		],
-		"Armor": [
-			"Courier uniform",
-			"Average factory outfit for couriers",
-			15
 		]
 	}
 }

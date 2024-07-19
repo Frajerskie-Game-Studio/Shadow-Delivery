@@ -3,29 +3,13 @@
 	"texture": "",
 	"hp": 100,
 	"max_hp": 100,
+	"attack": {"dmg": 45, "wait_time": 2},
 	"skills": {
-		"Getting ready": [
-			"Lucjan waits to build up power, to attack 1.5x stronger",
-			0,
-			0,
-			15
-		]
+		"Getting ready": ["Lucjan waits to build up power, to attack 1.5x stronger", 0, 0, 15]
 	},
-	"equipment": {
-		"Mele_weapon": [
-			"",
-			"",
-			0
-		],
-		"Range_weapon": [
-			"",
-			"",
-			0
-		],
-		"Armor": [
-			"Dixer uniform",
-			"Average factory outfit for couriers",
-			15
-		]
+		"equipment": {
+		"Mele_weapon":  ["Pickaxe", "Iconic.", 0],
+		"Range_weapon": ["Cheap flintlock", "A little old, but reliable", 0, 6],
+		"Armor": ["", "", 0]
 	}
 }

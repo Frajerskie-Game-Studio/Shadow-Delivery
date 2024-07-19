@@ -7,6 +7,10 @@
 
 	},
 	"equipment": {
-
+		"Dixer_uniform": [
+			"Average factory outfit for couriers",
+			"Armor",
+			15
+		]
 	}
 }

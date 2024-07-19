@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnls0har28lt"]
+[gd_scene load_steps=5 format=3 uid="uid://bnls0har28lt"]
 
 [ext_resource type="Script" path="res://Scripts/Actors/Player.gd" id="1_231py"]
 [ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="1_rlupw"]
 [ext_resource type="Script" path="res://Scripts/Player_movement.gd" id="1_ymo11"]
-[ext_resource type="PackedScene" uid="uid://cpsu8wxbqyj34" path="res://Scenes/Menus/actor_attack_menu.tscn" id="2_5m8o5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uor6i"]
 size = Vector2(156, 154)
@@ -18,17 +17,4 @@ script = ExtResource("1_ymo11")
 shape = SubResource("RectangleShape2D_uor6i")
 
 [node name="Sprite" type="Sprite2D" parent="PlayerBody"]
-texture = ExtResource("1_rlupw")
-
-[node name="MarginContainer" parent="." instance=ExtResource("2_5m8o5")]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -150.0
-offset_bottom = 0.0
-grow_vertical = 0
-
-[node name="CheckSprite" type="Sprite2D" parent="."]
-position = Vector2(0, -193)
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_rlupw")
