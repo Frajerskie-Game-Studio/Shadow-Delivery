@@ -89,7 +89,6 @@ func showSkills(entity_name):
 			var temp_instance = temp_teammate.instantiate()
 			temp_instance.load_data()
 			Skills = temp_instance.get_skills()
-			print(str(Skills) + "fff")
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/SkillList.clear()
 			for key in Skills:
 				$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/SkillList.add_item(str(key).replace("_", " "))
@@ -138,4 +137,4 @@ func _on_skills_pressed():
 func _on_skill_list_item_clicked(index, at_position, mouse_button_index):
 	var skill = Skills.keys()[index]
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/HBoxContainer/SkillDesc.text = Skills[skill][0]
-	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/HBoxContainer/SkillCost.text = "Ammount: " + str(Skills[skill][3])
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/HBoxContainer/SkillCost.text = "Cost: " + str(Skills[skill][3])
