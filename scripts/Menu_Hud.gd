@@ -209,18 +209,32 @@ func _on_self_equipment_item_activated(index):
 	for key in PartyEq.keys():
 		if PartyEq[key][1] == eq_category: 
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.add_item(key.replace("_", " "))
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.add_item(" ")
 
 
 func _on_equipment_item_activated(index):
 	var to_change_key = $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.get_item_text(index)
 	var to_be_changed = $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.get_item_text(Eq_to_be_changed_index)
-	
-	var to_change = PartyEq[to_change_key.replace(" ", "_")][1]
-	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_text(Eq_to_be_changed_index, to_change + ": " + to_change_key.replace("_", " "))
+	var to_change
+	var to_be_changed_item
+
+	if to_change_key != " ":
+		to_change = PartyEq[to_change_key.replace(" ", "_")][1]
+		to_be_changed_item = PersonEq[to_be_changed.split(":")[0]]
+
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_text(Eq_to_be_changed_index, to_change + ": " + to_change_key.replace("_", " "))
+		PersonEq[to_change] = [to_change_key, PartyEq[to_change_key.replace(" ", "_")][0], PartyEq[to_change_key.replace(" ", "_")][2]]
+	else:
+		to_be_changed_item = PersonEq[to_be_changed.split(":")[0]]
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_text(Eq_to_be_changed_index, to_be_changed.split(":")[0] + ": ")
+		PersonEq[to_be_changed.split(":")[0]] = ["", "", 0]
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.set_item_text(index, to_be_changed)
 	
-	PersonEq[to_change] = [to_change_key, PartyEq[to_change_key.replace(" ", "_")][1], PartyEq[to_change_key.replace(" ", "_")][2]]
 	PartyEq.erase(to_change_key.replace(" ", "_"))
+	
+	if to_be_changed != "Armor: ":
+		PartyEq[to_be_changed.split(": ")[1].replace(" ", "_")] =  [to_be_changed_item[1], to_be_changed.split(":")[0], to_be_changed_item[2]]
+
 	saveData()
 	refresh_data()
 	
