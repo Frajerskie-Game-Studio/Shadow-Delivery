@@ -5,6 +5,7 @@ extends  MarginContainer
 @onready var MaxHp
 var choosingUnlocked = false
 var ableToChoose = false
+var choosingAction = ""
 signal selectTeammate(e_name)
 
 func set_values():
@@ -21,19 +22,21 @@ func _process(delta):
 	if ableToChoose:
 		if Input.is_action_just_pressed("mouse_click"):
 			print(Name)
-			selectTeammate.emit(Name)
+			selectTeammate.emit(Name, choosingAction)
 	
 func load_data(e_name, e_hp, e_maxHp):
 	Name = e_name
 	Hp = e_hp
 	MaxHp = e_maxHp
 	
-func unlock_choosing():
+func unlock_choosing(cAction):
 	choosingUnlocked = true
+	choosingAction = cAction
 
 func lock_choosing():
 	choosingUnlocked = false
 	ableToChoose = false
+	choosingAction = ""
 
 func _on_mouse_entered():
 	if choosingUnlocked:

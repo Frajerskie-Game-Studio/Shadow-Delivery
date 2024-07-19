@@ -2,6 +2,6 @@
 	"hp": 100,
 	"max_hp": 80,
 	"name": "Player",
-	"skills": [],
+	"skills": {},
 	"texture": ""
 }

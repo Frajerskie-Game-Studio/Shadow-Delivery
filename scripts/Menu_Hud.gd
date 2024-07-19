@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var profile = preload("res://Scenes/Menus/Profile.tscn")
 var Items
+var Skills
 var Teammates
 var item_to_use
 var using_item = false
@@ -45,8 +46,11 @@ func _process(delta):
 func unshowCards():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items.visible = false
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = false
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills.visible = false
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/HBoxContainer/ItemDesc.text = ""
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/HBoxContainer/ItemAmmount.text = ""
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/HBoxContainer/SkillCost.text = ""
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/HBoxContainer/SkillDesc.text = ""
 
 func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 	var item = Items.keys()[index]
@@ -58,7 +62,7 @@ func _on_item_list_item_activated(index):
 	item_to_use = Items.keys()[index]
 	using_item = true
 	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
-		profile.unlock_choosing()
+		profile.unlock_choosing("item")
 	unshowCards()
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = true
 
@@ -71,9 +75,35 @@ func _on_button_pressed():
 		else:
 			unshowCards()
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items.visible = true
-			
-func _on_entityChossed(entity_name):
-	itemUsed.emit(item_to_use, entity_name)
+	
+func showSkills(entity_name):
+	print(entity_name)
+	if entity_name == "Player":
+		entity_name = "Mikut"
+	for teammate in Teammates:
+		if teammate.contains(entity_name.to_lower()):
+			if entity_name == "Mikut":
+				entity_name = "Player"
+			#mój programistyczny peak - nie wytłumaczę domyśl się sam lol
+			var temp_teammate = load("res://Scenes/Actors/"+str(entity_name)+".tscn")
+			var temp_instance = temp_teammate.instantiate()
+			temp_instance.load_data()
+			Skills = temp_instance.get_skills()
+			print(str(Skills) + "fff")
+			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/SkillList.clear()
+			for key in Skills:
+				$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/SkillList.add_item(str(key).replace("_", " "))
+	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
+		profile.lock_choosing()
+	unshowCards()
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills.visible = true
+	using_item = false
+
+func _on_entityChossed(entity_name, choosingActions):
+	if choosingActions == "item":
+		itemUsed.emit(item_to_use, entity_name)
+	elif choosingActions == "skill":
+		showSkills(entity_name)
 
 
 func _on_world_item_done():
@@ -92,3 +122,20 @@ func _on_world_item_done():
 				profile.load_data(temp_data.name, temp_data.hp, temp_data.max_hp)
 				profile.set_values()
 
+
+
+func _on_skills_pressed():
+	if !$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills.visible:
+		for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
+			profile.unlock_choosing("skill")
+		unshowCards()
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = true
+	else:
+		unshowCards()
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = true
+
+
+func _on_skill_list_item_clicked(index, at_position, mouse_button_index):
+	var skill = Skills.keys()[index]
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/HBoxContainer/SkillDesc.text = Skills[skill][0]
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/HBoxContainer/SkillCost.text = "Ammount: " + str(Skills[skill][3])

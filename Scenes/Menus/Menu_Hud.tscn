@@ -38,7 +38,7 @@ theme_override_constants/separation = 20
 layout_mode = 2
 text = "Items"
 
-[node name="Button2" type="Button" parent="Control/MarginContainer/HBoxContainer/Buttons"]
+[node name="Skills" type="Button" parent="Control/MarginContainer/HBoxContainer/Buttons"]
 layout_mode = 2
 text = "Skills"
 
@@ -90,6 +90,28 @@ layout_mode = 2
 size_flags_horizontal = 3
 horizontal_alignment = 2
 
+[node name="Skills" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="SkillList" type="ItemList" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills"]
+layout_mode = 2
+
+[node name="SkillDesc" type="Label" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SkillCost" type="Label" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 2
+
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Buttons/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Buttons/Skills" to="." method="_on_skills_pressed"]
 [connection signal="item_activated" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList" to="." method="_on_item_list_item_activated"]
 [connection signal="item_clicked" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList" to="." method="_on_item_list_item_clicked"]
+[connection signal="item_clicked" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/SkillList" to="." method="_on_skill_list_item_clicked"]
