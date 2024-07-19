@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dw831xir7pvw0"]
+[gd_scene load_steps=3 format=3 uid="uid://dw831xir7pvw0"]
 
 [ext_resource type="Script" path="res://scripts/Menu_Hud.gd" id="1_fhm36"]
+[ext_resource type="PackedScene" uid="uid://c2bagmis6rkre" path="res://Scenes/Menus/Profile.tscn" id="2_ubalc"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_fhm36")
@@ -42,7 +43,7 @@ text = "Items"
 layout_mode = 2
 text = "Skills"
 
-[node name="Button3" type="Button" parent="Control/MarginContainer/HBoxContainer/Buttons"]
+[node name="EqB" type="Button" parent="Control/MarginContainer/HBoxContainer/Buttons"]
 layout_mode = 2
 text = "Eq"
 
@@ -110,8 +111,34 @@ layout_mode = 2
 size_flags_horizontal = 3
 horizontal_alignment = 2
 
+[node name="Eq" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SelfEquipment" type="ItemList" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+item_count = 3
+item_0/text = "Mele weapon:"
+item_1/text = "Range Weapon:"
+item_2/text = "Armor:"
+
+[node name="EqProfile" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer" instance=ExtResource("2_ubalc")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Equipment" type="ItemList" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq"]
+layout_mode = 2
+size_flags_vertical = 3
+
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Buttons/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Buttons/Skills" to="." method="_on_skills_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Buttons/EqB" to="." method="_on_eq_pressed"]
 [connection signal="item_activated" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList" to="." method="_on_item_list_item_activated"]
 [connection signal="item_clicked" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList" to="." method="_on_item_list_item_clicked"]
 [connection signal="item_clicked" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/SkillList" to="." method="_on_skill_list_item_clicked"]

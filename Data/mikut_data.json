@@ -1,7 +1,12 @@
 {
 	"hp": 100,
 	"max_hp": 80,
-	"name": "Player",
+	"name": "Mikut",
 	"skills": {},
-	"texture": ""
+	"texture": "",
+	"equipment": {
+		"Mele_weapon":  ["Simple hatchet", "simple and practical", 30],
+		"Range_weapon": ["", "", 0],
+		"Armor": ["", "", 0]
+	}
 }

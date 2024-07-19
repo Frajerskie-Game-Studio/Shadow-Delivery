@@ -4,6 +4,7 @@ var Name
 var Hp
 var Skills
 var MaxHp
+var Equipment
 
 func saveData():
 	var file = FileAccess.open("res://Data/lucjan_data.json", FileAccess.WRITE)
@@ -13,6 +14,7 @@ func saveData():
 		"hp": Hp,
 		"max_hp": MaxHp,
 		"skills": Skills,
+		"equipment": Equipment
 	}
 	file.store_string(JSON.stringify(temp_data, "\t"))
 	file.close()
@@ -23,7 +25,8 @@ func load_data():
 	Name = temp_data["name"]
 	Hp = temp_data["hp"]
 	MaxHp = temp_data["hp"]
-	Skills = temp_data["skills"]	
+	Skills = temp_data["skills"]
+	Equipment = temp_data["equipment"]
 
 func _ready():
 	load_data()
@@ -43,6 +46,12 @@ func get_skills():
 	
 func get_hp():
 	return Hp
+
+func get_max_hp():
+	return MaxHp
+
+func get_eq():
+	return Equipment
 
 func _process(delta):
 	pass

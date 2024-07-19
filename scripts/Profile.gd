@@ -1,17 +1,18 @@
 extends  MarginContainer
 
-@onready var Name
-@onready var Hp
-@onready var MaxHp
+@onready var Name 
+@onready var Hp 
+@onready var MaxHp 
 var choosingUnlocked = false
 var ableToChoose = false
 var choosingAction = ""
 signal selectTeammate(e_name)
 
 func set_values():
-	$MarginContainer/HBoxContainer/VBoxContainer/Name.text = Name
-	$MarginContainer/HBoxContainer/VBoxContainer/Healthbar.max_value = MaxHp
-	$MarginContainer/HBoxContainer/VBoxContainer/Healthbar.value = Hp
+	if Name != null:
+		$MarginContainer/HBoxContainer/VBoxContainer/Name.text = Name
+		$MarginContainer/HBoxContainer/VBoxContainer/Healthbar.max_value = MaxHp
+		$MarginContainer/HBoxContainer/VBoxContainer/Healthbar.value = Hp
 
 func _ready():
 	print("Name")

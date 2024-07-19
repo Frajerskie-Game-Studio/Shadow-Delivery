@@ -5,5 +5,10 @@
 	"max_hp": 100,
 	"skills": {
 		"Getting ready": ["Lucjan waits to build up power, to attack 1.5x stronger", 0, 0, 15]
+	},
+		"equipment": {
+		"Mele_weapon":  ["", "", 0],
+		"Range_weapon": ["", "", 0],
+		"Armor": ["", "", 0]
 	}
 }
