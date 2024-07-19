@@ -4,11 +4,9 @@
 		"./Data/lucjan_data.json"
 	],
 	"items": {
-		"red_brew": ["Very weak healing potion", 0, 20, 1], 
-		"magnesium_grenade": ["Simple magnesium conentrate, highly explosive", 15, 0, 2]
+
 	},
 	"equipment": {
-		"Courier_uniform": ["Average factory outfit for couriers", "Armor", 15],
-		"Dixer_uniform": ["Average factory outfit for couriers", "Armor", 15]
+
 	}
 }
