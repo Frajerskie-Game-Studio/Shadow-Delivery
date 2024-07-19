@@ -5,11 +5,13 @@ var Items
 var Skills
 var PartyEq
 var PersonEq
+var eq_temp_person
 var Teammates
 var item_to_use
+var Eq_to_be_changed_index
 var using_item = false
 signal itemUsed(item_name, entity_name)
-
+signal saveEq(entity_name)
 
 func load_profiles():
 	for teammate in Teammates:
@@ -29,6 +31,18 @@ func refresh_data():
 	PartyEq = temp_data["equipment"]
 	add_items()
 
+func saveData():
+	var file = FileAccess.open("res://Data/party_data.json", FileAccess.WRITE)
+	var temp_data = {
+		"teammates": Teammates,
+		"items": Items,
+		"equipment": PartyEq
+	}
+
+	
+	file.store_string(JSON.stringify(temp_data, "\t", false))
+	file.close()
+
 func add_items():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList.clear()
 	for key in Items:
@@ -39,6 +53,7 @@ func _ready():
 	var temp_data = JSON.parse_string(text)
 	Items = temp_data["items"]
 	Teammates = temp_data["teammates"]
+	PartyEq = temp_data["equipment"]
 	print(Items)
 	load_profiles()
 	add_items()
@@ -113,14 +128,14 @@ func showEq(entity_name):
 		if teammate.contains(entity_name.to_lower()):
 			print()
 			var temp_teammate = load("res://Scenes/Actors/"+str(load_name)+".tscn")
-			var temp_instance = temp_teammate.instantiate()
-			temp_instance.load_data()
-			PersonEq = temp_instance.get_eq()
+			eq_temp_person = temp_teammate.instantiate()
+			eq_temp_person.load_data()
+			PersonEq = eq_temp_person.get_eq()
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.clear()
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.clear()
 			for key in PersonEq:
 				$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.add_item(str(key)+": "+str(PersonEq[key][0]).replace("_", " "))
-			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/EqProfile.load_data(temp_instance.get_entity_name(), temp_instance.get_hp(), temp_instance.get_max_hp())
+			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/EqProfile.load_data(eq_temp_person.get_entity_name(), eq_temp_person.get_hp(), eq_temp_person.get_max_hp())
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/EqProfile.set_values()
 	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
 		profile.lock_choosing()
@@ -184,3 +199,36 @@ func _on_eq_pressed():
 		unshowCards()
 		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = true
 		$Control/MarginContainer/HBoxContainer/Buttons/EqB.release_focus()
+
+
+func _on_self_equipment_item_activated(index):
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.clear()
+	Eq_to_be_changed_index = index
+	var eq_category = $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.get_item_text(index).split(":")[0]
+	
+	for key in PartyEq.keys():
+		if PartyEq[key][1] == eq_category: 
+			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.add_item(key.replace("_", " "))
+
+
+func _on_equipment_item_activated(index):
+	var to_change_key = $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.get_item_text(index)
+	var to_be_changed = $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.get_item_text(Eq_to_be_changed_index)
+	
+	var to_change = PartyEq[to_change_key.replace(" ", "_")][1]
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_text(Eq_to_be_changed_index, to_change + ": " + to_change_key.replace("_", " "))
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.set_item_text(index, to_be_changed)
+	
+	PersonEq[to_change] = [to_change_key, PartyEq[to_change_key.replace(" ", "_")][1], PartyEq[to_change_key.replace(" ", "_")][2]]
+	PartyEq.erase(to_change_key.replace(" ", "_"))
+	saveData()
+	refresh_data()
+	
+	eq_temp_person.set_eq(PersonEq)
+	saveEq.emit(eq_temp_person.get_entity_name())
+	
+	
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.release_focus()
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.clear()
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.release_focus()
+	

@@ -142,3 +142,5 @@ size_flags_vertical = 3
 [connection signal="item_activated" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList" to="." method="_on_item_list_item_activated"]
 [connection signal="item_clicked" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList" to="." method="_on_item_list_item_clicked"]
 [connection signal="item_clicked" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/SkillList" to="." method="_on_skill_list_item_clicked"]
+[connection signal="item_activated" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment" to="." method="_on_self_equipment_item_activated"]
+[connection signal="item_activated" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment" to="." method="_on_equipment_item_activated"]

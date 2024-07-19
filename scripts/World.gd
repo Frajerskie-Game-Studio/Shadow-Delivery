@@ -75,3 +75,11 @@ func _on_canvas_layer_item_used(item_name, entity_name):
 	file.store_string(JSON.stringify(data, "\t"))
 	file.close()
 	itemDone.emit()
+	for child in get_children():
+		if child.has_node("CharacterBody2D"):
+			child.load_data()
+
+func _on_menu_save_eq(entity_name):
+	for child in get_children():
+		if child.has_node("CharacterBody2D"):
+			child.load_data()

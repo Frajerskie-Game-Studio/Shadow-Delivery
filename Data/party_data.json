@@ -8,6 +8,6 @@
 		"magnesium_grenade": ["Simple magnesium conentrate, highly explosive", 15, 0, 2]
 	},
 	"equipment": {
-		"Courier uniform": ["Average factory outfit for couriers", "Armor", 15]
+		"Courier_uniform": ["Average factory outfit for couriers", "Armor", 15]
 	}
 }

@@ -9,14 +9,14 @@ var Equipment
 func saveData():
 	var file = FileAccess.open("res://Data/mikut_data.json", FileAccess.WRITE)
 	var temp_data = {
-		"name": name,
+		"name": Name,
 		"texture": "",
 		"hp": Hp,
 		"max_hp": MaxHp,
 		"skills": Skills,
 		"equipment": Equipment
 	}
-	file.store_string(JSON.stringify(temp_data, "\t"))
+	file.store_string(JSON.stringify(temp_data, "\t", false))
 	file.close()
 
 func load_data():
@@ -52,6 +52,10 @@ func get_max_hp():
 	
 func get_eq():
 	return Equipment
+
+func set_eq(eq):
+	Equipment = eq
+	saveData()
 
 func unlock():
 	$PlayerBody.unlock_movement()

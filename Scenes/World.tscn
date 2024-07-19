@@ -23,3 +23,4 @@ visible = false
 [connection signal="itemDone" from="." to="Menu" method="_on_world_item_done"]
 [connection signal="showDialog" from="NPC" to="." method="_on_npc_show_dialog"]
 [connection signal="itemUsed" from="Menu" to="." method="_on_canvas_layer_item_used"]
+[connection signal="saveEq" from="Menu" to="." method="_on_menu_save_eq"]
