@@ -24,6 +24,8 @@ func _process(delta):
 			attack_danger = false
 			on_cursor = false
 			$CheckSprite.visible = false
+	elif !attack_danger:
+		$CheckSprite.visible = false
 
 func load_data(json_path):
 	var text = FileAccess.get_file_as_string(json_path)

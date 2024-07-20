@@ -9,8 +9,12 @@ var Equipment
 var Attack
 
 var character_file_path
+var duringSkillCheck = false
+var skillCheckFailed = false
+var selected_attack
 
 signal ready_to_attack()
+signal attacking
 
 func saveData():
 	var file = FileAccess.open(character_file_path, FileAccess.WRITE)
@@ -70,10 +74,6 @@ func get_max_hp():
 
 func get_eq():
 	return Equipment
-	
-func deal_dmg(attack):
-	#to jest tak zrobione, bo tutaj będzie się odpalała animacja i inne gówna i dopiero wtedy zwróci dmg, prawdopodbnie w innej funkcji
-	return attack.dmg
 
 func set_eq(eq):
 	Equipment = eq
@@ -82,3 +82,8 @@ func set_eq(eq):
 
 func _process(delta):
 	pass
+	#if duringSkillCheck:
+		#print("wot")
+		#if Input.is_action_pressed("move_left"):
+			#print("pressed")
+			#duringSkillCheck = false

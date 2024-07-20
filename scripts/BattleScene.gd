@@ -5,6 +5,7 @@ var Enemies = []
 
 var possible_attack
 var possible_attacker
+var possible_target
 
 @onready var Positions = {
 	"party": [
@@ -35,6 +36,8 @@ func load_entities(party, enemies):
 		Party.append(temp_load.instantiate())
 		Party[index].position = Positions.party[index].position
 		Party[index].ready_to_attack.connect(_on_entity_ready_to_attack)
+		Party[index].attacking.connect(_on_attacking_entity)
+		Party[index].lock()
 		add_child(Party[index])	
 		
 	for index in range(len(enemies)):
@@ -49,10 +52,17 @@ func load_entities(party, enemies):
 	#player.position = $Marker2D4.position
 	#add_child(player)
 
-func _on_entity_ready_to_attack(attack):
+func _on_entity_ready_to_attack(attack, attacker):
 	possible_attack = attack
+	possible_attacker = attacker
 	for e in Enemies:
 		e.attack_danger = true
 		
 func _on_entity_being_attacked(entity):
-	entity.get_dmg(possible_attack)
+	for e in Enemies:
+		e.attack_danger = false
+	possible_attacker.start_attack(possible_attack)
+	possible_target = entity
+	
+func _on_attacking_entity(attack):
+	possible_target.get_dmg(attack)
