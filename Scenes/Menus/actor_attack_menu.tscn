@@ -45,6 +45,7 @@ size_flags_horizontal = 0
 text = "Change"
 
 [node name="WaitTimeBar" type="TextureProgressBar" parent="HBoxContainer/RightMenu/ChangeAndTime"]
+visible = false
 layout_mode = 2
 value = 50.0
 fill_mode = 5

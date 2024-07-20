@@ -11,6 +11,7 @@ var Attack
 var character_file_path
 var duringSkillCheck = false
 var skillCheckFailed = false
+var waiting = false
 var selected_attack
 
 signal ready_to_attack()

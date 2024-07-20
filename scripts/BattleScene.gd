@@ -66,3 +66,4 @@ func _on_entity_being_attacked(entity):
 	
 func _on_attacking_entity(attack):
 	possible_target.get_dmg(attack)
+	possible_attacker._on_attack_done()

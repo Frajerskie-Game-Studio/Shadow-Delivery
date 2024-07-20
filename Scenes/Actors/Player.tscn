@@ -29,6 +29,7 @@ offset_bottom = 0.0
 grow_vertical = 0
 
 [node name="CheckSprite" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -193)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_rlupw")
