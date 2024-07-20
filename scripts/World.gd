@@ -1,6 +1,7 @@
 extends Node
 
 @onready var dialog_hud = preload("res://Scenes/HudCanvas.tscn")
+@onready var d = preload("res://Scenes/Actors/Player.tscn")
 
 var current_dialog_npc
 var in_dialog = false
@@ -14,6 +15,7 @@ func _ready():
 	var temp_data = JSON.parse_string(text)
 	data = temp_data
 	party_items = temp_data["items"]
+	$Node.load_entities(["res://Scenes/Actors/Player.tscn"], [])
 
 func _process(delta):
 	if !in_dialog:
@@ -24,6 +26,8 @@ func _process(delta):
 			else:
 				$Player.lock()
 				$Menu.visible = true
+				
+	
 			
 
 #showing dialog window (signal from NPC)

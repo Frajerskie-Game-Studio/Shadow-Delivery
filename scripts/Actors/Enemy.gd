@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var HealthBar = $HealthBar
+
 var Name
 var Hp
 var MaxHp
@@ -7,7 +9,8 @@ var Attack
 var Skills
 
 func _ready():
-	pass
+	HealthBar.max_value = MaxHp
+	HealthBar.value = MaxHp
 
 func _process(delta):
 	pass

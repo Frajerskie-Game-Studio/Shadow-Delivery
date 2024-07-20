@@ -4,7 +4,7 @@
 		"./Data/lucjan_data.json"
 	],
 	"items": {
-
+		"red brew": ["Very weak healing potion", 0, 20, 1],
 	},
 	"equipment": {
 		"Dixer_uniform": [

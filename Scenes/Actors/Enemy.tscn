@@ -1,13 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3aev84jsnw05"]
+[gd_scene load_steps=5 format=3 uid="uid://c3aev84jsnw05"]
 
 [ext_resource type="Script" path="res://scripts/Actors/Enemy.gd" id="1_ucwuh"]
 [ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="2_h2lks"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ksy5i"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3whqp"]
+bg_color = Color(0.980392, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_ucwuh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_h2lks")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -89.5
+offset_top = -130.19
+offset_right = 89.5
+offset_bottom = -103.19
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_ksy5i")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3whqp")
+value = 50.0
 
 [node name="CheckSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -193)

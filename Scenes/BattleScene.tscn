@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1iox65houvxo"]
+
+[ext_resource type="Script" path="res://scripts/BattleScene.gd" id="1_lpwyi"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_lpwyi")
+
+[node name="Party_First_Position" type="Marker2D" parent="."]
+position = Vector2(142, 119.37)
+
+[node name="Party_Second_Position" type="Marker2D" parent="."]
+position = Vector2(247, 274)
+
+[node name="Party_Third_Position" type="Marker2D" parent="."]
+position = Vector2(142, 414.195)
+
+[node name="Party_Fourth_Position" type="Marker2D" parent="."]
+position = Vector2(242, 563)
+
+[node name="Enemy_First_Position" type="Marker2D" parent="."]
+position = Vector2(960, 119.37)
+
+[node name="Enemy_Second_Position" type="Marker2D" parent="."]
+position = Vector2(1065, 274)
+
+[node name="Enemy_Third_Position" type="Marker2D" parent="."]
+position = Vector2(960, 414.195)
+
+[node name="Enemy_Fourth_Position" type="Marker2D" parent="."]
+position = Vector2(1060, 563)
