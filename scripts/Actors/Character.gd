@@ -6,8 +6,11 @@ var Hp
 var MaxHp
 var Skills
 var Equipment
+var Attack
 
 var character_file_path
+
+signal ready_to_attack()
 
 func saveData():
 	var file = FileAccess.open(character_file_path, FileAccess.WRITE)
@@ -16,6 +19,7 @@ func saveData():
 		"texture": "",
 		"hp": Hp,
 		"max_hp": MaxHp,
+		"attack": {"dmg": 45, "wait_time": 2},
 		"skills": Skills,
 		"equipment": Equipment
 	}
@@ -31,6 +35,7 @@ func load_data():
 	MaxHp = temp_data["hp"]
 	Skills = temp_data["skills"]
 	Equipment = temp_data["equipment"]
+	Attack = temp_data["attack"]
 
 
 func _ready():
@@ -44,6 +49,8 @@ func use_item(item):
 		Hp += int(item[2])
 	saveData()
 
+func get_attack():
+	return Attack
 
 func get_entity_name():
 	return Name
@@ -63,7 +70,10 @@ func get_max_hp():
 
 func get_eq():
 	return Equipment
-
+	
+func deal_dmg(attack):
+	#to jest tak zrobione, bo tutaj będzie się odpalała animacja i inne gówna i dopiero wtedy zwróci dmg, prawdopodbnie w innej funkcji
+	return attack.dmg
 
 func set_eq(eq):
 	Equipment = eq

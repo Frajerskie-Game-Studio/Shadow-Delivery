@@ -17,7 +17,7 @@ shape = SubResource("RectangleShape2D_23s6j")
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 texture = ExtResource("2_abwvj")
 
-[node name="MarginContainer" parent="." instance=ExtResource("3_no4uv")]
+[node name="AttackMenu" parent="." instance=ExtResource("3_no4uv")]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0

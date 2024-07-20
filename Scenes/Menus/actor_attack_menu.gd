@@ -16,6 +16,8 @@ var CurrentStyle = "mele"
 var WaitTime
 var Ammo
 
+signal i_will_attack()
+
 
 func load_data(hp, max_hp, mele_skills, range_skills, ammo, ammo_texture_path):
 	HealthBar.max_value = max_hp
@@ -31,3 +33,7 @@ func _ready():
 
 func _process(delta):
 	pass
+
+
+func _on_attack_button_pressed():
+	i_will_attack.emit()

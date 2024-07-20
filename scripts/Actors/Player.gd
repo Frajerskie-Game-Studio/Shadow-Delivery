@@ -23,3 +23,7 @@ func lock():
 
 func _process(delta):
 	pass
+
+
+func _on_attack_menu_i_will_attack():
+	ready_to_attack.emit(Attack)

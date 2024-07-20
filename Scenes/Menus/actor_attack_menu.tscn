@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="1_6pjmx"]
 [ext_resource type="Script" path="res://Scenes/Menus/actor_attack_menu.gd" id="1_gkhpm"]
 
-[node name="MarginContainer" type="MarginContainer"]
+[node name="AttackMenu" type="MarginContainer"]
 offset_right = 299.0
 offset_bottom = 150.0
 size_flags_horizontal = 4
@@ -67,3 +67,5 @@ text = "6/6"
 layout_mode = 2
 texture = ExtResource("1_6pjmx")
 expand_mode = 3
+
+[connection signal="pressed" from="HBoxContainer/LeftMenu/AttackButton" to="." method="_on_attack_button_pressed"]
