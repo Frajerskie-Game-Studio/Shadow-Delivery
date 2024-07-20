@@ -1,8 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpsu8wxbqyj34"]
+[gd_scene load_steps=6 format=3 uid="uid://cpsu8wxbqyj34"]
 
 [ext_resource type="Texture2D" uid="uid://b2kqablq42vcj" path="res://Graphics/Menus/white_circle_small.png" id="1_0h6uo"]
 [ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="1_6pjmx"]
 [ext_resource type="Script" path="res://Scenes/Menus/actor_attack_menu.gd" id="1_gkhpm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_we36a"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjbxa"]
+bg_color = Color(0.980392, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="AttackMenu" type="MarginContainer"]
 offset_right = 299.0
@@ -47,7 +60,8 @@ text = "Change"
 [node name="WaitTimeBar" type="TextureProgressBar" parent="HBoxContainer/RightMenu/ChangeAndTime"]
 visible = false
 layout_mode = 2
-value = 50.0
+allow_greater = true
+allow_lesser = true
 fill_mode = 5
 texture_under = ExtResource("1_0h6uo")
 texture_progress = ExtResource("1_0h6uo")
@@ -56,6 +70,8 @@ tint_progress = Color(0, 0.783616, 0, 1)
 
 [node name="HealthBar" type="ProgressBar" parent="HBoxContainer/RightMenu"]
 layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_we36a")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vjbxa")
 
 [node name="RangeWeaponStats" type="HBoxContainer" parent="HBoxContainer/RightMenu"]
 layout_mode = 2

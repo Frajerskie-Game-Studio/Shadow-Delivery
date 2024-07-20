@@ -3,7 +3,7 @@
 	"texture": "",
 	"hp": 80,
 	"max_hp": 100,
-	"attack": {"dmg": 45, "wait_time": 2},
+	"attack": {"dmg": 45, "wait_time": 3},
 	"skills": {
 
 	},

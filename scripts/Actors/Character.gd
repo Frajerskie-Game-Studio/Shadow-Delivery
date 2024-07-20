@@ -12,10 +12,13 @@ var character_file_path
 var duringSkillCheck = false
 var skillCheckFailed = false
 var waiting = false
+var can_be_attacked = true
+var ready_to_attack_bool = false
 var selected_attack
 
 signal ready_to_attack()
 signal attacking
+signal reset_attack
 
 func saveData():
 	var file = FileAccess.open(character_file_path, FileAccess.WRITE)
@@ -79,6 +82,7 @@ func get_eq():
 func set_eq(eq):
 	Equipment = eq
 	saveData()
+
 
 
 func _process(delta):

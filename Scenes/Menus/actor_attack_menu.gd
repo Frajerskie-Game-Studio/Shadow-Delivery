@@ -25,8 +25,8 @@ func load_data(hp, max_hp, mele_skills, range_skills, ammo, ammo_texture_path):
 	MeleSkills = mele_skills
 	RangeSkills = range_skills
 	Ammo = ammo
-	AmmoLabel.text = ammo
-	AmmoTexture.texture = ammo_texture_path
+	AmmoLabel.text = str(ammo)
+	#AmmoTexture.texture = ammo_texture_path
 
 func _ready():
 	pass
