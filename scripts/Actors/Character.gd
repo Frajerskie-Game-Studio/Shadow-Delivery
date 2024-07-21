@@ -10,7 +10,7 @@ var Attack
 
 var character_file_path
 var duringSkillCheck = false
-var skillCheckFailed = false
+var skillCheckFailed = true
 var waiting = false
 var can_be_attacked = true
 var ready_to_attack_bool = false

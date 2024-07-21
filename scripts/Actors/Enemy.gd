@@ -127,13 +127,10 @@ func _on_area_2d_mouse_exited():
 
 
 func _on_area_2d_body_entered(body):
-	print(body.name)
 	if body.name == "RangeSKillCheck":
 		on_crossair = true
-		print("ENTERED")
 
 
 func _on_area_2d_body_exited(body):
 	if body.name == "RangeSKillCheck":
 		on_crossair = false
-		print("EXITED")

@@ -51,23 +51,20 @@ func get_dmg(attack):
 
 
 func _process(delta):
-	if duringSkillCheck:
-		if current_style == "mele":
-			if Input.is_action_just_pressed(skillChecks[skillCheckStep], true):
-				duringSkillCheck = false
-				timer.timeout.emit()
-				timer.stop()
-				#if skillCheckStep < len(skillChecks) - 1:
-					#skillCheckStep += 1
-		elif current_style == "range":
-			if Input.is_action_just_pressed("Shoot"):
-				var on_crossair = get_parent().possible_target.on_crossair
-				print(on_crossair)
-				if on_crossair:
-					print("TRAFUIONY")
-					duringSkillCheck = false
-				timer.timeout.emit()
-				timer.stop()
+	if timer != null:
+		if duringSkillCheck:
+			print(timer.get_time_left())
+			if current_style == "mele":
+				if Input.is_action_just_pressed(skillChecks[skillCheckStep]):
+					print("Siadło")
+					skillCheckFailed = false
+					timer.timeout.emit()
+			elif current_style == "range":
+				if Input.is_action_just_pressed("Shoot"):
+					var on_crossair = get_parent().possible_target.on_crossair
+					if on_crossair:
+						skillCheckFailed = false
+					timer.timeout.emit()
 				
 	if waiting and !wait_timer.is_paused():
 		#100 / floor(wait_timer.wait_time / delta)
@@ -105,8 +102,9 @@ func start_attack(attack):
 	timer.start()
 	
 func _on_timer_timeout():
+	print("KONIEC")
 	$MeleSkillCheck.visible = false
-	if duringSkillCheck:
+	if skillCheckFailed:
 		print("FAILED")
 		skillCheckFailed = true
 		duringSkillCheck = false
@@ -118,8 +116,9 @@ func _on_timer_timeout():
 			$RangeSKillCheck.visible = false
 		timer.queue_free()
 	else:
-		print("CORRECT")
 		if skillCheckStep == len(skillChecks) - 1 or skillCheckStep == -1:
+			duringSkillCheck = false
+			print("CORRECT")
 			attacking.emit(selected_attack)
 			if current_style == "range":
 				decrement_ammo()
@@ -130,20 +129,24 @@ func _on_timer_timeout():
 			skillChecks.clear()
 			skillCheckStep = 0
 		else:
+			print("Wyszło")
+			timer.queue_free()
 			skillCheckStep += 1
-			duringSkillCheck = true
+			duringSkillCheck = false
 			$MeleSkillCheck.texture = load("res://Graphics/" + str(skillChecks[skillCheckStep]) +".png")
 			$MeleSkillCheck.visible = true
 			var temp_wait_time = timer.wait_time
-			timer.queue_free()
 			timer = Timer.new()
 			timer.one_shot = true
-			timer.wait_time = float(temp_wait_time)
+			
 			timer.timeout.connect(_on_timer_timeout)
 			add_child(timer)
+			timer.wait_time = float(1)
+			duringSkillCheck = true
 			timer.start()
 
 func _on_attack_done():
+	print("DONE")
 	can_be_attacked = true
 	$AttackMenu/HBoxContainer/LeftMenu/SkillsButton.visible = false
 	$AttackMenu/HBoxContainer/LeftMenu/ItemsButton.visible = false
