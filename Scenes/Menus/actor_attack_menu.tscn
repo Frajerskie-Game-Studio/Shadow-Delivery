@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpsu8wxbqyj34"]
+[gd_scene load_steps=7 format=3 uid="uid://cpsu8wxbqyj34"]
 
 [ext_resource type="Texture2D" uid="uid://b2kqablq42vcj" path="res://Graphics/Menus/white_circle_small.png" id="1_0h6uo"]
 [ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="1_6pjmx"]
 [ext_resource type="Script" path="res://Scenes/Menus/actor_attack_menu.gd" id="1_gkhpm"]
+[ext_resource type="Texture2D" uid="uid://xph8jp2n5jmt" path="res://Graphics/switch.png" id="2_kqchy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_we36a"]
 corner_radius_top_left = 5
@@ -52,7 +53,13 @@ size_flags_horizontal = 3
 layout_mode = 2
 theme_override_constants/separation = 100
 
-[node name="ChangeStyle" type="Button" parent="HBoxContainer/RightMenu/ChangeAndTime"]
+[node name="ChangeStyle" type="TextureButton" parent="HBoxContainer/RightMenu/ChangeAndTime"]
+layout_mode = 2
+texture_normal = ExtResource("2_kqchy")
+texture_pressed = ExtResource("2_kqchy")
+
+[node name="ChangeStyle3" type="Button" parent="HBoxContainer/RightMenu/ChangeAndTime"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Change"
@@ -86,3 +93,4 @@ texture = ExtResource("1_6pjmx")
 expand_mode = 3
 
 [connection signal="pressed" from="HBoxContainer/LeftMenu/AttackButton" to="." method="_on_attack_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightMenu/ChangeAndTime/ChangeStyle" to="." method="_on_change_style_pressed"]

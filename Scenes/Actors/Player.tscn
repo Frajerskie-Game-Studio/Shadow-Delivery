@@ -39,4 +39,5 @@ visible = false
 position = Vector2(298, 0)
 scale = Vector2(1.058, 1)
 
+[connection signal="change_style" from="AttackMenu" to="." method="_on_attack_menu_change_style"]
 [connection signal="i_will_attack" from="AttackMenu" to="." method="_on_attack_menu_i_will_attack"]

@@ -17,7 +17,7 @@ var WaitTime
 var Ammo
 
 signal i_will_attack()
-
+signal change_style
 
 func load_data(hp, max_hp, mele_skills, range_skills, ammo, ammo_texture_path):
 	HealthBar.max_value = max_hp
@@ -32,8 +32,21 @@ func _ready():
 	pass
 
 func _process(delta):
-	pass
+	if CurrentStyle == "range":
+		if Ammo <= 0:
+			AttackButton.disabled = true
+		else:
+			AttackButton.disabled = false
 
 
 func _on_attack_button_pressed():
 	i_will_attack.emit()
+
+
+func _on_change_style_pressed():
+	change_style.emit()
+	if CurrentStyle == "mele":
+		CurrentStyle = "range"
+	else:
+		CurrentStyle = "mele"
+	

@@ -8,8 +8,8 @@
 		"Getting ready": ["Lucjan waits to build up power, to attack 1.5x stronger", 0, 0, 15]
 	},
 		"equipment": {
-		"Mele_weapon":  ["Pickaxe", "Iconic.", 0],
-		"Range_weapon": ["Cheap flintlock", "A little old, but reliable", 0, 6],
+		"Mele_weapon":  ["Pickaxe", "Iconic.", 45],
+		"Range_weapon": ["Cheap flintlock", "A little old, but reliable", 60, 6],
 		"Armor": ["", "", 0]
 	}
 }

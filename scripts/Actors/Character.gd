@@ -14,7 +14,9 @@ var skillCheckFailed = false
 var waiting = false
 var can_be_attacked = true
 var ready_to_attack_bool = false
+var changing_style = false
 var selected_attack
+var current_style = "mele"
 
 signal ready_to_attack()
 signal attacking
@@ -49,6 +51,20 @@ func load_data():
 func _ready():
 	load_data()
 
+func get_ammo():
+	return Equipment.Range_weapon[3]
+
+func decrement_ammo():
+	Equipment.Range_weapon[3] -= 1
+
+func get_style():
+	return current_style
+
+func set_style():
+	if current_style == "mele":
+		current_style = "range"
+	else:
+		current_style = "mele"
 
 func use_item(item):
 	if item[1] != 0:

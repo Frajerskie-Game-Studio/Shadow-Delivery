@@ -21,7 +21,7 @@ func use_item(item):
 func _ready():
 	#hp, max_hp, mele_skills, range_skills, ammo, ammo_texture_path
 	load_data()
-	$AttackMenu.load_data(Hp, MaxHp, {}, {}, 0, "")
+	$AttackMenu.load_data(Hp, MaxHp, {}, {}, get_ammo(), "")
 
 func unlock():
 	$PlayerBody.unlock_movement()
@@ -45,26 +45,27 @@ func get_dmg(attack):
 	if Hp <= 0:
 		queue_free()
 	else:
-		$AttackMenu.load_data(Hp, MaxHp, {}, {}, 0, "")
+		$AttackMenu.load_data(Hp, MaxHp, {}, {}, get_ammo(), "")
 
 
 func _process(delta):
 	if duringSkillCheck:
-		if Input.is_action_just_pressed(skillChecks[skillCheckStep], true):
-			duringSkillCheck = false
-			timer.timeout.emit()
-			timer.stop()
-			#if skillCheckStep < len(skillChecks) - 1:
-				#skillCheckStep += 1
-
+		if current_style == "mele":
+			if Input.is_action_just_pressed(skillChecks[skillCheckStep], true):
+				duringSkillCheck = false
+				timer.timeout.emit()
+				timer.stop()
+				#if skillCheckStep < len(skillChecks) - 1:
+					#skillCheckStep += 1
 
 	if waiting and !wait_timer.is_paused():
 		#100 / floor(wait_timer.wait_time / delta)
 		$AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.step = $AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.max_value / (wait_timer.wait_time / delta)
 		$AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.value += $AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.step
+
 func _on_attack_menu_i_will_attack():
 	ready_to_attack_bool = true
-	ready_to_attack.emit(Attack, self)
+	ready_to_attack.emit(Attack[current_style], self)
 	
 func start_attack(attack):
 	ready_to_attack_bool = false
@@ -95,6 +96,9 @@ func _on_timer_timeout():
 			if skillCheckStep == len(skillChecks) - 1:
 				print("correct")
 				attacking.emit(selected_attack)
+				if current_style == "range":
+					decrement_ammo()
+					$AttackMenu.load_data(Hp, MaxHp, {}, {}, get_ammo(), "")
 				timer.queue_free()
 				skillChecks.clear()
 				skillCheckStep = 0
@@ -137,3 +141,27 @@ func _on_wait_time_timeout():
 	$AttackMenu/HBoxContainer/LeftMenu/SkillsButton.visible = true
 	$AttackMenu/HBoxContainer/LeftMenu/ItemsButton.visible = true
 	$AttackMenu/HBoxContainer/LeftMenu/AttackButton.visible = true
+	$AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/ChangeStyle.visible = true
+	if changing_style:
+		set_style()
+		changing_style = false
+
+
+func _on_attack_menu_change_style():
+	changing_style = true
+	$AttackMenu/HBoxContainer/LeftMenu/SkillsButton.visible = false
+	$AttackMenu/HBoxContainer/LeftMenu/ItemsButton.visible = false
+	$AttackMenu/HBoxContainer/LeftMenu/AttackButton.visible = false
+	$AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/ChangeStyle.visible = false
+	var timebar = $AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar
+	timebar.visible = true
+	wait_timer = Timer.new()
+	wait_timer.one_shot = true
+	wait_timer.wait_time = 2
+	wait_timer.timeout.connect(_on_wait_time_timeout)
+	add_child(wait_timer)
+	timebar.max_value = 100
+	timebar.value = 0
+	waiting = true
+	wait_timer.start()
+	
