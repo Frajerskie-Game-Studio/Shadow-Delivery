@@ -17,16 +17,14 @@ position = Vector2(134, 193)
 [node name="Node2D" parent="." instance=ExtResource("5_w28jm")]
 visible = false
 
-[node name="NPC" parent="." instance=ExtResource("3_k464w")]
-visible = false
-position = Vector2(854, 395)
-
 [node name="Menu" parent="." instance=ExtResource("4_d6lnw")]
 visible = false
 
 [node name="Node" parent="." instance=ExtResource("5_wjfqw")]
 
+[node name="NPC" parent="." instance=ExtResource("3_k464w")]
+visible = false
+
 [connection signal="itemDone" from="." to="Menu" method="_on_world_item_done"]
-[connection signal="showDialog" from="NPC" to="." method="_on_npc_show_dialog"]
 [connection signal="itemUsed" from="Menu" to="." method="_on_canvas_layer_item_used"]
 [connection signal="saveEq" from="Menu" to="." method="_on_menu_save_eq"]

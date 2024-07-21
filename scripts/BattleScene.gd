@@ -49,6 +49,7 @@ func load_entities(party, enemies):
 		Enemies[index].being_attacked.connect(_on_entity_being_attacked)
 		Enemies[index].enemy_attacking.connect(_on_enemy_attacking)
 		add_child(Enemies[index])
+		Enemies[index].start_attacking_process()
 	
 	#player = temp_load
 	#player.position = $Marker2D4.position
@@ -62,7 +63,6 @@ func _on_entity_ready_to_attack(attack, attacker):
 		e.attack_danger = true
 
 func _on_reset_ready_to_attack():
-	print("RESET")
 	possible_attacker.can_be_attacked = true
 	possible_attack = null
 	possible_attacker = null
@@ -73,8 +73,8 @@ func _on_entity_being_attacked(entity):
 	possible_attacker.can_be_attacked = false
 	for e in Enemies:
 		e.attack_danger = false
-	possible_attacker.start_attack(possible_attack)
 	possible_target = entity
+	possible_attacker.start_attack(possible_attack)
 	
 func _on_attacking_entity(attack):
 	possible_target.get_dmg(attack)

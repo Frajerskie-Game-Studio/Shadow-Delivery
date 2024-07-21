@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnls0har28lt"]
+[gd_scene load_steps=8 format=3 uid="uid://bnls0har28lt"]
 
 [ext_resource type="Script" path="res://Scripts/Actors/Player.gd" id="1_231py"]
 [ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="1_rlupw"]
 [ext_resource type="Script" path="res://Scripts/Player_movement.gd" id="1_ymo11"]
 [ext_resource type="PackedScene" uid="uid://cpsu8wxbqyj34" path="res://Scenes/Menus/actor_attack_menu.tscn" id="2_5m8o5"]
 [ext_resource type="Script" path="res://Scenes/Actors/RangeSKillCheck.gd" id="5_8f850"]
-[ext_resource type="Texture2D" uid="uid://dfr7wyx8hve7f" path="res://Graphics/celownik.png" id="6_63nti"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uor6i"]
 size = Vector2(156, 154)
@@ -45,13 +44,11 @@ position = Vector2(298, 0)
 scale = Vector2(1.058, 1)
 
 [node name="RangeSKillCheck" type="CharacterBody2D" parent="."]
-visible = false
-motion_mode = 1
-platform_floor_layers = 4294901760
 script = ExtResource("5_8f850")
 
 [node name="Sprite2D" type="Sprite2D" parent="RangeSKillCheck"]
-texture = ExtResource("6_63nti")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_rlupw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RangeSKillCheck"]
 position = Vector2(-2, -2)

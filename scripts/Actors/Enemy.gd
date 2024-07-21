@@ -15,6 +15,7 @@ var can_be_attacked = true
 var can_attack = false
 var data_loaded = false
 var waiting = false
+var on_crossair = false 
 
 var wait_timer
 
@@ -35,7 +36,6 @@ func start_attacking_process():
 func _ready():
 	HealthBar.max_value = MaxHp
 	HealthBar.value = MaxHp
-	start_attacking_process()
 
 func _process(delta):	
 	pass
@@ -44,6 +44,7 @@ func _physics_process(delta):
 	if data_loaded:
 		if attack_danger and on_cursor and can_be_attacked:
 			if Input.is_action_just_pressed("mouse_click"):
+				print("BEING ATTACKED")
 				can_attack = false
 				wait_timer.set_paused(true)
 				#$EnemyWaitTimer.visible = false
@@ -123,3 +124,16 @@ func _on_area_2d_mouse_exited():
 	if attack_danger:
 		on_cursor = false
 		$CheckSprite.visible = false
+
+
+func _on_area_2d_body_entered(body):
+	print(body.name)
+	if body.name == "RangeSKillCheck":
+		on_crossair = true
+		print("ENTERED")
+
+
+func _on_area_2d_body_exited(body):
+	if body.name == "RangeSKillCheck":
+		on_crossair = false
+		print("EXITED")

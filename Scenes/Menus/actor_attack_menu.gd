@@ -37,6 +37,8 @@ func _process(delta):
 			AttackButton.disabled = true
 		else:
 			AttackButton.disabled = false
+	else:
+		AttackButton.disabled = false
 
 
 func _on_attack_button_pressed():

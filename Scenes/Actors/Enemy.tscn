@@ -64,5 +64,7 @@ texture_progress = ExtResource("3_8vyl3")
 tint_under = Color(0.243137, 0.231373, 0.262745, 1)
 tint_progress = Color(0, 0.784314, 0, 1)
 
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

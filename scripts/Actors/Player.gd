@@ -6,6 +6,7 @@ var wait_timer
 var skillChecks = []
 var possibleSkillChecks = ["move_left", "move_right", "move_up", "move_down"]
 var skillCheckStep = 0
+var possible_target_position
 
 func _init():
 	character_file_path = "res://Data/mikut_data.json"
@@ -22,6 +23,8 @@ func _ready():
 	#hp, max_hp, mele_skills, range_skills, ammo, ammo_texture_path
 	load_data()
 	$AttackMenu.load_data(Hp, MaxHp, {}, {}, get_ammo(), "")
+	#$RangeSKillCheck.get_direction()
+	#$RangeSKillCheck.started = true
 
 func unlock():
 	$PlayerBody.unlock_movement()
@@ -31,7 +34,6 @@ func lock():
 	$PlayerBody.lock_movement()
 	
 func get_dmg(attack):
-	print("DAMAGED")
 	if ready_to_attack_bool:
 		reset_attack.emit()
 		$AttackMenu/HBoxContainer/LeftMenu/AttackButton.release_focus()
@@ -57,7 +59,16 @@ func _process(delta):
 				timer.stop()
 				#if skillCheckStep < len(skillChecks) - 1:
 					#skillCheckStep += 1
-
+		elif current_style == "range":
+			if Input.is_action_just_pressed("Shoot"):
+				var on_crossair = get_parent().possible_target.on_crossair
+				print(on_crossair)
+				if on_crossair:
+					print("TRAFUIONY")
+					duringSkillCheck = false
+				timer.timeout.emit()
+				timer.stop()
+				
 	if waiting and !wait_timer.is_paused():
 		#100 / floor(wait_timer.wait_time / delta)
 		$AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.step = $AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.max_value / (wait_timer.wait_time / delta)
@@ -69,52 +80,68 @@ func _on_attack_menu_i_will_attack():
 	
 func start_attack(attack):
 	ready_to_attack_bool = false
-	$MeleSkillCheck.visible = true
 	timer = Timer.new()
 	timer.one_shot = true
 	timer.wait_time = float(attack.wait_time)
 	timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
 	#asdasd
-	for i in range(4):
-		var rand = RandomNumberGenerator.new()
-		skillChecks.append(possibleSkillChecks[rand.randi_range(0, len(possibleSkillChecks) - 1)])
-	$MeleSkillCheck.texture = load("res://Graphics/" + str(skillChecks[skillCheckStep]) +".png")
-	print(skillChecks)
+	if current_style == "mele":
+		$MeleSkillCheck.visible = true
+		skillCheckStep = 0
+		for i in range(4):
+			var rand = RandomNumberGenerator.new()
+			skillChecks.append(possibleSkillChecks[rand.randi_range(0, len(possibleSkillChecks) - 1)])
+		$MeleSkillCheck.texture = load("res://Graphics/" + str(skillChecks[skillCheckStep]) +".png")
+	elif current_style == "range":
+		skillCheckStep = -1
+		timer.wait_time = float(2)
+		$RangeSKillCheck.visible = true
+		possible_target_position = get_parent().possible_target.global_position
+		$RangeSKillCheck.get_direction(possible_target_position)
+		$RangeSKillCheck.started = true
 	duringSkillCheck = true
 	selected_attack = attack
 	timer.start()
 	
 func _on_timer_timeout():
-		$MeleSkillCheck.visible = false
-		if duringSkillCheck:
-			skillCheckFailed = true
-			attacking.emit({"dmg": 0})
-			print("failed")
+	$MeleSkillCheck.visible = false
+	if duringSkillCheck:
+		print("FAILED")
+		skillCheckFailed = true
+		duringSkillCheck = false
+		attacking.emit({"dmg": 0})
+		if current_style == "range":
+			decrement_ammo()
+			$AttackMenu.load_data(Hp, MaxHp, {}, {}, get_ammo(), "")
+			$RangeSKillCheck.started = false
+			$RangeSKillCheck.visible = false
+		timer.queue_free()
+	else:
+		print("CORRECT")
+		if skillCheckStep == len(skillChecks) - 1 or skillCheckStep == -1:
+			attacking.emit(selected_attack)
+			if current_style == "range":
+				decrement_ammo()
+				$AttackMenu.load_data(Hp, MaxHp, {}, {}, get_ammo(), "")
+			$RangeSKillCheck.started = false
+			$RangeSKillCheck.visible = false
 			timer.queue_free()
+			skillChecks.clear()
+			skillCheckStep = 0
 		else:
-			if skillCheckStep == len(skillChecks) - 1:
-				print("correct")
-				attacking.emit(selected_attack)
-				if current_style == "range":
-					decrement_ammo()
-					$AttackMenu.load_data(Hp, MaxHp, {}, {}, get_ammo(), "")
-				timer.queue_free()
-				skillChecks.clear()
-				skillCheckStep = 0
-			else:
-				skillCheckStep += 1
-				duringSkillCheck = true
-				$MeleSkillCheck.texture = load("res://Graphics/" + str(skillChecks[skillCheckStep]) +".png")
-				$MeleSkillCheck.visible = true
-				var temp_wait_time = timer.wait_time
-				timer.queue_free()
-				timer = Timer.new()
-				timer.one_shot = true
-				timer.wait_time = float(temp_wait_time)
-				timer.timeout.connect(_on_timer_timeout)
-				add_child(timer)
-				timer.start()
+			skillCheckStep += 1
+			duringSkillCheck = true
+			$MeleSkillCheck.texture = load("res://Graphics/" + str(skillChecks[skillCheckStep]) +".png")
+			$MeleSkillCheck.visible = true
+			var temp_wait_time = timer.wait_time
+			timer.queue_free()
+			timer = Timer.new()
+			timer.one_shot = true
+			timer.wait_time = float(temp_wait_time)
+			timer.timeout.connect(_on_timer_timeout)
+			add_child(timer)
+			timer.start()
 
 func _on_attack_done():
 	can_be_attacked = true
