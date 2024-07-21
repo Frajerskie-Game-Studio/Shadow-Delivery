@@ -2,7 +2,10 @@ extends "Lucjan.gd"
 
 var timer
 var wait_timer
-var d = 0
+#var d = 0
+var skillChecks = []
+var possibleSkillChecks = ["move_left", "move_right", "move_up", "move_down"]
+var skillCheckStep = 0
 
 func _init():
 	character_file_path = "res://Data/mikut_data.json"
@@ -47,10 +50,14 @@ func get_dmg(attack):
 
 func _process(delta):
 	if duringSkillCheck:
-		if Input.is_action_pressed("move_left"):
+		if Input.is_action_just_pressed(skillChecks[skillCheckStep], true):
 			duringSkillCheck = false
 			timer.timeout.emit()
 			timer.stop()
+			#if skillCheckStep < len(skillChecks) - 1:
+				#skillCheckStep += 1
+
+
 	if waiting and !wait_timer.is_paused():
 		#100 / floor(wait_timer.wait_time / delta)
 		$AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.step = $AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.max_value / (wait_timer.wait_time / delta)
@@ -67,20 +74,43 @@ func start_attack(attack):
 	timer.wait_time = float(attack.wait_time)
 	timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
+	#asdasd
+	for i in range(4):
+		var rand = RandomNumberGenerator.new()
+		skillChecks.append(possibleSkillChecks[rand.randi_range(0, len(possibleSkillChecks) - 1)])
+	$MeleSkillCheck.texture = load("res://Graphics/" + str(skillChecks[skillCheckStep]) +".png")
+	print(skillChecks)
 	duringSkillCheck = true
 	selected_attack = attack
 	timer.start()
 	
 func _on_timer_timeout():
-	$MeleSkillCheck.visible = false
-	if duringSkillCheck:
-		skillCheckFailed = true
-		attacking.emit({"dmg": 0})
-		print("failed")
-	else:
-		print("correct")
-		attacking.emit(selected_attack)
-	timer.queue_free()
+		$MeleSkillCheck.visible = false
+		if duringSkillCheck:
+			skillCheckFailed = true
+			attacking.emit({"dmg": 0})
+			print("failed")
+			timer.queue_free()
+		else:
+			if skillCheckStep == len(skillChecks) - 1:
+				print("correct")
+				attacking.emit(selected_attack)
+				timer.queue_free()
+				skillChecks.clear()
+				skillCheckStep = 0
+			else:
+				skillCheckStep += 1
+				duringSkillCheck = true
+				$MeleSkillCheck.texture = load("res://Graphics/" + str(skillChecks[skillCheckStep]) +".png")
+				$MeleSkillCheck.visible = true
+				var temp_wait_time = timer.wait_time
+				timer.queue_free()
+				timer = Timer.new()
+				timer.one_shot = true
+				timer.wait_time = float(temp_wait_time)
+				timer.timeout.connect(_on_timer_timeout)
+				add_child(timer)
+				timer.start()
 
 func _on_attack_done():
 	can_be_attacked = true

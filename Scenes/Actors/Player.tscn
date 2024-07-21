@@ -37,7 +37,6 @@ texture = ExtResource("1_rlupw")
 [node name="MeleSkillCheck" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(298, 0)
-scale = Vector2(0.4375, 0.414063)
-texture = ExtResource("1_rlupw")
+scale = Vector2(1.058, 1)
 
 [connection signal="i_will_attack" from="AttackMenu" to="." method="_on_attack_menu_i_will_attack"]
