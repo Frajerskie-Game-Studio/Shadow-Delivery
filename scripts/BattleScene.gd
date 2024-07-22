@@ -29,8 +29,13 @@ func _ready():
 
 
 func _process(delta):
-	pass
-	
+	var counter = 0
+	for p in Party:
+		if p.KnockedUp:
+			counter+=1
+	if counter == len(Party):
+		#there will be game over screen  signal
+		print("GAME OVER")
 func load_entities(party, enemies):
 	for index in range(len(party)):
 		var temp_load = load(party[index])
