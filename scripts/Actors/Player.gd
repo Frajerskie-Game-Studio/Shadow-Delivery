@@ -85,7 +85,10 @@ func _on_attack_menu_i_will_attack(args):
 		if len(args) == 2:
 			ready_to_attack.emit({"dmg": args[0][1], "wait_time": 3, "heal": args[0][2], "key": args[1]}, self)
 		else:
-			ready_to_attack.emit({"dmg": args[1], "wait_time": args[3]}, self)
+			if len(args) == 6:
+				ready_to_attack.emit({"dmg": args[1], "wait_time": args[3], "effect": args[5]}, self)
+			else:
+				ready_to_attack.emit({"dmg": args[1], "wait_time": args[3]}, self)
 	
 func start_attack(attack):
 	ready_to_attack_bool = false
@@ -103,12 +106,20 @@ func start_attack(attack):
 			skillChecks.append(possibleSkillChecks[rand.randi_range(0, len(possibleSkillChecks) - 1)])
 		$MeleSkillCheck.texture = load("res://Graphics/" + str(skillChecks[skillCheckStep]) +".png")
 	elif current_style == "range":
-		skillCheckStep = -1
-		timer.wait_time = float(2)
-		$RangeSKillCheck.visible = true
-		possible_target_position = get_parent().possible_target.global_position
-		$RangeSKillCheck.get_direction(possible_target_position)
-		$RangeSKillCheck.started = true
+		if !attack.has("effect"):
+			skillCheckStep = -1
+			timer.wait_time = float(2)
+			$RangeSKillCheck.visible = true
+			possible_target_position = get_parent().possible_target.global_position
+			$RangeSKillCheck.get_direction(possible_target_position)
+			$RangeSKillCheck.started = true
+		else:
+			if attack.effect == "all":
+				selected_attack = attack
+				attacking.emit(selected_attack)
+				decrement_ammo()
+				$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "", Items)
+				return
 	duringSkillCheck = true
 	selected_attack = attack
 	timer.start()

@@ -1,8 +1,8 @@
 {
 	"name": "Mikut",
 	"texture": "",
-	"hp": 100,
-	"max_hp": 100,
+	"hp": 200,
+	"max_hp": 200,
 	"attack": {
 		"mele": {
 			"dmg": 45,
@@ -19,7 +19,8 @@
 			60,
 			0,
 			10,
-			"range"
+			"range",
+			"all"
 		]
 	},
 	"equipment": {

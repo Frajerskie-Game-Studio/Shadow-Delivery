@@ -21,6 +21,7 @@ var wait_timer
 
 signal being_attacked(entity)
 signal enemy_attacking
+signal dying(entity)
 
 func start_attacking_process():
 	WaiTimeBar.visible = true
@@ -61,6 +62,16 @@ func _physics_process(delta):
 			WaiTimeBar.visible = true
 			WaiTimeBar.step = WaiTimeBar.max_value / (wait_timer.wait_time / delta)
 			WaiTimeBar.value += WaiTimeBar.step
+			
+func all_attack():
+	print("BEING ATTACKED")
+	can_attack = false
+	wait_timer.set_paused(true)
+	#$EnemyWaitTimer.visible = false
+	being_attacked.emit(self)
+	#attack_danger = false
+	on_cursor = false
+	$CheckSprite.visible = false
 
 func load_data(json_path):
 	print(json_path)
@@ -95,7 +106,7 @@ func get_dmg(attack):
 	wait_timer.set_paused(false)
 	attack_danger = false
 	if Hp <= 0:
-		queue_free()
+		dying.emit(self)
 	
 
 func _on_wait_timer_timeout():

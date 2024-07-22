@@ -15,7 +15,7 @@ func _ready():
 	var temp_data = JSON.parse_string(text)
 	data = temp_data
 	party_items = temp_data["items"]
-	$Node.load_entities(["res://Scenes/Actors/Player.tscn"], ["res://Data/darkslime_data.json"])
+	$Node.load_entities(["res://Scenes/Actors/Player.tscn"], ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
 
 func _process(delta):
 	if !in_dialog:

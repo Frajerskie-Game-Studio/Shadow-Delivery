@@ -6,6 +6,7 @@ var Enemies = []
 var possible_attack
 var possible_attacker
 var possible_target
+var possible_effect
 
 @onready var Positions = {
 	"party": [
@@ -49,6 +50,7 @@ func load_entities(party, enemies):
 		Enemies[index].position = Positions.enemy[index].position
 		Enemies[index].being_attacked.connect(_on_entity_being_attacked)
 		Enemies[index].enemy_attacking.connect(_on_enemy_attacking)
+		Enemies[index].dying.connect(_on_enemy_dying)
 		add_child(Enemies[index])
 		Enemies[index].start_attacking_process()
 	
@@ -65,11 +67,17 @@ func _on_entity_ready_to_attack(attack, attacker):
 	else:
 		for p in Party:
 			p.can_be_checked = true
+			
+	if possible_attack.has("effect"):
+		if possible_attack.effect == "all":
+			for e in Enemies:
+				e.all_attack()
 
 func _on_reset_ready_to_attack():
-	possible_attacker.can_be_attacked = true
-	possible_attack = null
-	possible_attacker = null
+	if possible_attacker != null:
+		possible_attacker.can_be_attacked = true
+		possible_attack = null
+		possible_attacker = null
 	for e in Enemies:
 		e.attack_danger = false
 		
@@ -93,3 +101,9 @@ func get_can_be_attack_entities():
 
 func _on_enemy_attacking(target, attack):
 	target.get_dmg(attack)
+	
+func _on_enemy_dying(entity):
+	for e in Enemies:
+		if e == entity:
+			Enemies.erase(e)
+			e.queue_free()
