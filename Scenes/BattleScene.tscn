@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1iox65houvxo"]
+[gd_scene load_steps=3 format=3 uid="uid://c1iox65houvxo"]
 
 [ext_resource type="Script" path="res://scripts/BattleScene.gd" id="1_lpwyi"]
+[ext_resource type="AudioStream" uid="uid://bom6ekqts8xkg" path="res://Music/Battle_soundtrack_v2.wav" id="2_xxcb8"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_lpwyi")
@@ -28,3 +29,7 @@ position = Vector2(960, 414.195)
 
 [node name="Enemy_Fourth_Position" type="Marker2D" parent="."]
 position = Vector2(1060, 563)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_xxcb8")
+autoplay = true

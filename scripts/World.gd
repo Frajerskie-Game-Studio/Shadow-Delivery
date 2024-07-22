@@ -16,7 +16,7 @@ func _ready():
 	data = temp_data
 	party_items = temp_data["items"]
 	#"res://Data/darkslime_data.json", "res://Data/darkslime_data.json"
-	#$Node.load_entities(["res://Scenes/Actors/Player.tscn", "res://Scenes/Actors/Lucjan.tscn"], ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
+	$Node.load_entities(["res://Scenes/Actors/Player.tscn", "res://Scenes/Actors/Lucjan.tscn"], ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
 
 func _process(delta):
 	if !in_dialog:
