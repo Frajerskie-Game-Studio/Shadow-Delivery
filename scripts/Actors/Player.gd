@@ -23,6 +23,8 @@ func _ready():
 	#hp, max_hp, mele_skills, range_skills, ammo, ammo_texture_path
 	load_data()
 	$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
+	if KnockedUp:
+		can_be_attacked = false
 	#$RangeSKillCheck.get_direction()
 	#$RangeSKillCheck.started = true
 
@@ -45,12 +47,19 @@ func get_dmg(attack):
 	if wait_timer != null:
 		wait_timer.set_paused(false)
 	if Hp <= 0:
-		queue_free()
+		KnockedUp = true
 	else:
 		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
 
+func reload_menu():
+	$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
 
 func _process(delta):
+	if KnockedUp:
+		$AttackMenu.visible = false
+	else:
+		$AttackMenu.visible = true
+	
 	if timer != null:
 		if duringSkillCheck:
 			print(timer.get_time_left())
@@ -75,7 +84,8 @@ func _process(delta):
 	if can_be_checked:
 		if on_mouse_cursor:
 			if Input.is_action_just_pressed("mouse_click"):
-				start_using_item()
+				item_being_used.emit(self)
+				$CheckSprite.visible = false
 
 func _on_attack_menu_i_will_attack(args):
 	ready_to_attack_bool = true
@@ -90,7 +100,10 @@ func _on_attack_menu_i_will_attack(args):
 		ready_to_attack.emit(Attack[current_style], self)
 	else:
 		if len(args) == 2:
-			ready_to_attack.emit({"dmg": args[0][1], "wait_time": 3, "heal": args[0][2], "key": args[1]}, self)
+			if len(args[0]) == 5:
+				ready_to_attack.emit({"dmg": args[0][1], "wait_time": 3, "heal": args[0][2], "key": args[1], "effect": args[0][4]}, self)
+			else:
+				ready_to_attack.emit({"dmg": args[0][1], "wait_time": 3, "heal": args[0][2], "key": args[1]}, self)
 		else:
 			var dmg = args[1]
 			if current_effect_working != null and current_effect_working == "stronger":
@@ -147,7 +160,6 @@ func start_using_item():
 	can_be_checked = false
 	ready_to_attack_bool = false
 	var item = get_parent().possible_attack
-	use_item([item.key, item.dmg, item.heal])
 	$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "", Items)
 	can_be_attacked = true
 	$AttackMenu/HBoxContainer/LeftMenu/SkillsButton.visible = false

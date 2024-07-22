@@ -39,6 +39,7 @@ func load_entities(party, enemies):
 		Party[index].ready_to_attack.connect(_on_entity_ready_to_attack)
 		Party[index].attacking.connect(_on_attacking_entity)
 		Party[index].reset_attack.connect(_on_reset_ready_to_attack)
+		Party[index].item_being_used.connect(_on_item_being_used)
 		Party[index].lock()
 		Party[index].load_items()
 		add_child(Party[index])	
@@ -64,9 +65,14 @@ func _on_entity_ready_to_attack(attack, attacker):
 	if !possible_attack.has("heal"):
 		for e in Enemies:
 			e.attack_danger = true
-	else:
+	else:		
 		for p in Party:
-			p.can_be_checked = true
+			if possible_attack.has("effect") and possible_attack.effect == "revive":
+				if p.KnockedUp:
+					print(attack)
+					p.can_be_checked = true
+			else:
+				p.can_be_checked = true
 			
 	if possible_attack.has("effect"):
 		if possible_attack.effect == "all":
@@ -74,6 +80,7 @@ func _on_entity_ready_to_attack(attack, attacker):
 				e.all_attack()
 		elif possible_attack.effect == "stronger":
 			possible_attacker.start_attack(possible_attack)
+		
 
 func _on_reset_ready_to_attack():
 	if possible_attacker != null:
@@ -82,6 +89,10 @@ func _on_reset_ready_to_attack():
 		possible_attacker = null
 	for e in Enemies:
 		e.attack_danger = false
+	
+	for p in Party:
+		p.can_be_checked = false
+		p.on_mouse_cursor = false
 		
 func _on_entity_being_attacked(entity):
 	possible_attacker.can_be_attacked = false
@@ -100,6 +111,11 @@ func get_can_be_attack_entities():
 		if teammate.can_be_attacked:
 			can_be_attacked_array.append(teammate)
 	return can_be_attacked_array
+	
+func _on_item_being_used(entity):
+	entity.use_item(possible_attack)
+	entity.reload_menu()
+	possible_attacker.start_using_item()
 
 func _on_enemy_attacking(target, attack):
 	target.get_dmg(attack)

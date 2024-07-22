@@ -3,6 +3,7 @@
 	"texture": "",
 	"hp": 100,
 	"max_hp": 100,
+	"knocked_up": false,
 	"attack": {
 		"mele": {
 			"dmg": 45,

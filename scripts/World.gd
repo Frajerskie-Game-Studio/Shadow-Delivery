@@ -14,7 +14,7 @@ func _ready():
 	var text = FileAccess.get_file_as_string("res://Data/party_data.json")
 	var temp_data = JSON.parse_string(text)
 	data = temp_data
-	party_items = temp_data["items"]
+	party_items = temp_data["items"] #"res://Data/darkslime_data.json", "res://Data/darkslime_data.json"
 	$Node.load_entities(["res://Scenes/Actors/Player.tscn", "res://Scenes/Actors/Lucjan.tscn"], ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
 
 func _process(delta):
