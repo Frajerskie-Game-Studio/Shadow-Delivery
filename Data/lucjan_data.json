@@ -36,12 +36,12 @@
 			"Cheap flintlock",
 			"A little old, but reliable",
 			60,
-			6
+			5
 		],
 		"Armor": [
-			"",
-			"",
-			0
+			"Dixer uniform",
+			"Average factory outfit for couriers",
+			15
 		]
 	}
 }

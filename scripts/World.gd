@@ -14,8 +14,9 @@ func _ready():
 	var text = FileAccess.get_file_as_string("res://Data/party_data.json")
 	var temp_data = JSON.parse_string(text)
 	data = temp_data
-	party_items = temp_data["items"] #"res://Data/darkslime_data.json", "res://Data/darkslime_data.json"
-	$Node.load_entities(["res://Scenes/Actors/Player.tscn", "res://Scenes/Actors/Lucjan.tscn"], ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
+	party_items = temp_data["items"]
+	#"res://Data/darkslime_data.json", "res://Data/darkslime_data.json"
+	#$Node.load_entities(["res://Scenes/Actors/Player.tscn", "res://Scenes/Actors/Lucjan.tscn"], ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
 
 func _process(delta):
 	if !in_dialog:
@@ -57,7 +58,7 @@ func _on_canvas_layer_item_used(item_name, entity_name):
 	for i in party_items:
 		if i == item_name:
 			item = party_items[i]
-
+	print(item)
 	#tu się kompletnie zesrałem na kod XDDDDDD
 	for teammate in data.teammates:
 		if teammate.contains(entity_name.to_lower()):
@@ -66,8 +67,15 @@ func _on_canvas_layer_item_used(item_name, entity_name):
 			#mój programistyczny peak - nie wytłumaczę domyśl się sam lol
 			var temp_teammate = load("res://Scenes/Actors/"+str(entity_name)+".tscn")
 			var temp_instance = temp_teammate.instantiate()
+			temp_instance.visible = false
+			add_child(temp_instance)
 			temp_instance.load_data()
-			temp_instance.use_item(item)
+			if len(item) == 5:
+				temp_instance.use_item({"dmg": item[1], "heal": item[2], "key": item_name, "effect": item[4]})
+			else:
+				temp_instance.use_item({"dmg": item[1], "heal": item[2], "key": item_name})
+			#temp_instance.use_item({item})
+			temp_instance.queue_free()
 			
 	
 	data.items[item_name][3] -= 1

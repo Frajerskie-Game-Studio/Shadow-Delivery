@@ -22,6 +22,7 @@ func _init():
 func _ready():
 	#hp, max_hp, mele_skills, range_skills, ammo, ammo_texture_path
 	load_data()
+	load_items()
 	$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
 	if KnockedUp:
 		can_be_attacked = false

@@ -78,6 +78,7 @@ func revive(heal):
 	KnockedUp = false
 
 func _ready():
+	print("READY")
 	load_data()
 	load_items()
 	can_be_attacked = true

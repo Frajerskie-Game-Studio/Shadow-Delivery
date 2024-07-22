@@ -4,14 +4,21 @@
 		"./Data/lucjan_data.json"
 	],
 	"items": {
-		"red brew": ["Very weak healing potion", 0, 20, 1],
-		"revive": ["Weak reviving potion", 0, 25, 1, "revive"]
+		"red brew": [
+			"Very weak healing potion",
+			0,
+			20,
+			1
+		],
+		"revive": [
+			"Weak reviving potion",
+			0,
+			25,
+			1,
+			"revive"
+		]
 	},
 	"equipment": {
-		"Dixer_uniform": [
-			"Average factory outfit for couriers",
-			"Armor",
-			15
-		]
+
 	}
 }
