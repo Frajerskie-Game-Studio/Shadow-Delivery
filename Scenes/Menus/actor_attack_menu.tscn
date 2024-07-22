@@ -96,6 +96,39 @@ offset_bottom = -4.0
 theme_override_font_sizes/font_size = 10
 autowrap_mode = 3
 
+[node name="ItemsMenu" type="VBoxContainer" parent="HBoxContainer/RightMenu"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemsList" type="ItemList" parent="HBoxContainer/RightMenu/ItemsMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="HBoxContainer/RightMenu/ItemsMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/RightMenu/ItemsMenu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemDesc" type="Label" parent="HBoxContainer/RightMenu/ItemsMenu/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 10
+autowrap_mode = 3
+
+[node name="ItemAmmount" type="Label" parent="HBoxContainer/RightMenu/ItemsMenu/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 10
+
 [node name="RangeWeaponStats" type="HBoxContainer" parent="HBoxContainer/RightMenu"]
 layout_mode = 2
 
@@ -110,6 +143,9 @@ expand_mode = 3
 
 [connection signal="pressed" from="HBoxContainer/LeftMenu/AttackButton" to="." method="_on_attack_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/LeftMenu/SkillsButton" to="." method="_on_skills_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/LeftMenu/ItemsButton" to="." method="_on_items_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightMenu/ChangeAndTime/ChangeStyle" to="." method="_on_change_style_pressed"]
 [connection signal="item_activated" from="HBoxContainer/RightMenu/SkillsMenu/SkillsList" to="." method="_on_skills_list_item_activated"]
 [connection signal="item_clicked" from="HBoxContainer/RightMenu/SkillsMenu/SkillsList" to="." method="_on_skills_list_item_clicked"]
+[connection signal="item_activated" from="HBoxContainer/RightMenu/ItemsMenu/ItemsList" to="." method="_on_items_list_item_activated"]
+[connection signal="item_clicked" from="HBoxContainer/RightMenu/ItemsMenu/ItemsList" to="." method="_on_items_list_item_clicked"]

@@ -39,6 +39,7 @@ func load_entities(party, enemies):
 		Party[index].attacking.connect(_on_attacking_entity)
 		Party[index].reset_attack.connect(_on_reset_ready_to_attack)
 		Party[index].lock()
+		Party[index].load_items()
 		add_child(Party[index])	
 		
 	for index in range(len(enemies)):
@@ -58,9 +59,12 @@ func load_entities(party, enemies):
 func _on_entity_ready_to_attack(attack, attacker):
 	possible_attack = attack
 	possible_attacker = attacker
-	
-	for e in Enemies:
-		e.attack_danger = true
+	if !possible_attack.has("heal"):
+		for e in Enemies:
+			e.attack_danger = true
+	else:
+		for p in Party:
+			p.can_be_checked = true
 
 func _on_reset_ready_to_attack():
 	possible_attacker.can_be_attacked = true

@@ -30,6 +30,7 @@ position = Vector2(-2, -2)
 shape = SubResource("RectangleShape2D_vrwhy")
 
 [node name="PlayerBody" type="CharacterBody2D" parent="."]
+input_pickable = true
 script = ExtResource("1_ymo11")
 
 [node name="Collision" type="CollisionShape2D" parent="PlayerBody"]
@@ -57,5 +58,7 @@ visible = false
 position = Vector2(298, 0)
 scale = Vector2(1.058, 1)
 
+[connection signal="mouse_entered" from="PlayerBody" to="." method="_on_player_body_mouse_entered"]
+[connection signal="mouse_exited" from="PlayerBody" to="." method="_on_player_body_mouse_exited"]
 [connection signal="change_style" from="AttackMenu" to="." method="_on_attack_menu_change_style"]
 [connection signal="i_will_attack" from="AttackMenu" to="." method="_on_attack_menu_i_will_attack"]

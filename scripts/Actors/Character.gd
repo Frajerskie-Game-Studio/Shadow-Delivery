@@ -7,6 +7,8 @@ var MaxHp
 var Skills
 var Equipment
 var Attack
+var Items
+var Party_Data
 
 var character_file_path
 var duringSkillCheck = false
@@ -15,12 +17,25 @@ var waiting = false
 var can_be_attacked = true
 var ready_to_attack_bool = false
 var changing_style = false
+var can_be_checked = false
+var on_mouse_cursor = false
 var selected_attack
 var current_style = "mele"
+
 
 signal ready_to_attack()
 signal attacking
 signal reset_attack
+
+func saveItems():
+	var file = FileAccess.open("res://Data/party_data.json", FileAccess.WRITE)
+	var temp_data = {
+		"teammates": Party_Data.teammates,
+		"items": Items,
+		"equipment": Party_Data.equipment
+	}
+	file.store_string(JSON.stringify(temp_data, "\t", false))
+	file.close()
 
 func saveData():
 	var file = FileAccess.open(character_file_path, FileAccess.WRITE)
@@ -29,7 +44,7 @@ func saveData():
 		"texture": "",
 		"hp": Hp,
 		"max_hp": MaxHp,
-		"attack": {"dmg": 45, "wait_time": 2},
+		"attack": Attack,
 		"skills": Skills,
 		"equipment": Equipment
 	}
@@ -42,14 +57,20 @@ func load_data():
 	var temp_data = JSON.parse_string(text)
 	Name = temp_data["name"]
 	Hp = temp_data["hp"]
-	MaxHp = temp_data["hp"]
+	MaxHp = temp_data["max_hp"]
 	Skills = temp_data["skills"]
 	Equipment = temp_data["equipment"]
 	Attack = temp_data["attack"]
 
+func load_items():
+	var text = FileAccess.get_file_as_string("res://Data/party_data.json")
+	var temp_data = JSON.parse_string(text)
+	Items = temp_data.items
+	Party_Data = temp_data
 
 func _ready():
 	load_data()
+	load_items()
 
 func get_ammo():
 	return Equipment.Range_weapon[3]
@@ -71,7 +92,11 @@ func use_item(item):
 		Hp -= int(item[1])
 	elif item[2] != 0:
 		Hp += int(item[2])
+	Items[item[0]][3] -= 1
+	if Items[item[0]][3] <= 0:
+		Items.erase(item[0])
 	saveData()
+	saveItems()
 
 func get_attack():
 	return Attack

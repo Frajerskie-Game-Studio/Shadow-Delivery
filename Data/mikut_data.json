@@ -1,14 +1,26 @@
 {
 	"name": "Mikut",
 	"texture": "",
-	"hp": 80,
+	"hp": 100,
 	"max_hp": 100,
 	"attack": {
-		"mele": {"dmg": 45, "wait_time": 3},
-		"range": {"dmg": 45, "wait_time": 5}
+		"mele": {
+			"dmg": 45,
+			"wait_time": 3
 		},
+		"range": {
+			"dmg": 45,
+			"wait_time": 5
+		}
+	},
 	"skills": {
-		"Chemical_practice": ["Potion works on all enemies", 60, 0, 10, "range"]
+		"Chemical_practice": [
+			"Potion works on all enemies",
+			60,
+			0,
+			10,
+			"range"
+		]
 	},
 	"equipment": {
 		"Mele_weapon": [

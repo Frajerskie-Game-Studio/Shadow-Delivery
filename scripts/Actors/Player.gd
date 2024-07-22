@@ -12,17 +12,17 @@ func _init():
 	character_file_path = "res://Data/mikut_data.json"
 
 
-func use_item(item):
-	if item[1] != 0:
-		Hp -= int(item[1])
-	elif item[2] != 0:
-		Hp += int(item[2])
-	saveData()
+#func use_item(item):
+	#if item[1] != 0:
+		#Hp -= int(item[1])
+	#elif item[2] != 0:
+		#Hp += int(item[2])
+	#saveData()
 
 func _ready():
 	#hp, max_hp, mele_skills, range_skills, ammo, ammo_texture_path
 	load_data()
-	$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "")
+	$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
 	#$RangeSKillCheck.get_direction()
 	#$RangeSKillCheck.started = true
 
@@ -47,7 +47,7 @@ func get_dmg(attack):
 	if Hp <= 0:
 		queue_free()
 	else:
-		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "")
+		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
 
 
 func _process(delta):
@@ -71,13 +71,21 @@ func _process(delta):
 		#100 / floor(wait_timer.wait_time / delta)
 		$AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.step = $AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.max_value / (wait_timer.wait_time / delta)
 		$AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.value += $AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.step
+		
+	if can_be_checked:
+		if on_mouse_cursor:
+			if Input.is_action_just_pressed("mouse_click"):
+				start_using_item()
 
 func _on_attack_menu_i_will_attack(args):
 	ready_to_attack_bool = true
 	if args == null:
 		ready_to_attack.emit(Attack[current_style], self)
 	else:
-		ready_to_attack.emit({"dmg": args[1], "wait_time": args[3]}, self)
+		if len(args) == 2:
+			ready_to_attack.emit({"dmg": args[0][1], "wait_time": 3, "heal": args[0][2], "key": args[1]}, self)
+		else:
+			ready_to_attack.emit({"dmg": args[1], "wait_time": args[3]}, self)
 	
 func start_attack(attack):
 	ready_to_attack_bool = false
@@ -104,6 +112,30 @@ func start_attack(attack):
 	duringSkillCheck = true
 	selected_attack = attack
 	timer.start()
+
+func start_using_item():
+	can_be_checked = false
+	ready_to_attack_bool = false
+	var item = get_parent().possible_attack
+	use_item([item.key, item.dmg, item.heal])
+	$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "", Items)
+	can_be_attacked = true
+	$AttackMenu/HBoxContainer/LeftMenu/SkillsButton.visible = false
+	$AttackMenu/HBoxContainer/LeftMenu/ItemsButton.visible = false
+	$AttackMenu/HBoxContainer/LeftMenu/AttackButton.visible = false
+	$AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/ChangeStyle.visible = false
+	$CheckSprite.visible = false
+	var timebar = $AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar
+	timebar.visible = true
+	wait_timer = Timer.new()
+	wait_timer.one_shot = true
+	wait_timer.wait_time = item.wait_time
+	wait_timer.timeout.connect(_on_wait_time_timeout)
+	add_child(wait_timer)
+	timebar.max_value = 100
+	timebar.value = 0
+	waiting = true
+	wait_timer.start()
 	
 func _on_timer_timeout():
 	print("KONIEC")
@@ -115,7 +147,7 @@ func _on_timer_timeout():
 		attacking.emit({"dmg": 0})
 		if current_style == "range":
 			decrement_ammo()
-			$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "")
+			$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "", Items)
 			$RangeSKillCheck.started = false
 			$RangeSKillCheck.visible = false
 		timer.queue_free()
@@ -126,7 +158,7 @@ func _on_timer_timeout():
 			attacking.emit(selected_attack)
 			if current_style == "range":
 				decrement_ammo()
-				$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "")
+				$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "", Items)
 			$RangeSKillCheck.started = false
 			$RangeSKillCheck.visible = false
 			timer.queue_free()
@@ -199,3 +231,19 @@ func _on_attack_menu_change_style():
 	waiting = true
 	wait_timer.start()
 	
+
+
+func _on_player_body_mouse_entered():
+	if can_be_checked:
+		on_mouse_cursor = true
+		$CheckSprite.visible = true
+
+
+func _on_player_body_mouse_exited():
+	if can_be_checked:
+		on_mouse_cursor = false
+		$CheckSprite.visible = false
+
+
+func _on_player_body_mouse_shape_entered(shape_idx):
+	print("MOUSE ENTERED")

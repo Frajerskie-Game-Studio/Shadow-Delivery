@@ -3,7 +3,10 @@
 	"texture": "",
 	"hp": 100,
 	"max_hp": 100,
-	"attack": {"dmg": 45, "wait_time": 2},
+	"attack": {
+		"mele": {"dmg": 45, "wait_time": 3},
+		"range": {"dmg": 50, "wait_time": 5}
+	},
 	"skills": {
 		"Getting ready": ["Lucjan waits to build up power, to attack 1.5x stronger", 0, 0, 15, "other"]
 	},
