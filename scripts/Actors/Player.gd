@@ -77,7 +77,7 @@ func _on_attack_menu_i_will_attack(args):
 	if args == null:
 		ready_to_attack.emit(Attack[current_style], self)
 	else:
-		ready_to_attack.emit({"dmg": args[1], "wait_time": args[2]}, self)
+		ready_to_attack.emit({"dmg": args[1], "wait_time": args[3]}, self)
 	
 func start_attack(attack):
 	ready_to_attack_bool = false

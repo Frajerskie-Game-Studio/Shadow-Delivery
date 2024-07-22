@@ -65,6 +65,7 @@ func _on_skills_button_pressed():
 		$HBoxContainer/RightMenu/SkillsMenu/SkillsList.clear()
 		$HBoxContainer/RightMenu/SkillsMenu.visible = false
 		$HBoxContainer/RightMenu/ChangeAndTime.visible = true
+		$HBoxContainer/RightMenu/SkillsMenu/Panel/SkillDesc.text = ""
 
 func _on_skills_list_item_clicked(index, at_position, mouse_button_index):
 	var item = $HBoxContainer/RightMenu/SkillsMenu/SkillsList.get_item_text(index)
@@ -73,5 +74,11 @@ func _on_skills_list_item_clicked(index, at_position, mouse_button_index):
 
 func _on_skills_list_item_activated(index):
 	var item = $HBoxContainer/RightMenu/SkillsMenu/SkillsList.get_item_text(index)
-	i_will_attack.emit(Skills[str(item).replace(" ", "_")])
-	$HBoxContainer/RightMenu/SkillsMenu.visible = false
+	if Skills[str(item).replace(" ", "_")][4] == "range" and Ammo <=0:
+		pass
+	else:
+		i_will_attack.emit(Skills[str(item).replace(" ", "_")])
+		$HBoxContainer/RightMenu/SkillsMenu.visible = false
+		$HBoxContainer/RightMenu/ChangeAndTime.visible = true
+		$HBoxContainer/RightMenu/SkillsMenu/SkillsList.clear()
+		$HBoxContainer/RightMenu/SkillsMenu/Panel/SkillDesc.text = ""
