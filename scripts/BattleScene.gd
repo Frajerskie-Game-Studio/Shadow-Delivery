@@ -11,8 +11,8 @@ var possible_effect
 @onready var Positions = {
 	"party": [
 		$Party_Second_Position,
-		$Party_First_Position,
 		$Party_Third_Position,
+		$Party_First_Position,
 		$Party_Fourth_Position
 	],
 	"enemy": [
@@ -72,6 +72,8 @@ func _on_entity_ready_to_attack(attack, attacker):
 		if possible_attack.effect == "all":
 			for e in Enemies:
 				e.all_attack()
+		elif possible_attack.effect == "stronger":
+			possible_attacker.start_attack(possible_attack)
 
 func _on_reset_ready_to_attack():
 	if possible_attacker != null:

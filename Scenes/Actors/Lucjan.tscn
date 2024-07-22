@@ -1,15 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://cr5ybqyggurpr"]
+[gd_scene load_steps=8 format=3 uid="uid://cr5ybqyggurpr"]
 
 [ext_resource type="Script" path="res://scripts/Actors/Lucjan.gd" id="1_ceorf"]
+[ext_resource type="Script" path="res://Scenes/Actors/RangeSKillCheck.gd" id="2_0c2yt"]
 [ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="2_abwvj"]
+[ext_resource type="Texture2D" uid="uid://dfr7wyx8hve7f" path="res://Graphics/celownik.png" id="3_36t4u"]
 [ext_resource type="PackedScene" uid="uid://cpsu8wxbqyj34" path="res://Scenes/Menus/actor_attack_menu.tscn" id="3_no4uv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_isjd8"]
+size = Vector2(72, 72)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23s6j"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_ceorf")
 
+[node name="RangeSKillCheck" type="CharacterBody2D" parent="."]
+visible = false
+motion_mode = 1
+platform_floor_layers = 4294901760
+script = ExtResource("2_0c2yt")
+
+[node name="Sprite2D" type="Sprite2D" parent="RangeSKillCheck"]
+texture = ExtResource("3_36t4u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeSKillCheck"]
+position = Vector2(-2, -2)
+shape = SubResource("RectangleShape2D_isjd8")
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+input_pickable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("RectangleShape2D_23s6j")
@@ -26,6 +45,17 @@ offset_bottom = 0.0
 grow_vertical = 0
 
 [node name="CheckSprite" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -193)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_abwvj")
+
+[node name="MeleSkillCheck" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(298, 0)
+scale = Vector2(1.058, 1)
+
+[connection signal="mouse_entered" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_exited"]
+[connection signal="change_style" from="AttackMenu" to="." method="_on_attack_menu_change_style"]
+[connection signal="i_will_attack" from="AttackMenu" to="." method="_on_attack_menu_i_will_attack"]

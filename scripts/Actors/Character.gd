@@ -11,6 +11,8 @@ var Items
 var Party_Data
 
 var character_file_path
+var effect_counter = 0
+var effect_multipler = 0
 var duringSkillCheck = false
 var skillCheckFailed = true
 var waiting = false

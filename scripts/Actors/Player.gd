@@ -1,12 +1,12 @@
 extends "Lucjan.gd"
 
-var timer
-var wait_timer
+#var timer
+#var wait_timer
 #var d = 0
-var skillChecks = []
-var possibleSkillChecks = ["move_left", "move_right", "move_up", "move_down"]
-var skillCheckStep = 0
-var possible_target_position
+#var skillChecks = []
+#var possibleSkillChecks = ["move_left", "move_right", "move_up", "move_down"]
+#var skillCheckStep = 0
+#var possible_target_position
 
 func _init():
 	character_file_path = "res://Data/mikut_data.json"
@@ -80,15 +80,34 @@ func _process(delta):
 func _on_attack_menu_i_will_attack(args):
 	ready_to_attack_bool = true
 	if args == null:
+		if current_effect_working != null and current_effect_working == "stronger":
+			Attack[current_style].dmg = Attack[current_style].dmg * effect_multipler
+			effect_counter -= 1
+			if effect_counter <= 0:
+				current_effect_working = null
+				effect_multipler = null
+				effect_counter = 0
 		ready_to_attack.emit(Attack[current_style], self)
 	else:
 		if len(args) == 2:
 			ready_to_attack.emit({"dmg": args[0][1], "wait_time": 3, "heal": args[0][2], "key": args[1]}, self)
 		else:
+			var dmg = args[1]
+			if current_effect_working != null and current_effect_working == "stronger":
+				dmg = dmg * effect_multipler
+				effect_counter -= 1
+				if effect_counter <= 0:
+					current_effect_working = null
+					effect_multipler = null
+					effect_counter = 0
+			print(dmg)
 			if len(args) == 6:
-				ready_to_attack.emit({"dmg": args[1], "wait_time": args[3], "effect": args[5]}, self)
+				ready_to_attack.emit({"dmg": dmg, "wait_time": args[3], "effect": args[5]}, self)
+			elif len(args) == 8:
+				if args[5] != current_effect_working:
+					ready_to_attack.emit({"dmg": dmg, "wait_time": args[3], "effect": args[5], "effect_duration": args[7], "effect_multipler": args[6]}, self)
 			else:
-				ready_to_attack.emit({"dmg": args[1], "wait_time": args[3]}, self)
+				ready_to_attack.emit({"dmg": dmg, "wait_time": args[3]}, self)
 	
 func start_attack(attack):
 	ready_to_attack_bool = false
@@ -256,5 +275,5 @@ func _on_player_body_mouse_exited():
 		$CheckSprite.visible = false
 
 
-func _on_player_body_mouse_shape_entered(shape_idx):
-	print("MOUSE ENTERED")
+#func _on_player_body_mouse_shape_entered(shape_idx):
+	#print("MOUSE ENTERED")
