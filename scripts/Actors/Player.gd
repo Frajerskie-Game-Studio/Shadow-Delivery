@@ -22,7 +22,7 @@ func use_item(item):
 func _ready():
 	#hp, max_hp, mele_skills, range_skills, ammo, ammo_texture_path
 	load_data()
-	$AttackMenu.load_data(Hp, MaxHp, {}, {}, get_ammo(), "")
+	$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "")
 	#$RangeSKillCheck.get_direction()
 	#$RangeSKillCheck.started = true
 
@@ -47,7 +47,7 @@ func get_dmg(attack):
 	if Hp <= 0:
 		queue_free()
 	else:
-		$AttackMenu.load_data(Hp, MaxHp, {}, {}, get_ammo(), "")
+		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "")
 
 
 func _process(delta):
@@ -60,6 +60,7 @@ func _process(delta):
 					skillCheckFailed = false
 					timer.timeout.emit()
 			elif current_style == "range":
+				skillCheckFailed = true
 				if Input.is_action_just_pressed("Shoot"):
 					var on_crossair = get_parent().possible_target.on_crossair
 					if on_crossair:
@@ -71,9 +72,12 @@ func _process(delta):
 		$AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.step = $AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.max_value / (wait_timer.wait_time / delta)
 		$AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.value += $AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.step
 
-func _on_attack_menu_i_will_attack():
+func _on_attack_menu_i_will_attack(args):
 	ready_to_attack_bool = true
-	ready_to_attack.emit(Attack[current_style], self)
+	if args == null:
+		ready_to_attack.emit(Attack[current_style], self)
+	else:
+		ready_to_attack.emit({"dmg": args[1], "wait_time": args[2]}, self)
 	
 func start_attack(attack):
 	ready_to_attack_bool = false
@@ -111,7 +115,7 @@ func _on_timer_timeout():
 		attacking.emit({"dmg": 0})
 		if current_style == "range":
 			decrement_ammo()
-			$AttackMenu.load_data(Hp, MaxHp, {}, {}, get_ammo(), "")
+			$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "")
 			$RangeSKillCheck.started = false
 			$RangeSKillCheck.visible = false
 		timer.queue_free()
@@ -122,7 +126,7 @@ func _on_timer_timeout():
 			attacking.emit(selected_attack)
 			if current_style == "range":
 				decrement_ammo()
-				$AttackMenu.load_data(Hp, MaxHp, {}, {}, get_ammo(), "")
+				$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "")
 			$RangeSKillCheck.started = false
 			$RangeSKillCheck.visible = false
 			timer.queue_free()

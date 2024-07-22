@@ -111,8 +111,10 @@ func showSkills(entity_name):
 			temp_instance.load_data()
 			Skills = temp_instance.get_skills()
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/SkillList.clear()
+			
 			for key in Skills:
 				$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/SkillList.add_item(str(key).replace("_", " "))
+				
 	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
 		profile.lock_choosing()
 	unshowCards()

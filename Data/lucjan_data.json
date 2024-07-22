@@ -5,7 +5,7 @@
 	"max_hp": 100,
 	"attack": {"dmg": 45, "wait_time": 2},
 	"skills": {
-		"Getting ready": ["Lucjan waits to build up power, to attack 1.5x stronger", 0, 0, 15]
+		"Getting ready": ["Lucjan waits to build up power, to attack 1.5x stronger", 0, 0, 15, "other"]
 	},
 		"equipment": {
 		"Mele_weapon":  ["Pickaxe", "Iconic.", 45],

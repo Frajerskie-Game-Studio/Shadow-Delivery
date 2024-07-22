@@ -19,7 +19,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="AttackMenu" type="MarginContainer"]
-offset_right = 299.0
+offset_right = 411.0
 offset_bottom = 150.0
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -32,6 +32,7 @@ theme_override_constants/separation = 25
 [node name="LeftMenu" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
 
 [node name="AttackButton" type="Button" parent="HBoxContainer/LeftMenu"]
 layout_mode = 2
@@ -51,22 +52,17 @@ size_flags_horizontal = 3
 
 [node name="ChangeAndTime" type="HBoxContainer" parent="HBoxContainer/RightMenu"]
 layout_mode = 2
-theme_override_constants/separation = 100
+theme_override_constants/separation = 170
 
 [node name="ChangeStyle" type="TextureButton" parent="HBoxContainer/RightMenu/ChangeAndTime"]
 layout_mode = 2
 texture_normal = ExtResource("2_kqchy")
 texture_pressed = ExtResource("2_kqchy")
 
-[node name="ChangeStyle3" type="Button" parent="HBoxContainer/RightMenu/ChangeAndTime"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 0
-text = "Change"
-
 [node name="WaitTimeBar" type="TextureProgressBar" parent="HBoxContainer/RightMenu/ChangeAndTime"]
 visible = false
 layout_mode = 2
+size_flags_horizontal = 8
 allow_greater = true
 allow_lesser = true
 fill_mode = 5
@@ -79,6 +75,26 @@ tint_progress = Color(0, 0.783616, 0, 1)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_we36a")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vjbxa")
+
+[node name="SkillsMenu" type="VBoxContainer" parent="HBoxContainer/RightMenu"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SkillsList" type="ItemList" parent="HBoxContainer/RightMenu/SkillsMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="HBoxContainer/RightMenu/SkillsMenu"]
+layout_mode = 2
+
+[node name="SkillDesc" type="Label" parent="HBoxContainer/RightMenu/SkillsMenu/Panel"]
+layout_mode = 2
+offset_top = -27.0
+offset_right = 137.0
+offset_bottom = -4.0
+theme_override_font_sizes/font_size = 10
+autowrap_mode = 3
 
 [node name="RangeWeaponStats" type="HBoxContainer" parent="HBoxContainer/RightMenu"]
 layout_mode = 2
@@ -93,4 +109,7 @@ texture = ExtResource("1_6pjmx")
 expand_mode = 3
 
 [connection signal="pressed" from="HBoxContainer/LeftMenu/AttackButton" to="." method="_on_attack_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/LeftMenu/SkillsButton" to="." method="_on_skills_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightMenu/ChangeAndTime/ChangeStyle" to="." method="_on_change_style_pressed"]
+[connection signal="item_activated" from="HBoxContainer/RightMenu/SkillsMenu/SkillsList" to="." method="_on_skills_list_item_activated"]
+[connection signal="item_clicked" from="HBoxContainer/RightMenu/SkillsMenu/SkillsList" to="." method="_on_skills_list_item_clicked"]

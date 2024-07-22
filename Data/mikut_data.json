@@ -8,7 +8,7 @@
 		"range": {"dmg": 45, "wait_time": 5}
 		},
 	"skills": {
-
+		"Chemical_practice": ["Potion works on all enemies", 60, 0, 10, "range"]
 	},
 	"equipment": {
 		"Mele_weapon": [
