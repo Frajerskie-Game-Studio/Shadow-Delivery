@@ -21,14 +21,8 @@ func _ready():
 		can_be_attacked = false
 	#$RangeSKillCheck.get_direction()
 	#$RangeSKillCheck.started = true
-	
-func unlock():
-	pass
-	#$CharacterBody2D.unlock_movement()
 
-func lock():
-	pass
-	#$CharacterBody2D.lock_movement()
+
 func reload_menu():
 	$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
 

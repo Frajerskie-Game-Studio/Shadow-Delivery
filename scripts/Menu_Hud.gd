@@ -45,7 +45,7 @@ func refresh_data():
 	CraftingRecipies = temp_craft
 	add_items()
 
-func saveData():
+func save_data():
 	var file = FileAccess.open("res://Data/party_data.json", FileAccess.WRITE)
 	var res_file = FileAccess.open("res://Data/party_resources.json", FileAccess.WRITE)
 	var temp_data = {
@@ -282,7 +282,7 @@ func _on_equipment_item_activated(index):
 		else:
 			PartyEq[to_be_changed.split(": ")[1].replace(" ", "_")] =  [to_be_changed_item[1], to_be_changed.split(":")[0], to_be_changed_item[2]]
 
-	saveData()
+	save_data()
 	refresh_data()
 	
 	eq_temp_person.set_eq(PersonEq)
@@ -379,7 +379,7 @@ func _on_craft_button_pressed():
 				Items[temp_recipe.data[0]] = [temp_recipe.data[1], temp_recipe.data[2], temp_recipe.data[3], 1]
 			else:
 				Items[temp_recipe.data[0]] = [temp_recipe.data[1], temp_recipe.data[2], temp_recipe.data[3], 1, temp_recipe.data[4]]
-	saveData()
+	save_data()
 	refresh_data()
 	add_resources()
 	add_recipies()
