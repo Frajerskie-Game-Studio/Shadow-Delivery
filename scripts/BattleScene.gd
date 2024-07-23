@@ -45,7 +45,8 @@ func load_entities(party, enemies):
 		Party[index].attacking.connect(_on_attacking_entity)
 		Party[index].reset_attack.connect(_on_reset_ready_to_attack)
 		Party[index].item_being_used.connect(_on_item_being_used)
-		Party[index].lock()
+		if(Party[index].has_method("lock")):
+			Party[index].lock()
 		Party[index].load_items()
 		add_child(Party[index])	
 		

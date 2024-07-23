@@ -11,6 +11,7 @@ var Items
 var Party_Data
 var KnockedUp
 
+
 var character_file_path
 var effect_counter = 0
 var effect_multipler = 0
@@ -31,7 +32,8 @@ signal attacking
 signal reset_attack
 signal item_being_used()
 
-func saveItems():
+
+func save_items():
 	var file = FileAccess.open("res://Data/party_data.json", FileAccess.WRITE)
 	var temp_data = {
 		"teammates": Party_Data.teammates,
@@ -41,7 +43,8 @@ func saveItems():
 	file.store_string(JSON.stringify(temp_data, "\t", false))
 	file.close()
 
-func saveData():
+
+func save_data():
 	var file = FileAccess.open(character_file_path, FileAccess.WRITE)
 	var temp_data = {
 		"name": Name,
@@ -68,14 +71,17 @@ func load_data():
 	Attack = temp_data["attack"]
 	KnockedUp = temp_data["knocked_up"]
 
+
 func load_items():
 	var text = FileAccess.get_file_as_string("res://Data/party_data.json")
 	var temp_data = JSON.parse_string(text)
 	Items = temp_data.items
 	Party_Data = temp_data
-	
+
+
 func revive(heal):
 	KnockedUp = false
+
 
 func _ready():
 	print("READY")
@@ -83,23 +89,29 @@ func _ready():
 	load_items()
 	can_be_attacked = true
 
+
 func get_ammo():
 	return Equipment.Range_weapon[3]
 
+
 func decrement_ammo():
 	Equipment.Range_weapon[3] -= 1
-	
+
+
 func add_ammo():
 	Equipment.Range_weapon[3] += 1
 
+
 func get_style():
 	return current_style
+
 
 func set_style():
 	if current_style == "mele":
 		current_style = "range"
 	else:
 		current_style = "mele"
+
 
 func use_item(item):
 	if item.has("effect"):
@@ -114,13 +126,14 @@ func use_item(item):
 		Items.erase(item.key)
 	on_mouse_cursor = false
 	can_be_checked = false
-	saveData()
-	saveItems()
+	save_data()
+	save_items()
 	load_items()
 	load_data()
 
 func get_attack():
 	return Attack
+
 
 func get_entity_name():
 	return Name
@@ -141,10 +154,10 @@ func get_max_hp():
 func get_eq():
 	return Equipment
 
+
 func set_eq(eq):
 	Equipment = eq
-	saveData()
-
+	save_data()
 
 
 func _process(delta):
