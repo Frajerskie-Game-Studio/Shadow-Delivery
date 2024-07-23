@@ -21,6 +21,8 @@ corner_radius_bottom_left = 5
 size = Vector2(220, 332)
 
 [node name="Enemy" type="Node2D"]
+light_mask = 16
+visibility_layer = 6
 script = ExtResource("1_ucwuh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -47,6 +49,10 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_h2lks")
 
 [node name="Area2D" type="Area2D" parent="."]
+light_mask = 8
+visibility_layer = 6
+collision_layer = 15
+collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-1, -93)

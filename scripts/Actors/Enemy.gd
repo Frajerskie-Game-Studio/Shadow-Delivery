@@ -139,6 +139,7 @@ func _on_area_2d_mouse_exited():
 
 func _on_area_2d_body_entered(body):
 	if body.name == "RangeSKillCheck":
+		print("ON CROSSARI")
 		on_crossair = true
 
 
