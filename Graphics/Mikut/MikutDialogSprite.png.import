@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8seesp45kiyq"
-path="res://.godot/imported/MikutSpriteSheet.png-d5f146af93433f5a9b62182ce95a0a5b.ctex"
+uid="uid://bb3rq6wx1jkid"
+path="res://.godot/imported/MikutDialogSprite.png-58a3e320f11db0a161678c9e68f3845d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Mikut/MikutSpriteSheet.png"
-dest_files=["res://.godot/imported/MikutSpriteSheet.png-d5f146af93433f5a9b62182ce95a0a5b.ctex"]
+source_file="res://Graphics/Mikut/MikutDialogSprite.png"
+dest_files=["res://.godot/imported/MikutDialogSprite.png-58a3e320f11db0a161678c9e68f3845d.ctex"]
 
 [params]
 
@@ -25,7 +25,7 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
-process/fix_alpha_border=false
+process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
