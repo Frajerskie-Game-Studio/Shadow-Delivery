@@ -20,9 +20,9 @@ position = Vector2(822, -196)
 visible = false
 
 [node name="NPC" parent="." instance=ExtResource("3_k464w")]
-visible = false
 position = Vector2(1002, 312)
 
 [connection signal="itemDone" from="." to="Menu" method="_on_world_item_done"]
 [connection signal="itemUsed" from="Menu" to="." method="_on_canvas_layer_item_used"]
 [connection signal="saveEq" from="Menu" to="." method="_on_menu_save_eq"]
+[connection signal="showDialog" from="NPC" to="." method="_on_npc_show_dialog"]

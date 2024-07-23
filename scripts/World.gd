@@ -15,7 +15,6 @@ func _ready():
 	var temp_data = JSON.parse_string(text)
 	data = temp_data
 	party_items = temp_data["items"]
-	#"res://Data/darkslime_data.json", "res://Data/darkslime_data.json"
 	#$Node.load_entities(["res://Scenes/Actors/Player.tscn", "res://Scenes/Actors/Lucjan.tscn"], ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
 
 func _process(delta):
@@ -27,12 +26,10 @@ func _process(delta):
 			else:
 				$Player.lock()
 				$Menu.visible = true
-				
-	
-			
 
 #showing dialog window (signal from NPC)
 func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc):
+	print("DIAKIG")
 	in_dialog = true
 	$Player.lock()
 	var this_dialog = dialog_hud.instantiate()

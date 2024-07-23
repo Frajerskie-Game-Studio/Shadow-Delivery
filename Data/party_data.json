@@ -31,17 +31,17 @@
 			"Armor",
 			15
 		],
-		"Dix_pistol": [
-			"A little old, but reliable",
-			"Range_weapon",
-			60,
-			6
-		],
 		"Fuck_u_pistol": [
 			"Fuck u stronger than ever",
 			"Range_weapon",
 			50,
 			1
+		],
+		"Dix_pistol": [
+			"A little old, but reliable",
+			"Range_weapon",
+			60,
+			6
 		]
 	}
 }
