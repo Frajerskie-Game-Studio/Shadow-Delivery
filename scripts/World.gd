@@ -17,9 +17,9 @@ func _ready():
 	data = temp_data
 	party_items = temp_data["items"]
 	var d = DialogLoader.new()
-	d.load_data("res://Data/npc_test.json")
-	d.showDialog.connect(_on_npc_show_dialog)
-	d.start_dialog()
+	#d.load_data("res://Data/npc_test.json")
+	#d.showDialog.connect(_on_npc_show_dialog)
+	#d.start_dialog()
 	
 	$Node.load_entities(["res://Scenes/Actors/Player.tscn", "res://Scenes/Actors/Lucjan.tscn"], ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
 

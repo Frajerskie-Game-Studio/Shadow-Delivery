@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="1_rlupw"]
 [ext_resource type="Script" path="res://Scripts/Player_movement.gd" id="1_ymo11"]
 [ext_resource type="PackedScene" uid="uid://cpsu8wxbqyj34" path="res://Scenes/Menus/actor_attack_menu.tscn" id="2_5m8o5"]
-[ext_resource type="Texture2D" uid="uid://8seesp45kiyq" path="res://Graphics/Mikut/MikutSpriteSheet.png" id="3_h60i7"]
+[ext_resource type="Texture2D" uid="uid://bowm0m24aq1p7" path="res://Graphics/Mikut/MikutSpriteSheet.png" id="3_h60i7"]
 [ext_resource type="Script" path="res://Scenes/Actors/RangeSKillCheck.gd" id="5_8f850"]
 [ext_resource type="Texture2D" uid="uid://dfr7wyx8hve7f" path="res://Graphics/celownik.png" id="6_63nti"]
 
@@ -75,23 +75,6 @@ states/Move/node = SubResource("AnimationNodeBlendSpace2D_2ddjg")
 states/Move/position = Vector2(940, 38)
 transitions = ["Idle", "Move", SubResource("AnimationNodeStateMachineTransition_8jt7r"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_vpkjv"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_6fc3u")]
 
-[sub_resource type="Animation" id="Animation_8mh0d"]
-resource_name = "left_down"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerBody/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0, 1, 2, 3]
-}
-
 [sub_resource type="Animation" id="Animation_2vrfj"]
 length = 0.001
 tracks/0/type = "value"
@@ -107,8 +90,40 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_37qks"]
-resource_name = "right_down"
+[sub_resource type="Animation" id="Animation_bkwp0"]
+resource_name = "get_dmg"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerBody/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [66]
+}
+
+[sub_resource type="Animation" id="Animation_vobtb"]
+resource_name = "knocked_down"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerBody/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [67, 68]
+}
+
+[sub_resource type="Animation" id="Animation_8mh0d"]
+resource_name = "left_down"
 length = 2.0
 loop_mode = 1
 tracks/0/type = "value"
@@ -121,7 +136,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [4, 5, 6, 7]
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="Animation" id="Animation_yn0ph"]
@@ -141,9 +156,25 @@ tracks/0/keys = {
 "values": [8, 9, 10, 11]
 }
 
-[sub_resource type="Animation" id="Animation_ri4y2"]
-resource_name = "right_up"
+[sub_resource type="Animation" id="Animation_x61dl"]
+resource_name = "mele_attack"
 length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerBody/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [55, 56, 57, 58, 59, 60, 61, 62, 63, 65, 59, 58, 57, 56, 55]
+}
+
+[sub_resource type="Animation" id="Animation_jbp3o"]
+resource_name = "move_down"
+length = 0.55
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -152,10 +183,10 @@ tracks/0/path = NodePath("PlayerBody/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [12, 13, 14, 15]
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [28, 29, 30, 31, 32, 33]
 }
 
 [sub_resource type="Animation" id="Animation_anfre"]
@@ -207,23 +238,6 @@ tracks/0/keys = {
 "values": [34, 35, 36, 37, 38, 39]
 }
 
-[sub_resource type="Animation" id="Animation_jbp3o"]
-resource_name = "move_down"
-length = 0.55
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerBody/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [28, 29, 30, 31, 32, 33]
-}
-
 [sub_resource type="Animation" id="Animation_gq353"]
 resource_name = "range_attack"
 length = 1.3
@@ -240,9 +254,10 @@ tracks/0/keys = {
 "values": [55, 50, 51, 52, 53, 54, 55]
 }
 
-[sub_resource type="Animation" id="Animation_x61dl"]
-resource_name = "mele_attack"
+[sub_resource type="Animation" id="Animation_37qks"]
+resource_name = "right_down"
 length = 2.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -250,10 +265,27 @@ tracks/0/path = NodePath("PlayerBody/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [55, 56, 57, 58, 59, 60, 61, 62, 63, 65, 59, 58, 57, 56, 55]
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_ri4y2"]
+resource_name = "right_up"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerBody/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [12, 13, 14, 15]
 }
 
 [sub_resource type="Animation" id="Animation_cutb3"]
@@ -269,38 +301,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [40, 41, 42, 43, 44, 45, 46, 47, 48]
-}
-
-[sub_resource type="Animation" id="Animation_bkwp0"]
-resource_name = "get_dmg"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerBody/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [66]
-}
-
-[sub_resource type="Animation" id="Animation_vobtb"]
-resource_name = "knocked_down"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerBody/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [67, 68]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8sim5"]
@@ -386,7 +386,7 @@ libraries = {
 "": SubResource("AnimationLibrary_8sim5")
 }
 
-[connection signal="mouse_entered" from="PlayerBody" to="." method="_on_character_body_2d_mouse_entered"]
-[connection signal="mouse_exited" from="PlayerBody" to="." method="_on_character_body_2d_mouse_exited"]
+[connection signal="mouse_entered" from="PlayerBody" to="." method="_on_player_body_mouse_entered"]
+[connection signal="mouse_exited" from="PlayerBody" to="." method="_on_player_body_mouse_exited"]
 [connection signal="change_style" from="AttackMenu" to="." method="_on_attack_menu_change_style"]
 [connection signal="i_will_attack" from="AttackMenu" to="." method="_on_attack_menu_i_will_attack"]

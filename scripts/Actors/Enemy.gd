@@ -126,6 +126,7 @@ func attack_entity():
 		start_attacking_process()
 	
 func _on_area_2d_mouse_entered():
+	print("MOUSE ENTERED")
 	if attack_danger:
 		on_cursor = true
 		$CheckSprite.visible = true
