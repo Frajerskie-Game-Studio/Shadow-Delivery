@@ -1,0 +1,17 @@
+mikut idle left front: 4 klatki (1-4)
+mikut idle right front: 4 klatki (5-8)
+mikut idle left back: 4 klatki (9-12)
+mikut idle right back: 4 klatki (13-16)
+mikut run left: 6 klatek (17-22)
+mikut run right: 6 klatek (23-28)
+mikut run front: 6 klatek (29-34)
+mikut run back: 6 klatek (35-40)
+mikut drink: 9 klatek (40-49)
+mikut throw: 7 klatek (50-56)
+mikut attack: 10 klatek (57-66)
+mikut getting hit: 1 klatka (67)
+mikut downed: 2 klatki (68-69)
+
+
+
+
