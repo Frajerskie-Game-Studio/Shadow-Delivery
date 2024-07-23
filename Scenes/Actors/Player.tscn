@@ -337,7 +337,7 @@ shape = SubResource("RectangleShape2D_uor6i")
 [node name="Sprite" type="Sprite2D" parent="PlayerBody"]
 scale = Vector2(3, 3)
 texture = ExtResource("3_h60i7")
-hframes = 69
+hframes = 82
 
 [node name="RangeSKillCheck" type="CharacterBody2D" parent="."]
 visible = false

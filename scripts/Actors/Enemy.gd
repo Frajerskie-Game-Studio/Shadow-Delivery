@@ -118,7 +118,7 @@ func attack_entity():
 	if len(can_be_attacked) > 0:
 		$EnemyWaitTimer.visible = false
 		var random = RandomNumberGenerator.new()
-		var attacked_entity =  can_be_attacked[random.randi_range(0, len(can_be_attacked) -1)]
+		var attacked_entity = can_be_attacked[random.randi_range(0, len(can_be_attacked) -1)]
 		enemy_attacking.emit(attacked_entity, Attack)
 		can_attack = false
 		attack_danger = false
