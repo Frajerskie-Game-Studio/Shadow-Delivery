@@ -1,5 +1,6 @@
 extends Node
 
+const DialogLoader = preload("res://scripts/DialogLoader.gd")
 @onready var dialog_hud = preload("res://Scenes/HudCanvas.tscn")
 @onready var d = preload("res://Scenes/Actors/Player.tscn")
 
@@ -15,6 +16,11 @@ func _ready():
 	var temp_data = JSON.parse_string(text)
 	data = temp_data
 	party_items = temp_data["items"]
+	var d = DialogLoader.new()
+	d.load_data("res://Data/npc_test.json")
+	d.showDialog.connect(_on_npc_show_dialog)
+	d.start_dialog()
+	
 	$Node.load_entities(["res://Scenes/Actors/Player.tscn", "res://Scenes/Actors/Lucjan.tscn"], ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
 
 func _process(delta):
@@ -36,14 +42,23 @@ func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc):
 	self.add_child(this_dialog)
 	this_dialog.load_data(npc_name, dialog_dict)
 	#assiging NPC with whom player is talking
-	current_dialog_npc = dialog_npc
-
+	if dialog_npc != null:
+		current_dialog_npc = dialog_npc
+	
+	
+#func _on_dialog_pointer_show(dialog_pointer):
+	#in_dialog = true
+	#$Player.lock()
+	#current_dialog_npc = dialog_pointer
+	#current_dialog_npc.load_data()
+	
 #ending dialog
 func end_dialog():
 	#searching for npc wich player is talking to
-	for child in get_children():
-		if child == current_dialog_npc:
-			child.end_dialog()
+	if current_dialog_npc != null:
+		for child in get_children():
+			if child == current_dialog_npc:
+				child.end_dialog()
 	$Player.unlock()
 	in_dialog = false
 	

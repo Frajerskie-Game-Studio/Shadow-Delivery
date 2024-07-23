@@ -12,7 +12,7 @@ func _ready():
 func load_data(npc_name, npc_text):
 	dialog_name = npc_name
 	text = npc_text
-	$Control.load_data(text[dialog_index][0], text[dialog_index][1])
+	$Control.load_data(text[dialog_index][0], text[dialog_index][1], text[dialog_index][2])
 	
 func _process(delta):
 	pass
@@ -21,7 +21,7 @@ func _process(delta):
 func _on_control_next_line():
 	dialog_index+=1
 	if dialog_index < len(text):
-		$Control.load_data(text[dialog_index][0], text[dialog_index][1])
+		$Control.load_data(text[dialog_index][0], text[dialog_index][1],text[dialog_index][2])
 	else:
 		dialog_index = 0
 		get_parent().end_dialog()

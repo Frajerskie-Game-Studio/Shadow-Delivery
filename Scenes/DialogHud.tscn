@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://btwspjfodubbu"]
+[gd_scene load_steps=2 format=3 uid="uid://btwspjfodubbu"]
 
 [ext_resource type="Script" path="res://Scripts/DialogHud.gd" id="1_raomp"]
-[ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="2_2kvqy"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -30,8 +29,8 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-texture = ExtResource("2_2kvqy")
 
 [node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

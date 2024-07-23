@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://pqf5hws2cd2n"]
+
+[ext_resource type="Script" path="res://scripts/DialogPointer.gd" id="1_jkaym"]
+[ext_resource type="PackedScene" uid="uid://cnkdmoayvsxjx" path="res://Scenes/HudCanvas.tscn" id="2_bx2ri"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3t40b"]
+size = Vector2(17, 16)
+
+[node name="DialogPointer" type="Area2D"]
+script = ExtResource("1_jkaym")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3t40b")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("2_bx2ri")]
+visible = false
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

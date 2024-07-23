@@ -8,25 +8,30 @@
 	"one": [
 		[
 			"Keb00se",
-			"jebać cwela pedofila, joł joł"
+			"jebać cwela pedofila, joł joł",
+			"res://icon.svg"
 		],
 		[
 			"Mikut",
-			"Co ty kurwisz odklejusie xDDDD"
+			"Co ty kurwisz odklejusie xDDDD",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
 		[
 			"Keb00se",
-			"Spierdalaj"
+			"Spierdalaj",
+			"res://icon.svg"
 		]
 	],
 	"two": [
 		[
 			"Mikut",
-			"Dixer"
+			"Dixer",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
 		[
 			"Keb00se",
-			"Kocham swoich przyjaciół"
+			"Kocham swoich przyjaciół",
+			"res://icon.svg"
 		]
 	]
 }
