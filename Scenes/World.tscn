@@ -16,12 +16,14 @@ position = Vector2(134, 193)
 
 [node name="Node2D" parent="." instance=ExtResource("5_w28jm")]
 visible = false
+position = Vector2(822, -196)
 
 [node name="Menu" parent="." instance=ExtResource("4_d6lnw")]
 visible = false
 
 [node name="NPC" parent="." instance=ExtResource("3_k464w")]
 visible = false
+position = Vector2(1002, 312)
 
 [node name="Node" parent="." instance=ExtResource("5_wjfqw")]
 

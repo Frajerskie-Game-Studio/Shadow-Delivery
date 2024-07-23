@@ -6,16 +6,28 @@
 [ext_resource type="Texture2D" uid="uid://dfr7wyx8hve7f" path="res://Graphics/celownik.png" id="3_36t4u"]
 [ext_resource type="PackedScene" uid="uid://cpsu8wxbqyj34" path="res://Scenes/Menus/actor_attack_menu.tscn" id="3_no4uv"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23s6j"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_isjd8"]
 size = Vector2(72, 72)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_23s6j"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_ceorf")
 
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_mask = 6
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_23s6j")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("2_abwvj")
+
 [node name="RangeSKillCheck" type="CharacterBody2D" parent="."]
 visible = false
+collision_layer = 8
+collision_mask = 6
 motion_mode = 1
 platform_floor_layers = 4294901760
 script = ExtResource("2_0c2yt")
@@ -26,15 +38,6 @@ texture = ExtResource("3_36t4u")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RangeSKillCheck"]
 position = Vector2(-2, -2)
 shape = SubResource("RectangleShape2D_isjd8")
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-input_pickable = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("RectangleShape2D_23s6j")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("2_abwvj")
 
 [node name="AttackMenu" parent="." instance=ExtResource("3_no4uv")]
 anchors_preset = 2

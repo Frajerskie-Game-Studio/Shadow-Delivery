@@ -286,6 +286,9 @@ func _on_player_body_mouse_exited():
 	if can_be_checked:
 		on_mouse_cursor = false
 		$CheckSprite.visible = false
+		
+func get_animation_tree():
+	return $AnimationTree
 
 
 #func _on_player_body_mouse_shape_entered(shape_idx):

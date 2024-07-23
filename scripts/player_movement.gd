@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 #speed of player
 var speed = 300.0
+@onready var animationTree = get_parent().get_animation_tree()
+@onready var animationState = animationTree.get("parameters/playback")
 #variable allowing player to move
 var can_move = true
 var last_vector:Vector2
@@ -28,6 +30,13 @@ func get_input():
 		speed = 380.0
 	else:
 		speed = 300.0
+	var current_vector = Vector2(directionX, directionY)
+	if current_vector != Vector2.ZERO:
+		animationTree.set("parameters/Idle/blend_position", current_vector + last_vector)
+		animationTree.set("parameters/Move/blend_position", current_vector + last_vector)
+		animationState.travel("Move")
+	else:
+		animationState.travel("Idle")
 	last_vector = Vector2(directionX, directionY)
 	return Vector2(directionX, directionY)
 	
