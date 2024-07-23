@@ -88,6 +88,9 @@ func get_ammo():
 
 func decrement_ammo():
 	Equipment.Range_weapon[3] -= 1
+	
+func add_ammo():
+	Equipment.Range_weapon[3] += 1
 
 func get_style():
 	return current_style

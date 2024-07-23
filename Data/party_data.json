@@ -8,17 +8,40 @@
 			"Very weak healing potion",
 			0,
 			20,
-			1
+			2
 		],
 		"revive": [
 			"Weak reviving potion",
 			0,
 			25,
-			1,
+			3,
 			"revive"
+		],
+		"dicker potion": [
+			"Potion that does nothing because ur being a dick",
+			0,
+			20,
+			1,
+			"no_effect_fuck_you"
 		]
 	},
 	"equipment": {
-
+		"Dixer_uniform": [
+			"Average factory outfit for couriers",
+			"Armor",
+			15
+		],
+		"Dix_pistol": [
+			"A little old, but reliable",
+			"Range_weapon",
+			60,
+			6
+		],
+		"Fuck_u_pistol": [
+			"Fuck u stronger than ever",
+			"Range_weapon",
+			50,
+			1
+		]
 	}
 }

@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqau48rkay4iy"]
+[gd_scene load_steps=6 format=3 uid="uid://bqau48rkay4iy"]
 
 [ext_resource type="Script" path="res://Scripts/World.gd" id="1_cxcv4"]
 [ext_resource type="PackedScene" uid="uid://bnls0har28lt" path="res://Scenes/Actors/Player.tscn" id="2_odx0t"]
 [ext_resource type="PackedScene" uid="uid://c6ej43o5qgo20" path="res://Scenes/Actors/NPC.tscn" id="3_k464w"]
 [ext_resource type="PackedScene" uid="uid://dw831xir7pvw0" path="res://Scenes/Menus/Menu_Hud.tscn" id="4_d6lnw"]
 [ext_resource type="PackedScene" uid="uid://cr5ybqyggurpr" path="res://Scenes/Actors/Lucjan.tscn" id="5_w28jm"]
-[ext_resource type="PackedScene" uid="uid://c1iox65houvxo" path="res://Scenes/BattleScene.tscn" id="5_wjfqw"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_cxcv4")
@@ -24,8 +23,6 @@ visible = false
 [node name="NPC" parent="." instance=ExtResource("3_k464w")]
 visible = false
 position = Vector2(1002, 312)
-
-[node name="Node" parent="." instance=ExtResource("5_wjfqw")]
 
 [connection signal="itemDone" from="." to="Menu" method="_on_world_item_done"]
 [connection signal="itemUsed" from="Menu" to="." method="_on_canvas_layer_item_used"]

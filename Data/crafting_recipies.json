@@ -1,0 +1,85 @@
+{
+    "Magnesium grenade": {
+        "components": [
+            "magnesium",
+            "skeleton_powder"
+        ],
+        "type": "Range_weapon",
+        "texture": "",
+        "data": [
+            "Magnesium grenade",
+			"Crude design, explosive effect",
+			50
+        ]
+    },
+    "Penis armor": {
+        "components": [
+            "magnesium",
+            "skeleton_powder"
+        ],
+        "type": "Armor",
+        "texture": "",
+        "data": [
+            "Penis armor",
+            "Freaky armor for freaky people",
+            16
+        ]
+    },
+    "red brew": {
+        "components": [
+            "magnesium",
+            "skeleton_powder"
+        ],
+        "type": "item",
+        "texture": "",
+        "data": [
+            "red brew",
+            "Freaky armor for freaky people",
+            0,
+            20
+        ]
+    },
+    "dicker potion": {
+        "components": [
+            "magnesium",
+            "skeleton_powder"
+        ],
+        "type": "item",
+        "texture": "",
+        "data": [
+            "dicker potion",
+            "Potion that does nothing because ur being a dick",
+            0,
+            20,
+            "no_effect_fuck_you"
+        ]
+    },
+    "revive": {
+        "components": [
+            "magnesium",
+            "skeleton_powder"
+        ],
+        "type": "item",
+        "texture": "",
+        "data": [
+            "revive",
+            "Weak reviving potion",
+            0,
+            25,
+            "revive"
+        ]
+    },
+    "Fuck u pistol": {
+        "components": [
+            "magnesium",
+            "skeleton_powder"
+        ],
+        "type": "Range_weapon",
+        "texture": "",
+        "data": [
+            "Fuck u pistol",
+			"Fuck u stronger than ever",
+			50
+        ]
+    }
+}

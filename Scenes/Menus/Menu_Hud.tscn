@@ -47,6 +47,10 @@ text = "Skills"
 layout_mode = 2
 text = "Eq"
 
+[node name="Craft" type="Button" parent="Control/MarginContainer/HBoxContainer/Buttons"]
+layout_mode = 2
+text = "Craft"
+
 [node name="Button4" type="Button" parent="Control/MarginContainer/HBoxContainer/Buttons"]
 layout_mode = 2
 text = "Leave"
@@ -136,11 +140,128 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="Craft" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Top" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+
+[node name="Res1" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top/Res1"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+
+[node name="Desc" type="Label" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top/Res1"]
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.2
+
+[node name="Res2" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top/Res2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+
+[node name="Desc" type="Label" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top/Res2"]
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.2
+
+[node name="Output" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top/Output"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+
+[node name="Desc" type="Label" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top/Output"]
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.2
+
+[node name="Middle" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="CraftButton" type="Button" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Middle"]
+layout_mode = 2
+size_flags_horizontal = 6
+disabled = true
+text = "Craft Item"
+
+[node name="Bottom" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Recipes" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Recipes"]
+layout_mode = 2
+text = "Crafting recipes"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Recipes"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Recipes/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RecipesList" type="ItemList" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Recipes/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Resources" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources"]
+layout_mode = 2
+text = "Crafting resources"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ResourcesList" type="ItemList" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Buttons/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Buttons/Skills" to="." method="_on_skills_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Buttons/EqB" to="." method="_on_eq_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Buttons/Craft" to="." method="_on_craft_pressed"]
 [connection signal="item_activated" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList" to="." method="_on_item_list_item_activated"]
 [connection signal="item_clicked" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList" to="." method="_on_item_list_item_clicked"]
 [connection signal="item_clicked" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/SkillList" to="." method="_on_skill_list_item_clicked"]
 [connection signal="item_activated" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment" to="." method="_on_self_equipment_item_activated"]
 [connection signal="item_activated" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment" to="." method="_on_equipment_item_activated"]
+[connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Middle/CraftButton" to="." method="_on_craft_button_pressed"]
+[connection signal="item_clicked" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Recipes/ScrollContainer/VBoxContainer/RecipesList" to="." method="_on_recipes_list_item_clicked"]
