@@ -1,7 +1,7 @@
 {
 	"name": "Mikut",
 	"texture": "",
-	"hp": 60,
+	"hp": 55,
 	"max_hp": 100,
 	"knocked_up": false,
 	"attack": {

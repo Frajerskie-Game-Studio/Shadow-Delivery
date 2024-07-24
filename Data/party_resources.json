@@ -4,7 +4,11 @@
 		"texture": ""
 	},
 	"skeleton_powder": {
-		"ammount": 45,
+		"ammount": 46,
+		"texture": ""
+	},
+	"gel": {
+		"ammount": 41,
 		"texture": ""
 	}
 }

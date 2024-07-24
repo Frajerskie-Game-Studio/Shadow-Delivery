@@ -1,0 +1,75 @@
+[gd_scene load_steps=2 format=3 uid="uid://cc8e0vp4psqw"]
+
+[ext_resource type="Script" path="res://scripts/DropMenu.gd" id="1_er155"]
+
+[node name="DropMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 100
+script = ExtResource("1_er155")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "LOOT"
+horizontal_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="Panel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 50
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/MarginContainer"]
+layout_mode = 2
+text = "OK
+"
+
+[connection signal="pressed" from="Panel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/MarginContainer/Button" to="." method="_on_button_pressed"]

@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1iox65houvxo"]
+[gd_scene load_steps=4 format=3 uid="uid://c1iox65houvxo"]
 
 [ext_resource type="Script" path="res://scripts/BattleScene.gd" id="1_lpwyi"]
+[ext_resource type="PackedScene" uid="uid://cc8e0vp4psqw" path="res://Scenes/Menus/DropMenu.tscn" id="2_a0f8t"]
 [ext_resource type="AudioStream" uid="uid://bom6ekqts8xkg" path="res://Music/Battle_soundtrack_v2.wav" id="2_xxcb8"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_lpwyi")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DropMenu" parent="CanvasLayer" instance=ExtResource("2_a0f8t")]
+visible = false
+top_level = true
 
 [node name="Party_First_Position" type="Marker2D" parent="."]
 position = Vector2(142, 119.37)
@@ -33,3 +40,5 @@ position = Vector2(1060, 563)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_xxcb8")
 autoplay = true
+
+[connection signal="endFight" from="CanvasLayer/DropMenu" to="." method="_on_drop_menu_end_fight"]

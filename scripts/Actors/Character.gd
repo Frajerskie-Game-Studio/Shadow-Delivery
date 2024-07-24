@@ -8,6 +8,7 @@ var Skills
 var Equipment
 var Attack
 var Items
+var Resources
 var Party_Data
 var KnockedUp
 
@@ -44,6 +45,11 @@ func save_items():
 	}
 	file.store_string(JSON.stringify(temp_data, "\t", false))
 	file.close()
+	
+func save_resources():
+	var file = FileAccess.open("res://Data/party_resources.json", FileAccess.WRITE)
+	file.store_string(JSON.stringify(Resources, "\t", false))
+	file.close()
 
 
 func save_data():
@@ -79,6 +85,11 @@ func load_items():
 	var temp_data = JSON.parse_string(text)
 	Items = temp_data.items
 	Party_Data = temp_data
+	
+func load_res():
+	var text = FileAccess.get_file_as_string("res://Data/party_resources.json")
+	var temp_data = JSON.parse_string(text)
+	Resources = temp_data
 
 
 func _ready():

@@ -8,6 +8,8 @@ var possible_attacker
 var possible_target
 var possible_effect
 
+var battle_drop = []
+signal end_whole_battle
 @onready var Positions = {
 	"party": [
 		$Party_Second_Position,
@@ -49,6 +51,7 @@ func load_entities(party, enemies):
 		if(Party[index].has_method("lock")):
 			Party[index].lock()
 		Party[index].load_items()
+		Party[index].load_res()
 		add_child(Party[index])	
 		
 	for index in range(len(enemies)):
@@ -60,8 +63,8 @@ func load_entities(party, enemies):
 		Enemies[index].enemy_attacking.connect(_on_enemy_attacking)
 		Enemies[index].dying.connect(_on_enemy_dying)
 		add_child(Enemies[index])
+		battle_drop.append(Enemies[index].get_drop())
 		Enemies[index].start_attacking_process()
-	
 	#player = temp_load
 	#player.position = $Marker2D4.position
 	#add_child(player)
@@ -134,3 +137,66 @@ func _on_enemy_dying(entity):
 		if e == entity:
 			Enemies.erase(e)
 			e.queue_free()
+	if len(Enemies) == 0:
+		end_battle()
+
+func end_battle():
+	var temp_entity = Party[0]
+	temp_entity.load_res()
+	for loot in battle_drop:
+		if loot != null:
+			if typeof(loot) != TYPE_ARRAY:
+				if loot.type == "item":
+					var has_item = false
+					for item in temp_entity.Items:
+						if item == loot.name:
+							temp_entity.Items[item][3] += loot.data[3]
+							has_item = true
+					if !has_item:
+						temp_entity.Items[loot.name] = {loot.name :loot.data}
+						$CanvasLayer/DropMenu/Panel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ItemList.add_item(loot.name + " x" + str(loot.data[3]))
+				elif loot.type == "resource":
+					var has_res = false
+					for res in temp_entity.Resources:
+						if res == loot.name:
+							temp_entity.Resources[res].ammount += loot.data.ammount
+							has_res = true
+					if !has_res:
+						temp_entity.Resources[loot.name] = {"ammount": loot.data.ammount, "texture": loot.data.texture}
+					$CanvasLayer/DropMenu/Panel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ItemList.add_item(loot.name + " x" + str(loot.data.ammount))
+			else:
+				for inside_loot in loot:
+					if inside_loot != null:
+						if inside_loot.type == "item":
+							var has_item = false
+							for item in temp_entity.Items:
+								if item == inside_loot.name:
+									temp_entity.Items[item][3] += inside_loot.data[3]
+									has_item = true
+							if !has_item:
+								temp_entity.Items[inside_loot.name] = {inside_loot.name :inside_loot.data}
+							$CanvasLayer/DropMenu/Panel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ItemList.add_item(inside_loot.name + " x" + str(inside_loot.data[3]))
+						elif inside_loot.type == "resource":
+							var has_res = false
+							for res in temp_entity.Resources:
+								if res == inside_loot.name:
+									temp_entity.Resources[res].ammount += inside_loot.data.ammount
+									has_res = true
+							if !has_res:
+								temp_entity.Resources[inside_loot.name] = {"ammount": inside_loot.data.ammount, "texture": inside_loot.data.texture}
+							$CanvasLayer/DropMenu/Panel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ItemList.add_item(inside_loot.name + " x" + str(inside_loot.data.ammount))
+	temp_entity.save_data()
+	temp_entity.save_resources()
+	temp_entity.save_items()
+	temp_entity.load_data()
+	temp_entity.load_items()
+	temp_entity.load_res()
+	for t in Party:
+		t.save_data()
+		t.save_resources()
+		t.save_items()
+		t.in_battle = false
+	$CanvasLayer/DropMenu.visible = true
+
+func _on_drop_menu_end_fight():
+	end_whole_battle.emit()

@@ -8,6 +8,7 @@ var Hp
 var MaxHp
 var Attack
 var Skills
+var Drop
 
 var attack_danger = false
 var on_cursor = false
@@ -79,6 +80,7 @@ func load_data(json_path):
 	MaxHp = temp_data["hp"]
 	Skills = temp_data["skills"]
 	Attack = temp_data["attack"]
+	Drop = temp_data["drop"]
 	data_loaded = true
 	
 func get_entity_name():
@@ -121,6 +123,25 @@ func attack_entity():
 		attack_danger = false
 		wait_timer.queue_free()
 		start_attacking_process()
+		
+func get_drop():
+	var randomNumberGenerator = RandomNumberGenerator.new()
+	var state = randomNumberGenerator.randi_range(1, 100)
+	var drop
+	
+	if state >= 1 and state <= 40:
+		drop = Drop.common
+		drop.data.ammount = randomNumberGenerator.randi_range(1, 5)
+	elif state > 40 and state <= 64:
+		drop = Drop.rare
+		drop.data[3] = randomNumberGenerator.randi_range(1, 3)
+	elif state > 64 and state <= 88:
+		return null
+	else:
+		drop = [Drop.common, Drop.rare]
+		drop[0].data.ammount = randomNumberGenerator.randi_range(1, 5)
+		drop[1].data[3] = randomNumberGenerator.randi_range(1, 3)
+	return drop
 	
 func _on_area_2d_mouse_entered():
 	print("MOUSE ENTERED")

@@ -370,6 +370,14 @@ func _on_craft_button_pressed():
 					has_weapon = true
 			if !has_weapon:
 				PartyEq[temp_recipe.data[0].replace(" ", "_")] = [temp_recipe.data[1], temp_recipe.type, temp_recipe.data[2], 1]
+		elif temp_recipe.type == "resource":
+			var has_resource = false
+			for res in PartyResources:
+				if res == temp_recipe.data[0]:
+					PartyResources[res].ammount += 1
+					has_resource = true
+			if !has_resource:
+				PartyResources[temp_recipe.data[0]] = {"ammount": 1, "texture": temp_recipe.texture}
 		else:
 			PartyEq[temp_recipe.data[0].replace(" ", "_")] = [temp_recipe.data[1], temp_recipe.type, temp_recipe.data[2]]
 	else:

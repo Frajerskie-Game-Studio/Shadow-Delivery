@@ -22,8 +22,10 @@ func _init():
 
 func _ready():
 	#hp, max_hp, mele_skills, range_skills, ammo, ammo_texture_path
+	print($AttackMenu.visible)
 	load_data()
 	load_items()
+	reload_menu()
 	if in_battle:
 		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
 		$AttackMenu.visible =true
@@ -35,6 +37,10 @@ func _ready():
 			animationState.travel("mele_idle")
 		elif current_style == "range":
 			animationState.travel("range_idle")
+		#$RangeSKillCheck.get_direction()
+		#$RangeSKillCheck.started = true
+	else:
+		$AttackMenu.visible = false
 	#$RangeSKillCheck.get_direction()
 	#$RangeSKillCheck.started = true
 

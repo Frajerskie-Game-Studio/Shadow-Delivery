@@ -9,6 +9,7 @@ var current_dialog_npc
 var in_dialog = false
 var party_items
 var data
+var battlefield
 
 signal itemDone
 
@@ -17,6 +18,8 @@ func _ready():
 	var temp_data = JSON.parse_string(text)
 	data = temp_data
 	party_items = temp_data["items"]
+	for c in get_children():
+		print(c.get_class() == "Node2D")
 	#var d = DialogLoader.new()
 	#d.load_data("res://Data/npc_test.json")
 	#d.showDialog.connect(_on_npc_show_dialog)
@@ -26,7 +29,7 @@ func _ready():
 	#$Node.load_entities(["res://Scenes/Actors/Player.tscn", "res://Scenes/Actors/Lucjan.tscn"], ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
 
 func _process(delta):
-	if !in_dialog:
+	if !in_dialog and !$Player.in_battle:
 		if Input.is_action_just_pressed("show_menu"):
 			if $Menu.visible:
 				$Player.unlock()
@@ -121,8 +124,24 @@ func _on_dialog_pointer_start_dialog(path):
 	$DialogPointer.queue_free()
 	
 func start_fight():
-	$Player.visible = false
-	var b = battle_scene.instantiate()
-	add_child(b)
-	b.load_entities($Player.Party_Data.teammates_nodes, ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
+	for c in get_children():
+		c.visible = false
+	battlefield= battle_scene.instantiate()
+	battlefield.end_whole_battle.connect(end_battle)
+	$Player.lock()
+	$Player.in_battle = true
+	add_child(battlefield)
+	battlefield.load_entities($Player.Party_Data.teammates_nodes, ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
 	
+func end_battle():
+	battlefield.queue_free()
+	for c in get_children():
+		if c.get_class() != "CanvasLayer" and c.get_class() != "Node":
+			c.visible = true
+			if c.get_class() == "Node2D":
+				c.load_data()
+				c.load_items()
+				c.load_res()
+	$Player.unlock()
+	$Player.in_battle = false
+	$Menu.refresh_data()

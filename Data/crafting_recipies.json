@@ -81,5 +81,16 @@
 			"Fuck u stronger than ever",
 			50
         ]
+    },
+    "skeleton powder": {
+        "components": [
+            "bones",
+            "chitin exoskeleton"
+        ],
+        "type": "resource",
+        "texture": "",
+        "data": [
+            "skeleton_powder"
+        ]
     }
 }

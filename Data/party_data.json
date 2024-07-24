@@ -12,7 +12,7 @@
 			"Very weak healing potion",
 			0,
 			20,
-			2
+			20
 		],
 		"revive": [
 			"Weak reviving potion",
@@ -30,11 +30,6 @@
 		]
 	},
 	"equipment": {
-		"Dixer_uniform": [
-			"Average factory outfit for couriers",
-			"Armor",
-			15
-		],
 		"Fuck_u_pistol": [
 			"Fuck u stronger than ever",
 			"Range_weapon",
@@ -46,6 +41,11 @@
 			"Range_weapon",
 			60,
 			6
+		],
+		"Dixer_uniform": [
+			"Average factory outfit for couriers",
+			"Armor",
+			15
 		]
 	}
 }

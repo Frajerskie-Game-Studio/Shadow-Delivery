@@ -33,6 +33,8 @@ func _ready():
 			animationState.travel("range_idle")
 		#$RangeSKillCheck.get_direction()
 		#$RangeSKillCheck.started = true
+	else:
+		$AttackMenu.visible = false
 
 
 func reload_menu():
@@ -56,37 +58,38 @@ func get_dmg(attack):
 		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
 
 func _process(delta):
-	if KnockedUp:
-		$AttackMenu.visible = false
-		animationState.travel("knocked_down")
-	else:
-		$AttackMenu.visible = true
+	if in_battle:
+		if KnockedUp:
+			$AttackMenu.visible = false
+			animationState.travel("knocked_down")
+		else:
+			$AttackMenu.visible = true
 
-	if timer != null:
-		if duringSkillCheck:
-			if current_style == "mele":
-				if Input.is_action_just_pressed(skillChecks[skillCheckStep]):
-					print("Siadło")
-					skillCheckFailed = false
-					timer.timeout.emit()
-			elif current_style == "range":
-				skillCheckFailed = true
-				if Input.is_action_just_pressed("Shoot"):
-					var on_crossair = get_parent().possible_target.on_crossair
-					if on_crossair:
+		if timer != null:
+			if duringSkillCheck:
+				if current_style == "mele":
+					if Input.is_action_just_pressed(skillChecks[skillCheckStep]):
+						print("Siadło")
 						skillCheckFailed = false
-					timer.timeout.emit()
-				
-	if waiting and !wait_timer.is_paused():
-		#100 / floor(wait_timer.wait_time / delta)
-		$AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.step = $AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.max_value / (wait_timer.wait_time / delta)
-		$AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.value += $AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.step
-		
-	if can_be_checked:
-		if on_mouse_cursor:
-			if Input.is_action_just_pressed("mouse_click"):
-				item_being_used.emit(self)
-				$CheckSprite.visible = false
+						timer.timeout.emit()
+				elif current_style == "range":
+					skillCheckFailed = true
+					if Input.is_action_just_pressed("Shoot"):
+						var on_crossair = get_parent().possible_target.on_crossair
+						if on_crossair:
+							skillCheckFailed = false
+						timer.timeout.emit()
+					
+		if waiting and !wait_timer.is_paused():
+			#100 / floor(wait_timer.wait_time / delta)
+			$AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.step = $AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.max_value / (wait_timer.wait_time / delta)
+			$AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.value += $AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.step
+			
+		if can_be_checked:
+			if on_mouse_cursor:
+				if Input.is_action_just_pressed("mouse_click"):
+					item_being_used.emit(self)
+					$CheckSprite.visible = false
 
 func _on_attack_menu_i_will_attack(args):
 	ready_to_attack_bool = true
