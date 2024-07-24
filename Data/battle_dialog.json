@@ -1,0 +1,19 @@
+{
+	"currentDialogState": 0,
+	"dialogStates": [
+		"one"
+	],
+	"name": "Keb00se",
+	"one": [
+		[
+			"World",
+			"Masz wpierdol",
+			""
+		],
+		[
+			"Mikut",
+			"Kurwa",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		]
+	]
+}

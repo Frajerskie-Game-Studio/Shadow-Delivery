@@ -5,7 +5,7 @@ extends StaticBody2D
 @onready var npc_data
 
 #signal for showing dialog
-signal showDialog(npc_name, dialog_dict, dialog_npc)
+signal showDialog(npc_name, dialog_dict, dialog_npc, action)
 
 var ableToTalk = false
 #variable blocking for showing another dialog window if one is showed
@@ -38,7 +38,7 @@ func _process(delta):
 			
 			block = true
 			#emmiting signal for showing dialog windows
-			showDialog.emit(npc_name, npc_data[dialogStates[current_dialog_position]], self)
+			showDialog.emit(npc_name, npc_data[dialogStates[current_dialog_position]], self, null)
 			#changing dialog state if possible
 			if current_dialog_position < len(dialogStates) - 1:
 				current_dialog_position += 1

@@ -53,4 +53,6 @@ func _physics_process(delta):
 		var directionVector = get_input()
 		velocity = directionVector.normalized() * speed
 		move_and_slide()
-
+	else:
+		if !get_parent().in_battle:
+			animationState.travel("Idle")

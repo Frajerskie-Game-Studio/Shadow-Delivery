@@ -7,6 +7,7 @@ var PartyEq
 var PersonEq
 var eq_temp_person
 var Teammates
+var TeammatesNodes
 var PartyResources
 var CraftingRecipies
 var item_to_use
@@ -40,6 +41,7 @@ func refresh_data():
 	
 	Items = temp_data["items"]
 	Teammates = temp_data["teammates"]
+	TeammatesNodes = temp_data["teammates_nodes"]
 	PartyEq = temp_data["equipment"]
 	PartyResources = temp_res
 	CraftingRecipies = temp_craft
@@ -50,6 +52,7 @@ func save_data():
 	var res_file = FileAccess.open("res://Data/party_resources.json", FileAccess.WRITE)
 	var temp_data = {
 		"teammates": Teammates,
+		"teammates_nodes": TeammatesNodes,
 		"items": Items,
 		"equipment": PartyEq
 	}
@@ -80,6 +83,7 @@ func _ready():
 	var temp_data = JSON.parse_string(text)
 	Items = temp_data["items"]
 	Teammates = temp_data["teammates"]
+	TeammatesNodes = temp_data["teammates_nodes"]
 	PartyEq = temp_data["equipment"]
 	print(Items)
 	load_profiles()

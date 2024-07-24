@@ -1,14 +1,11 @@
 extends Area2D
 
-var CurrentDialogState
-var dialogStates
+var Path
 
-signal start_dialog
+signal start_dialog(path)
 
 func load_data(path):
-	var text = FileAccess.get_file_as_string(path)
-	var temp_data = JSON.parse_string(text)
-
+	Path = path
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -17,6 +14,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_body_entered(body):
+	start_dialog.emit(Path)
 	
-func end_dialog():
-	pass

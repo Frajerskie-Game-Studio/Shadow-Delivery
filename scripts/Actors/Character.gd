@@ -38,6 +38,7 @@ func save_items():
 	var file = FileAccess.open("res://Data/party_data.json", FileAccess.WRITE)
 	var temp_data = {
 		"teammates": Party_Data.teammates,
+		"teammates_nodes": Party_Data.teammates_nodes,
 		"items": Items,
 		"equipment": Party_Data.equipment
 	}

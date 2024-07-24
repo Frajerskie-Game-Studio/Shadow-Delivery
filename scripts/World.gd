@@ -3,6 +3,7 @@ extends Node
 const DialogLoader = preload("res://scripts/DialogLoader.gd")
 @onready var dialog_hud = preload("res://Scenes/HudCanvas.tscn")
 @onready var d = preload("res://Scenes/Actors/Player.tscn")
+@onready var battle_scene = preload("res://Scenes/BattleScene.tscn")
 
 var current_dialog_npc
 var in_dialog = false
@@ -21,7 +22,8 @@ func _ready():
 	#d.showDialog.connect(_on_npc_show_dialog)
 	#d.start_dialog()
 	#
-	$Node.load_entities(["res://Scenes/Actors/Player.tscn", "res://Scenes/Actors/Lucjan.tscn"], ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
+	#$DialogPointer.load_data("res://Data/npc_test.json")
+	#$Node.load_entities(["res://Scenes/Actors/Player.tscn", "res://Scenes/Actors/Lucjan.tscn"], ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
 
 func _process(delta):
 	if !in_dialog:
@@ -34,13 +36,13 @@ func _process(delta):
 				$Menu.visible = true
 
 #showing dialog window (signal from NPC)
-func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc):
+func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc, action):
 	print("DIAKIG")
 	in_dialog = true
 	$Player.lock()
 	var this_dialog = dialog_hud.instantiate()
 	self.add_child(this_dialog)
-	this_dialog.load_data(npc_name, dialog_dict)
+	this_dialog.load_data(npc_name, dialog_dict, action)
 	#assiging NPC with whom player is talking
 	if dialog_npc != null:
 		current_dialog_npc = dialog_npc
@@ -53,7 +55,7 @@ func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc):
 	#current_dialog_npc.load_data()
 	
 #ending dialog
-func end_dialog():
+func end_dialog(action):
 	#searching for npc wich player is talking to
 	if current_dialog_npc != null:
 		for child in get_children():
@@ -61,6 +63,8 @@ func end_dialog():
 				child.end_dialog()
 	$Player.unlock()
 	in_dialog = false
+	if action != null:
+		action.call()
 	
 
 
@@ -107,3 +111,18 @@ func _on_menu_save_eq(entity_name):
 	for child in get_children():
 		if child.has_node("CharacterBody2D"):
 			child.load_data()
+
+
+func _on_dialog_pointer_start_dialog(path):
+	var d = DialogLoader.new()
+	d.load_data("res://Data/battle_dialog.json", start_fight)
+	d.showDialog.connect(_on_npc_show_dialog)
+	d.start_dialog()
+	$DialogPointer.queue_free()
+	
+func start_fight():
+	$Player.visible = false
+	var b = battle_scene.instantiate()
+	add_child(b)
+	b.load_entities($Player.Party_Data.teammates_nodes, ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
+	
