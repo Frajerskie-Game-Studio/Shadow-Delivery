@@ -15,6 +15,7 @@ var KnockedUp
 var character_file_path
 var effect_counter = 0
 var effect_multipler = 0
+var in_battle = false
 var duringSkillCheck = false
 var skillCheckFailed = true
 var waiting = false
@@ -79,10 +80,6 @@ func load_items():
 	Party_Data = temp_data
 
 
-func revive(heal):
-	KnockedUp = false
-
-
 func _ready():
 	print("READY")
 	load_data()
@@ -111,25 +108,6 @@ func set_style():
 		current_style = "range"
 	else:
 		current_style = "mele"
-
-
-func use_item(item):
-	if item.has("effect"):
-		if item.effect == "revive":
-			KnockedUp = false
-	if item.dmg != 0:
-		Hp -= item.dmg
-	elif item.heal != 0:
-		Hp += item.heal
-	Items[item.key][3] -= 1
-	if Items[item.key][3] <= 0:
-		Items.erase(item.key)
-	on_mouse_cursor = false
-	can_be_checked = false
-	save_data()
-	save_items()
-	load_items()
-	load_data()
 
 func get_attack():
 	return Attack

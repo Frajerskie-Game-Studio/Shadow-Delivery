@@ -40,6 +40,7 @@ func load_entities(party, enemies):
 	for index in range(len(party)):
 		var temp_load = load(party[index])
 		Party.append(temp_load.instantiate())
+		Party[index].in_battle = true
 		Party[index].position = Positions.party[index].position
 		Party[index].ready_to_attack.connect(_on_entity_ready_to_attack)
 		Party[index].attacking.connect(_on_attacking_entity)
@@ -75,7 +76,6 @@ func _on_entity_ready_to_attack(attack, attacker):
 		for p in Party:
 			if possible_attack.has("effect") and possible_attack.effect == "revive":
 				if p.KnockedUp:
-					print(attack)
 					p.can_be_checked = true
 			else:
 				p.can_be_checked = true
@@ -101,10 +101,13 @@ func _on_reset_ready_to_attack():
 		p.on_mouse_cursor = false
 		
 func _on_entity_being_attacked(entity):
+	print("ATTACKED")
+	print(possible_attacker)
 	possible_attacker.can_be_attacked = false
 	for e in Enemies:
 		e.attack_danger = false
 	possible_target = entity
+	print(possible_attacker)
 	possible_attacker.start_attack(possible_attack)
 	
 func _on_attacking_entity(attack):

@@ -45,7 +45,6 @@ func _physics_process(delta):
 	if data_loaded:
 		if attack_danger and on_cursor and can_be_attacked:
 			if Input.is_action_just_pressed("mouse_click"):
-				print("BEING ATTACKED")
 				can_attack = false
 				wait_timer.set_paused(true)
 				#$EnemyWaitTimer.visible = false
@@ -64,7 +63,6 @@ func _physics_process(delta):
 			WaiTimeBar.value += WaiTimeBar.step
 			
 func all_attack():
-	print("BEING ATTACKED")
 	can_attack = false
 	wait_timer.set_paused(true)
 	#$EnemyWaitTimer.visible = false
@@ -74,7 +72,6 @@ func all_attack():
 	$CheckSprite.visible = false
 
 func load_data(json_path):
-	print(json_path)
 	var text = FileAccess.get_file_as_string(json_path)
 	var temp_data = JSON.parse_string(text)
 	Name = temp_data["name"]

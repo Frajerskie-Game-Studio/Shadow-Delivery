@@ -20,15 +20,12 @@ signal i_will_attack(args)
 signal change_style
 
 func load_data(hp, max_hp, skills, ammo, ammo_texture_path, items):
-	print(hp)
-	print(max_hp)
 	HealthBar.max_value = max_hp
 	HealthBar.value = hp
 	Skills = skills
 	Ammo = ammo
 	AmmoLabel.text = str(ammo)
 	Items = items
-	print(Skills)
 	#AmmoTexture.texture = ammo_texture_path
 
 func _ready():
@@ -114,7 +111,6 @@ func _on_items_list_item_clicked(index, at_position, mouse_button_index):
 
 func _on_items_list_item_activated(index):
 	var item = $HBoxContainer/RightMenu/ItemsMenu/ItemsList.get_item_text(index)
-	print(item)
 	if Items[item][3] <= 0:
 		pass
 	else:

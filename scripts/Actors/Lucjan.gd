@@ -1,5 +1,8 @@
 extends "Character.gd"
 
+@onready var animationTree = $AnimationTree
+@onready var animationState = animationTree.get("parameters/playback")
+
 var timer
 var wait_timer
 #var d = 0
@@ -16,15 +19,25 @@ func _ready():
 	#hp, max_hp, mele_skills, range_skills, ammo, ammo_texture_path
 	load_data()
 	load_items()
-	$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
-	if KnockedUp:
-		can_be_attacked = false
-	#$RangeSKillCheck.get_direction()
-	#$RangeSKillCheck.started = true
+	reload_menu()
+	if in_battle:
+		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
+		$AttackMenu.visible =true
+		if KnockedUp:
+			can_be_attacked = false
+			animationState.travel("knocked_down")
+
+		elif current_style == "mele":
+			animationState.travel("mele_idle")
+		elif current_style == "range":
+			animationState.travel("range_idle")
+		#$RangeSKillCheck.get_direction()
+		#$RangeSKillCheck.started = true
 
 
 func reload_menu():
 	$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
+
 
 func get_dmg(attack):
 	if ready_to_attack_bool:
@@ -32,7 +45,7 @@ func get_dmg(attack):
 		$AttackMenu/HBoxContainer/LeftMenu/AttackButton.release_focus()
 	if wait_timer != null:
 		wait_timer.set_paused(true)
-		
+	animationState.travel("get_dmg")
 	Hp -= attack.dmg
 	$AttackMenu/HBoxContainer/RightMenu/HealthBar.value = Hp
 	if wait_timer != null:
@@ -45,12 +58,12 @@ func get_dmg(attack):
 func _process(delta):
 	if KnockedUp:
 		$AttackMenu.visible = false
+		animationState.travel("knocked_down")
 	else:
 		$AttackMenu.visible = true
-	
+
 	if timer != null:
 		if duringSkillCheck:
-			print(timer.get_time_left())
 			if current_style == "mele":
 				if Input.is_action_just_pressed(skillChecks[skillCheckStep]):
 					print("Siadło")
@@ -101,7 +114,6 @@ func _on_attack_menu_i_will_attack(args):
 					current_effect_working = null
 					effect_multipler = null
 					effect_counter = 0
-			print(dmg)
 			if len(args) == 6:
 				ready_to_attack.emit({"dmg": dmg, "wait_time": args[3], "effect": args[5]}, self)
 			elif len(args) == 8:
@@ -111,13 +123,13 @@ func _on_attack_menu_i_will_attack(args):
 				ready_to_attack.emit({"dmg": dmg, "wait_time": args[3]}, self)
 				
 func start_attack(attack):
+	print("ATTACKING")
 	ready_to_attack_bool = false
 	timer = Timer.new()
 	timer.one_shot = true
 	timer.wait_time = float(attack.wait_time)
 	timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
-	#asdasd
 	if current_style == "mele":
 		if !attack.has("effect"):
 			$MeleSkillCheck.visible = true
@@ -127,7 +139,6 @@ func start_attack(attack):
 				skillChecks.append(possibleSkillChecks[rand.randi_range(0, len(possibleSkillChecks) - 1)])
 			$MeleSkillCheck.texture = load("res://Graphics/" + str(skillChecks[skillCheckStep]) +".png")
 		elif attack.effect == "stronger":
-				print("JESETETETETE")
 				selected_attack = attack
 				current_effect_working = attack.effect
 				effect_multipler = attack.effect_multipler
@@ -145,13 +156,13 @@ func start_attack(attack):
 			$RangeSKillCheck.started = true
 		else:
 			if attack.effect == "all":
+				animationState.travel("range_attack")
 				selected_attack = attack
 				attacking.emit(selected_attack)
 				decrement_ammo()
 				$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "", Items)
 				return
 			elif attack.effect == "stronger":
-				print("JESETETETETE")
 				selected_attack = attack
 				current_effect_working = attack.effect
 				effect_multipler = attack.effect_multipler
@@ -189,10 +200,10 @@ func start_using_item():
 	wait_timer.start()
 	
 func _on_timer_timeout():
-	print("KONIEC")
+	#print("KONIEC")
 	$MeleSkillCheck.visible = false
 	if skillCheckFailed:
-		print("FAILED")
+		#print("FAILED")
 		skillCheckFailed = true
 		duringSkillCheck = false
 		attacking.emit({"dmg": 0})
@@ -205,18 +216,21 @@ func _on_timer_timeout():
 	else:
 		if skillCheckStep == len(skillChecks) - 1 or skillCheckStep == -1:
 			duringSkillCheck = false
-			print("CORRECT")
+			#print("CORRECT")
 			attacking.emit(selected_attack)
 			if current_style == "range":
 				decrement_ammo()
 				$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "", Items)
+				animationState.travel("range_attack")
+			else:
+				animationState.travel("mele_attack")
 			$RangeSKillCheck.started = false
 			$RangeSKillCheck.visible = false
 			timer.queue_free()
 			skillChecks.clear()
 			skillCheckStep = 0
 		else:
-			print("Wyszło")
+			#print("Wyszło")
 			timer.queue_free()
 			skillCheckStep += 1
 			duringSkillCheck = false
@@ -234,7 +248,6 @@ func _on_timer_timeout():
 			
 func _on_attack_done():
 	print("DONE")
-	can_be_attacked = true
 	$AttackMenu/HBoxContainer/LeftMenu/SkillsButton.visible = false
 	$AttackMenu/HBoxContainer/LeftMenu/ItemsButton.visible = false
 	$AttackMenu/HBoxContainer/LeftMenu/AttackButton.visible = false
@@ -251,6 +264,8 @@ func _on_attack_done():
 	waiting = true
 	wait_timer.start()
 	
+
+	
 func _on_wait_time_timeout():
 	$AttackMenu/HBoxContainer/RightMenu/ChangeAndTime/WaitTimeBar.visible = false
 	wait_timer.queue_free()
@@ -262,6 +277,10 @@ func _on_wait_time_timeout():
 	if changing_style:
 		set_style()
 		changing_style = false
+		if current_style == "mele":
+			animationState.travel("show_mele")
+	if current_style == "range":
+		animationState.travel("show_range")
 		
 func _on_attack_menu_change_style():
 	changing_style = true
@@ -280,7 +299,35 @@ func _on_attack_menu_change_style():
 	timebar.value = 0
 	waiting = true
 	wait_timer.start()
-
+	if current_style == "mele":
+		animationState.travel("hide_mele")
+	else:
+		animationState.travel("hide_range")
+		
+func revive(heal):
+	KnockedUp = false
+	animationState.travel(str(current_style) + "_idle")
+	
+func use_item(item):
+	if item.has("effect"):
+		if item.effect == "revive":
+			KnockedUp = false
+	if item.dmg != 0:
+		Hp -= item.dmg
+	elif item.heal != 0:
+		Hp += item.heal
+		if Hp > MaxHp:
+			Hp = MaxHp
+	Items[item.key][3] -= 1
+	if Items[item.key][3] <= 0:
+		Items.erase(item.key)
+	on_mouse_cursor = false
+	can_be_checked = false
+	save_data()
+	save_items()
+	load_items()
+	load_data()
+	animationState.travel("use_item")
 
 func _on_character_body_2d_mouse_entered():
 	if can_be_checked:
@@ -292,3 +339,38 @@ func _on_character_body_2d_mouse_exited():
 	if can_be_checked:
 		on_mouse_cursor = false
 		$CheckSprite.visible = false
+	
+
+
+func _on_animation_tree_animation_finished(anim_name):
+	if anim_name == "hide_mele" or anim_name == "hide_range":
+		animationState.travel("change_style")
+	elif anim_name == "show_mele":
+		animationState.travel("mele_idle")
+	elif anim_name == "show_range":
+		animationState.travel("range_idle")
+	elif anim_name == "mele_attack":
+		can_be_attacked = true
+		animationState.travel("mele_idle")
+	elif anim_name == "range_attack":
+		can_be_attacked = true
+		animationState.travel("change_style")
+	elif anim_name == "get_dmg":
+		if current_style == "mele":
+			animationState.travel("mele_idle")
+		else:
+			if waiting:
+				animationState.travel("change_style")
+			else:
+				animationState.travel("range_idle")
+	elif anim_name == "use_item":
+		if current_style == "mele":
+			if waiting:
+				animationState.travel("change_style")
+			else:
+				animationState.travel("mele_idle")
+		else:
+			if waiting:
+				animationState.travel("change_style")
+			else:
+				animationState.travel("range_idle")

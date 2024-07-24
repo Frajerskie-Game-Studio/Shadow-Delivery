@@ -20,7 +20,7 @@ corner_radius_bottom_left = 5
 
 [node name="AttackMenu" type="MarginContainer"]
 offset_right = 411.0
-offset_bottom = 150.0
+offset_bottom = 218.0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 script = ExtResource("1_hojtk")

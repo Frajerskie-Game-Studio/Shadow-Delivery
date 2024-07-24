@@ -36,7 +36,8 @@ func get_input():
 		animationTree.set("parameters/Move/blend_position", current_vector + last_vector)
 		animationState.travel("Move")
 	else:
-		animationState.travel("Idle")
+		if !get_parent().in_battle:
+			animationState.travel("Idle")
 	last_vector = Vector2(directionX, directionY)
 	return Vector2(directionX, directionY)
 	

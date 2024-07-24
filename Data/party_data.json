@@ -4,12 +4,6 @@
 		"./Data/lucjan_data.json"
 	],
 	"items": {
-		"red brew": [
-			"Very weak healing potion",
-			0,
-			20,
-			2
-		],
 		"revive": [
 			"Weak reviving potion",
 			0,
