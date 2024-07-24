@@ -10,16 +10,18 @@
 script = ExtResource("1_cxcv4")
 
 [node name="DialogPointer" parent="." instance=ExtResource("2_yaxct")]
-position = Vector2(336, 191)
-
-[node name="Player" parent="." instance=ExtResource("2_odx0t")]
-position = Vector2(134, 193)
+position = Vector2(665, 184)
 
 [node name="Menu" parent="." instance=ExtResource("4_d6lnw")]
 visible = false
 
 [node name="NPC" parent="." instance=ExtResource("3_k464w")]
 position = Vector2(1002, 312)
+collision_layer = 15
+collision_mask = 15
+
+[node name="Player" parent="." instance=ExtResource("2_odx0t")]
+position = Vector2(134, 193)
 
 [connection signal="itemDone" from="." to="Menu" method="_on_world_item_done"]
 [connection signal="start_dialog" from="DialogPointer" to="." method="_on_dialog_pointer_start_dialog"]

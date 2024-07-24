@@ -4,6 +4,7 @@
 		"one"
 	],
 	"name": "Keb00se",
+    "texutre": "res://Graphics/Levels/MikutsHome/DeskSprite.png",
 	"one": [
 		[
 			"World",

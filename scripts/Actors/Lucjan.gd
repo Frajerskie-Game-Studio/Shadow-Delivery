@@ -60,6 +60,8 @@ func get_dmg(attack):
 
 func _process(delta):
 	if in_battle:
+		$PlayerBody/Collision.disabled = false
+		$PlayerBody/LevelCollider.disabled = true
 		if KnockedUp:
 			$AttackMenu.visible = false
 			animationState.travel("knocked_down")
@@ -91,6 +93,9 @@ func _process(delta):
 				if Input.is_action_just_pressed("mouse_click"):
 					item_being_used.emit(self)
 					$CheckSprite.visible = false
+	else:
+		$PlayerBody/Collision.disabled = true
+		$PlayerBody/LevelCollider.disabled = false
 
 func _on_attack_menu_i_will_attack(args):
 	ready_to_attack_bool = true

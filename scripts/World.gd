@@ -4,6 +4,7 @@ const DialogLoader = preload("res://scripts/DialogLoader.gd")
 @onready var dialog_hud = preload("res://Scenes/HudCanvas.tscn")
 @onready var d = preload("res://Scenes/Actors/Player.tscn")
 @onready var battle_scene = preload("res://Scenes/BattleScene.tscn")
+@onready var mikutroom = preload("res://Scenes/Levels/MikutRoom.tscn")
 
 var current_dialog_npc
 var in_dialog = false
@@ -21,12 +22,16 @@ func _ready():
 	for c in get_children():
 		print(c.get_class() == "Node2D")
 	$Menu.refresh_data()
+	var level1 = mikutroom.instantiate()
+	add_child(level1)
+	move_child(level1, 0)
+	level1.start_dialog.connect(_on_dialog_pointer_start_dialog)
 	#var d = DialogLoader.new()
 	#d.load_data("res://Data/npc_test.json")
 	#d.showDialog.connect(_on_npc_show_dialog)
 	#d.start_dialog()
 	#
-	#$DialogPointer.load_data("res://Data/npc_test.json")
+	$DialogPointer.load_data("res://Data/battle_dialog.json", false, true)
 	#$Node.load_entities(["res://Scenes/Actors/Player.tscn", "res://Scenes/Actors/Lucjan.tscn"], ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
 
 func _process(delta):
@@ -117,12 +122,14 @@ func _on_menu_save_eq(entity_name):
 			child.load_data()
 
 
-func _on_dialog_pointer_start_dialog(path):
+func _on_dialog_pointer_start_dialog(path, dialog_pointer):
+	print("SHOW DIALOG")
 	var d = DialogLoader.new()
-	d.load_data("res://Data/battle_dialog.json", start_fight)
+	d.load_data(path, start_fight)
 	d.showDialog.connect(_on_npc_show_dialog)
 	d.start_dialog()
-	$DialogPointer.queue_free()
+	#if dialog_pointer.Deletable:
+		#dialog_pointer.queue_free()
 	
 func start_fight():
 	for c in get_children():

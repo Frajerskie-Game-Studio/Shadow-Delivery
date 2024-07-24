@@ -1,14 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://pqf5hws2cd2n"]
+[gd_scene load_steps=4 format=3 uid="uid://pqf5hws2cd2n"]
 
 [ext_resource type="Script" path="res://scripts/DialogPointer.gd" id="1_jkaym"]
+[ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="2_h85s6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t40b"]
-size = Vector2(17, 16)
+size = Vector2(58, 47)
 
 [node name="DialogPointer" type="Area2D"]
 script = ExtResource("1_jkaym")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6.5)
 shape = SubResource("RectangleShape2D_3t40b")
 
+[node name="Indicator" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -19)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_h85s6")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

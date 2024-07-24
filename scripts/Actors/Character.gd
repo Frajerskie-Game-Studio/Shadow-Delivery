@@ -12,7 +12,6 @@ var Resources
 var Party_Data
 var KnockedUp
 
-
 var character_file_path
 var effect_counter = 0
 var effect_multipler = 0

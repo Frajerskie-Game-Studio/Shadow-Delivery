@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://cr5ybqyggurpr"]
+[gd_scene load_steps=63 format=3 uid="uid://cr5ybqyggurpr"]
 
 [ext_resource type="Script" path="res://scripts/Actors/Lucjan.gd" id="1_ceorf"]
 [ext_resource type="Script" path="res://Scenes/Actors/RangeSKillCheck.gd" id="2_0c2yt"]
@@ -9,6 +9,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23s6j"]
 size = Vector2(20, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ys4s"]
+size = Vector2(29, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_isjd8"]
 size = Vector2(72, 72)
@@ -194,16 +197,23 @@ graph_offset = Vector2(-42, 253)
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_ceorf")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="PlayerBody" type="CharacterBody2D" parent="."]
 collision_mask = 6
 input_pickable = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="Collision" type="CollisionShape2D" parent="PlayerBody"]
 shape = SubResource("RectangleShape2D_23s6j")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="PlayerBody"]
 texture = ExtResource("2_p2ia4")
 hframes = 82
+
+[node name="LevelCollider" type="CollisionShape2D" parent="PlayerBody"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-0.5, 37)
+shape = SubResource("RectangleShape2D_3ys4s")
+debug_color = Color(1.05888e-06, 0.645056, 0.268252, 0.42)
 
 [node name="RangeSKillCheck" type="CharacterBody2D" parent="."]
 visible = false
@@ -249,8 +259,8 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_drpri")
 anim_player = NodePath("../AnimationPlayer")
 
-[connection signal="mouse_entered" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_entered"]
-[connection signal="mouse_exited" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_exited"]
+[connection signal="mouse_entered" from="PlayerBody" to="." method="_on_character_body_2d_mouse_entered"]
+[connection signal="mouse_exited" from="PlayerBody" to="." method="_on_character_body_2d_mouse_exited"]
 [connection signal="change_style" from="AttackMenu" to="." method="_on_attack_menu_change_style"]
 [connection signal="i_will_attack" from="AttackMenu" to="." method="_on_attack_menu_i_will_attack"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]

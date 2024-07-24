@@ -46,6 +46,8 @@ func _ready():
 	#$RangeSKillCheck.started = true
 
 
+
+
 func unlock():
 	$PlayerBody.unlock_movement()
 

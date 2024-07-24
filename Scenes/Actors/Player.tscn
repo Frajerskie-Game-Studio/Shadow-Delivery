@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://bnls0har28lt"]
+[gd_scene load_steps=89 format=3 uid="uid://bnls0har28lt"]
 
 [ext_resource type="Script" path="res://Scripts/Actors/Player.gd" id="1_231py"]
 [ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="1_rlupw"]
@@ -10,6 +10,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uor6i"]
 size = Vector2(53, 154)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pwxn5"]
+size = Vector2(29, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vrwhy"]
 size = Vector2(72, 72)
@@ -605,6 +608,13 @@ shape = SubResource("RectangleShape2D_uor6i")
 scale = Vector2(3, 3)
 texture = ExtResource("3_h60i7")
 hframes = 82
+
+[node name="LevelCollider" type="CollisionShape2D" parent="PlayerBody"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-0.5, 37)
+shape = SubResource("RectangleShape2D_pwxn5")
+debug_color = Color(1.05888e-06, 0.645056, 0.268252, 0.42)
 
 [node name="RangeSKillCheck" type="CharacterBody2D" parent="."]
 visible = false

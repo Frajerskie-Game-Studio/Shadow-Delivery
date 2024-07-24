@@ -1,0 +1,41 @@
+{
+    "currentDialogState": 0,
+    "dialogStates": [
+        "first",
+        "other"
+    ],
+    "name": "MikutsCV",
+    "first": [
+        [
+            "Mikut",
+            "My research papers from Alchemy University...",
+            "res://Graphics/Mikut/MikutDialogSprite.png"
+        ],
+        [
+            "Mikut",
+            "Too bad I'm some poor bastard from village and needed to dropout.",
+            "res://Graphics/Mikut/MikutDialogSprite.png"
+        ],
+        [
+        "Mikut",
+        "And also my job application for the Arch Alchemy's alchemy courier position."
+        ],
+        [
+            "Mikut",
+            "Not like it matters anyway. They let anyone in there, probably 'cuz of how dangerous it is, but I realy need that money.",
+            "res://Graphics/Mikut/MikutDialogSprite.png"
+        ],
+        [
+            "Mikut",
+            "I should probably tidy up the room, and not let papers like this just lie there.",
+            "res://Graphics/Mikut/MikutDialogSprite.png"
+        ]
+    ],
+    "other": [
+        [
+            "Mikut",
+            "I should probably tidy up in here.",
+            "res://Graphics/Mikut/MikutDialogSprite.png"
+        ]
+    ]
+}
