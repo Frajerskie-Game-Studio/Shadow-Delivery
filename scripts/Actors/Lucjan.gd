@@ -19,6 +19,7 @@ func _ready():
 	#hp, max_hp, mele_skills, range_skills, ammo, ammo_texture_path
 	load_data()
 	load_items()
+	load_res()
 	reload_menu()
 	if in_battle:
 		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)

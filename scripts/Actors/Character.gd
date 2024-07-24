@@ -96,6 +96,7 @@ func _ready():
 	print("READY")
 	load_data()
 	load_items()
+	load_res()
 	can_be_attacked = true
 
 

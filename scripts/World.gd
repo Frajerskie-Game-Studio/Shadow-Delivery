@@ -20,6 +20,7 @@ func _ready():
 	party_items = temp_data["items"]
 	for c in get_children():
 		print(c.get_class() == "Node2D")
+	$Menu.refresh_data()
 	#var d = DialogLoader.new()
 	#d.load_data("res://Data/npc_test.json")
 	#d.showDialog.connect(_on_npc_show_dialog)
@@ -130,6 +131,11 @@ func start_fight():
 	battlefield.end_whole_battle.connect(end_battle)
 	$Player.lock()
 	$Player.in_battle = true
+	for c in get_children():
+		if c.get_class() == "Node2D":
+			c.save_data()
+			c.save_items()
+			c.save_resources()
 	add_child(battlefield)
 	battlefield.load_entities($Player.Party_Data.teammates_nodes, ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
 	

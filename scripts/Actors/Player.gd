@@ -25,6 +25,7 @@ func _ready():
 	print($AttackMenu.visible)
 	load_data()
 	load_items()
+	load_res()
 	reload_menu()
 	if in_battle:
 		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)

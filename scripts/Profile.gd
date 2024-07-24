@@ -24,6 +24,9 @@ func _process(delta):
 		if Input.is_action_just_pressed("mouse_click"):
 			print(Name)
 			selectTeammate.emit(Name, choosingAction)
+	else:
+		if $Panel.has_theme_stylebox_override("panel"):
+			$Panel.remove_theme_stylebox_override("panel")
 	
 func load_data(e_name, e_hp, e_maxHp):
 	Name = e_name
@@ -42,8 +45,15 @@ func lock_choosing():
 func _on_mouse_entered():
 	if choosingUnlocked:
 		ableToChoose = true
-
+		var stylebox:StyleBoxFlat = $Panel.get_theme_stylebox("panel").duplicate() 
+		stylebox.border_color = Color.WHITE
+		stylebox.border_width_bottom = 5
+		stylebox.border_width_right = 5
+		stylebox.border_width_left = 5
+		stylebox.border_width_top = 5
+		$Panel.add_theme_stylebox_override("panel", stylebox)
 
 func _on_mouse_exited():
 	if choosingUnlocked:
 		ableToChoose = false
+		$Panel.remove_theme_stylebox_override("panel")
