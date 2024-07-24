@@ -31,7 +31,7 @@ func _ready():
 	#d.showDialog.connect(_on_npc_show_dialog)
 	#d.start_dialog()
 	#
-	$DialogPointer.load_data("res://Data/battle_dialog.json", false, true)
+	$DialogPointer.load_data("res://Data/battle_dialog.json", false, true, start_fight)
 	#$Node.load_entities(["res://Scenes/Actors/Player.tscn", "res://Scenes/Actors/Lucjan.tscn"], ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
 
 func _process(delta):
@@ -122,10 +122,10 @@ func _on_menu_save_eq(entity_name):
 			child.load_data()
 
 
-func _on_dialog_pointer_start_dialog(path, dialog_pointer):
+func _on_dialog_pointer_start_dialog(path, dialog_pointer, action):
 	print("SHOW DIALOG")
 	var d = DialogLoader.new()
-	d.load_data(path, start_fight)
+	d.load_data(path, action)
 	d.showDialog.connect(_on_npc_show_dialog)
 	d.start_dialog()
 	#if dialog_pointer.Deletable:

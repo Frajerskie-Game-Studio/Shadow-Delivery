@@ -4,40 +4,48 @@ var Path
 var Clickable = false
 var Ready = false
 var Deletable
+var DuringDialog = false
+var Action
 
-signal start_dialog(path)
+signal start_dialog(path, dialog_pointer, action)
 
-func load_data(path, clickable, deletable):
+func load_data(path, clickable, deletable, action):
 	Path = path
 	Clickable = clickable
 	Deletable = deletable
-# Called when the node enters the scene tree for the first time.
+	Action = action
+
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Clickable:
 		if Ready:
 			if Input.is_action_just_pressed("mouse_click"):
-				start_dialog.emit(Path, self)
+				print("IM EMMITING")
+				$Indicator.visible = false
+				Ready = false
+				DuringDialog = true
+				start_dialog.emit(Path, self, Action)
+
 
 
 func _on_body_entered(body):
 	if body.get_class() == "Node2D":
 		if !Clickable:
-			start_dialog.emit(Path, self)
+			start_dialog.emit(Path, self, Action)
 	
 
 
 func _on_mouse_entered():
-	if Clickable:
+	if Clickable and !DuringDialog:
+		print("ENTERED")
 		Ready = true
 		$Indicator.visible = true
 
 
 func _on_body_exited(body):
-	if Clickable:
+	if Clickable and !DuringDialog:
 		Ready = false
 		$Indicator.visible = false
