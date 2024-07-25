@@ -1,27 +1,27 @@
 {
-    "currentDialogState": 0,
-    "dialogStates": [
-        "one",
-        "two"
-    ],
-    "name": "TownShop",
-    "one": [
-        [
-            "Mikut",
-            "I whish I could just go home and sleep",
-            "res://Graphics/Mikut/MikutDialogSprite.png"
-        ],
-        [
-            "Mikut",
-            "But I really need that money",
-            "res://Graphics/Mikut/MikutDialogSprite.png"
-        ]
-    ],
-    "two": [
-        [
-            "Mikut",
-            "There's no time to waste",
-            "res://Graphics/Mikut/MikutDialogSprite.png"
-        ]
-    ]
+	"currentDialogState": 1,
+	"dialogStates": [
+		"one",
+		"two"
+	],
+	"name": "TownShop",
+	"one": [
+		[
+			"Mikut",
+			"I whish I could just go home and sleep",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"But I really need that money",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		]
+	],
+	"two": [
+		[
+			"Mikut",
+			"There's no time to waste",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		]
+	]
 }
