@@ -25,7 +25,7 @@ func _process(delta):
 
 func _on_desk_dialog_start_dialog(path, d, action):
 	start_dialog.emit(path, d, action)
-	if deletedPointers.find(d.name) == -1:
+	if deletedPointers.find(d.name) == -1 and d.Deletable:
 		deletedPointers.append(d.name)
 
 func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc, action):
