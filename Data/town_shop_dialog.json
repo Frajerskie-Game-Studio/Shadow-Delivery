@@ -1,27 +1,27 @@
 {
-	"currentDialogState": 1,
-	"dialogStates": [
-		"one",
-		"two"
-	],
-	"name": "TownShop",
-	"one": [
-		[
-			"Mikut",
-			"I don't have time for shopping",
-			"res://Graphics/Mikut/MikutDialogSprite.png"
-		],
-		[
-			"Mikut",
-			"And even if I had, I'm totally broke...",
-			"res://Graphics/Mikut/MikutDialogSprite.png"
-		]
-	],
-	"two": [
-		[
-			"Mikut",
-			"There's no time to waste",
-			"res://Graphics/Mikut/MikutDialogSprite.png"
-		]
-	]
+    "currentDialogState": 0,
+    "dialogStates": [
+        "one",
+        "two"
+    ],
+    "name": "TownShop",
+    "one": [
+        [
+            "Mikut",
+            "I don't have time for shopping",
+            "res://Graphics/Mikut/MikutDialogSprite.png"
+        ],
+        [
+            "Mikut",
+            "And even if I had, I'm totally broke...",
+            "res://Graphics/Mikut/MikutDialogSprite.png"
+        ]
+    ],
+    "two": [
+        [
+            "Mikut",
+            "There's no time to waste",
+            "res://Graphics/Mikut/MikutDialogSprite.png"
+        ]
+    ]
 }
