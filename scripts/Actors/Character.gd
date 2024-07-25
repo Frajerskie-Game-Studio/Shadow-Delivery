@@ -154,8 +154,3 @@ func set_eq(eq):
 
 func _process(delta):
 	pass
-	#if duringSkillCheck:
-		#print("wot")
-		#if Input.is_action_pressed("move_left"):
-			#print("pressed")
-			#duringSkillCheck = false

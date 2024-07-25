@@ -139,6 +139,8 @@ func _on_enemy_dying(entity):
 		end_battle()
 
 func end_battle():
+	$AudioStreamPlayer2D.stream = load("res://Music/Sfx/Win_sfx.wav")
+	$AudioStreamPlayer2D.play()
 	var temp_entity = Party[0]
 	temp_entity.load_res()
 	for loot in battle_drop:

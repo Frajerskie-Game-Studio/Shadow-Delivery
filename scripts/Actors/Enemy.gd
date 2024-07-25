@@ -48,9 +48,7 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("mouse_click"):
 				can_attack = false
 				wait_timer.set_paused(true)
-				#$EnemyWaitTimer.visible = false
 				being_attacked.emit(self)
-				#attack_danger = false
 				on_cursor = false
 				$CheckSprite.visible = false
 				
@@ -66,9 +64,7 @@ func _physics_process(delta):
 func all_attack():
 	can_attack = false
 	wait_timer.set_paused(true)
-	#$EnemyWaitTimer.visible = false
 	being_attacked.emit(self)
-	#attack_danger = false
 	on_cursor = false
 	$CheckSprite.visible = false
 
@@ -101,7 +97,6 @@ func deal_dmg():
 func get_dmg(attack):
 	Hp -= attack.dmg
 	HealthBar.value = Hp
-	#-----ten fragment będzie później po sygnale zakończenia animacji ataku--------#
 	wait_timer.set_paused(false)
 	attack_danger = false
 	if Hp <= 0:

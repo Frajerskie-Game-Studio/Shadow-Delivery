@@ -5,7 +5,6 @@ extends "Character.gd"
 
 var timer
 var wait_timer
-#var d = 0
 var skillChecks = []
 var possibleSkillChecks = ["move_left", "move_right", "move_up", "move_down"]
 var skillCheckStep = 0
@@ -32,8 +31,6 @@ func _ready():
 			animationState.travel("mele_idle")
 		elif current_style == "range":
 			animationState.travel("range_idle")
-		#$RangeSKillCheck.get_direction()
-		#$RangeSKillCheck.started = true
 	else:
 		$AttackMenu.visible = false
 
@@ -49,7 +46,9 @@ func get_dmg(attack):
 	Hp -= attack.dmg
 	if Hp < 0:
 		Hp = 0
-		
+	
+	$BattleSounds.stream = load("res://Music/Sfx/Combat/Getting_damage_2_sfx.wav")
+	$BattleSounds.play()
 	$AttackMenu/HBoxContainer/RightMenu/HealthBar.value = Hp
 	
 	if wait_timer != null:
@@ -174,6 +173,7 @@ func start_attack(attack):
 		else:
 			if attack.effect == "all":
 				animationState.travel("range_attack")
+				$RangeSound.play()
 				selected_attack = attack
 				attacking.emit(selected_attack)
 				decrement_ammo()
@@ -236,10 +236,13 @@ func _on_timer_timeout():
 			#print("CORRECT")
 			attacking.emit(selected_attack)
 			if current_style == "range":
+				$RangeSound.play()
 				decrement_ammo()
 				$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "", Items)
 				animationState.travel("range_attack")
 			else:
+				$BattleSounds.stream = load("res://Music/Sfx/Combat/Melee_combat_sfx.wav")
+				$BattleSounds.play()
 				animationState.travel("mele_attack")
 			$RangeSKillCheck.started = false
 			$RangeSKillCheck.visible = false
@@ -332,6 +335,8 @@ func use_item(item):
 	if item.dmg != 0:
 		Hp -= item.dmg
 	elif item.heal != 0:
+		$BattleSounds.stream = load("res://Music/Sfx/Combat/Heal_sfx.wav")
+		$BattleSounds.play()
 		Hp += item.heal
 		if Hp > MaxHp:
 			Hp = MaxHp

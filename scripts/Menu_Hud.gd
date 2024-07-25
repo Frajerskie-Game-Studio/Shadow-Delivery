@@ -208,7 +208,7 @@ func _on_world_item_done():
 			if teammate.contains(profile.Name.to_lower()):
 				var text = FileAccess.get_file_as_string(teammate)
 				var temp_data = JSON.parse_string(text)
-				profile.load_data(temp_data.name, temp_data.hp, temp_data.max_hp)
+				profile.load_data(temp_data.name, temp_data.hp, temp_data.max_hp, temp_data.texture)
 				profile.set_values()
 
 
@@ -255,6 +255,8 @@ func _on_self_equipment_item_activated(index):
 
 
 func _on_equipment_item_activated(index):
+	$AudioStreamPlayer2D.stream = load("res://Music/Sfx/Dressing_sfx.wav")
+	$AudioStreamPlayer2D.play()
 	var to_change_key = $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.get_item_text(index) 
 	var to_be_changed = $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.get_item_text(Eq_to_be_changed_index) 
 	var to_change #party eq

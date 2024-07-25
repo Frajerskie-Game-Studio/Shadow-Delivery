@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://bnls0har28lt"]
+[gd_scene load_steps=90 format=3 uid="uid://bnls0har28lt"]
 
 [ext_resource type="Script" path="res://Scripts/Actors/Player.gd" id="1_231py"]
 [ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="1_rlupw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bowm0m24aq1p7" path="res://Graphics/Mikut/MikutSpriteSheet.png" id="3_h60i7"]
 [ext_resource type="Script" path="res://Scenes/Actors/RangeSKillCheck.gd" id="5_8f850"]
 [ext_resource type="Texture2D" uid="uid://dfr7wyx8hve7f" path="res://Graphics/celownik.png" id="6_63nti"]
+[ext_resource type="AudioStream" uid="uid://dunghkndrm1to" path="res://Music/Sfx/Combat/Explosion_sfx.wav" id="8_jwwcg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uor6i"]
 size = Vector2(53, 154)
@@ -213,18 +214,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerBody/Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_mu6wo"]
@@ -668,6 +657,11 @@ parameters/Move/blend_position = Vector2(0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_8sim5")
 }
+
+[node name="BattleSounds" type="AudioStreamPlayer2D" parent="."]
+
+[node name="RangeSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_jwwcg")
 
 [connection signal="mouse_entered" from="PlayerBody" to="." method="_on_character_body_2d_mouse_entered"]
 [connection signal="mouse_exited" from="PlayerBody" to="." method="_on_character_body_2d_mouse_exited"]

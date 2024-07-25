@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://fh1evflp3s41"]
+[gd_scene load_steps=3 format=3 uid="uid://fh1evflp3s41"]
 
 [ext_resource type="Script" path="res://scripts/GameOver.gd" id="1_5t1nc"]
+[ext_resource type="AudioStream" uid="uid://b7nqa8252ik3u" path="res://Music/Sfx/Game_over_sfx.wav" id="2_0j3dj"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_5t1nc")
@@ -35,6 +36,10 @@ text = "Continue"
 [node name="ExiButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 text = "Leave"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_0j3dj")
+autoplay = true
 
 [connection signal="pressed" from="Control/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/ExiButton" to="." method="_on_exi_button_pressed"]

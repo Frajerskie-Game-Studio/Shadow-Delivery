@@ -163,6 +163,7 @@ func end_battle():
 					in_c.visible = true
 				else:
 					in_c.playing = true
+	save_level_data(false)
 	load_level()
 	$Player.unlock()
 	$Player.get_node("PlayerBody").get_node("Camera2D").enabled = true

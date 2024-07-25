@@ -20,13 +20,13 @@ func load_data(npc_name, npc_text, dialog_texture):
 		$MarginContainer/HBoxContainer/TextureRect.custom_minimum_size = Vector2(150,150)
 		$MarginContainer/HBoxContainer/TextureRect.texture = load(dialog_texture)
 	writetext = true
-
-
+	
 func _process(delta):
 	#animation of dialog
 	if writetext:
 		if $MarginContainer/HBoxContainer/Panel/VBoxContainer/MarginContainer2/RichTextLabel.visible_characters < dialog_text.length():
 			$MarginContainer/HBoxContainer/Panel/VBoxContainer/MarginContainer2/RichTextLabel.visible_characters += 1
+			$DialogAudio.play()
 		else:
 			$MarginContainer/HBoxContainer/Panel/VBoxContainer/MarginContainer2/RichTextLabel.visible_characters = -1
 			writetext = false
