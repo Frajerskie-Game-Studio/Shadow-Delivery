@@ -23,19 +23,10 @@ signal itemDone
 func _ready():
 	var text = FileAccess.get_file_as_string("res://Data/party_data.json")
 	var temp_data = JSON.parse_string(text)
-	
-	
 	data = temp_data
 	party_items = temp_data["items"]
-	
 	$Menu.refresh_data()
 	load_level()
-	#var d = DialogLoader.new()
-	#d.load_data("res://Data/npc_test.json")
-	#d.showDialog.connect(_on_npc_show_dialog)
-	#d.start_dialog()
-	#
-	#$Node.load_entities(["res://Scenes/Actors/Player.tscn", "res://Scenes/Actors/Lucjan.tscn"], ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
 
 func _process(delta):
 	if !in_dialog and !$Player.in_battle:
@@ -61,27 +52,16 @@ func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc, action):
 		if dialog_npc != null:
 			current_dialog_npc = dialog_npc
 	
-	
-#func _on_dialog_pointer_show(dialog_pointer):
-	#in_dialog = true
-	#$Player.lock()
-	#current_dialog_npc = dialog_pointer
-	#current_dialog_npc.load_data()
-	
 #ending dialog
 func end_dialog(action):
-	print(current_dialog_npc)
 	#searching for npc wich player is talking to
-	print("child")
 	if current_dialog_npc != null:
 		for child in get_children():
 			if child == current_dialog_npc:
-				print(child)
 				child.end_dialog()
 			elif child.get_class() == "Node":
 				for childs_child in child.get_node("Dialogs").get_children():
 					if childs_child == current_dialog_npc:
-						print(child)
 						childs_child.end_dialog()
 	$Player.unlock()
 	in_dialog = false
@@ -96,7 +76,6 @@ func _on_canvas_layer_item_used(item_name, entity_name):
 	for i in party_items:
 		if i == item_name:
 			item = party_items[i]
-	print(item)
 	#tu się kompletnie zesrałem na kod XDDDDDD
 	for teammate in data.teammates:
 		if teammate.contains(entity_name.to_lower()):
@@ -137,7 +116,6 @@ func _on_menu_save_eq(entity_name):
 
 func _on_dialog_pointer_start_dialog(path, dialog_pointer, action):
 	if !in_menu:
-		print("SHOW DIALOG")
 		var d = DialogLoader.new()
 		d.load_data(path, action)
 		d.showDialog.connect(_on_npc_show_dialog)
@@ -148,6 +126,7 @@ func _on_dialog_pointer_start_dialog(path, dialog_pointer, action):
 			current_dialog_npc = dialog_pointer
 	
 func start_fight():
+	save_level_data(false)
 	for c in get_children():
 		if c.get_class() != "Node":
 			c.visible = false
@@ -185,6 +164,7 @@ func end_battle():
 					in_c.visible = true
 				else:
 					in_c.playing = true
+	load_level()
 	$Player.unlock()
 	$Player.get_node("PlayerBody").get_node("Camera2D").enabled = true
 	$Player.in_battle = false
@@ -194,6 +174,8 @@ func load_level():
 	var level_text = FileAccess.get_file_as_string("res://Data/level_saves.json")
 	var temp_level_data = JSON.parse_string(level_text)
 	
+	if CurrentLevelInstance != null:
+		CurrentLevelInstance.queue_free()
 	CurrentLevel = temp_level_data.currentLevel
 	LevelsData = temp_level_data.levels_data
 	CurrentLevelInstance = load(LevelsData[CurrentLevel].path).instantiate()
@@ -216,13 +198,13 @@ func save_level_data(switching_levels):
 	if switching_levels:
 		if len(LevelsData) - 1 > CurrentLevel: 
 			CurrentLevel += 1
+	
 	var temp_data = {
 		"currentLevel": CurrentLevel,
 		"levels_data": LevelsData
 	}
 	file.store_string(JSON.stringify(temp_data, "\t", false))
 	file.close()
-	CurrentLevelInstance.queue_free()
 	
 func switch_level():
 	save_level_data(true)

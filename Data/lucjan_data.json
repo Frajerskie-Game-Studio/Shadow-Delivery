@@ -1,7 +1,7 @@
 {
 	"name": "Lucjan",
 	"texture": "res://Graphics/Lucjan/LucjanDialogSprite.png",
-	"hp": 10,
+	"hp": 100,
 	"max_hp": 100,
 	"knocked_up": false,
 	"attack": {
