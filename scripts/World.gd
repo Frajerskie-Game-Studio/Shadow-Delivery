@@ -21,6 +21,7 @@ var battlefield
 signal itemDone
 
 func _ready():
+	$CanvasLayer/Control/BackgroundAnimation.play("show_level")
 	var text = FileAccess.get_file_as_string("res://Data/party_data.json")
 	var temp_data = JSON.parse_string(text)
 	data = temp_data
@@ -209,7 +210,13 @@ func save_level_data(switching_levels):
 func switch_level():
 	save_level_data(true)
 	load_level()
+	$CanvasLayer.visible = true
+	$CanvasLayer/Control/BackgroundAnimation.play("show_level")
 	
 func switch_zoom(x, y):
 	$Player/PlayerBody/Camera2D.zoom = Vector2(x,y)
 	
+
+
+func _on_background_animation_animation_finished(anim_name):
+	$CanvasLayer.visible = false

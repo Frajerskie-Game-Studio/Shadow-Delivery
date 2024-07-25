@@ -4,18 +4,17 @@
 		{
 			"path": "res://Scenes/Levels/MikutRoom.tscn",
 			"player_position": [
-                0,
-                0
+				0,
+				0
 			],
 			"deleted_pointers": [
-				"BedDialog"
 			]
 		},
 		{
 			"path": "res://Scenes/Levels/Town.tscn",
 			"player_position": [
-                0,
-                0
+				0,
+				0
 			],
 			"deleted_pointers": []
 		}
