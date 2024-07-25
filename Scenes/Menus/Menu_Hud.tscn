@@ -258,6 +258,7 @@ size_flags_vertical = 3
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Buttons/Skills" to="." method="_on_skills_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Buttons/EqB" to="." method="_on_eq_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Buttons/Craft" to="." method="_on_craft_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Buttons/Button4" to="." method="_on_button_4_pressed"]
 [connection signal="item_activated" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList" to="." method="_on_item_list_item_activated"]
 [connection signal="item_clicked" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList" to="." method="_on_item_list_item_clicked"]
 [connection signal="item_clicked" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/SkillList" to="." method="_on_skill_list_item_clicked"]

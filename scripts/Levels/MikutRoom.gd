@@ -15,7 +15,7 @@ func load_data(data):
 func _ready():	
 	$Dialogs/DeskDialog.load_data("res://Data/desk.json", true, false, null, true)
 	$Dialogs/BedDialog.load_data("res://Data/wake_up_dialog.json", false, true, null, false)
-	$Dialogs/DoorDialog.load_data("res://Data/door_dialog.json", false, false, get_parent().switch_level, false)
+	$Dialogs/DoorDialog.load_data("res://Data/door_dialog.json", true, false, get_parent().switch_level, false)
 
 func _process(delta):
 	pass

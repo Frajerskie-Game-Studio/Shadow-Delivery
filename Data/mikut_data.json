@@ -1,7 +1,7 @@
 {
 	"name": "Mikut",
-	"texture": "",
-	"hp": 85,
+	"texture": "res://Graphics/Mikut/MikutDialogSprite.png",
+	"hp": 40,
 	"max_hp": 100,
 	"knocked_up": false,
 	"attack": {

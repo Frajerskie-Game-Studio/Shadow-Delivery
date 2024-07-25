@@ -11,6 +11,7 @@ var Items
 var Resources
 var Party_Data
 var KnockedUp
+var ProfileTexture
 
 var character_file_path
 var effect_counter = 0
@@ -55,7 +56,7 @@ func save_data():
 	var file = FileAccess.open(character_file_path, FileAccess.WRITE)
 	var temp_data = {
 		"name": Name,
-		"texture": "",
+		"texture": ProfileTexture,
 		"hp": Hp,
 		"max_hp": MaxHp,
 		"knocked_up": KnockedUp,
@@ -77,6 +78,7 @@ func load_data():
 	Equipment = temp_data["equipment"]
 	Attack = temp_data["attack"]
 	KnockedUp = temp_data["knocked_up"]
+	ProfileTexture = temp_data["texture"]
 
 
 func load_items():

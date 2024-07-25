@@ -79,7 +79,7 @@ func end_dialog(action):
 				print(child)
 				child.end_dialog()
 			elif child.get_class() == "Node":
-				for childs_child in child.get_children():
+				for childs_child in child.get_node("Dialogs").get_children():
 					if childs_child == current_dialog_npc:
 						print(child)
 						childs_child.end_dialog()
@@ -153,7 +153,10 @@ func start_fight():
 			c.visible = false
 		else:
 			for in_c in c.get_children():
-				in_c.visible = false
+				if in_c.get_class() != "AudioStreamPlayer":
+					in_c.visible = false
+				else:
+					in_c.playing = false
 	battlefield= battle_scene.instantiate()
 	battlefield.end_whole_battle.connect(end_battle)
 	$Player.lock()
@@ -178,7 +181,10 @@ func end_battle():
 				c.load_res()
 		elif c.get_class() == "Node":
 			for in_c in c.get_children():
-				in_c.visible = true
+				if in_c.get_class() != "AudioStreamPlayer":
+					in_c.visible = true
+				else:
+					in_c.playing = true
 	$Player.unlock()
 	$Player.get_node("PlayerBody").get_node("Camera2D").enabled = true
 	$Player.in_battle = false
@@ -201,14 +207,15 @@ func load_level():
 	
 	$Player.get_node("PlayerBody").position = Vector2(LevelsData[CurrentLevel].player_position[0],LevelsData[CurrentLevel].player_position[1])
 
-func save_level_data():
+func save_level_data(switching_levels):
 	var file = FileAccess.open("res://Data/level_saves.json", FileAccess.WRITE)
 	
 	LevelsData[CurrentLevel].deleted_pointers = CurrentLevelInstance.deletedPointers
 	LevelsData[CurrentLevel].player_position = [$Player.get_node("PlayerBody").position.x, $Player.get_node("PlayerBody").position.y]
 	
-	if len(LevelsData) - 1 > CurrentLevel: 
-		CurrentLevel += 1
+	if switching_levels:
+		if len(LevelsData) - 1 > CurrentLevel: 
+			CurrentLevel += 1
 	var temp_data = {
 		"currentLevel": CurrentLevel,
 		"levels_data": LevelsData
@@ -218,6 +225,6 @@ func save_level_data():
 	CurrentLevelInstance.queue_free()
 	
 func switch_level():
-	save_level_data()
+	save_level_data(true)
 	load_level()
 	

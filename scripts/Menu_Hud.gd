@@ -26,8 +26,9 @@ func load_profiles():
 		var temp_data = JSON.parse_string(text)
 		var new_profile = profile.instantiate()
 		
-		new_profile.load_data(temp_data.name, temp_data.hp, temp_data.max_hp)
+		new_profile.load_data(temp_data.name, temp_data.hp, temp_data.max_hp, temp_data.texture)
 		new_profile.selectTeammate.connect(_on_entityChossed)
+		
 		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.add_child(new_profile)
 		
 func refresh_data():
@@ -176,7 +177,7 @@ func showEq(entity_name):
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.clear()
 			for key in PersonEq:
 				$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.add_item(str(key)+": "+str(PersonEq[key][0]).replace("_", " "))
-			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/EqProfile.load_data(eq_temp_person.get_entity_name(), eq_temp_person.get_hp(), eq_temp_person.get_max_hp())
+			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/EqProfile.load_data(eq_temp_person.get_entity_name(), eq_temp_person.get_hp(), eq_temp_person.get_max_hp(), eq_temp_person.ProfileTexture)
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/EqProfile.set_values()
 	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
 		profile.lock_choosing()
@@ -396,3 +397,7 @@ func _on_craft_button_pressed():
 	add_resources()
 	add_recipies()
 	load_profiles()
+
+
+func _on_button_4_pressed():
+	get_tree().quit()

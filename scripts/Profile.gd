@@ -28,10 +28,11 @@ func _process(delta):
 		if $Panel.has_theme_stylebox_override("panel"):
 			$Panel.remove_theme_stylebox_override("panel")
 	
-func load_data(e_name, e_hp, e_maxHp):
+func load_data(e_name, e_hp, e_maxHp, texture):
 	Name = e_name
 	Hp = e_hp
 	MaxHp = e_maxHp
+	$MarginContainer/HBoxContainer/TextureRect.texture = load(texture)
 	
 func unlock_choosing(cAction):
 	choosingUnlocked = true
