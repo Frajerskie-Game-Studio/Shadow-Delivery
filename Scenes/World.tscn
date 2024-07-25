@@ -11,7 +11,6 @@ script = ExtResource("1_cxcv4")
 visible = false
 
 [node name="Player" parent="." instance=ExtResource("2_odx0t")]
-position = Vector2(134, 193)
 
 [connection signal="itemDone" from="." to="Menu" method="_on_world_item_done"]
 [connection signal="itemUsed" from="Menu" to="." method="_on_canvas_layer_item_used"]

@@ -41,7 +41,6 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if body.get_class() == "CharacterBody2D":
-		
 		if !Clickable:
 			start_dialog.emit(Path, self, Action)
 	

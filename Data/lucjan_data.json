@@ -1,7 +1,7 @@
 {
 	"name": "Lucjan",
 	"texture": "",
-	"hp": 40,
+	"hp": 70,
 	"max_hp": 100,
 	"knocked_up": false,
 	"attack": {
@@ -36,7 +36,7 @@
 			"Cheap flintlock",
 			"A little old, but reliable",
 			60,
-			5
+			1
 		],
 		"Armor": [
 			"Dix armor",

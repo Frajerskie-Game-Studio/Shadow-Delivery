@@ -8,6 +8,7 @@ const DialogLoader = preload("res://scripts/DialogLoader.gd")
 
 var current_dialog_npc
 var in_dialog = false
+var in_menu = false
 var party_items
 var data
 var battlefield
@@ -40,21 +41,23 @@ func _process(delta):
 			if $Menu.visible:
 				$Player.unlock()
 				$Menu.visible = false
+				in_menu = false
 			else:
 				$Player.lock()
 				$Menu.visible = true
+				in_menu = true
 
 #showing dialog window (signal from NPC)
 func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc, action):
-	print("DIAKIG")
-	in_dialog = true
-	$Player.lock()
-	var this_dialog = dialog_hud.instantiate()
-	self.add_child(this_dialog)
-	this_dialog.load_data(npc_name, dialog_dict, action)
-	#assiging NPC with whom player is talking
-	if dialog_npc != null:
-		current_dialog_npc = dialog_npc
+	if !in_menu:
+		in_dialog = true
+		$Player.lock()
+		var this_dialog = dialog_hud.instantiate()
+		self.add_child(this_dialog)
+		this_dialog.load_data(npc_name, dialog_dict, action)
+		#assiging NPC with whom player is talking
+		if dialog_npc != null:
+			current_dialog_npc = dialog_npc
 	
 	
 #func _on_dialog_pointer_show(dialog_pointer):
@@ -131,15 +134,16 @@ func _on_menu_save_eq(entity_name):
 
 
 func _on_dialog_pointer_start_dialog(path, dialog_pointer, action):
-	print("SHOW DIALOG")
-	var d = DialogLoader.new()
-	d.load_data(path, action)
-	d.showDialog.connect(_on_npc_show_dialog)
-	d.start_dialog()
-	if dialog_pointer.Deletable:
-		dialog_pointer.queue_free()
-	else:
-		current_dialog_npc = dialog_pointer
+	if !in_menu:
+		print("SHOW DIALOG")
+		var d = DialogLoader.new()
+		d.load_data(path, action)
+		d.showDialog.connect(_on_npc_show_dialog)
+		d.start_dialog()
+		if dialog_pointer.Deletable:
+			dialog_pointer.queue_free()
+		else:
+			current_dialog_npc = dialog_pointer
 	
 func start_fight():
 	for c in get_children():
@@ -158,6 +162,7 @@ func start_fight():
 			c.save_items()
 			c.save_resources()
 	add_child(battlefield)
+	$Player.get_node("PlayerBody").get_node("Camera2D").enabled = false
 	battlefield.load_entities($Player.Party_Data.teammates_nodes, ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
 	
 func end_battle():
@@ -169,6 +174,10 @@ func end_battle():
 				c.load_data()
 				c.load_items()
 				c.load_res()
+		elif c.get_class() == "Node":
+			for in_c in c.get_children():
+				in_c.visible = true
 	$Player.unlock()
+	$Player.get_node("PlayerBody").get_node("Camera2D").enabled = true
 	$Player.in_battle = false
 	$Menu.refresh_data()

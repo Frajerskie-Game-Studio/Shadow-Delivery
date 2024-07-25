@@ -41,4 +41,7 @@ position = Vector2(1060, 563)
 stream = ExtResource("2_xxcb8")
 autoplay = true
 
+[node name="BattleCamera" type="Camera2D" parent="."]
+position = Vector2(576, 326)
+
 [connection signal="endFight" from="CanvasLayer/DropMenu" to="." method="_on_drop_menu_end_fight"]

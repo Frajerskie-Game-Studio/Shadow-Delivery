@@ -50,6 +50,8 @@ func get_dmg(attack):
 		wait_timer.set_paused(true)
 	animationState.travel("get_dmg")
 	Hp -= attack.dmg
+	if Hp < 0:
+		Hp = 0
 	$AttackMenu/HBoxContainer/RightMenu/HealthBar.value = Hp
 	if wait_timer != null:
 		wait_timer.set_paused(false)
@@ -363,7 +365,10 @@ func _on_animation_tree_animation_finished(anim_name):
 		animationState.travel("mele_idle")
 	elif anim_name == "range_attack":
 		can_be_attacked = true
-		animationState.travel("change_style")
+		if Name == "Lucjan":
+			animationState.travel("reload")
+		else:
+			animationState.travel("change_style")
 	elif anim_name == "get_dmg":
 		if current_style == "mele":
 			animationState.travel("mele_idle")
@@ -383,3 +388,5 @@ func _on_animation_tree_animation_finished(anim_name):
 				animationState.travel("change_style")
 			else:
 				animationState.travel("range_idle")
+	elif anim_name == "reload":
+		animationState.travel("hide_range")

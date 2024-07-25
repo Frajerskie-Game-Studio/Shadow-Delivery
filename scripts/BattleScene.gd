@@ -65,9 +65,6 @@ func load_entities(party, enemies):
 		add_child(Enemies[index])
 		battle_drop.append(Enemies[index].get_drop())
 		Enemies[index].start_attacking_process()
-	#player = temp_load
-	#player.position = $Marker2D4.position
-	#add_child(player)
 
 func _on_entity_ready_to_attack(attack, attacker):
 	possible_attack = attack
@@ -199,4 +196,5 @@ func end_battle():
 	$CanvasLayer/DropMenu.visible = true
 
 func _on_drop_menu_end_fight():
+	$BattleCamera.enabled = false
 	end_whole_battle.emit()

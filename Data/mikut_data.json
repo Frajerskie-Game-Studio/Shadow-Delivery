@@ -1,7 +1,7 @@
 {
 	"name": "Mikut",
 	"texture": "",
-	"hp": 25,
+	"hp": 85,
 	"max_hp": 100,
 	"knocked_up": false,
 	"attack": {
@@ -34,7 +34,7 @@
 			"Magnesium grenade",
 			"Crude design, explosive effect",
 			50,
-			7
+			6
 		],
 		"Armor": [
 			"Penis armor",

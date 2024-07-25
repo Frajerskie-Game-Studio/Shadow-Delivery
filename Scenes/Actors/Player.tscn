@@ -616,6 +616,12 @@ position = Vector2(-0.5, 37)
 shape = SubResource("RectangleShape2D_pwxn5")
 debug_color = Color(1.05888e-06, 0.645056, 0.268252, 0.42)
 
+[node name="Camera2D" type="Camera2D" parent="PlayerBody"]
+position = Vector2(0, -25.37)
+zoom = Vector2(3.13, 3.13)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
 [node name="RangeSKillCheck" type="CharacterBody2D" parent="."]
 visible = false
 collision_layer = 8

@@ -1,41 +1,5 @@
 {
-	"teammates": [
-		"./Data/mikut_data.json",
-		"./Data/lucjan_data.json"
-	],
-	"teammates_nodes": [
-		"res://Scenes/Actors/Player.tscn",
-		"res://Scenes/Actors/Lucjan.tscn"
-	],
-	"items": {
-		"red brew": [
-			"Very weak healing potion",
-			0,
-			20,
-			20
-		],
-		"revive": [
-			"Weak reviving potion",
-			0,
-			25,
-			3,
-			"revive"
-		],
-		"dicker potion": [
-			"Potion that does nothing because ur being a dick",
-			0,
-			20,
-			1,
-			"no_effect_fuck_you"
-		]
-	},
 	"equipment": {
-		"Fuck_u_pistol": [
-			"Fuck u stronger than ever",
-			"Range_weapon",
-			50,
-			1
-		],
 		"Dix_pistol": [
 			"A little old, but reliable",
 			"Range_weapon",
@@ -46,6 +10,42 @@
 			"Average factory outfit for couriers",
 			"Armor",
 			15
+		],
+		"Fuck_u_pistol": [
+			"Fuck u stronger than ever",
+			"Range_weapon",
+			50,
+			1
 		]
-	}
+	},
+	"items": {
+		"dicker potion": [
+			"Potion that does nothing because ur being a dick",
+			0,
+			20,
+			1,
+			"no_effect_fuck_you"
+		],
+		"red brew": [
+			"Very weak healing potion",
+			0,
+			20,
+			10
+		],
+		"revive": [
+			"Weak reviving potion",
+			0,
+			25,
+			1,
+			"revive"
+		]
+	},
+	"teammates": [
+		"./Data/mikut_data.json",
+		"./Data/lucjan_data.json"
+	],
+	"teammates_nodes": [
+		"res://Scenes/Actors/Player.tscn",
+		"res://Scenes/Actors/Lucjan.tscn"
+	]
 }
