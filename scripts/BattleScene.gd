@@ -36,8 +36,7 @@ func _process(delta):
 		if p.KnockedUp:
 			counter+=1
 	if counter == len(Party):
-		#there will be game over screen  signal
-		print("GAME OVER")
+		get_tree().change_scene_to_file("res://Scenes/GameOver.tscn")
 
 func load_entities(party, enemies):
 	for index in range(len(party)):
