@@ -10,8 +10,8 @@ func _ready():
 	#d.start_dialog()
 	
 	$DeskDialog.load_data("res://Data/desk.json", true, false, null, true)
-	$BedDialog.load_data("res://Data/desk.json", true, false, null, true)
-	$DialogPointer.load_data("res://Data/battle_dialog.json", false, true, get_parent().start_fight, false)
+	$BedDialog.load_data("res://Data/wake_up_dialog.json", false, true, null, false)
+	$DoorDialog.load_data("res://Data/door_dialog.json", true, false, null, false)
 
 
 func _process(delta):

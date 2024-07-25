@@ -32,4 +32,6 @@ func _process(delta):
 			writetext = false
 	#emmiting signal for showing next line of dialog to HudCanvas
 	elif Input.is_action_just_pressed("mouse_click"):
+		$MarginContainer/HBoxContainer/Panel/VBoxContainer/MarginContainer2/RichTextLabel.visible_characters = 0
 		next_line.emit()
+		

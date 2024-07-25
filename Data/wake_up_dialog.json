@@ -1,0 +1,34 @@
+{
+    "currentDialogState": 0,
+    "dialogStates": [
+    "one"
+    ],
+    "name": "Mikut",
+    "one": [
+        [
+            "***",
+            "*yawn*",
+            ""
+        ],
+        [
+            "Mikut",
+            "Oh... oh man I don't remember the last time I slept this good.",
+            "res://Graphics/Mikut/MikutDialogSprite.png"
+        ],
+        [
+            "Mikut",
+            "...",
+            "res://Graphics/Mikut/MikutDialogSprite.png"
+        ],
+        [
+            "Mikut",
+            "*sight*",
+            "res://Graphics/Mikut/MikutDialogSprite.png"
+        ],
+        [
+            "Mikut",
+            "Better get ready to work. I can't be late for my first day in Factory.",
+            "res://Graphics/Mikut/MikutDialogSprite.png"
+        ]
+    ]
+}
