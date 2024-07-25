@@ -210,3 +210,6 @@ func switch_level():
 	save_level_data(true)
 	load_level()
 	
+func switch_zoom(x, y):
+	$Player/PlayerBody/Camera2D.zoom = Vector2(x,y)
+	

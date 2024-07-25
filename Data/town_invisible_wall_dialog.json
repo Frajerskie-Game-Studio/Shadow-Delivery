@@ -1,0 +1,14 @@
+{
+    "currentDialogState": 0,
+    "dialogStates": [
+        "one"
+    ],
+        "name": "InvisibleWall",
+        "one": [
+        [
+            "Mikut",
+            "I should head to the factory, or I'll starve to death",
+            "res://Graphics/Mikut/MikutDialogSprite.png"
+        ]
+    ]
+}

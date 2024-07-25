@@ -1,0 +1,14 @@
+{
+    "currentDialogState": 0,
+    "dialogStates": [
+        "one"
+    ],
+    "name": "LevelChanger",
+    "one": [
+        [
+            "Mikut",
+            "Hope I'll make it on time",
+            "res://Graphics/Mikut/MikutDialogSprite.png"
+        ]
+    ]
+}

@@ -36,16 +36,16 @@
 			60,
 			6
 		],
-		"Dixer_uniform": [
-			"Average factory outfit for couriers",
-			"Armor",
-			15
-		],
 		"Fuck_u_pistol": [
 			"Fuck u stronger than ever",
 			"Range_weapon",
 			50,
-			1
+			2
+		],
+		"Dixer_uniform": [
+			"Average factory outfit for couriers",
+			"Armor",
+			15
 		]
 	}
 }
