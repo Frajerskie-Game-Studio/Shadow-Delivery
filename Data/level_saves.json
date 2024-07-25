@@ -1,0 +1,10 @@
+{
+	"currentLevel": 0,
+	"levels_data": [
+		{
+			"path": "res://Scenes/Levels/MikutRoom.tscn",
+			"player_position": [0,0],
+			"deleted_pointers": []
+		}
+	]
+}

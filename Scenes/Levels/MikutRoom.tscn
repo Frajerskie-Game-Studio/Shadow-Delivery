@@ -212,20 +212,22 @@ texture = ExtResource("4_ij4mu")
 position = Vector2(-4, -0.5)
 shape = SubResource("RectangleShape2D_vovu1")
 
-[node name="DeskDialog" parent="." instance=ExtResource("2_ysuox")]
-position = Vector2(-500, -80)
-
-[node name="BedDialog" parent="." instance=ExtResource("2_ysuox")]
-position = Vector2(-3, 13)
-
-[node name="DoorDialog" parent="." instance=ExtResource("2_ysuox")]
-position = Vector2(-722, -59)
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_sk28o")
 volume_db = -15.0
 autoplay = true
 
-[connection signal="start_dialog" from="DeskDialog" to="." method="_on_desk_dialog_start_dialog"]
-[connection signal="start_dialog" from="BedDialog" to="." method="_on_desk_dialog_start_dialog"]
-[connection signal="start_dialog" from="DoorDialog" to="." method="_on_desk_dialog_start_dialog"]
+[node name="Dialogs" type="Node2D" parent="."]
+
+[node name="DeskDialog" parent="Dialogs" instance=ExtResource("2_ysuox")]
+position = Vector2(-500, -80)
+
+[node name="BedDialog" parent="Dialogs" instance=ExtResource("2_ysuox")]
+position = Vector2(-3, 13)
+
+[node name="DoorDialog" parent="Dialogs" instance=ExtResource("2_ysuox")]
+position = Vector2(-722, -59)
+
+[connection signal="start_dialog" from="Dialogs/DeskDialog" to="." method="_on_desk_dialog_start_dialog"]
+[connection signal="start_dialog" from="Dialogs/BedDialog" to="." method="_on_desk_dialog_start_dialog"]
+[connection signal="start_dialog" from="Dialogs/DoorDialog" to="." method="_on_desk_dialog_start_dialog"]

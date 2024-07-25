@@ -6,6 +6,11 @@ const DialogLoader = preload("res://scripts/DialogLoader.gd")
 @onready var battle_scene = preload("res://Scenes/BattleScene.tscn")
 @onready var mikutroom = preload("res://Scenes/Levels/MikutRoom.tscn")
 
+var CurrentLevel
+var LevelsData
+var CurrentLevelInstance
+
+
 var current_dialog_npc
 var in_dialog = false
 var in_menu = false
@@ -18,16 +23,13 @@ signal itemDone
 func _ready():
 	var text = FileAccess.get_file_as_string("res://Data/party_data.json")
 	var temp_data = JSON.parse_string(text)
+	
+	
 	data = temp_data
 	party_items = temp_data["items"]
-	for c in get_children():
-		print(c.get_class() == "Node2D")
+	
 	$Menu.refresh_data()
-	var level1 = mikutroom.instantiate()
-	add_child(level1)
-	move_child(level1, 0)
-	level1.start_dialog.connect(_on_dialog_pointer_start_dialog)
-	level1.start_npc_dialog.connect(_on_npc_show_dialog)
+	load_level()
 	#var d = DialogLoader.new()
 	#d.load_data("res://Data/npc_test.json")
 	#d.showDialog.connect(_on_npc_show_dialog)
@@ -181,3 +183,41 @@ func end_battle():
 	$Player.get_node("PlayerBody").get_node("Camera2D").enabled = true
 	$Player.in_battle = false
 	$Menu.refresh_data()
+
+func load_level():
+	var level_text = FileAccess.get_file_as_string("res://Data/level_saves.json")
+	var temp_level_data = JSON.parse_string(level_text)
+	
+	CurrentLevel = temp_level_data.currentLevel
+	LevelsData = temp_level_data.levels_data
+	CurrentLevelInstance = load(LevelsData[CurrentLevel].path).instantiate()
+	
+	add_child(CurrentLevelInstance)
+	move_child(CurrentLevelInstance, 0)
+	
+	CurrentLevelInstance.load_data(LevelsData[CurrentLevel])
+	CurrentLevelInstance.start_dialog.connect(_on_dialog_pointer_start_dialog)
+	CurrentLevelInstance.start_npc_dialog.connect(_on_npc_show_dialog)
+	
+	$Player.get_node("PlayerBody").position = Vector2(LevelsData[CurrentLevel].player_position[0],LevelsData[CurrentLevel].player_position[1])
+
+func save_level_data():
+	var file = FileAccess.open("res://Data/level_saves.json", FileAccess.WRITE)
+	
+	LevelsData[CurrentLevel].deleted_pointers = CurrentLevelInstance.deletedPointers
+	LevelsData[CurrentLevel].player_position = [$Player.get_node("PlayerBody").position.x, $Player.get_node("PlayerBody").position.y]
+	
+	if len(LevelsData) - 1 > CurrentLevel: 
+		CurrentLevel += 1
+	var temp_data = {
+		"currentLevel": CurrentLevel,
+		"levels_data": LevelsData
+	}
+	file.store_string(JSON.stringify(temp_data, "\t", false))
+	file.close()
+	CurrentLevelInstance.queue_free()
+	
+func switch_level():
+	save_level_data()
+	load_level()
+	
