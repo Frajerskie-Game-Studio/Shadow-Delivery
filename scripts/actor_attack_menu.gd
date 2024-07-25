@@ -32,10 +32,11 @@ func _ready():
 	pass
 
 func _process(delta):
-	if get_parent().in_battle:
+	if get_parent().in_battle and !get_parent().KnockedUp:
 		visible = true
 	else:
 		visible = false
+		
 	if CurrentStyle == "range":
 		if Ammo <= 0:
 			AttackButton.disabled = true

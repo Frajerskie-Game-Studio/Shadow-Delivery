@@ -43,9 +43,6 @@ func reload_menu():
 
 
 func get_dmg(attack):
-	if ready_to_attack_bool:
-		reset_attack.emit()
-		$AttackMenu/HBoxContainer/LeftMenu/AttackButton.release_focus()
 	if wait_timer != null:
 		wait_timer.set_paused(true)
 	animationState.travel("get_dmg")
@@ -57,8 +54,15 @@ func get_dmg(attack):
 		wait_timer.set_paused(false)
 	if Hp <= 0:
 		KnockedUp = true
+		can_be_attacked = false
 	else:
 		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
+		
+	if ready_to_attack_bool:
+		reset_attack.emit()
+		$AttackMenu/HBoxContainer/LeftMenu/AttackButton.release_focus()
+		$AttackMenu/HBoxContainer/LeftMenu/SkillsButton.release_focus()
+		$AttackMenu/HBoxContainer/LeftMenu/ItemsButton.release_focus()
 
 func _process(delta):
 	if in_battle:

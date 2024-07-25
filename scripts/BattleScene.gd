@@ -38,6 +38,7 @@ func _process(delta):
 	if counter == len(Party):
 		#there will be game over screen  signal
 		print("GAME OVER")
+
 func load_entities(party, enemies):
 	for index in range(len(party)):
 		var temp_load = load(party[index])
@@ -89,10 +90,11 @@ func _on_entity_ready_to_attack(attack, attacker):
 		
 
 func _on_reset_ready_to_attack():
-	if possible_attacker != null:
-		possible_attacker.can_be_attacked = true
+	if possible_attacker != null and !possible_attacker.KnockedUp:
 		possible_attack = null
 		possible_attacker = null
+		possible_attacker.can_be_attacked = true
+
 	for e in Enemies:
 		e.attack_danger = false
 	

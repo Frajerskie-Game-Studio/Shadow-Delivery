@@ -3,8 +3,13 @@
 	"levels_data": [
 		{
 			"path": "res://Scenes/Levels/MikutRoom.tscn",
-			"player_position": [0,0],
-			"deleted_pointers": []
+			"player_position": [
+				-3.015380859375,
+				6.15341377258301
+			],
+			"deleted_pointers": [
+				"BedDialog"
+			]
 		}
 	]
 }
