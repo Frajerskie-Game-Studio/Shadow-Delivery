@@ -1,6 +1,7 @@
 extends Node
 
 signal start_dialog(path)
+signal start_npc_dialog(npc_name, dialog_dict, dialog_npc, action)
 
 func _ready():
 	#var d = DialogLoader.new()
@@ -8,8 +9,9 @@ func _ready():
 	#d.showDialog.connect(_on_npc_show_dialog)
 	#d.start_dialog()
 	
-	$DeskDialog.load_data("res://Data/desk.json", true, false, null)
-	$BedDialog.load_data("res://Data/desk.json", true, false, null)
+	$DeskDialog.load_data("res://Data/desk.json", true, false, null, true)
+	$BedDialog.load_data("res://Data/desk.json", true, false, null, true)
+	$DialogPointer.load_data("res://Data/battle_dialog.json", false, true, get_parent().start_fight, false)
 
 
 func _process(delta):
@@ -18,3 +20,6 @@ func _process(delta):
 
 func _on_desk_dialog_start_dialog(path, d, action):
 	start_dialog.emit(path, d, action)
+
+func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc, action):
+	start_npc_dialog.emit(npc_name, dialog_dict, dialog_npc, action)

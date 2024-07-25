@@ -26,12 +26,12 @@ func _ready():
 	add_child(level1)
 	move_child(level1, 0)
 	level1.start_dialog.connect(_on_dialog_pointer_start_dialog)
+	level1.start_npc_dialog.connect(_on_npc_show_dialog)
 	#var d = DialogLoader.new()
 	#d.load_data("res://Data/npc_test.json")
 	#d.showDialog.connect(_on_npc_show_dialog)
 	#d.start_dialog()
 	#
-	$DialogPointer.load_data("res://Data/battle_dialog.json", false, true, start_fight)
 	#$Node.load_entities(["res://Scenes/Actors/Player.tscn", "res://Scenes/Actors/Lucjan.tscn"], ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
 
 func _process(delta):
@@ -65,11 +65,19 @@ func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc, action):
 	
 #ending dialog
 func end_dialog(action):
+	print(current_dialog_npc)
 	#searching for npc wich player is talking to
+	print("child")
 	if current_dialog_npc != null:
 		for child in get_children():
 			if child == current_dialog_npc:
+				print(child)
 				child.end_dialog()
+			elif child.get_class() == "Node":
+				for childs_child in child.get_children():
+					if childs_child == current_dialog_npc:
+						print(child)
+						childs_child.end_dialog()
 	$Player.unlock()
 	in_dialog = false
 	if action != null:
@@ -128,12 +136,18 @@ func _on_dialog_pointer_start_dialog(path, dialog_pointer, action):
 	d.load_data(path, action)
 	d.showDialog.connect(_on_npc_show_dialog)
 	d.start_dialog()
-	#if dialog_pointer.Deletable:
-		#dialog_pointer.queue_free()
+	if dialog_pointer.Deletable:
+		dialog_pointer.queue_free()
+	else:
+		current_dialog_npc = dialog_pointer
 	
 func start_fight():
 	for c in get_children():
-		c.visible = false
+		if c.get_class() != "Node":
+			c.visible = false
+		else:
+			for in_c in c.get_children():
+				in_c.visible = false
 	battlefield= battle_scene.instantiate()
 	battlefield.end_whole_battle.connect(end_battle)
 	$Player.lock()
