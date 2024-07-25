@@ -126,7 +126,6 @@ func _on_dialog_pointer_start_dialog(path, dialog_pointer, action):
 			current_dialog_npc = dialog_pointer
 	
 func start_fight():
-	save_level_data(false)
 	for c in get_children():
 		if c.get_class() != "Node":
 			c.visible = false
