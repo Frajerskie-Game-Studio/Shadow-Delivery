@@ -13,9 +13,9 @@ signal end_whole_battle
 @onready var Positions = {
 	"party": [
 		$Party_Second_Position,
-		$Party_Third_Position,
 		$Party_First_Position,
-		$Party_Fourth_Position
+		$Party_Fourth_Position,
+		$Party_Third_Position,
 	],
 	"enemy": [
 		$Enemy_Second_Position,
@@ -92,8 +92,8 @@ func _on_entity_ready_to_attack(attack, attacker):
 func _on_reset_ready_to_attack():
 	if possible_attacker != null and !possible_attacker.KnockedUp:
 		possible_attack = null
-		possible_attacker = null
 		possible_attacker.can_be_attacked = true
+		possible_attacker = null
 
 	for e in Enemies:
 		e.attack_danger = false

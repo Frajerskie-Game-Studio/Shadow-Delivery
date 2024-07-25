@@ -19,13 +19,13 @@
 			"Very weak healing potion",
 			0,
 			20,
-			10
+			8
 		],
 		"revive": [
 			"Weak reviving potion",
 			0,
 			25,
-			46,
+			44,
 			"revive"
 		]
 	},

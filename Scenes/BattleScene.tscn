@@ -14,13 +14,13 @@ visible = false
 top_level = true
 
 [node name="Party_First_Position" type="Marker2D" parent="."]
-position = Vector2(142, 119.37)
+position = Vector2(75, 184)
 
 [node name="Party_Second_Position" type="Marker2D" parent="."]
 position = Vector2(247, 274)
 
 [node name="Party_Third_Position" type="Marker2D" parent="."]
-position = Vector2(142, 414.195)
+position = Vector2(69, 414)
 
 [node name="Party_Fourth_Position" type="Marker2D" parent="."]
 position = Vector2(242, 563)

@@ -49,6 +49,7 @@ func _process(delta):
 func _on_attack_button_pressed():
 	i_will_attack.emit(null)
 	$HBoxContainer/RightMenu/SkillsMenu.visible = false
+	$HBoxContainer/RightMenu/ItemsMenu.visible = false
 
 
 func _on_change_style_pressed():

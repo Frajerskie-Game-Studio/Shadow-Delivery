@@ -175,7 +175,7 @@ layer_1/tile_data = PackedInt32Array()
 
 [node name="Cupboard" type="StaticBody2D" parent="."]
 position = Vector2(-212, -79)
-collision_layer = 15
+collision_layer = 7
 collision_mask = 15
 
 [node name="Sprite2D" type="Sprite2D" parent="Cupboard"]
@@ -188,7 +188,7 @@ shape = SubResource("RectangleShape2D_aioi3")
 
 [node name="Desk" type="StaticBody2D" parent="."]
 position = Vector2(-498, -75)
-collision_layer = 15
+collision_layer = 7
 collision_mask = 15
 
 [node name="Sprite2D" type="Sprite2D" parent="Desk"]
@@ -201,7 +201,7 @@ shape = SubResource("RectangleShape2D_nitpe")
 
 [node name="Bed" type="StaticBody2D" parent="."]
 position = Vector2(-60, -60)
-collision_layer = 15
+collision_layer = 7
 collision_mask = 15
 
 [node name="Sprite2D" type="Sprite2D" parent="Bed"]

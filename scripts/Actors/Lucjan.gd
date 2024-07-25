@@ -49,7 +49,9 @@ func get_dmg(attack):
 	Hp -= attack.dmg
 	if Hp < 0:
 		Hp = 0
+		
 	$AttackMenu/HBoxContainer/RightMenu/HealthBar.value = Hp
+	
 	if wait_timer != null:
 		wait_timer.set_paused(false)
 	if Hp <= 0:
