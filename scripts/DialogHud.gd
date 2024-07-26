@@ -3,11 +3,15 @@ extends Control
 
 @onready var writetext = false
 var dialog_text
+var last_dialog_sound
+
+const dialog_sound_interval = 50
 
 signal next_line
 
 func _ready():
-	pass
+	last_dialog_sound = Time.get_ticks_msec()
+
 
 #loading dialog line
 func load_data(npc_name, npc_text, dialog_texture):
@@ -20,13 +24,15 @@ func load_data(npc_name, npc_text, dialog_texture):
 		$MarginContainer/HBoxContainer/TextureRect.custom_minimum_size = Vector2(150,150)
 		$MarginContainer/HBoxContainer/TextureRect.texture = load(dialog_texture)
 	writetext = true
-	
+
+
 func _process(delta):
 	#animation of dialog
+	
 	if writetext:
 		if $MarginContainer/HBoxContainer/Panel/VBoxContainer/MarginContainer2/RichTextLabel.visible_characters < dialog_text.length():
 			$MarginContainer/HBoxContainer/Panel/VBoxContainer/MarginContainer2/RichTextLabel.visible_characters += 1
-			$DialogAudio.play()
+			play_dialog_sound()
 		else:
 			$MarginContainer/HBoxContainer/Panel/VBoxContainer/MarginContainer2/RichTextLabel.visible_characters = -1
 			writetext = false
@@ -34,4 +40,12 @@ func _process(delta):
 	elif Input.is_action_just_pressed("mouse_click"):
 		$MarginContainer/HBoxContainer/Panel/VBoxContainer/MarginContainer2/RichTextLabel.visible_characters = 0
 		next_line.emit()
-		
+
+
+func play_dialog_sound():
+	var current_time = Time.get_ticks_msec()
+	print_debug(current_time - last_dialog_sound)
+	
+	if(current_time - last_dialog_sound >= dialog_sound_interval):
+		$DialogAudio.play()
+		last_dialog_sound = current_time
