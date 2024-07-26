@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjb6r53s8a0uo"
-path="res://.godot/imported/MikutDialogSprite.png-58a3e320f11db0a161678c9e68f3845d.ctex"
+uid="uid://cgvbd3u7fmeht"
+path="res://.godot/imported/AlchemicalFurnanceHealtClose.png-01f08339638d44deabc25132898afb6a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Mikut/MikutDialogSprite.png"
-dest_files=["res://.godot/imported/MikutDialogSprite.png-58a3e320f11db0a161678c9e68f3845d.ctex"]
+source_file="res://Graphics/Levels/Factory/AlchemicalFurnanceHealtClose.png"
+dest_files=["res://.godot/imported/AlchemicalFurnanceHealtClose.png-01f08339638d44deabc25132898afb6a.ctex"]
 
 [params]
 

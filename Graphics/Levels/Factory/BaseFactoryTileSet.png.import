@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjb6r53s8a0uo"
-path="res://.godot/imported/MikutDialogSprite.png-58a3e320f11db0a161678c9e68f3845d.ctex"
+uid="uid://cg4admlytrsnj"
+path="res://.godot/imported/BaseFactoryTileSet.png-3326e96bad295f01b23f35303a34bd19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Mikut/MikutDialogSprite.png"
-dest_files=["res://.godot/imported/MikutDialogSprite.png-58a3e320f11db0a161678c9e68f3845d.ctex"]
+source_file="res://Graphics/Levels/Factory/BaseFactoryTileSet.png"
+dest_files=["res://.godot/imported/BaseFactoryTileSet.png-3326e96bad295f01b23f35303a34bd19.ctex"]
 
 [params]
 

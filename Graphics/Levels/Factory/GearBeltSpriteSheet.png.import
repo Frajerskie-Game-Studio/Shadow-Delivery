@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjb6r53s8a0uo"
-path="res://.godot/imported/MikutDialogSprite.png-58a3e320f11db0a161678c9e68f3845d.ctex"
+uid="uid://bab4nnxr0ybtv"
+path="res://.godot/imported/GearBeltSpriteSheet.png-21b508d95bcb1bf5999084587d489d76.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Mikut/MikutDialogSprite.png"
-dest_files=["res://.godot/imported/MikutDialogSprite.png-58a3e320f11db0a161678c9e68f3845d.ctex"]
+source_file="res://Graphics/Levels/Factory/GearBeltSpriteSheet.png"
+dest_files=["res://.godot/imported/GearBeltSpriteSheet.png-21b508d95bcb1bf5999084587d489d76.ctex"]
 
 [params]
 
