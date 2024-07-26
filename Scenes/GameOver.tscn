@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://fh1evflp3s41"]
+[gd_scene load_steps=4 format=3 uid="uid://fh1evflp3s41"]
 
 [ext_resource type="Script" path="res://scripts/GameOver.gd" id="1_5t1nc"]
 [ext_resource type="AudioStream" uid="uid://b7nqa8252ik3u" path="res://Music/Sfx/Game_over_sfx.wav" id="2_0j3dj"]
+[ext_resource type="Texture2D" uid="uid://y0xgxifiik34" path="res://Graphics/GameOver.png" id="2_dojmc"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_5t1nc")
@@ -28,6 +29,10 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 50
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_dojmc")
 
 [node name="ContinueButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2

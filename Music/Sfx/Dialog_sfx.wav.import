@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://d33aw3fp5ryr7"
+uid="uid://bnjf0leotsak0"
 path="res://.godot/imported/Dialog_sfx.wav-ec40c677fc3d3eb6c059287868f5b784.sample"
 
 [deps]
@@ -18,7 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop_mode=1
+edit/loop_mode=0
 edit/loop_begin=0
-edit/loop_end=11025
+edit/loop_end=-1
 compress/mode=0
