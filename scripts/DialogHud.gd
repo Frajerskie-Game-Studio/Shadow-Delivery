@@ -5,7 +5,7 @@ extends Control
 var dialog_text
 var last_dialog_sound
 
-const dialog_sound_interval = 50
+const dialog_sound_interval = 40
 
 signal next_line
 

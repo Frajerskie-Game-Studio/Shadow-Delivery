@@ -66,8 +66,13 @@ func save_data():
 func add_items():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList.clear()
 	for key in Items:
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList.add_item(str(key).replace("_", " "))
 		
+		var icon = null
+		if(Items[str(key)].size() > 5):
+			icon = load(Items[str(key)][5])
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList.add_item(str(key).replace("_", " "), icon)
+
+
 func add_resources():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources/ScrollContainer/VBoxContainer/ResourcesList.clear()
 	for key in PartyResources:
@@ -86,7 +91,6 @@ func _ready():
 	Teammates = temp_data["teammates"]
 	TeammatesNodes = temp_data["teammates_nodes"]
 	PartyEq = temp_data["equipment"]
-	print(Items)
 	load_profiles()
 	add_items()
 	refresh_data()
@@ -401,5 +405,5 @@ func _on_craft_button_pressed():
 	load_profiles()
 
 
-func _on_button_4_pressed():
+func _on_exit_button_pressed():
 	get_tree().quit()
