@@ -1,11 +1,11 @@
 {
-	"currentLevel": 1,
+	"currentLevel": 0,
 	"levels_data": [
 		{
 			"path": "res://Scenes/Levels/MikutRoom.tscn",
 			"player_position": [
-				-707.786071777344,
-				-53.9690284729004
+				0,
+				0
 			],
 			"deleted_pointers": [
 				"BedDialog"
@@ -14,8 +14,8 @@
 		{
 			"path": "res://Scenes/Levels/Town.tscn",
 			"player_position": [
-				1459.14221191406,
-				79.9240188598633
+				0,
+				0
 			],
 			"deleted_pointers": []
 		}

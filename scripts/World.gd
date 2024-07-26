@@ -215,8 +215,6 @@ func switch_level():
 	
 func switch_zoom(x, y):
 	$Player/PlayerBody/Camera2D.zoom = Vector2(x,y)
-	
-
 
 func _on_background_animation_animation_finished(anim_name):
 	$CanvasLayer.visible = false
