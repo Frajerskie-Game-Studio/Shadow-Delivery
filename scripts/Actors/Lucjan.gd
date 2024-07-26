@@ -27,7 +27,7 @@ func _ready():
 			can_be_attacked = false
 			animationState.travel("knocked_down")
 
-		elif current_style == "mele":
+		elif current_style == "melee":
 			animationState.travel("mele_idle")
 		elif current_style == "range":
 			animationState.travel("range_idle")
@@ -39,11 +39,11 @@ func reload_menu():
 	$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
 
 
-func get_dmg(attack):
+func get_damage(attack):
 	if wait_timer != null:
 		wait_timer.set_paused(true)
-	animationState.travel("get_dmg")
-	Hp -= attack.dmg
+	animationState.travel("get_damage")
+	Hp -= attack.damage
 	if Hp < 0:
 		Hp = 0
 	
@@ -77,7 +77,7 @@ func _process(delta):
 
 		if timer != null:
 			if duringSkillCheck:
-				if current_style == "mele":
+				if current_style == "melee":
 					if Input.is_action_just_pressed(skillChecks[skillCheckStep]):
 						print("Siadło")
 						skillCheckFailed = false
@@ -108,7 +108,7 @@ func _on_attack_menu_i_will_attack(args):
 	ready_to_attack_bool = true
 	if args == null:
 		if current_effect_working != null and current_effect_working == "stronger":
-			Attack[current_style].dmg = Attack[current_style].dmg * effect_multipler
+			Attack[current_style].damage = Attack[current_style].damage * effect_multipler
 			effect_counter -= 1
 			if effect_counter <= 0:
 				current_effect_working = null
@@ -118,25 +118,25 @@ func _on_attack_menu_i_will_attack(args):
 	else:
 		if len(args) == 2:
 			if len(args[0]) == 5:
-				ready_to_attack.emit({"dmg": args[0][1], "wait_time": 3, "heal": args[0][2], "key": args[1], "effect": args[0][4]}, self)
+				ready_to_attack.emit({"name": args[1].name, "damage": args[1].damage, "wait_time": 3, "heal": args[1].heal, "key": args[1].name, "effects": args[1].effects}, self)
 			else:
-				ready_to_attack.emit({"dmg": args[0][1], "wait_time": 3, "heal": args[0][2], "key": args[1]}, self)
+				ready_to_attack.emit({"name": args[1].name, "damage": args[1].damage, "wait_time": 3, "heal": args[1].heal, "key": args[1].name, "effects": []},  self)
 		else:
-			var dmg = args[1]
+			var damage = args[1]
 			if current_effect_working != null and current_effect_working == "stronger":
-				dmg = dmg * effect_multipler
+				damage = damage * effect_multipler
 				effect_counter -= 1
 				if effect_counter <= 0:
 					current_effect_working = null
 					effect_multipler = null
 					effect_counter = 0
 			if len(args) == 6:
-				ready_to_attack.emit({"dmg": dmg, "wait_time": args[3], "effect": args[5]}, self)
+				ready_to_attack.emit({"damage": damage, "wait_time": args[3], "effect": args[5]}, self)
 			elif len(args) == 8:
 				if args[5] != current_effect_working:
-					ready_to_attack.emit({"dmg": dmg, "wait_time": args[3], "effect": args[5], "effect_duration": args[7], "effect_multipler": args[6]}, self)
+					ready_to_attack.emit({"damage": damage, "wait_time": args[3], "effect": args[5], "effect_duration": args[7], "effect_multipler": args[6]}, self)
 			else:
-				ready_to_attack.emit({"dmg": dmg, "wait_time": args[3]}, self)
+				ready_to_attack.emit({"damage": damage, "wait_time": args[3]}, self)
 				
 func start_attack(attack):
 	print("ATTACKING")
@@ -146,7 +146,7 @@ func start_attack(attack):
 	timer.wait_time = float(attack.wait_time)
 	timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
-	if current_style == "mele":
+	if current_style == "melee":
 		if !attack.has("effect"):
 			$MeleSkillCheck.visible = true
 			skillCheckStep = 0
@@ -223,7 +223,7 @@ func _on_timer_timeout():
 		#print("FAILED")
 		skillCheckFailed = true
 		duringSkillCheck = false
-		attacking.emit({"dmg": 0})
+		attacking.emit({"damage": 0})
 		if current_style == "range":
 			decrement_ammo()
 			$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "", Items)
@@ -297,7 +297,7 @@ func _on_wait_time_timeout():
 	if changing_style:
 		set_style()
 		changing_style = false
-		if current_style == "mele":
+		if current_style == "melee":
 			animationState.travel("show_mele")
 	if current_style == "range":
 		animationState.travel("show_range")
@@ -319,7 +319,7 @@ func _on_attack_menu_change_style():
 	timebar.value = 0
 	waiting = true
 	wait_timer.start()
-	if current_style == "mele":
+	if current_style == "melee":
 		animationState.travel("hide_mele")
 	else:
 		animationState.travel("hide_range")
@@ -328,23 +328,37 @@ func revive(heal):
 	KnockedUp = false
 	animationState.travel(str(current_style) + "_idle")
 	
-func use_item(item):
-	if item.has("effect"):
-		if item.effect == "revive":
+func use_item(item_to_use):
+	if(item_to_use.has("effects")):
+		if item_to_use.effects.find("revive"):
 			KnockedUp = false
-	if item.dmg != 0:
-		Hp -= item.dmg
-	elif item.heal != 0:
+		
+	if item_to_use.damage != 0:
+		Hp -= item_to_use.damage
+		
+	elif item_to_use.heal != 0:
 		$BattleSounds.stream = load("res://Music/Sfx/Combat/Heal_sfx.wav")
 		$BattleSounds.play()
-		Hp += item.heal
+		Hp += item_to_use.heal
 		if Hp > MaxHp:
 			Hp = MaxHp
-	Items[item.key][3] -= 1
-	if Items[item.key][3] <= 0:
-		Items.erase(item.key)
+	
+	
+	var index = -1
+	var i = 0
+	for item in Items:
+		if(item.name == item_to_use.name):
+			item.amount -= 1
+		if(item.amount <= 0):
+			index = i
+		i += 1
+	
+	if(index != -1):
+		Items.remove_at(index)
+	
 	on_mouse_cursor = false
 	can_be_checked = false
+	
 	save_data()
 	save_items()
 	load_items()
@@ -380,8 +394,8 @@ func _on_animation_tree_animation_finished(anim_name):
 			animationState.travel("reload")
 		else:
 			animationState.travel("change_style")
-	elif anim_name == "get_dmg":
-		if current_style == "mele":
+	elif anim_name == "get_damage":
+		if current_style == "melee":
 			animationState.travel("mele_idle")
 		else:
 			if waiting:
@@ -389,7 +403,7 @@ func _on_animation_tree_animation_finished(anim_name):
 			else:
 				animationState.travel("range_idle")
 	elif anim_name == "use_item":
-		if current_style == "mele":
+		if current_style == "melee":
 			if waiting:
 				animationState.travel("change_style")
 			else:

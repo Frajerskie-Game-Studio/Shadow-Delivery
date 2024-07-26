@@ -17,7 +17,7 @@ func _ready():
 			can_be_attacked = false
 			animationState.travel("knocked_down")
 
-		elif current_style == "mele":
+		elif current_style == "melee":
 			animationState.travel("mele_idle")
 		elif current_style == "range":
 			animationState.travel("range_idle")

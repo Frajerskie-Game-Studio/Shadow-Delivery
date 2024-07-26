@@ -5,12 +5,12 @@
 	"max_hp": 100,
 	"knocked_up": false,
 	"attack": {
-		"mele": {
-			"dmg": 45,
+		"melee": {
+			"damage": 45,
 			"wait_time": 3
 		},
 		"range": {
-			"dmg": 45,
+			"damage": 45,
 			"wait_time": 5
 		}
 	},

@@ -108,11 +108,10 @@ func _on_entity_being_attacked(entity):
 	for e in Enemies:
 		e.attack_danger = false
 	possible_target = entity
-	print(possible_attacker)
 	possible_attacker.start_attack(possible_attack)
 	
 func _on_attacking_entity(attack):
-	possible_target.get_dmg(attack)
+	possible_target.get_damage(attack)
 	possible_attacker._on_attack_done()
 	
 func get_can_be_attack_entities():
@@ -128,7 +127,7 @@ func _on_item_being_used(entity):
 	possible_attacker.start_using_item()
 
 func _on_enemy_attacking(target, attack):
-	target.get_dmg(attack)
+	target.get_damage(attack)
 	
 func _on_enemy_dying(entity):
 	for e in Enemies:

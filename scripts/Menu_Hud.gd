@@ -65,12 +65,8 @@ func save_data():
 
 func add_items():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList.clear()
-	for key in Items:
-		
-		var icon = null
-		if(Items[str(key)].size() > 5):
-			icon = load(Items[str(key)][5])
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList.add_item(str(key).replace("_", " "), icon)
+	for item in Items:
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList.add_item(item.name, load(item.icon_path))
 
 
 func add_resources():
@@ -116,13 +112,13 @@ func unshowCards():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top/Output/TextureRect.texture = null
 
 func _on_item_list_item_clicked(index, at_position, mouse_button_index):
-	var item = Items.keys()[index]
-	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/HBoxContainer/ItemDesc.text = Items[item][0]
-	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/HBoxContainer/ItemAmmount.text = "Ammount: " + str(Items[item][3])
+	var item = Items[index]
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/HBoxContainer/ItemDesc.text = Items[index].description
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/HBoxContainer/ItemAmmount.text = "Ammount: " + str(Items[index].amount)
 
 
 func _on_item_list_item_activated(index):
-	item_to_use = Items.keys()[index]
+	item_to_use = Items[index]
 	using_item = true
 	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
 		profile.unlock_choosing("item")
@@ -158,7 +154,7 @@ func showSkills(entity_name):
 			
 			for key in Skills:
 				$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/SkillList.add_item(str(key).replace("_", " "))
-				
+			
 	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
 		profile.lock_choosing()
 	unshowCards()
@@ -172,7 +168,6 @@ func showEq(entity_name):
 	print(entity_name)
 	for teammate in Teammates:
 		if teammate.contains(entity_name.to_lower()):
-			print()
 			var temp_teammate = load("res://Scenes/Actors/"+str(load_name)+".tscn")
 			eq_temp_person = temp_teammate.instantiate()
 			eq_temp_person.load_data()
@@ -252,7 +247,7 @@ func _on_self_equipment_item_activated(index):
 	Eq_to_be_changed_index = index
 	var eq_category = $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.get_item_text(index).split(":")[0]
 	
-	for key in PartyEq.keys():
+	for key in PartyEq.keys():	
 		if PartyEq[key][1] == eq_category: 
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.add_item(key.replace("_", " "))
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.add_item(" ")

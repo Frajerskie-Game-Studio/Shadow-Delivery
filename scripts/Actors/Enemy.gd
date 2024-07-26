@@ -91,11 +91,11 @@ func get_hp():
 func get_max_hp():
 	return MaxHp
 	
-func deal_dmg():
+func deal_damage():
 	pass
 	
-func get_dmg(attack):
-	Hp -= attack.dmg
+func get_damage(attack):
+	Hp -= attack.damage
 	HealthBar.value = Hp
 	wait_timer.set_paused(false)
 	attack_danger = false

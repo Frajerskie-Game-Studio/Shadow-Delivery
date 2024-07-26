@@ -7,45 +7,53 @@
 		"res://Scenes/Actors/Player.tscn",
 		"res://Scenes/Actors/Lucjan.tscn"
 	],
-	"items": {
-		"dicker potion": [
-			"Potion that does nothing because ur being a dick",
-			0,
-			20,
-			1,
-			"no_effect_fuck_you"
-		],
-		"red brew": [
-			"Very weak healing potion",
-			0,
-			20,
-			2
-		],
-		"revive": [
-			"Weak reviving potion",
-			0,
-			25,
-			43,
-			"revive"
-		]
-	},
-	"equipment": {
-		"Dix_pistol": [
-			"A little old, but reliable",
-			"Range_weapon",
-			60,
-			6
-		],
-		"Fuck_u_pistol": [
-			"Fuck u stronger than ever",
-			"Range_weapon",
-			50,
-			2
-		],
-		"Dixer_uniform": [
-			"Average factory outfit for couriers",
-			"Armor",
-			15
-		]
-	}
+	"items": [
+		{
+			"name": "Dicker potion",
+			"description": "Potion that does nothing because ur being a dick",
+			"icon_path": "res://Graphics/Items/flintlock_icon.png",
+			"damage": 0,
+			"heal": 20,
+			"amount": 1,
+			"effects": [
+				"no_effect_fuck_you"
+			]
+		},
+		{
+			"name": "Revive",
+			"description": "Weak reviving potion",
+			"icon_path": "",
+			"damage": 0,
+			"heal": 25,
+			"amount": 41,
+			"effects": [
+				"revive"
+			]
+		}
+	],
+	"equipment": [
+		{
+			"name": "Dix pistol",
+			"description": "A little old, but reliable",
+			"icon_path": "",
+			"type": "Range_weapon",
+			"damage": 60,
+			"ammunition": 6
+		},
+		{
+			"name": "Fuck u pistol",
+			"description": "Fuck u stronger than ever",
+			"icon_path": "",
+			"type": "Range_weapon",
+			"damage": 50,
+			"ammo": 2
+		},
+		{
+			"name": "Dixer uniform",
+			"description": "Average factory outfit for couriers",
+			"icon_path": "",
+			"type": "Armor",
+			"armor": 15
+		}
+	]
 }

@@ -71,13 +71,9 @@ func end_dialog(action):
 	
 
 
-func _on_canvas_layer_item_used(item_name, entity_name):
-	var item
-	
-	for i in party_items:
-		if i == item_name:
-			item = party_items[i]
+func _on_canvas_layer_item_used(current_item, entity_name):
 	#tu się kompletnie zesrałem na kod XDDDDDD
+	#to ja posporzątam :)
 	for teammate in data.teammates:
 		if teammate.contains(entity_name.to_lower()):
 			if entity_name == "Mikut":
@@ -88,17 +84,20 @@ func _on_canvas_layer_item_used(item_name, entity_name):
 			temp_instance.visible = false
 			add_child(temp_instance)
 			temp_instance.load_data()
-			if len(item) == 5:
-				temp_instance.use_item({"dmg": item[1], "heal": item[2], "key": item_name, "effect": item[4]})
-			else:
-				temp_instance.use_item({"dmg": item[1], "heal": item[2], "key": item_name})
-			#temp_instance.use_item({item})
+			temp_instance.use_item(current_item)
 			temp_instance.queue_free()
-			
 	
-	data.items[item_name][3] -= 1
-	if data.items[item_name][3] <= 0:
-		data.items.erase(item_name)
+	var index = -1
+	var i = 0
+	for item in data.items:
+		if(item.name == current_item.name):
+			item.amount -= 1
+		if(item.amount <= 0):
+			index = i
+		i += 1
+	
+	if(index != -1):
+		data.items.remove_at(index)
 	
 	var file = FileAccess.open("res://Data/party_data.json", FileAccess.WRITE)
 	
@@ -108,6 +107,7 @@ func _on_canvas_layer_item_used(item_name, entity_name):
 	for child in get_children():
 		if child.has_node("CharacterBody2D"):
 			child.load_data()
+
 
 func _on_menu_save_eq(entity_name):
 	for child in get_children():
@@ -189,6 +189,8 @@ func load_level():
 	CurrentLevelInstance.start_npc_dialog.connect(_on_npc_show_dialog)
 	
 	$Player.get_node("PlayerBody").position = Vector2(LevelsData[CurrentLevel].player_position[0],LevelsData[CurrentLevel].player_position[1])
+	
+	start_fight()
 
 func save_level_data(switching_levels):
 	var file = FileAccess.open("res://Data/level_saves.json", FileAccess.WRITE)

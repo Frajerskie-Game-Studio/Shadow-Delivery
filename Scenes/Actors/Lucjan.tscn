@@ -61,7 +61,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_c8o5b"]
-resource_name = "get_dmg"
+resource_name = "get_damage"
 length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -406,7 +406,7 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_qetah"),
 "change_style": SubResource("Animation_ceksj"),
-"get_dmg": SubResource("Animation_c8o5b"),
+"get_damage": SubResource("Animation_c8o5b"),
 "hide_mele": SubResource("Animation_sy14c"),
 "hide_range": SubResource("Animation_esm6d"),
 "knocked_down": SubResource("Animation_qexuv"),
@@ -434,7 +434,7 @@ _data = {
 animation = &"change_style"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_immro"]
-animation = &"get_dmg"
+animation = &"get_damage"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hysc7"]
 animation = &"hide_mele"
@@ -528,8 +528,8 @@ states/Idle/position = Vector2(865, 592)
 states/Start/position = Vector2(847, 702)
 states/change_style/node = SubResource("AnimationNodeAnimation_s0eq6")
 states/change_style/position = Vector2(954, 401)
-states/get_dmg/node = SubResource("AnimationNodeAnimation_immro")
-states/get_dmg/position = Vector2(704, 44)
+states/get_damage/node = SubResource("AnimationNodeAnimation_immro")
+states/get_damage/position = Vector2(704, 44)
 states/hide_mele/node = SubResource("AnimationNodeAnimation_hysc7")
 states/hide_mele/position = Vector2(816, 370)
 states/hide_range/node = SubResource("AnimationNodeAnimation_utylq")
@@ -552,7 +552,7 @@ states/show_range/node = SubResource("AnimationNodeAnimation_yh8hu")
 states/show_range/position = Vector2(1113, 328)
 states/use_item/node = SubResource("AnimationNodeAnimation_um8ku")
 states/use_item/position = Vector2(865, 88)
-transitions = ["mele_attack", "mele_idle", SubResource("AnimationNodeStateMachineTransition_lye6b"), "mele_idle", "mele_attack", SubResource("AnimationNodeStateMachineTransition_g26mp"), "mele_idle", "get_dmg", SubResource("AnimationNodeStateMachineTransition_8xnct"), "get_dmg", "knocked_down", SubResource("AnimationNodeStateMachineTransition_g6m7g"), "get_dmg", "mele_idle", SubResource("AnimationNodeStateMachineTransition_ok4x2"), "use_item", "mele_idle", SubResource("AnimationNodeStateMachineTransition_nmwuq"), "mele_idle", "use_item", SubResource("AnimationNodeStateMachineTransition_hdipr"), "mele_idle", "knocked_down", SubResource("AnimationNodeStateMachineTransition_uoocx"), "knocked_down", "mele_idle", SubResource("AnimationNodeStateMachineTransition_ht0e2"), "mele_idle", "hide_mele", SubResource("AnimationNodeStateMachineTransition_bcqga"), "show_mele", "mele_idle", SubResource("AnimationNodeStateMachineTransition_f6l77"), "hide_mele", "change_style", SubResource("AnimationNodeStateMachineTransition_qxck0"), "change_style", "show_mele", SubResource("AnimationNodeStateMachineTransition_hrt00"), "show_range", "range_idle", SubResource("AnimationNodeStateMachineTransition_q4kea"), "change_style", "show_range", SubResource("AnimationNodeStateMachineTransition_qvcii"), "hide_range", "change_style", SubResource("AnimationNodeStateMachineTransition_x0pub"), "range_idle", "hide_range", SubResource("AnimationNodeStateMachineTransition_ndyya"), "range_idle", "range_attack", SubResource("AnimationNodeStateMachineTransition_4infj"), "range_attack", "change_style", SubResource("AnimationNodeStateMachineTransition_a222w"), "range_attack", "reload", SubResource("AnimationNodeStateMachineTransition_gv1e5"), "reload", "range_idle", SubResource("AnimationNodeStateMachineTransition_kkyyl"), "range_idle", "Idle", SubResource("AnimationNodeStateMachineTransition_q5fps"), "Idle", "range_idle", SubResource("AnimationNodeStateMachineTransition_6h4rj"), "mele_idle", "Idle", SubResource("AnimationNodeStateMachineTransition_xc6nb"), "Idle", "mele_idle", SubResource("AnimationNodeStateMachineTransition_wrehy"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_70p1h")]
+transitions = ["mele_attack", "mele_idle", SubResource("AnimationNodeStateMachineTransition_lye6b"), "mele_idle", "mele_attack", SubResource("AnimationNodeStateMachineTransition_g26mp"), "mele_idle", "get_damage", SubResource("AnimationNodeStateMachineTransition_8xnct"), "get_damage", "knocked_down", SubResource("AnimationNodeStateMachineTransition_g6m7g"), "get_damage", "mele_idle", SubResource("AnimationNodeStateMachineTransition_ok4x2"), "use_item", "mele_idle", SubResource("AnimationNodeStateMachineTransition_nmwuq"), "mele_idle", "use_item", SubResource("AnimationNodeStateMachineTransition_hdipr"), "mele_idle", "knocked_down", SubResource("AnimationNodeStateMachineTransition_uoocx"), "knocked_down", "mele_idle", SubResource("AnimationNodeStateMachineTransition_ht0e2"), "mele_idle", "hide_mele", SubResource("AnimationNodeStateMachineTransition_bcqga"), "show_mele", "mele_idle", SubResource("AnimationNodeStateMachineTransition_f6l77"), "hide_mele", "change_style", SubResource("AnimationNodeStateMachineTransition_qxck0"), "change_style", "show_mele", SubResource("AnimationNodeStateMachineTransition_hrt00"), "show_range", "range_idle", SubResource("AnimationNodeStateMachineTransition_q4kea"), "change_style", "show_range", SubResource("AnimationNodeStateMachineTransition_qvcii"), "hide_range", "change_style", SubResource("AnimationNodeStateMachineTransition_x0pub"), "range_idle", "hide_range", SubResource("AnimationNodeStateMachineTransition_ndyya"), "range_idle", "range_attack", SubResource("AnimationNodeStateMachineTransition_4infj"), "range_attack", "change_style", SubResource("AnimationNodeStateMachineTransition_a222w"), "range_attack", "reload", SubResource("AnimationNodeStateMachineTransition_gv1e5"), "reload", "range_idle", SubResource("AnimationNodeStateMachineTransition_kkyyl"), "range_idle", "Idle", SubResource("AnimationNodeStateMachineTransition_q5fps"), "Idle", "range_idle", SubResource("AnimationNodeStateMachineTransition_6h4rj"), "mele_idle", "Idle", SubResource("AnimationNodeStateMachineTransition_xc6nb"), "Idle", "mele_idle", SubResource("AnimationNodeStateMachineTransition_wrehy"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_70p1h")]
 graph_offset = Vector2(-11, 120)
 
 [node name="Node2D" type="Node2D"]

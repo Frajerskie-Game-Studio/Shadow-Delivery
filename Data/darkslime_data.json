@@ -3,7 +3,7 @@
 	"texture": "res://icon.svg",
 	"hp": 75,
 	"max_hp": 75,
-	"attack": {"dmg": 15, "wait_time": 4},
+	"attack": {"damage": 15, "wait_time": 20},
 	"skills": {},
 	"drop": {
 		"common": {

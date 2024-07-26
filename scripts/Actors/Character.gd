@@ -26,7 +26,7 @@ var changing_style = false
 var can_be_checked = false
 var on_mouse_cursor = false
 var selected_attack
-var current_style = "mele"
+var current_style = "melee"
 
 
 signal ready_to_attack()
@@ -118,10 +118,10 @@ func get_style():
 
 
 func set_style():
-	if current_style == "mele":
+	if current_style == "melee":
 		current_style = "range"
 	else:
-		current_style = "mele"
+		current_style = "melee"
 
 func get_attack():
 	return Attack

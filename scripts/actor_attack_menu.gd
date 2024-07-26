@@ -11,7 +11,7 @@ extends MarginContainer
 
 
 var Skills
-var CurrentStyle = "mele"
+var CurrentStyle = "melee"
 var WaitTime
 var Ammo
 var Items
@@ -54,10 +54,10 @@ func _on_attack_button_pressed():
 
 func _on_change_style_pressed():
 	change_style.emit()
-	if CurrentStyle == "mele":
+	if CurrentStyle == "melee":
 		CurrentStyle = "range"
 	else:
-		CurrentStyle = "mele"
+		CurrentStyle = "melee"
 	
 
 
@@ -98,8 +98,8 @@ func _on_items_button_pressed():
 	$HBoxContainer/RightMenu/ItemsMenu/Panel/HBoxContainer/ItemDesc.text = ""
 	$HBoxContainer/RightMenu/ItemsMenu/Panel/HBoxContainer/ItemAmmount.text = ""
 	if !$HBoxContainer/RightMenu/ItemsMenu.visible:
-		for key in Items:
-			$HBoxContainer/RightMenu/ItemsMenu/ItemsList.add_item(str(key).replace("_", " "))
+		for item in Items:
+			$HBoxContainer/RightMenu/ItemsMenu/ItemsList.add_item(item.name, load(item.icon_path))
 		$HBoxContainer/RightMenu/SkillsMenu.visible = false
 		$HBoxContainer/RightMenu/ItemsMenu.visible = true
 		$HBoxContainer/RightMenu/ChangeAndTime.visible = false
@@ -110,17 +110,17 @@ func _on_items_button_pressed():
 
 
 func _on_items_list_item_clicked(index, at_position, mouse_button_index):
-	var item = $HBoxContainer/RightMenu/ItemsMenu/ItemsList.get_item_text(index)
-	$HBoxContainer/RightMenu/ItemsMenu/Panel/HBoxContainer/ItemDesc.text = str(Items[item][0])
-	$HBoxContainer/RightMenu/ItemsMenu/Panel/HBoxContainer/ItemAmmount.text = "Ammount: " + str(Items[item][3])
+	#var item = $HBoxContainer/RightMenu/ItemsMenu/ItemsList.get_item_text(index)
+	$HBoxContainer/RightMenu/ItemsMenu/Panel/HBoxContainer/ItemDesc.text = Items[index].description
+	$HBoxContainer/RightMenu/ItemsMenu/Panel/HBoxContainer/ItemAmmount.text = "Ammount: " + str(Items[index].amount)
 
 
 func _on_items_list_item_activated(index):
 	var item = $HBoxContainer/RightMenu/ItemsMenu/ItemsList.get_item_text(index)
-	if Items[item][3] <= 0:
+	if Items[index].amount <= 0:
 		pass
 	else:
-		i_will_attack.emit([Items[item], item])
+		i_will_attack.emit([Items, Items[index]])
 		$HBoxContainer/RightMenu/ItemsMenu.visible = false
 		$HBoxContainer/RightMenu/ChangeAndTime.visible = true
 		$HBoxContainer/RightMenu/ItemsMenu/ItemsList.clear()
