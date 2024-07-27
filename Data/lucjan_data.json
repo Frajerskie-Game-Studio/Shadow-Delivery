@@ -1,7 +1,7 @@
 {
 	"name": "Lucjan",
 	"texture": "res://Graphics/Lucjan/LucjanDialogSprite.png",
-	"hp": 100,
+	"hp": 85,
 	"max_hp": 100,
 	"knocked_up": false,
 	"attack": {
@@ -10,7 +10,7 @@
 			"wait_time": 3
 		},
 		"range": {
-			"dmg": 50,
+			"dmg": 112.5,
 			"wait_time": 5
 		}
 	},
@@ -36,7 +36,7 @@
 			"Cheap flintlock",
 			"A little old, but reliable",
 			60,
-			4
+			3
 		],
 		"Armor": [
 			"Dix armor",

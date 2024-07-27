@@ -1,7 +1,7 @@
 {
 	"name": "Michał",
 	"texture": "res://Graphics/Michal/SeconBaseCourierDialogSprite.png",
-	"hp": 100,
+	"hp": 85,
 	"max_hp": 100,
 	"knocked_up": false,
 	"attack": {
@@ -14,7 +14,9 @@
 			"wait_time": 5
 		}
 	},
-	"skills": {},
+	"skills": {
+
+	},
 	"equipment": {
 		"Mele_weapon": [
 			"Scyzoryk",
@@ -25,7 +27,7 @@
 			"Michals company flintlock",
 			"Same knife give to all alchemy couriers...",
 			50,
-			1
+			0
 		],
 		"Armor": [
 			"Penis armor",

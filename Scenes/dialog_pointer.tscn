@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bf573cy58a5wu"]
 
 [ext_resource type="Script" path="res://scripts/DialogPointer.gd" id="1_jkaym"]
-[ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="2_h85s6"]
+[ext_resource type="Texture2D" uid="uid://c7u10h26k3jjd" path="res://Graphics/DialogPointer.png" id="2_karla"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t40b"]
 size = Vector2(58, 47)
@@ -17,8 +17,8 @@ shape = SubResource("RectangleShape2D_3t40b")
 [node name="Indicator" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -19)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_h85s6")
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_karla")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

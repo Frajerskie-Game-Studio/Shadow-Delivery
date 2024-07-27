@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://c6ej43o5qgo20"]
 
 [ext_resource type="Script" path="res://scripts/Actors/NPC.gd" id="1_8lub0"]
-[ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="2_cshfy"]
+[ext_resource type="Texture2D" uid="uid://c7u10h26k3jjd" path="res://Graphics/DialogPointer.png" id="2_k53ew"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8awxa"]
 size = Vector2(51, 100.544)
@@ -9,8 +9,8 @@ size = Vector2(51, 100.544)
 [sub_resource type="SpriteFrames" id="SpriteFrames_vjr74"]
 animations = [{
 "frames": [{
-"duration": 3.0,
-"texture": ExtResource("2_cshfy")
+"duration": 1.0,
+"texture": ExtResource("2_k53ew")
 }, {
 "duration": 3.0,
 "texture": null
@@ -166,8 +166,8 @@ shape = SubResource("RectangleShape2D_8awxa")
 
 [node name="FaggotIndicator" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(5, -80.6339)
-scale = Vector2(0.625, 0.625)
+position = Vector2(1, -80.6339)
+scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_vjr74")
 frame_progress = 0.95516
 

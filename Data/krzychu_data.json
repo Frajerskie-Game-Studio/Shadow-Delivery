@@ -1,7 +1,7 @@
 {
 	"name": "Krzychu",
 	"texture": "res://Graphics/Michal/SeconBaseCourierDialogSprite.png",
-	"hp": 100,
+	"hp": 40,
 	"max_hp": 100,
 	"knocked_up": false,
 	"attack": {
@@ -14,7 +14,9 @@
 			"wait_time": 5
 		}
 	},
-	"skills": {},
+	"skills": {
+
+	},
 	"equipment": {
 		"Mele_weapon": [
 			"Pocket knife",

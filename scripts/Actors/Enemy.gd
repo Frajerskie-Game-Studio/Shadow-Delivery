@@ -42,7 +42,6 @@ func _ready():
 	$Sprite2D.texture = load(EnemyTexture)
 	$Sprite2D.hframes = 12
 	$AnimationPlayer.play("idle")
-	
 
 func _process(delta):	
 	pass
@@ -61,6 +60,8 @@ func _physics_process(delta):
 			$CheckSprite.visible = false
 			WaiTimeBar.visible =false
 			$AnimationPlayer.play("attack")
+			$BattleSounds.stream = load("res://Music/Sfx/Combat/Melee_combat_sfx.wav")
+			$BattleSounds.play()
 			attack_entity()
 		elif !can_attack and waiting and !wait_timer.is_paused():
 			WaiTimeBar.visible = true
@@ -83,6 +84,7 @@ func load_data(json_path):
 	Skills = temp_data["skills"]
 	Attack = temp_data["attack"]
 	Drop = temp_data["drop"]
+	EnemyTexture = temp_data["texture"]
 	data_loaded = true
 	
 func get_entity_name():
@@ -106,6 +108,12 @@ func get_dmg(attack):
 	wait_timer.set_paused(false)
 	attack_danger = false
 	$AnimationPlayer.play("dmg")
+	$BattleSounds.stream = load("res://Music/Sfx/Combat/Getting_damage_2_sfx.wav")
+	$BattleSounds.play()
+	if Hp <= 0:
+		dying.emit(self) 
+	else:
+		$AnimationPlayer.play("idle")
 	
 
 func _on_wait_timer_timeout():
@@ -170,8 +178,3 @@ func _on_area_2d_body_exited(body):
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "attack":
 		$AnimationPlayer.play("idle")
-	elif anim_name == "dmg":
-		if Hp <= 0:
-			dying.emit(self) 
-		else:
-			$AnimationPlayer.play("idle")

@@ -1,12 +1,12 @@
 [gd_scene load_steps=90 format=3 uid="uid://bnls0har28lt"]
 
 [ext_resource type="Script" path="res://Scripts/Actors/Player.gd" id="1_231py"]
-[ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="1_rlupw"]
 [ext_resource type="Script" path="res://Scripts/Player_movement.gd" id="1_ymo11"]
 [ext_resource type="PackedScene" uid="uid://cpsu8wxbqyj34" path="res://Scenes/Menus/actor_attack_menu.tscn" id="2_5m8o5"]
 [ext_resource type="Texture2D" uid="uid://bowm0m24aq1p7" path="res://Graphics/Mikut/MikutSpriteSheet.png" id="3_h60i7"]
 [ext_resource type="Script" path="res://Scenes/Actors/RangeSKillCheck.gd" id="5_8f850"]
 [ext_resource type="Texture2D" uid="uid://dfr7wyx8hve7f" path="res://Graphics/celownik.png" id="6_63nti"]
+[ext_resource type="Texture2D" uid="uid://ba26m2vpq03y3" path="res://Graphics/IndicatorOg.png" id="7_fwhmt"]
 [ext_resource type="AudioStream" uid="uid://dunghkndrm1to" path="res://Music/Sfx/Combat/Explosion_sfx.wav" id="8_jwwcg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uor6i"]
@@ -638,13 +638,13 @@ grow_vertical = 0
 
 [node name="CheckSprite" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0, -193)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_rlupw")
+position = Vector2(-2, -143)
+scale = Vector2(4, 4)
+texture = ExtResource("7_fwhmt")
 
 [node name="MeleSkillCheck" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(298, 0)
+position = Vector2(0, -90)
 scale = Vector2(1.058, 1)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

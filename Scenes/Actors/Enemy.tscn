@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://c3aev84jsnw05"]
+[gd_scene load_steps=13 format=3 uid="uid://c3aev84jsnw05"]
 
 [ext_resource type="Script" path="res://scripts/Actors/Enemy.gd" id="1_ucwuh"]
-[ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="2_h2lks"]
+[ext_resource type="Texture2D" uid="uid://y66dnmjfjqwd" path="res://Graphics/Enemys/SlimeSpriteSheet.png" id="2_r5mok"]
 [ext_resource type="Texture2D" uid="uid://b2kqablq42vcj" path="res://Graphics/Menus/white_circle_small.png" id="3_8vyl3"]
+[ext_resource type="Texture2D" uid="uid://ba26m2vpq03y3" path="res://Graphics/IndicatorOg.png" id="3_k7y8y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ksy5i"]
 corner_radius_top_left = 5
@@ -123,6 +124,7 @@ script = ExtResource("1_ucwuh")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(20, 0)
 scale = Vector2(3, 3)
+texture = ExtResource("2_r5mok")
 hframes = 12
 frame = 1
 
@@ -130,10 +132,10 @@ frame = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -89.5
-offset_top = -130.19
-offset_right = 89.5
-offset_bottom = -103.19
+offset_left = -89.0
+offset_top = -102.0
+offset_right = 90.0
+offset_bottom = -75.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_ksy5i")
@@ -142,9 +144,9 @@ value = 50.0
 
 [node name="CheckSprite" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0, -193)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_h2lks")
+position = Vector2(0, -145)
+scale = Vector2(4, 4)
+texture = ExtResource("3_k7y8y")
 
 [node name="Area2D" type="Area2D" parent="."]
 light_mask = 8
@@ -158,10 +160,10 @@ shape = SubResource("RectangleShape2D_ltkpr")
 
 [node name="EnemyWaitTimer" type="TextureProgressBar" parent="."]
 visible = false
-offset_left = 76.0
-offset_top = -99.0
-offset_right = 117.0
-offset_bottom = -58.0
+offset_left = 49.0
+offset_top = -67.0
+offset_right = 90.0
+offset_bottom = -26.0
 fill_mode = 5
 texture_under = ExtResource("3_8vyl3")
 texture_progress = ExtResource("3_8vyl3")
@@ -172,6 +174,8 @@ tint_progress = Color(0, 0.784314, 0, 1)
 libraries = {
 "": SubResource("AnimationLibrary_grlf2")
 }
+
+[node name="BattleSounds" type="AudioStreamPlayer" parent="."]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

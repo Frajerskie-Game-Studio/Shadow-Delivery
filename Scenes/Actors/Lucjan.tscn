@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://scripts/Actors/Lucjan.gd" id="1_ceorf"]
 [ext_resource type="Script" path="res://Scenes/Actors/RangeSKillCheck.gd" id="2_0c2yt"]
-[ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="2_abwvj"]
 [ext_resource type="Texture2D" uid="uid://dmbf2o8frdgk2" path="res://Graphics/Lucjan/LucjanSpriteSheet.png" id="2_cghb8"]
 [ext_resource type="Texture2D" uid="uid://dfr7wyx8hve7f" path="res://Graphics/celownik.png" id="3_36t4u"]
 [ext_resource type="PackedScene" uid="uid://cpsu8wxbqyj34" path="res://Scenes/Menus/actor_attack_menu.tscn" id="3_no4uv"]
+[ext_resource type="Texture2D" uid="uid://ba26m2vpq03y3" path="res://Graphics/IndicatorOg.png" id="6_twh4d"]
 [ext_resource type="AudioStream" uid="uid://bia8nhsadva83" path="res://Music/Sfx/Combat/Shot.wav" id="7_1ygu6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23s6j"]
@@ -73,7 +73,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [89]
+"values": [87]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -133,7 +133,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [90, 91]
+"values": [88, 89]
 }
 
 [sub_resource type="Animation" id="Animation_nsnl5"]
@@ -172,7 +172,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_csqoa"]
 resource_name = "mele_attack"
-length = 0.5
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -180,10 +180,10 @@ tracks/0/path = NodePath("PlayerBody/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [74, 75, 76, 77, 78]
+"values": [63, 74, 75, 76, 74, 75, 76, 63]
 }
 
 [sub_resource type="Animation" id="Animation_oe537"]
@@ -314,10 +314,10 @@ tracks/0/path = NodePath("PlayerBody/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [86, 87, 88]
+"values": [85, 86, 85, 86]
 }
 
 [sub_resource type="Animation" id="Animation_8aoeb"]
@@ -599,19 +599,21 @@ visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -150.0
-offset_bottom = 0.0
+offset_left = 29.0
+offset_top = -103.0
+offset_right = 335.0
+offset_bottom = 84.0
 grow_vertical = 0
 
 [node name="CheckSprite" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0, -193)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_abwvj")
+position = Vector2(-2, -143)
+scale = Vector2(4, 4)
+texture = ExtResource("6_twh4d")
 
 [node name="MeleSkillCheck" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(298, 0)
+position = Vector2(0, -90)
 scale = Vector2(1.058, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

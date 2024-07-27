@@ -1,11 +1,15 @@
 {
 	"teammates": [
 		"./Data/mikut_data.json",
-		"./Data/lucjan_data.json"
+		"./Data/lucjan_data.json",
+		"./Data/michal_data.json",
+		"./Data/krzychu_data.json"
 	],
 	"teammates_nodes": [
 		"res://Scenes/Actors/Player.tscn",
-		"res://Scenes/Actors/Lucjan.tscn"
+		"res://Scenes/Actors/Lucjan.tscn",
+		"res://Scenes/Actors/Michal.tscn",
+		"res://Scenes/Actors/Krzychu.tscn"
 	],
 	"items": {
 		"red brew": [
