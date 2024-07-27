@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bgsle7jw130nx" path="res://Graphics/Levels/City/CityTileSetButBigger2.png" id="1_m5gac"]
 [ext_resource type="Script" path="res://scripts/Levels/Town.gd" id="1_nwc4h"]
-[ext_resource type="PackedScene" uid="uid://pqf5hws2cd2n" path="res://Scenes/dialog_pointer.tscn" id="2_u5ny3"]
+[ext_resource type="PackedScene" uid="uid://bf573cy58a5wu" path="res://Scenes/dialog_pointer.tscn" id="2_u5ny3"]
 [ext_resource type="Texture2D" uid="uid://5tvxynge3cfu" path="res://Graphics/Levels/City/CityTileSet3.png" id="3_cr4v6"]
 [ext_resource type="AudioStream" uid="uid://b7abrot24aa6p" path="res://Music/Town_Soundtrack.wav" id="5_o6ls7"]
 

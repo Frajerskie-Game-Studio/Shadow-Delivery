@@ -12,12 +12,16 @@ func load_data(data):
 			child.queue_free()
 
 func _ready():	
-	get_parent().switch_zoom(3.13,3.13)
+	get_parent().switch_zoom(2,2)
 	var resource = {"skeleton_powder": {
 		"ammount": 45,
 		"texture": ""
 	}}
+	$ConveyorBelt/AnimationPlayer.play("Convbelt")
 	$Dialogs/NPC.load_data("res://Data/factory_lucjan_dialog.json", "res://Graphics/Lucjan/LucjanSpriteSheet.png", 92, [get_parent().add_object_to_player.bind(resource, "resource"), dix], false)
+	#path, clickable, deletable, action, multi_state
+	$Dialogs/HealthFurnanceDialogPointer.load_data("res://Data/health_furnance_dialog.json", true, false, null, false)
+	$Dialogs/ToxicFurnancePointer.load_data("res://Data/toxic_furnance_dialog.json", true, false, null, false)
 	$PartyMembers/AnimationPlayer.play("Idle")
 	$Dialogs/MasterDialog.load_data("res://Data/factory_master_dialog.json", false, true, get_parent().switch_level, false)
 

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Levels/MikutRoom.gd" id="1_fdl28"]
 [ext_resource type="Texture2D" uid="uid://776qvlp3v323" path="res://Graphics/Levels/MikutsHome/MikutsHomeTilesetV2.png" id="1_uu2oi"]
 [ext_resource type="Texture2D" uid="uid://bf70hbtoa7hdg" path="res://Graphics/Levels/MikutsHome/DrawerSprite.png" id="2_m5klx"]
-[ext_resource type="PackedScene" uid="uid://pqf5hws2cd2n" path="res://Scenes/dialog_pointer.tscn" id="2_ysuox"]
+[ext_resource type="PackedScene" uid="uid://bf573cy58a5wu" path="res://Scenes/dialog_pointer.tscn" id="2_ysuox"]
 [ext_resource type="Texture2D" uid="uid://dlux7wdx1gs7s" path="res://Graphics/Levels/MikutsHome/DeskSprite.png" id="3_kl1hi"]
 [ext_resource type="Texture2D" uid="uid://mf14kl3v1mdu" path="res://Graphics/Levels/MikutsHome/BedSprite.png" id="4_ij4mu"]
 [ext_resource type="AudioStream" uid="uid://bwqacy6g34xrc" path="res://Music/Room_Ambient.wav" id="7_sk28o"]
