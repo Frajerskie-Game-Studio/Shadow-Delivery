@@ -1,0 +1,47 @@
+{
+	"name": "Lucjan",
+	"texture": "res://Graphics/Lucjan/LucjanDialogSprite.png",
+	"hp": 85,
+	"max_hp": 100,
+	"knocked_up": false,
+	"attack": {
+		"mele": {
+			"dmg": 45,
+			"wait_time": 3
+		},
+		"range": {
+			"dmg": 112.5,
+			"wait_time": 5
+		}
+	},
+	"skills": {
+		"Getting_ready": [
+			"Lucjan waits to build up power, to attack 1.5x stronger",
+			0,
+			0,
+			15,
+			"other",
+			"stronger",
+			1.5,
+			2
+		]
+	},
+	"equipment": {
+		"Mele_weapon": [
+			"Pickaxe",
+			"Iconic.",
+			45
+		],
+		"Range_weapon": [
+			"Cheap flintlock",
+			"A little old, but reliable",
+			60,
+			3
+		],
+		"Armor": [
+			"Dix armor",
+			"Freaky armor for freaky people",
+			16
+		]
+	}
+}

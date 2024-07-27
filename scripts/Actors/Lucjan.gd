@@ -298,7 +298,8 @@ func _on_wait_time_timeout():
 		set_style()
 		changing_style = false
 		if current_style == "mele":
-			animationState.travel("show_mele")
+			if Name != "Shadow":
+				animationState.travel("show_mele")
 	if current_style == "range":
 		animationState.travel("show_range")
 		
@@ -319,10 +320,13 @@ func _on_attack_menu_change_style():
 	timebar.value = 0
 	waiting = true
 	wait_timer.start()
+	
 	if current_style == "mele":
-		animationState.travel("hide_mele")
+		if Name != "Shadow":
+			animationState.travel("hide_mele")
 	else:
 		animationState.travel("hide_range")
+	
 		
 func revive(heal):
 	KnockedUp = false
