@@ -149,7 +149,7 @@ func get_drop():
 		drop = [Drop.common, Drop.rare]
 		drop[0].data.ammount = randomNumberGenerator.randi_range(1, 5)
 		drop[1].data[3] = randomNumberGenerator.randi_range(1, 3)
-	return null
+	return drop
 	
 func _on_area_2d_mouse_entered():
 	print("MOUSE ENTERED")

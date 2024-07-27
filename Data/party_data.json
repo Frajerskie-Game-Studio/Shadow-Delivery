@@ -16,14 +16,7 @@
 			"Very weak healing potion",
 			0,
 			20,
-			2
-		],
-		"revive": [
-			"Weak reviving potion",
-			0,
-			25,
-			1,
-			"revive"
+			1
 		]
 	},
 	"equipment": {

@@ -69,21 +69,30 @@ func load_entities(party, enemies):
 func _on_entity_ready_to_attack(attack, attacker):
 	possible_attack = attack
 	possible_attacker = attacker
-	if !possible_attack.has("heal"):
+	
+	
+	if !possible_attack.has("heal") and possible_attack.effect != "stronger":
+		#if sprawdzający czy nie jest używany item, jak nie jest to przeciwnicy są gotowi do oznaczenia (zaatakowania
 		for e in Enemies:
 			e.attack_danger = true
-	else:		
+	else:
+		#w przeciwnym wypadku oznaczani będą teammate'ci		
 		for p in Party:
+			#sprawdzenie czy używany item zawiera efekt revive, jeżeli tak, itemu będzie można użyć to na KnockedDown teammate'ach
 			if possible_attack.has("effect") and possible_attack.effect == "revive":
 				if p.KnockedUp:
 					p.can_be_checked = true
 			else:
+			#w przeciwnym wypadku item może zostać użyty na wszystkich teammate'ach
 				p.can_be_checked = true
-			
+	
+	#if obsługujący skille z efektami
 	if possible_attack.has("effect"):
+		#jeżeli skill zawiera atak all to wszyscy przeciwnicy są zaatakowani bez skillcheck'u
 		if possible_attack.effect == "all":
 			for e in Enemies:
 				e.all_attack()
+		#jeżeli zawiera efekt stronger, skill używany jest od razu na rzucającym, pomijając wszystkie inne fazy i od razu przechodząc do fazy czekania
 		elif possible_attack.effect == "stronger":
 			possible_attacker.start_attack(possible_attack)
 		
@@ -185,6 +194,7 @@ func end_battle():
 							if !has_res:
 								temp_entity.Resources[inside_loot.name] = {"ammount": inside_loot.data.ammount, "texture": inside_loot.data.texture}
 							$CanvasLayer/DropMenu/Panel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ItemList.add_item(inside_loot.name + " x" + str(inside_loot.data.ammount))
+	print(battle_drop)
 	temp_entity.save_data()
 	temp_entity.save_resources()
 	temp_entity.save_items()

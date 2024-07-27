@@ -104,9 +104,15 @@ func _process(delta):
 		$PlayerBody/Collision.disabled = true
 		$PlayerBody/LevelCollider.disabled = false
 
+#args = akcja do wykonania
+#dla itemu przechowuje cały obiekt itemu
+#dla skilla cały obiekt skilla
+#dla ataku null
 func _on_attack_menu_i_will_attack(args):
+	print(args)
 	ready_to_attack_bool = true
 	if args == null:
+		#------------------podstawowy atak zależny od stylu----------------------
 		if current_effect_working != null and current_effect_working == "stronger":
 			Attack[current_style].dmg = Attack[current_style].dmg * effect_multipler
 			effect_counter -= 1
@@ -116,14 +122,19 @@ func _on_attack_menu_i_will_attack(args):
 				effect_counter = 0
 		ready_to_attack.emit(Attack[current_style], self)
 	else:
+		#------------------używany jest item-----------------------
 		if len(args) == 2:
 			if len(args[0]) == 5:
+				#używany jest item z efektem (w naszym przypadku revive)
 				ready_to_attack.emit({"dmg": args[0][1], "wait_time": 3, "heal": args[0][2], "key": args[1], "effect": args[0][4]}, self)
 			else:
+				#używany jest item bez efektu (np red brew)
 				ready_to_attack.emit({"dmg": args[0][1], "wait_time": 3, "heal": args[0][2], "key": args[1]}, self)
 		else:
+			#-------------------------------------używany jest skill-----------------------------
 			var dmg = args[1]
 			if current_effect_working != null and current_effect_working == "stronger":
+				#-----------------------monitorowanie czy efekt (w naszym przypadkus stronger dalej powinien działać, jak nie to jest usuwany)------------------
 				dmg = dmg * effect_multipler
 				effect_counter -= 1
 				if effect_counter <= 0:
@@ -131,11 +142,15 @@ func _on_attack_menu_i_will_attack(args):
 					effect_multipler = null
 					effect_counter = 0
 			if len(args) == 6:
+				#-----------używany jest skill atakujący z jakimś efektem (w naszym przypadku all)
 				ready_to_attack.emit({"dmg": dmg, "wait_time": args[3], "effect": args[5]}, self)
 			elif len(args) == 8:
+				#--------------------używany jest skill nakładający efekt na rzucającego (w tym przypadku stronger)
+				#blokada użycia stronger, gdy efekt już działa (żeby się nie stackowały)
 				if args[5] != current_effect_working:
 					ready_to_attack.emit({"dmg": dmg, "wait_time": args[3], "effect": args[5], "effect_duration": args[7], "effect_multipler": args[6]}, self)
 			else:
+				#-----------------------------------------------użycie standardowego skilla atakującego (np strzał z pistoletu z większym dmg (co nie jest wprowadzone))
 				ready_to_attack.emit({"dmg": dmg, "wait_time": args[3]}, self)
 				
 func start_attack(attack):

@@ -1,7 +1,7 @@
 {
 	"name": "Michał",
 	"texture": "res://Graphics/Michal/SeconBaseCourierDialogSprite.png",
-	"hp": 85,
+	"hp": 55,
 	"max_hp": 100,
 	"knocked_up": false,
 	"attack": {
