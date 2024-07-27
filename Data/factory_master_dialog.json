@@ -1,0 +1,49 @@
+{
+	"currentDialogState": 0,
+	"dialogStates": [
+		"one"
+	],
+	"name": "Master",
+    "one": [
+        [
+			"Master",
+			"Sorry for making you wait...",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+        [
+			"Master",
+			"Is this our new alchemy courier",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+        [
+			"Lucjan",
+			"That's right",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+        [
+            "Mikut",
+            "Nice to meet you",
+            "res://Graphics/Mikut/MikutDialogSprite.png"
+        ],
+        [
+			"Master",
+			"Okay, here's your mining site localization, and here are some healing potions",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+        [
+			"Master",
+			"Hope you'll manage, Mikut",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+        [
+			"Mikut",
+			"Right...",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+        [
+			"Lucjan",
+			"I guess we should get going",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		]
+    ]
+}

@@ -20,6 +20,7 @@ func load_data(npc_name, npc_text, dialog_texture):
 	$MarginContainer/HBoxContainer/Panel/VBoxContainer/MarginContainer2/RichTextLabel.text = dialog_text
 	if dialog_texture == "":
 		$MarginContainer/HBoxContainer/TextureRect.custom_minimum_size = Vector2(0,150)
+		$MarginContainer/HBoxContainer/TextureRect.texture = null
 	else:
 		$MarginContainer/HBoxContainer/TextureRect.custom_minimum_size = Vector2(150,150)
 		$MarginContainer/HBoxContainer/TextureRect.texture = load(dialog_texture)

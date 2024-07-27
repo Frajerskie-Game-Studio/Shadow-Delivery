@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://kt4adedr64f4"]
+[gd_scene load_steps=9 format=3 uid="uid://kt4adedr64f4"]
 
 [ext_resource type="Texture2D" uid="uid://bgsle7jw130nx" path="res://Graphics/Levels/City/CityTileSetButBigger2.png" id="1_m5gac"]
 [ext_resource type="Script" path="res://scripts/Levels/Town.gd" id="1_nwc4h"]
 [ext_resource type="PackedScene" uid="uid://pqf5hws2cd2n" path="res://Scenes/dialog_pointer.tscn" id="2_u5ny3"]
 [ext_resource type="Texture2D" uid="uid://5tvxynge3cfu" path="res://Graphics/Levels/City/CityTileSet3.png" id="3_cr4v6"]
+[ext_resource type="AudioStream" uid="uid://b7abrot24aa6p" path="res://Music/Town_Soundtrack.wav" id="5_o6ls7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wa8cq"]
 texture = ExtResource("1_m5gac")
@@ -4008,6 +4009,10 @@ scale = Vector2(1, 4.24)
 
 [node name="ShopDoor" parent="Dialogs" instance=ExtResource("2_u5ny3")]
 position = Vector2(1025, -123)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_o6ls7")
+autoplay = true
 
 [connection signal="start_dialog" from="Dialogs/OutsidePlayerDoor" to="." method="_on_desk_dialog_start_dialog"]
 [connection signal="start_dialog" from="Dialogs/InvisibleWall" to="." method="_on_desk_dialog_start_dialog"]

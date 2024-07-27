@@ -21,7 +21,7 @@ var battlefield
 signal itemDone
 
 func _ready():
-	$CanvasLayer/Control/BackgroundAnimation.play("show_level")
+	play_switch_animation()
 	var text = FileAccess.get_file_as_string("res://Data/party_data.json")
 	var temp_data = JSON.parse_string(text)
 	data = temp_data
@@ -40,6 +40,10 @@ func _process(delta):
 				$Player.lock()
 				$Menu.visible = true
 				in_menu = true
+				
+func play_switch_animation():
+	$CanvasLayer.visible = true
+	$CanvasLayer/Control/BackgroundAnimation.play("show_level")
 
 #showing dialog window (signal from NPC)
 func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc, action):
@@ -148,6 +152,11 @@ func start_fight():
 	add_child(battlefield)
 	$Player.get_node("PlayerBody").get_node("Camera2D").enabled = false
 	battlefield.load_entities($Player.Party_Data.teammates_nodes, ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
+	
+func add_object_to_player(object, object_type):
+	$Player.add_something(object, object_type)
+	$Player.save_everything()
+	$Player.load_everything()
 	
 func end_battle():
 	battlefield.queue_free()

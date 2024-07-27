@@ -1,0 +1,97 @@
+{
+	"currentDialogState": 0,
+	"dialogStates": [
+		"one",
+		"two"
+	],
+	"name": "Lucjan",
+	"one": [
+		[
+			"Lucjan",
+			"Oh Mikut, you actually came",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"Not like I had any option",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"If you don't consider starving to death as an option",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Ha ha, you're right",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Michał, Krzychu, this is my friend from childhood I told you about.",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Krzychu",
+			"Nice to meet you. Looking forward for our cooperation!",
+			"res://Graphics/Krzychu/BaseCourierDialogSprite.png"
+		],
+		[
+			"Michał",
+			"Lucjan told us you know somethin bout alchemy",
+			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"Ah, yeah, I've been studying alchemy on Łudź Alchemy University",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Oh right bout this. Here are stuff you asked me for",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"***",
+			"Skeleton bone powder was added to your inventory",
+			""
+		],
+		[
+			"Michał",
+			"What do you need this for btw",
+			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"When you combine this with magnesium you can create simple explosive potion",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"I told you he's a real deal!",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"Not really. This could be made by any wanna be terrorist in basement",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"***",
+			"Press [Tab] to access menu and craft magnesium grenade",
+			""
+		]
+	],
+	"two": [
+		[
+			"Lucjan",
+			"So you're done with your alchemy mambo jumbo",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Michał",
+			"We should wait for Master and get our todays job",
+			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
+		]
+	]
+}

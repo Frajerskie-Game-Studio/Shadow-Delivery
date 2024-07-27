@@ -4,8 +4,8 @@
 		{
 			"path": "res://Scenes/Levels/MikutRoom.tscn",
 			"player_position": [
-				-695.820068359375,
-				-49.169506072998
+				-683.856994628906,
+				-61.0217399597168
 			],
 			"deleted_pointers": [
 				"BedDialog"
@@ -22,10 +22,12 @@
 		{
 			"path": "res://Scenes/Levels/Factory.tscn",
 			"player_position": [
-				0,
-				0
+				2475.58740234375,
+				19.450138092041
 			],
-			"deleted_pointers": []
+			"deleted_pointers": [
+				"MasterDialog"
+			]
 		}
 	]
 }

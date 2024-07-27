@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://btwspjfodubbu"]
 
 [ext_resource type="Script" path="res://Scripts/DialogHud.gd" id="1_raomp"]
-[ext_resource type="AudioStream" uid="uid://bnjf0leotsak0" path="res://Music/Sfx/Dialog_sfx.wav" id="2_dy6mu"]
+[ext_resource type="AudioStream" uid="uid://bbo8cjmmnu4e5" path="res://Music/Dialog_sfx2.wav" id="2_eanwb"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -64,5 +64,5 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 fit_content = true
 
-[node name="DialogAudio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_dy6mu")
+[node name="DialogAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_eanwb")

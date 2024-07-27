@@ -8,13 +8,6 @@
 		"res://Scenes/Actors/Lucjan.tscn"
 	],
 	"items": {
-		"dicker potion": [
-			"Potion that does nothing because ur being a dick",
-			0,
-			20,
-			1,
-			"no_effect_fuck_you"
-		],
 		"red brew": [
 			"Very weak healing potion",
 			0,
@@ -25,7 +18,7 @@
 			"Weak reviving potion",
 			0,
 			25,
-			43,
+			1,
 			"revive"
 		]
 	},

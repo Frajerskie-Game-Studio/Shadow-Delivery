@@ -1,10 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6ej43o5qgo20"]
+[gd_scene load_steps=13 format=3 uid="uid://c6ej43o5qgo20"]
 
 [ext_resource type="Script" path="res://scripts/Actors/NPC.gd" id="1_8lub0"]
 [ext_resource type="Texture2D" uid="uid://dmq71f8e1aqr7" path="res://icon.svg" id="2_cshfy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8awxa"]
-size = Vector2(205, 183)
+size = Vector2(51, 100.544)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vjr74"]
 animations = [{
@@ -20,23 +20,161 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_hfudv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_reuhu"]
+resource_name = "change_to_mele"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [40, 41, 42, 43, 44, 45, 47, 54, 55, 56, 57, 58, 59, 60]
+}
+
+[sub_resource type="Animation" id="Animation_mvf2k"]
+resource_name = "left_down"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_s7jyq"]
+resource_name = "left_up"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_3tldm"]
+resource_name = "mele_idle"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [60, 61, 62, 63]
+}
+
+[sub_resource type="Animation" id="Animation_eb62s"]
+resource_name = "right_down"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_aweju"]
+resource_name = "right_up"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [12, 13, 14, 15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mkmj3"]
+_data = {
+"RESET": SubResource("Animation_hfudv"),
+"change_to_mele": SubResource("Animation_reuhu"),
+"left_down": SubResource("Animation_mvf2k"),
+"left_up": SubResource("Animation_s7jyq"),
+"mele_idle": SubResource("Animation_3tldm"),
+"right_down": SubResource("Animation_eb62s"),
+"right_up": SubResource("Animation_aweju")
+}
+
 [node name="NPC" type="StaticBody2D"]
+scale = Vector2(1, 1.00454)
 disable_mode = 1
+collision_layer = 7
+collision_mask = 7
 input_pickable = true
 script = ExtResource("1_8lub0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_cshfy")
+position = Vector2(1, 0)
+scale = Vector2(3, 3)
+hframes = 90
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1.49322)
 shape = SubResource("RectangleShape2D_8awxa")
 
 [node name="FaggotIndicator" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(60, -81)
+position = Vector2(5, -80.6339)
 scale = Vector2(0.625, 0.625)
 sprite_frames = SubResource("SpriteFrames_vjr74")
 frame_progress = 0.95516
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mkmj3")
+}
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

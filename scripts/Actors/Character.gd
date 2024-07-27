@@ -67,6 +67,10 @@ func save_data():
 	file.store_string(JSON.stringify(temp_data, "\t", false))
 	file.close()
 
+func save_everything():
+	save_data()
+	save_items()
+	save_resources()
 
 func load_data():
 	var text = FileAccess.get_file_as_string(character_file_path)
@@ -91,7 +95,20 @@ func load_res():
 	var text = FileAccess.get_file_as_string("res://Data/party_resources.json")
 	var temp_data = JSON.parse_string(text)
 	Resources = temp_data
+	
+func load_everything():
+	load_data()
+	load_items()
+	load_res()
 
+
+func add_something(object, object_type):
+	if object_type == "item":
+		Items.append(object)
+	elif object_type == "resource":
+		Resources[object.keys()[0]] = object[object.keys()[0]] 
+	elif object_type == "equipment":
+		Equipment.append(object)
 
 func _ready():
 	print("READY")

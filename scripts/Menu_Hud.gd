@@ -352,7 +352,6 @@ func _on_recipes_list_item_clicked(index, at_position, mouse_button_index):
 
 
 func _on_craft_button_pressed():
-
 	#usuwanie resourców z lokalnej ZMiennej partyResource
 	for c in temp_recipe.components:
 		PartyResources[c].ammount -= 1

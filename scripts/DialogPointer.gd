@@ -44,6 +44,8 @@ func _on_body_entered(body):
 		if !Clickable:
 			start_dialog.emit(Path, self, Action)
 
+func emit_signal_via_code():
+	start_dialog.emit(Path, self, Action)
 
 func _on_mouse_entered():
 	if Clickable and !DuringDialog:

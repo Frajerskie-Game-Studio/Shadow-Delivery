@@ -13,9 +13,13 @@ func load_data(data):
 
 func _ready():	
 	get_parent().switch_zoom(3.13,3.13)
-	#$Dialogs/DeskDialog.load_data("res://Data/desk.json", true, false, null, true)
-	#$Dialogs/BedDialog.load_data("res://Data/wake_up_dialog.json", false, true, null, false)
-	#$Dialogs/DoorDialog.load_data("res://Data/door_dialog.json", true, false, get_parent().switch_level, false)
+	var resource = {"skeleton_powder": {
+		"ammount": 45,
+		"texture": ""
+	}}
+	$Dialogs/NPC.load_data("res://Data/factory_lucjan_dialog.json", "res://Graphics/Lucjan/LucjanSpriteSheet.png", 92, [get_parent().add_object_to_player.bind(resource, "resource"), dix], false)
+	$PartyMembers/AnimationPlayer.play("Idle")
+	$Dialogs/MasterDialog.load_data("res://Data/factory_master_dialog.json", false, true, get_parent().switch_level, false)
 
 func _process(delta):
 	pass
@@ -28,4 +32,14 @@ func _on_desk_dialog_start_dialog(path, d, action):
 
 func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc, action):
 	start_npc_dialog.emit(npc_name, dialog_dict, dialog_npc, action)
+	
+func dix():
+	get_parent().play_switch_animation()
+	$Master.visible = true
+	$Dialogs/MasterDialog.visible = true
+	$Dialogs/MasterDialog.monitoring = true
+	$Dialogs/MasterDialog.emit_signal_via_code()
+	#tutaj będzie dodanie potek leczących
+	#var item = {}
+	#get_parent().add_object_to_player()
 
