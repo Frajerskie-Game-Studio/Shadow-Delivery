@@ -28,6 +28,8 @@ func _ready():
 	party_items = temp_data["items"]
 	$Menu.refresh_data()
 	load_level()
+	
+	start_fight()
 
 func _process(delta):
 	if !in_dialog and !$Player.in_battle:
@@ -101,7 +103,7 @@ func _on_canvas_layer_item_used(current_item, entity_name):
 	
 	var file = FileAccess.open("res://Data/party_data.json", FileAccess.WRITE)
 	
-	file.store_string(JSON.stringify(data, "\t"))
+	file.store_string(JSON.stringify(data, "\t", false))
 	file.close()
 	itemDone.emit()
 	for child in get_children():
@@ -189,8 +191,7 @@ func load_level():
 	CurrentLevelInstance.start_npc_dialog.connect(_on_npc_show_dialog)
 	
 	$Player.get_node("PlayerBody").position = Vector2(LevelsData[CurrentLevel].player_position[0],LevelsData[CurrentLevel].player_position[1])
-	
-	start_fight()
+
 
 func save_level_data(switching_levels):
 	var file = FileAccess.open("res://Data/level_saves.json", FileAccess.WRITE)

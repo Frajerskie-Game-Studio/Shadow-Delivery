@@ -15,7 +15,7 @@ var dialogStates
 #saving data to json file
 func writeToJson():
 	var file = FileAccess.open("res://Data/npc_test.json", FileAccess.WRITE)
-	file.store_string(JSON.stringify(npc_data, "\t"))
+	file.store_string(JSON.stringify(npc_data, "\t", false))
 	file.close()
 	
 

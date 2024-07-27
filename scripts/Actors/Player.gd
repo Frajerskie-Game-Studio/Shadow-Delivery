@@ -25,8 +25,6 @@ func _ready():
 		$AttackMenu.visible = false
 
 
-
-
 func unlock():
 	$PlayerBody.unlock_movement()
 
@@ -38,6 +36,6 @@ func lock():
 func reload_menu():
 	$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
 
-		
+
 func get_animation_tree():
 	return $AnimationTree

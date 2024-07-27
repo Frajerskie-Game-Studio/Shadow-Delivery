@@ -67,17 +67,20 @@ func load_entities(party, enemies):
 		Enemies[index].start_attacking_process()
 
 func _on_entity_ready_to_attack(attack, attacker):
+	if(attack.has("effect")):
+		return
+	
 	possible_attack = attack
 	possible_attacker = attacker
-	if !possible_attack.has("heal"):
+	if !possible_attack.has("heal") and !possible_attack.effect == "stronger":
 		for e in Enemies:
 			e.attack_danger = true
-	else:		
+	else:
 		for p in Party:
 			if possible_attack.has("effect") and possible_attack.effect == "revive":
 				if p.KnockedUp:
 					p.can_be_checked = true
-			else:
+			elif p.KnockedUp == false:
 				p.can_be_checked = true
 			
 	if possible_attack.has("effect"):
@@ -169,7 +172,7 @@ func end_battle():
 						if inside_loot.type == "item":
 							var has_item = false
 							for item in temp_entity.Items:
-								if item == inside_loot.name:
+								if item.name == inside_loot.name:
 									temp_entity.Items[item][3] += inside_loot.data[3]
 									has_item = true
 							if !has_item:

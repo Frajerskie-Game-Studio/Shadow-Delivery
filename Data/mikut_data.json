@@ -4,42 +4,52 @@
 	"hp": 100,
 	"max_hp": 100,
 	"knocked_up": false,
-	"attack": {
-		"melee": {
+	"attacks": [
+		{
+			"type": "melee",
 			"damage": 45,
 			"wait_time": 3
 		},
-		"range": {
+		{
+			"type": "range",
 			"damage": 45,
 			"wait_time": 5
 		}
-	},
-	"skills": {
-		"Chemical_practice": [
-			"Potion works on all enemies",
-			60,
-			0,
-			10,
-			"range",
-			"all"
-		]
-	},
+	],
+	"skills": [
+		{
+			"name": "Chemical practice",
+			"description": "Potion works on all enemies",
+			"damage": 60,
+			"heal": 0,
+			"wait_time": 10,
+			"type": "range",
+			"effect": "all"
+		}
+	],
 	"equipment": {
-		"Mele_weapon": [
-			"Simple hatchet",
-			"simple and practical",
-			30
-		],
-		"Range_weapon": [
-			"Magnesium grenade",
-			"Crude design, explosive effect",
-			50,
-			0
-		],
-		"Armor": [
-			"Penis armor",
-			"Freaky armor for freaky people",
-			16
-		]
+		"Mele_weapon": {
+			"name": "Simple hatchet",
+			"description": "simple and practical",
+			"icon_path": "",
+			"type": "Mele_weapon",
+			"damage": 30,
+			"ammo": "none"
+		},
+		"Range_weapon": {
+			"name": "Magnesium grenade",
+			"description": "Crude design, explosive effect",
+			"icon_path": "",
+			"type": "Range_weapon",
+			"damage": 50,
+			"ammo": 2
+		},
+		"Armor": {
+			"name": "Penis armor",
+			"description": "Freaky armor for freaky people",
+			"icon_path": "",
+			"type": "Armor",
+			"armor": 16
+		}
 	}
 }

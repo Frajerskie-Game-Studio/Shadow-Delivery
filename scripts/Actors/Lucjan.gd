@@ -22,11 +22,10 @@ func _ready():
 	reload_menu()
 	if in_battle:
 		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
-		$AttackMenu.visible =true
+		$AttackMenu.visible = true
 		if KnockedUp:
 			can_be_attacked = false
 			animationState.travel("knocked_down")
-
 		elif current_style == "melee":
 			animationState.travel("mele_idle")
 		elif current_style == "range":
@@ -106,23 +105,28 @@ func _process(delta):
 
 func _on_attack_menu_i_will_attack(args):
 	ready_to_attack_bool = true
+	var attack_index = 0
 	if args == null:
 		if current_effect_working != null and current_effect_working == "stronger":
-			Attack[current_style].damage = Attack[current_style].damage * effect_multipler
+			for attack in Attacks:
+				if(attack.type == current_style):
+					attack_index = Attacks.find(attack)
+			
+			Attacks[attack_index].damage = Attacks[attack_index].damage * effect_multipler
 			effect_counter -= 1
 			if effect_counter <= 0:
 				current_effect_working = null
 				effect_multipler = null
 				effect_counter = 0
-		ready_to_attack.emit(Attack[current_style], self)
+		ready_to_attack.emit(Attacks[attack_index], self)
 	else:
-		if len(args) == 2:
-			if len(args[0]) == 5:
-				ready_to_attack.emit({"name": args[1].name, "damage": args[1].damage, "wait_time": 3, "heal": args[1].heal, "key": args[1].name, "effects": args[1].effects}, self)
+		if args.has("effect"):
+			if args.effect == "revive":
+				ready_to_attack.emit({"name": args.name, "damage": args.damage, "wait_time": 3, "heal": args.heal, "key": args.name, "effects": args.effect}, self)
 			else:
-				ready_to_attack.emit({"name": args[1].name, "damage": args[1].damage, "wait_time": 3, "heal": args[1].heal, "key": args[1].name, "effects": []},  self)
+				ready_to_attack.emit({"name": args.name, "damage": args.damage, "wait_time": 3, "heal": args.heal, "key": args.name, "effects": []},  self)
 		else:
-			var damage = args[1]
+			var damage = args.damage
 			if current_effect_working != null and current_effect_working == "stronger":
 				damage = damage * effect_multipler
 				effect_counter -= 1
@@ -130,14 +134,14 @@ func _on_attack_menu_i_will_attack(args):
 					current_effect_working = null
 					effect_multipler = null
 					effect_counter = 0
-			if len(args) == 6:
-				ready_to_attack.emit({"damage": damage, "wait_time": args[3], "effect": args[5]}, self)
-			elif len(args) == 8:
-				if args[5] != current_effect_working:
-					ready_to_attack.emit({"damage": damage, "wait_time": args[3], "effect": args[5], "effect_duration": args[7], "effect_multipler": args[6]}, self)
+			if len(args) == 8:
+				ready_to_attack.emit({"damage": damage, "wait_time": args.wait_time, "effect": args.effect}, self)
+			elif len(args) == 9:
+				if args.effect != current_effect_working:
+					ready_to_attack.emit({"damage": damage, "wait_time": args.wait_time, "effect": args.effect, "effect_duration": args.turn_duration, "effect_multipler": args.attack_multiplier}, self)
 			else:
-				ready_to_attack.emit({"damage": damage, "wait_time": args[3]}, self)
-				
+				ready_to_attack.emit({"damage": damage, "wait_time": args.wait_time}, self)
+
 func start_attack(attack):
 	print("ATTACKING")
 	ready_to_attack_bool = false

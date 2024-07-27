@@ -15,9 +15,16 @@
 			"damage": 0,
 			"heal": 20,
 			"amount": 1,
-			"effects": [
-				"no_effect_fuck_you"
-			]
+			"effect": "no_effect_fuck_you"
+		},
+		{
+			"name": "Red brew",
+			"description": "Very weak healing potion",
+			"icon_path": "res://Graphics/Items/healing_potion.png",
+			"damage": 0,
+			"heal": 20,
+			"amount": 1,
+			"effect": ""
 		},
 		{
 			"name": "Revive",
@@ -25,20 +32,17 @@
 			"icon_path": "",
 			"damage": 0,
 			"heal": 25,
-			"amount": 41,
-			"effects": [
-				"revive"
-			]
+			"amount": 42,
+			"effect": "revive"
 		}
 	],
 	"equipment": [
 		{
-			"name": "Dix pistol",
-			"description": "A little old, but reliable",
+			"name": "Dixer uniform",
+			"description": "Average factory outfit for couriers",
 			"icon_path": "",
-			"type": "Range_weapon",
-			"damage": 60,
-			"ammunition": 6
+			"type": "Armor",
+			"armor": 15
 		},
 		{
 			"name": "Fuck u pistol",
@@ -49,11 +53,12 @@
 			"ammo": 2
 		},
 		{
-			"name": "Dixer uniform",
-			"description": "Average factory outfit for couriers",
+			"name": "Dix pistol",
+			"description": "A little old, but reliable",
 			"icon_path": "",
-			"type": "Armor",
-			"armor": 15
+			"type": "Range_weapon",
+			"damage": 60,
+			"ammo": 6
 		}
 	]
 }

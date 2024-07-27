@@ -1,47 +1,57 @@
 {
 	"name": "Lucjan",
 	"texture": "res://Graphics/Lucjan/LucjanDialogSprite.png",
-	"hp": 100,
+	"hp": 20,
 	"max_hp": 100,
 	"knocked_up": false,
-	"attack": {
-		"melee": {
+	"attacks": [
+		{
+			"type": "melee",
 			"damage": 45,
 			"wait_time": 3
 		},
-		"range": {
+		{
+			"type": "range",
 			"damage": 50,
 			"wait_time": 5
 		}
-	},
-	"skills": {
-		"Getting_ready": [
-			"Lucjan waits to build up power, to attack 1.5x stronger",
-			0,
-			0,
-			15,
-			"other",
-			"stronger",
-			1.5,
-			2
-		]
-	},
+	],
+	"skills": [
+		{
+			"name": "Getting ready",
+			"description": "Lucjan waits to build up power, to attack 1.5x stronger",
+			"damage": 0,
+			"heal": 0,
+			"wait_time": 15,
+			"type": "other",
+			"effect": "stronger",
+			"attack_multiplier": 1.5,
+			"turn_duration": 2
+		}
+	],
 	"equipment": {
-		"Mele_weapon": [
-			"Pickaxe",
-			"Iconic.",
-			45
-		],
-		"Range_weapon": [
-			"Cheap flintlock",
-			"A little old, but reliable",
-			60,
-			3
-		],
-		"Armor": [
-			"Dix armor",
-			"Freaky armor for freaky people",
-			16
-		]
+		"Mele_weapon": {
+			"name": "Pickaxe",
+			"description": "Iconic",
+			"icon_path": "",
+			"type": "Mele_weapon",
+			"damage": 45,
+			"ammo": "none"
+		},
+		"Range_weapon": {
+			"name": "Cheap flintlock",
+			"description": "A little old, but reliable",
+			"icon_path": "",
+			"type": "Range_weapon",
+			"damage": 60,
+			"ammo": 2
+		},
+		"Armor": {
+			"name": "Dix armor",
+			"description": "Freaky armor for freaky people",
+			"icon_path": "",
+			"type": "armor",
+			"armor": 16
+		}
 	}
 }

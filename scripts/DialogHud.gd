@@ -44,7 +44,6 @@ func _process(delta):
 
 func play_dialog_sound():
 	var current_time = Time.get_ticks_msec()
-	print_debug(current_time - last_dialog_sound)
 	
 	if(current_time - last_dialog_sound >= dialog_sound_interval):
 		$DialogAudio.play()
