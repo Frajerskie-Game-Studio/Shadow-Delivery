@@ -1,0 +1,36 @@
+{
+	"name": "Michał",
+	"texture": "res://Graphics/Michal/SeconBaseCourierDialogSprite.png",
+	"hp": 100,
+	"max_hp": 100,
+	"knocked_up": false,
+	"attack": {
+		"mele": {
+			"dmg": 45,
+			"wait_time": 3
+		},
+		"range": {
+			"dmg": 45,
+			"wait_time": 5
+		}
+	},
+	"skills": {},
+	"equipment": {
+		"Mele_weapon": [
+			"Scyzoryk",
+			"Tak na mnie wołają",
+			30
+		],
+		"Range_weapon": [
+			"Michals company flintlock",
+			"Same knife give to all alchemy couriers...",
+			50,
+			1
+		],
+		"Armor": [
+			"Penis armor",
+			"Freaky armor for freaky people",
+			16
+		]
+	}
+}

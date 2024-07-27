@@ -9,6 +9,7 @@ var MaxHp
 var Attack
 var Skills
 var Drop
+var EnemyTexture
 
 var attack_danger = false
 var on_cursor = false
@@ -38,6 +39,10 @@ func start_attacking_process():
 func _ready():
 	HealthBar.max_value = MaxHp
 	HealthBar.value = MaxHp
+	$Sprite2D.texture = load(EnemyTexture)
+	$Sprite2D.hframes = 12
+	$AnimationPlayer.play("idle")
+	
 
 func _process(delta):	
 	pass
@@ -55,6 +60,7 @@ func _physics_process(delta):
 		if can_attack and !waiting:
 			$CheckSprite.visible = false
 			WaiTimeBar.visible =false
+			$AnimationPlayer.play("attack")
 			attack_entity()
 		elif !can_attack and waiting and !wait_timer.is_paused():
 			WaiTimeBar.visible = true
@@ -99,8 +105,7 @@ func get_dmg(attack):
 	HealthBar.value = Hp
 	wait_timer.set_paused(false)
 	attack_danger = false
-	if Hp <= 0:
-		dying.emit(self)
+	$AnimationPlayer.play("dmg")
 	
 
 func _on_wait_timer_timeout():
@@ -160,3 +165,13 @@ func _on_area_2d_body_entered(body):
 func _on_area_2d_body_exited(body):
 	if body.name == "RangeSKillCheck":
 		on_crossair = false
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "attack":
+		$AnimationPlayer.play("idle")
+	elif anim_name == "dmg":
+		if Hp <= 0:
+			dying.emit(self) 
+		else:
+			$AnimationPlayer.play("idle")

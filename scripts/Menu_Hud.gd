@@ -261,38 +261,59 @@ func _on_self_equipment_item_activated(index):
 func _on_equipment_item_activated(index):
 	$AudioStreamPlayer2D.stream = load("res://Music/Sfx/Dressing_sfx.wav")
 	$AudioStreamPlayer2D.play()
+	
+	#party eq
 	var to_change_key = $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.get_item_text(index) 
+	#player eq
 	var to_be_changed = $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.get_item_text(Eq_to_be_changed_index) 
+	
 	var to_change #party eq
 	var to_be_changed_item #person eq
-
+	
+	#------------------------------------------------------przenoszenie z party eq to personeq -----------------------------
 	if to_change_key != " ":
 		to_change = PartyEq[to_change_key.replace(" ", "_")][1]
+		#Item z person eq
 		to_be_changed_item = PersonEq[to_be_changed.split(":")[0]]
 
 		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_text(Eq_to_be_changed_index, to_change + ": " + to_change_key.replace("_", " "))
+		
+		#ifd range weapon
 		if len(PartyEq[to_change_key.replace(" ", "_")]) > 3:
 			PersonEq[to_change] = [to_change_key, PartyEq[to_change_key.replace(" ", "_")][0], PartyEq[to_change_key.replace(" ", "_")][2], PartyEq[to_change_key.replace(" ", "_")][3]]
 		else:
 			PersonEq[to_change] = [to_change_key, PartyEq[to_change_key.replace(" ", "_")][0], PartyEq[to_change_key.replace(" ", "_")][2]]
+	#Zdjęcie przedmiotu z eq obiektu i przeniesienie do partyeq
 	else:
+		#pobieranie itemu do zdjęcia
 		to_be_changed_item = PersonEq[to_be_changed.split(":")[0]]
 		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_text(Eq_to_be_changed_index, to_be_changed.split(":")[0] + ": ")
+		#Is range weapon
 		if len(to_be_changed_item) > 3:
+			#Stworzenie sztucznego itemu bez statystyk
 			PersonEq[to_be_changed.split(":")[0]] = ["", "", 0, 0]
 		else:
+			#Stworzenie sztucznego itemu bez statystyk
 			PersonEq[to_be_changed.split(":")[0]] = ["", "", 0]
+	#ustawienie nowego itemu w party eq (wizualne)(
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.set_item_text(index, to_be_changed)
-	
+	#----------------------------------------------------------------------------------
+	#usunięcie z party eq podmienionego itemu
 	PartyEq.erase(to_change_key.replace(" ", "_"))
 	
+	
+	#-----------------------------------------------Dodawanie do party eq kodowe-------------------------------------------------
+	#sprawdzenie czy item jest podmieniany,a nie był zdejmowany
 	if to_be_changed != "Armor: " and to_be_changed != "Mele_weapon: " and to_be_changed != "Range_weapon: ":
 		print("TEN DZIWNY KURWA IF")
+		#sprawdzanie czy range weapon
 		if len(to_be_changed_item) > 3:
+			#zdobycie klucza który wygląda np "Mele weapon: Magnesium grenade"
+			#podmianka przedmiotu z person eq do party eq, poprzez stworzenie odpowiedniego obiektu
 			PartyEq[to_be_changed.split(": ")[1].replace(" ", "_")] =  [to_be_changed_item[1], to_be_changed.split(":")[0], to_be_changed_item[2], to_be_changed_item[3]]
 		else:
 			PartyEq[to_be_changed.split(": ")[1].replace(" ", "_")] =  [to_be_changed_item[1], to_be_changed.split(":")[0], to_be_changed_item[2]]
-
+	
 	save_data()
 	refresh_data()
 	
