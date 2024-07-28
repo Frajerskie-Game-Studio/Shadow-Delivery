@@ -36,7 +36,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_reuhu"]
-resource_name = "change_to_mele"
+resource_name = "change_to_melee"
 length = 1.4
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -86,7 +86,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_3tldm"]
-resource_name = "mele_idle"
+resource_name = "melee_idle"
 length = 1.8
 loop_mode = 1
 tracks/0/type = "value"
@@ -139,10 +139,10 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mkmj3"]
 _data = {
 "RESET": SubResource("Animation_hfudv"),
-"change_to_mele": SubResource("Animation_reuhu"),
+"change_to_melee": SubResource("Animation_reuhu"),
 "left_down": SubResource("Animation_mvf2k"),
 "left_up": SubResource("Animation_s7jyq"),
-"mele_idle": SubResource("Animation_3tldm"),
+"melee_idle": SubResource("Animation_3tldm"),
 "right_down": SubResource("Animation_eb62s"),
 "right_up": SubResource("Animation_aweju")
 }

@@ -9,7 +9,9 @@ var possible_target
 var possible_effect
 
 var battle_drop = []
+
 signal end_whole_battle
+
 @onready var Positions = {
 	"party": [
 		$Party_Second_Position,
@@ -67,43 +69,27 @@ func load_entities(party, enemies):
 		Enemies[index].start_attacking_process()
 
 func _on_entity_ready_to_attack(attack, attacker):
+	
 	possible_attack = attack
 	possible_attacker = attacker
 	
-	
-	#if !possible_attack.has("heal"):
-		##if sprawdzający czy nie jest używany item, jak nie jest to przeciwnicy są gotowi do oznaczenia (zaatakowania
-		#for e in Enemies:
-			#e.attack_danger = true
-	#
-	if possible_attack.has("heal"):
-		#w przeciwnym wypadku oznaczani będą teammate'ci		
-		for p in Party:
-			#sprawdzenie czy używany item zawiera efekt revive, jeżeli tak, itemu będzie można użyć to na KnockedDown teammate'ach
-			if possible_attack.has("effect") and possible_attack.effect == "revive":
-				if p.KnockedUp:
+	if(!possible_attack.has("effect")):
+		for enemy in Enemies:
+			enemy.attack_danger = true
+	else:
+		if(possible_attack.has("heal")):
+			for p in Party:
+				if(possible_attack.effect == "revive"):
+					if(p.KnockedUp):
+						p.can_be_checked = true
+				elif(!p.KnockedUp and possible_attack.effect != "stronger"):
 					p.can_be_checked = true
-			elif !p.KnockedUp:
-			#w przeciwnym wypadku item może zostać użyty na wszystkich teammate'ach
-				p.can_be_checked = true
-				
-	else:	
-		#if obsługujący skille z efektami
-		if possible_attack.has("effect"):
-			#jeżeli skill zawiera atak all to wszyscy przeciwnicy są zaatakowani bez skillcheck'u
-			if possible_attack.effect == "all":
-				for e in Enemies:
-					e.all_attack()
-			#jeżeli zawiera efekt stronger, skill używany jest od razu na rzucającym, pomijając wszystkie inne fazy i od razu przechodząc do fazy czekania
-			elif possible_attack.effect == "stronger":
-				possible_attacker.start_attack(possible_attack)
-			else:
-				for e in Enemies:
-					e.attack_danger = true
-		else:
-			for e in Enemies:
-				e.attack_danger = true
-		
+		elif(possible_attack.effect == "all"):
+			for enemy in Enemies:
+				enemy.all_attack()
+		elif(possible_attack.effect == "stronger"):
+			possible_attacker.start_attack(possible_attack)
+
 
 func _on_reset_ready_to_attack():
 	if possible_attacker != null and !possible_attacker.KnockedUp:
@@ -121,8 +107,8 @@ func _on_reset_ready_to_attack():
 		p.can_be_checked = false
 		p.on_mouse_cursor = false
 		p.unshow_checksprite()
-		
-		
+
+
 func _on_entity_being_attacked(entity):
 	print("ATTACKED")
 	print(possible_attacker)
@@ -130,11 +116,10 @@ func _on_entity_being_attacked(entity):
 	for e in Enemies:
 		e.attack_danger = false
 	possible_target = entity
-	print(possible_attacker)
 	possible_attacker.start_attack(possible_attack)
 	
 func _on_attacking_entity(attack):
-	possible_target.get_dmg(attack)
+	possible_target.get_damage(attack)
 	possible_attacker._on_attack_done()
 	
 func get_can_be_attack_entities():
@@ -155,7 +140,7 @@ func _on_item_being_used(entity):
 		p.can_be_checked = false
 
 func _on_enemy_attacking(target, attack):
-	target.get_dmg(attack)
+	target.get_damage(attack)
 	
 func _on_enemy_dying(entity):
 	for e in Enemies:
@@ -172,54 +157,32 @@ func end_battle():
 	temp_entity.load_res()
 	for loot in battle_drop:
 		if loot != null:
-			if typeof(loot) != TYPE_ARRAY:
-				if loot.type == "item":
-					var has_item = false
-					for item in temp_entity.Items:
-						if item == loot.name:
-							temp_entity.Items[item][3] += loot.data[3]
-							has_item = true
-					if !has_item:
-						temp_entity.Items[loot.name] = {loot.name :loot.data}
-						$CanvasLayer/DropMenu/Panel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ItemList.add_item(loot.name + " x" + str(loot.data[3]))
-				elif loot.type == "resource":
-					var has_res = false
-					for res in temp_entity.Resources:
-						if res == loot.name:
-							temp_entity.Resources[res].ammount += loot.data.ammount
-							has_res = true
-					if !has_res:
-						temp_entity.Resources[loot.name] = {"ammount": loot.data.ammount, "texture": loot.data.texture}
-					$CanvasLayer/DropMenu/Panel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ItemList.add_item(loot.name + " x" + str(loot.data.ammount))
-			else:
-				for inside_loot in loot:
-					if inside_loot != null:
-						if inside_loot.type == "item":
-							var has_item = false
-							for item in temp_entity.Items:
-								if item == inside_loot.name:
-									temp_entity.Items[item][3] += inside_loot.data[3]
-									has_item = true
-							if !has_item:
-								temp_entity.Items[inside_loot.name] = {inside_loot.name :inside_loot.data}
-							$CanvasLayer/DropMenu/Panel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ItemList.add_item(inside_loot.name + " x" + str(inside_loot.data[3]))
-						elif inside_loot.type == "resource":
-							var has_res = false
-							for res in temp_entity.Resources:
-								if res == inside_loot.name:
-									temp_entity.Resources[res].ammount += inside_loot.data.ammount
-									has_res = true
-							if !has_res:
-								temp_entity.Resources[inside_loot.name] = {"ammount": inside_loot.data.ammount, "texture": inside_loot.data.texture}
-							$CanvasLayer/DropMenu/Panel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ItemList.add_item(inside_loot.name + " x" + str(inside_loot.data.ammount))
-	print(battle_drop)
+			if loot.type == "item":
+				var has_item = false
+				for i in range(len(temp_entity.Items)):
+					if(temp_entity.Items[i].name == loot.name):
+						temp_entity.Items[i].amount += loot.amount
+						has_item = true
+				if !has_item:
+					temp_entity.Items.append(loot)
+				$CanvasLayer/DropMenu/Panel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ItemList.add_item(loot.name + " x" + str(loot.amount))
+			elif loot.type == "resource":
+				var has_res = false
+				for res in temp_entity.Resources:
+					if res == loot.name:
+						temp_entity.Resources[loot.name].amount += loot.amount
+						has_res = true
+				if !has_res:
+					temp_entity.Resources[loot.name] = {"amount": loot.amount, "texture": loot.texture}
+				$CanvasLayer/DropMenu/Panel/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ItemList.add_item(loot.name + " x" + str(loot.amount))
+
 	temp_entity.save_data()
 	temp_entity.save_resources()
 	temp_entity.save_items()
-	temp_entity.load_data()
-	temp_entity.load_items()
-	temp_entity.load_res()
 	for t in Party:
+		t.load_data()
+		t.load_res()
+		t.load_items()
 		t.save_data()
 		t.save_resources()
 		t.save_items()

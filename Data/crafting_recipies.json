@@ -33,8 +33,8 @@
         "type": "item",
         "texture": "",
         "data": [
-            "red brew",
-            "Freaky armor for freaky people",
+            "Red brew",
+            "Weak healing potion",
             0,
             20
         ]
@@ -47,7 +47,7 @@
         "type": "item",
         "texture": "",
         "data": [
-            "dicker potion",
+            "Dicker potion",
             "Potion that does nothing because ur being a dick",
             0,
             20,
@@ -62,7 +62,7 @@
         "type": "item",
         "texture": "",
         "data": [
-            "revive",
+            "Revive",
             "Weak reviving potion",
             0,
             25,

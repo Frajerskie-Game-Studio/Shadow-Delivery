@@ -6,7 +6,7 @@ var Hp
 var MaxHp
 var Skills
 var Equipment
-var Attack
+var Attacks
 var Items
 var Resources
 var Party_Data
@@ -26,7 +26,7 @@ var changing_style = false
 var can_be_checked = false
 var on_mouse_cursor = false
 var selected_attack
-var current_style = "mele"
+var current_style = "melee"
 
 
 signal ready_to_attack()
@@ -60,7 +60,7 @@ func save_data():
 		"hp": Hp,
 		"max_hp": MaxHp,
 		"knocked_up": KnockedUp,
-		"attack": Attack,
+		"attacks": Attacks,
 		"skills": Skills,
 		"equipment": Equipment
 	}
@@ -75,14 +75,14 @@ func save_everything():
 func load_data():
 	var text = FileAccess.get_file_as_string(character_file_path)
 	var temp_data = JSON.parse_string(text)
-	Name = temp_data["name"]
-	Hp = temp_data["hp"]
-	MaxHp = temp_data["max_hp"]
-	Skills = temp_data["skills"]
-	Equipment = temp_data["equipment"]
-	Attack = temp_data["attack"]
-	KnockedUp = temp_data["knocked_up"]
-	ProfileTexture = temp_data["texture"]
+	Name = temp_data.name
+	Hp = temp_data.hp
+	MaxHp = temp_data.max_hp
+	Skills = temp_data.skills
+	Equipment = temp_data.equipment
+	Attacks = temp_data.attacks
+	KnockedUp = temp_data.knocked_up
+	ProfileTexture = temp_data.texture
 
 
 func load_items():
@@ -119,15 +119,15 @@ func _ready():
 
 
 func get_ammo():
-	return Equipment.Range_weapon[3]
+	return Equipment.Range_weapon.ammo
 
 
 func decrement_ammo():
-	Equipment.Range_weapon[3] -= 1
+	Equipment.Range_weapon.ammo -= 1
 
 
 func add_ammo():
-	Equipment.Range_weapon[3] += 1
+	Equipment.Range_weapon.ammo += 1
 
 
 func get_style():
@@ -135,13 +135,13 @@ func get_style():
 
 
 func set_style():
-	if current_style == "mele":
+	if current_style == "melee":
 		current_style = "range"
 	else:
-		current_style = "mele"
+		current_style = "melee"
 
 func get_attack():
-	return Attack
+	return Attacks
 
 
 func get_entity_name():

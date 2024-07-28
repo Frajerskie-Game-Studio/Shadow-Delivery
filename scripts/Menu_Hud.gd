@@ -26,7 +26,7 @@ func load_profiles():
 		var temp_data = JSON.parse_string(text)
 		var new_profile = profile.instantiate()
 		
-		new_profile.load_data(temp_data.name, temp_data.hp, temp_data.max_hp, temp_data.texture)
+		new_profile.load_data(temp_data.name, temp_data.hp, temp_data.max_hp, temp_data.texture, temp_data.knocked_up)
 		new_profile.selectTeammate.connect(_on_entityChossed)
 		
 		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.add_child(new_profile)
@@ -40,10 +40,10 @@ func refresh_data():
 	var temp_res = JSON.parse_string(res_text)
 	var temp_craft = JSON.parse_string(craft_text)
 	
-	Items = temp_data["items"]
-	Teammates = temp_data["teammates"]
-	TeammatesNodes = temp_data["teammates_nodes"]
-	PartyEq = temp_data["equipment"]
+	Items = temp_data.items
+	Teammates = temp_data.teammates
+	TeammatesNodes = temp_data.teammates_nodes
+	PartyEq = temp_data.equipment
 	PartyResources = temp_res
 	CraftingRecipies = temp_craft
 	add_items()
@@ -65,19 +65,15 @@ func save_data():
 
 func add_items():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList.clear()
-	for key in Items:
-		
-		var icon = null
-		if(Items[str(key)].size() > 5):
-			icon = load(Items[str(key)][5])
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList.add_item(str(key).replace("_", " "), icon)
+	for item in Items:
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList.add_item(item.name, load(item.icon_path))
 
 
 func add_resources():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources/ScrollContainer/VBoxContainer/ResourcesList.clear()
 	for key in PartyResources:
 		var temp_resource = PartyResources[key]
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources/ScrollContainer/VBoxContainer/ResourcesList.add_item(str(key).replace("_", " ") + " " + str(PartyResources[key].ammount) + "x")
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources/ScrollContainer/VBoxContainer/ResourcesList.add_item(str(key) + " " + str(PartyResources[key].amount) + "x")
 
 func add_recipies():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Recipes/ScrollContainer/VBoxContainer/RecipesList.clear()
@@ -116,13 +112,13 @@ func unshowCards():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top/Output/TextureRect.texture = null
 
 func _on_item_list_item_clicked(index, at_position, mouse_button_index):
-	var item = Items.keys()[index]
-	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/HBoxContainer/ItemDesc.text = Items[item][0]
-	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/HBoxContainer/ItemAmmount.text = "Ammount: " + str(Items[item][3])
+	var item = Items[index]
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/HBoxContainer/ItemDesc.text = Items[index].description
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/HBoxContainer/ItemAmmount.text = "Ammount: " + str(Items[index].amount)
 
 
 func _on_item_list_item_activated(index):
-	item_to_use = Items.keys()[index]
+	item_to_use = Items[index]
 	using_item = true
 	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
 		profile.unlock_choosing("item")
@@ -156,9 +152,9 @@ func showSkills(entity_name):
 			Skills = temp_instance.get_skills()
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/SkillList.clear()
 			
-			for key in Skills:
-				$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/SkillList.add_item(str(key).replace("_", " "))
-				
+			for skill in Skills:
+				$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/SkillList.add_item(str(skill.name))
+			
 	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
 		profile.lock_choosing()
 	unshowCards()
@@ -169,19 +165,19 @@ func showEq(entity_name):
 	var load_name = entity_name
 	if entity_name == "Mikut":
 		load_name = "Player"
-	print(entity_name)
+
 	for teammate in Teammates:
 		if teammate.contains(entity_name.to_lower()):
-			print()
 			var temp_teammate = load("res://Scenes/Actors/"+str(load_name)+".tscn")
 			eq_temp_person = temp_teammate.instantiate()
 			eq_temp_person.load_data()
 			PersonEq = eq_temp_person.get_eq()
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.clear()
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.clear()
-			for key in PersonEq:
-				$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.add_item(str(key)+": "+str(PersonEq[key][0]).replace("_", " "))
-			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/EqProfile.load_data(eq_temp_person.get_entity_name(), eq_temp_person.get_hp(), eq_temp_person.get_max_hp(), eq_temp_person.ProfileTexture)
+			for item_type in PersonEq:
+				var item = PersonEq[item_type]
+				$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.add_item(str(item_type) + ": " + item.name)
+			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/EqProfile.load_data(eq_temp_person.get_entity_name(), eq_temp_person.get_hp(), eq_temp_person.get_max_hp(), eq_temp_person.ProfileTexture, eq_temp_person.knocked_up)
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/EqProfile.set_values()
 	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
 		profile.lock_choosing()
@@ -212,7 +208,7 @@ func _on_world_item_done():
 			if teammate.contains(profile.Name.to_lower()):
 				var text = FileAccess.get_file_as_string(teammate)
 				var temp_data = JSON.parse_string(text)
-				profile.load_data(temp_data.name, temp_data.hp, temp_data.max_hp, temp_data.texture)
+				profile.load_data(temp_data.name, temp_data.hp, temp_data.max_hp, temp_data.texture, temp_data.knocked_up)
 				profile.set_values()
 
 
@@ -230,9 +226,9 @@ func _on_skills_pressed():
 
 
 func _on_skill_list_item_clicked(index, at_position, mouse_button_index):
-	var skill = Skills.keys()[index]
-	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/HBoxContainer/SkillDesc.text = Skills[skill][0]
-	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/HBoxContainer/SkillCost.text = "Cost: " + str(Skills[skill][3])
+	var skill = Skills[index]
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/HBoxContainer/SkillDesc.text = skill.description
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/HBoxContainer/SkillCost.text = "Cost: " + str(skill.wait_time)
 
 
 func _on_eq_pressed():
@@ -252,79 +248,117 @@ func _on_self_equipment_item_activated(index):
 	Eq_to_be_changed_index = index
 	var eq_category = $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.get_item_text(index).split(":")[0]
 	
-	for key in PartyEq.keys():
-		if PartyEq[key][1] == eq_category: 
-			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.add_item(key.replace("_", " "))
+	for item in PartyEq:
+		if item.type == eq_category: 
+			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.add_item(item.name)
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.add_item(" ")
 
 
 func _on_equipment_item_activated(index):
+	var name_to_equip = $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.get_item_text(index) 
+	var full_name_to_unequip = $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.get_item_text(Eq_to_be_changed_index) 
+	var item_to_equip = null
+	var item_to_unequip = null
+
+	var type_to_switch = full_name_to_unequip.split(":")[0].dedent()
+	var name_to_unequip = full_name_to_unequip.split(":")[1].dedent()
+
+	for item in PartyEq:
+		if item.name == name_to_equip:
+			item_to_equip = item
+	
+	for item in PersonEq:
+		if(item == type_to_switch):
+			item_to_unequip = PersonEq[item]
+	
+	if(item_to_equip != null):
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_text(Eq_to_be_changed_index, type_to_switch + ": " + item_to_equip.name)
+
+		if(type_to_switch == "Armor"):
+			if(name_to_unequip.dedent() != ""):
+				PartyEq.append({
+					"name" : name_to_unequip,
+					"description" : item_to_unequip.description,
+					"icon_path": item_to_unequip.icon_path,
+					"type" : type_to_switch,
+					"armor" : item_to_unequip.armor
+				})
+			
+			PersonEq[type_to_switch] = {
+				"name" : name_to_equip,
+				"description" : item_to_equip.description,
+				"icon_path": item_to_equip.icon_path,
+				"type" : type_to_switch,
+				"armor" : item_to_equip.armor
+			}
+
+		elif(type_to_switch == "Mele_weapon" || type_to_switch == "Range_weapon" ):
+			if(name_to_unequip.dedent() != ""):
+				PartyEq.append({
+					"name" : name_to_unequip,
+					"description" : item_to_unequip.description,
+					"icon_path": item_to_unequip.icon_path,
+					"type" : type_to_switch,
+					"damage": item_to_unequip.damage,
+					"ammo" : item_to_unequip.ammo
+				})
+			
+			PersonEq[type_to_switch] = {
+					"name" : name_to_equip,
+					"description" : item_to_equip.description,
+					"icon_path": item_to_equip.icon_path,
+					"type" : type_to_switch,
+					"damage": item_to_equip.damage,
+					"ammo" : item_to_equip.ammo
+				}
+
+	else:
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_text(Eq_to_be_changed_index, type_to_switch + ": ")
+
+		PersonEq[type_to_switch] = {
+					"name" : " ",
+					"description" : "",
+					"icon_path": "",
+					"type" : ""
+				}
+
+		if(name_to_unequip.dedent() != ""):
+			if(type_to_switch == "Armor"):
+				PartyEq.append({
+						"name" : name_to_unequip,
+						"description" : item_to_unequip.description,
+						"icon_path": item_to_unequip.icon_path,
+						"type" : type_to_switch,
+						"armor" : item_to_unequip.armor
+					})
+			
+			elif(type_to_switch == "Mele_weapon" || type_to_switch == "Range_weapon"):
+				PartyEq.append({
+						"name" : name_to_unequip,
+						"description" : item_to_unequip.description,
+						"icon_path": item_to_unequip.icon_path,
+						"type" : type_to_switch,
+						"damage": item_to_unequip.damage,
+						"ammo" : item_to_unequip.ammo
+					})
+
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.set_item_text(index, name_to_unequip)
+	for i in range(len(PartyEq)):
+		if(PartyEq[i].name == name_to_equip):
+			PartyEq.remove_at(i)
+			break
+
 	$AudioStreamPlayer2D.stream = load("res://Music/Sfx/Dressing_sfx.wav")
 	$AudioStreamPlayer2D.play()
-	
-	#party eq
-	var to_change_key = $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.get_item_text(index) 
-	#player eq
-	var to_be_changed = $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.get_item_text(Eq_to_be_changed_index) 
-	
-	var to_change #party eq
-	var to_be_changed_item #person eq
-	
-	#------------------------------------------------------przenoszenie z party eq to personeq -----------------------------
-	if to_change_key != " ":
-		to_change = PartyEq[to_change_key.replace(" ", "_")][1]
-		#Item z person eq
-		to_be_changed_item = PersonEq[to_be_changed.split(":")[0]]
-
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_text(Eq_to_be_changed_index, to_change + ": " + to_change_key.replace("_", " "))
-		
-		#ifd range weapon
-		if len(PartyEq[to_change_key.replace(" ", "_")]) > 3:
-			PersonEq[to_change] = [to_change_key, PartyEq[to_change_key.replace(" ", "_")][0], PartyEq[to_change_key.replace(" ", "_")][2], PartyEq[to_change_key.replace(" ", "_")][3]]
-		else:
-			PersonEq[to_change] = [to_change_key, PartyEq[to_change_key.replace(" ", "_")][0], PartyEq[to_change_key.replace(" ", "_")][2]]
-	#Zdjęcie przedmiotu z eq obiektu i przeniesienie do partyeq
-	else:
-		#pobieranie itemu do zdjęcia
-		to_be_changed_item = PersonEq[to_be_changed.split(":")[0]]
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_text(Eq_to_be_changed_index, to_be_changed.split(":")[0] + ": ")
-		#Is range weapon
-		if len(to_be_changed_item) > 3:
-			#Stworzenie sztucznego itemu bez statystyk
-			PersonEq[to_be_changed.split(":")[0]] = ["", "", 0, 0]
-		else:
-			#Stworzenie sztucznego itemu bez statystyk
-			PersonEq[to_be_changed.split(":")[0]] = ["", "", 0]
-	#ustawienie nowego itemu w party eq (wizualne)(
-	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.set_item_text(index, to_be_changed)
-	#----------------------------------------------------------------------------------
-	#usunięcie z party eq podmienionego itemu
-	PartyEq.erase(to_change_key.replace(" ", "_"))
-	
-	
-	#-----------------------------------------------Dodawanie do party eq kodowe-------------------------------------------------
-	#sprawdzenie czy item jest podmieniany,a nie był zdejmowany
-	if to_be_changed != "Armor: " and to_be_changed != "Mele_weapon: " and to_be_changed != "Range_weapon: ":
-		print("TEN DZIWNY KURWA IF")
-		#sprawdzanie czy range weapon
-		if len(to_be_changed_item) > 3:
-			#zdobycie klucza który wygląda np "Mele weapon: Magnesium grenade"
-			#podmianka przedmiotu z person eq do party eq, poprzez stworzenie odpowiedniego obiektu
-			PartyEq[to_be_changed.split(": ")[1].replace(" ", "_")] =  [to_be_changed_item[1], to_be_changed.split(":")[0], to_be_changed_item[2], to_be_changed_item[3]]
-		else:
-			PartyEq[to_be_changed.split(": ")[1].replace(" ", "_")] =  [to_be_changed_item[1], to_be_changed.split(":")[0], to_be_changed_item[2]]
-	
 	save_data()
 	refresh_data()
 	
 	eq_temp_person.set_eq(PersonEq)
 	saveEq.emit(eq_temp_person.get_entity_name())
 	
-	
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.release_focus()
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.clear()
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.release_focus()
-	
 
 
 func _on_craft_pressed():
@@ -374,9 +408,15 @@ func _on_recipes_list_item_clicked(index, at_position, mouse_button_index):
 
 func _on_craft_button_pressed():
 	#usuwanie resourców z lokalnej ZMiennej partyResource
+	
 	for c in temp_recipe.components:
-		PartyResources[c].ammount -= 1
-		if PartyResources[c].ammount <= 0:
+		if(!PartyResources.has(c)):
+			print_debug("brak składnika w resourcach")
+			return
+	
+	for c in temp_recipe.components:
+		PartyResources[c].amount -= 1
+		if PartyResources[c].amount <= 0:
 			PartyResources.erase(c)
 
 	if temp_recipe.type != "item":
@@ -385,39 +425,41 @@ func _on_craft_button_pressed():
 			for teammate in Teammates:
 				var text = FileAccess.get_file_as_string(teammate)
 				var temp_data = JSON.parse_string(text)
-				if temp_data.equipment.Range_weapon[0] == temp_recipe.data[0]:
-					temp_data.equipment.Range_weapon[3] += 1
+				if temp_data.equipment.Range_weapon.name == temp_recipe.data[0]:
+					temp_data.equipment.Range_weapon.ammo += 1
 					var file = FileAccess.open(teammate, FileAccess.WRITE)
 					file.store_string(JSON.stringify(temp_data, "\t", false))
 					file.close()
 					has_weapon = true
-			for e in PartyEq:	
-				if e == temp_recipe.data[0].replace(" ", "_"):
-					PartyEq[e][3] += 1
+			for i in range(len(PartyEq)):	
+				if PartyEq[i].name == temp_recipe.data[0]:
+					PartyEq[i].ammo += 1
 					has_weapon = true
 			if !has_weapon:
-				PartyEq[temp_recipe.data[0].replace(" ", "_")] = [temp_recipe.data[1], temp_recipe.type, temp_recipe.data[2], 1]
+				PartyEq.append({"name": temp_recipe.data[0], "description": temp_recipe.data[1],"type": temp_recipe.type, "damage": temp_recipe.data[2], "amount": 1})
 		elif temp_recipe.type == "resource":
 			var has_resource = false
 			for res in PartyResources:
 				if res == temp_recipe.data[0]:
-					PartyResources[res].ammount += 1
+					PartyResources[res].amount += 1
 					has_resource = true
 			if !has_resource:
-				PartyResources[temp_recipe.data[0]] = {"ammount": 1, "texture": temp_recipe.texture}
+				PartyResources[temp_recipe.data[0]] = {"amount": 1, "texture": temp_recipe.texture}
 		else:
-			PartyEq[temp_recipe.data[0].replace(" ", "_")] = [temp_recipe.data[1], temp_recipe.type, temp_recipe.data[2]]
+			PartyEq.append({"name" : temp_recipe.data[0], "description": temp_recipe.data[1], "type": temp_recipe.type, "damage": temp_recipe.data[2]})
 	else:
 		var has_item = false
-		for item in Items:
-			if item == temp_recipe.data[0]:
+		for i in range(len(Items)):
+			if Items[i].name == temp_recipe.data[0]:
 				has_item = true
-				Items[item][3] += 1
+				Items[i].amount += 1
 		if !has_item:
 			if len(temp_recipe.data) == 4:
-				Items[temp_recipe.data[0]] = [temp_recipe.data[1], temp_recipe.data[2], temp_recipe.data[3], 1]
+				Items.append({"name": temp_recipe.data[0], "description": temp_recipe.data[1], "icon_path": "", "damage": temp_recipe.data[2], "heal": temp_recipe.data[3], "amount": 1})
 			else:
-				Items[temp_recipe.data[0]] = [temp_recipe.data[1], temp_recipe.data[2], temp_recipe.data[3], 1, temp_recipe.data[4]]
+				Items.append({"name": temp_recipe.data[0], "description": temp_recipe.data[1], "icon_path": "", "damage": temp_recipe.data[2], "heal": temp_recipe.data[3], "effect": temp_recipe.data[3], "amount": 1})
+
+	
 	save_data()
 	refresh_data()
 	add_resources()

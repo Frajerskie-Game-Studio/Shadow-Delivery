@@ -16,7 +16,7 @@ func move_dialog_index():
 	if len(dialog_data.dialogStates) - 1 > dialog_data.currentDialogState:
 		dialog_data.currentDialogState+=1 
 		var file = FileAccess.open(Path, FileAccess.WRITE)
-		file.store_string(JSON.stringify(dialog_data, "\t"))
+		file.store_string(JSON.stringify(dialog_data, "\t", false))
 		file.close()
 
 func load_data(path, clickable, deletable, action, multi_state):

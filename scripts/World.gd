@@ -28,6 +28,8 @@ func _ready():
 	party_items = temp_data["items"]
 	$Menu.refresh_data()
 	load_level()
+	
+	#start_fight()
 
 func _process(delta):
 	if !in_dialog and !$Player.in_battle:
@@ -40,10 +42,12 @@ func _process(delta):
 				$Player.lock()
 				$Menu.visible = true
 				in_menu = true
-				
+
+
 func play_switch_animation():
 	$CanvasLayer.visible = true
 	$CanvasLayer/Control/BackgroundAnimation.play("show_level")
+
 
 #showing dialog window (signal from NPC)
 func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc, action):
@@ -56,7 +60,8 @@ func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc, action):
 		#assiging NPC with whom player is talking
 		if dialog_npc != null:
 			current_dialog_npc = dialog_npc
-	
+
+
 #ending dialog
 func end_dialog(action):
 	#searching for npc wich player is talking to
@@ -74,14 +79,9 @@ func end_dialog(action):
 		action.call()
 	
 
-
-func _on_canvas_layer_item_used(item_name, entity_name):
-	var item
-	
-	for i in party_items:
-		if i == item_name:
-			item = party_items[i]
+func _on_canvas_layer_item_used(current_item, entity_name):
 	#tu się kompletnie zesrałem na kod XDDDDDD
+	#to ja posporzątam :)
 	for teammate in data.teammates:
 		if teammate.contains(entity_name.to_lower()):
 			if entity_name == "Mikut":
@@ -92,26 +92,30 @@ func _on_canvas_layer_item_used(item_name, entity_name):
 			temp_instance.visible = false
 			add_child(temp_instance)
 			temp_instance.load_data()
-			if len(item) == 5:
-				temp_instance.use_item({"dmg": item[1], "heal": item[2], "key": item_name, "effect": item[4]})
-			else:
-				temp_instance.use_item({"dmg": item[1], "heal": item[2], "key": item_name})
-			#temp_instance.use_item({item})
+			temp_instance.use_item(current_item)
 			temp_instance.queue_free()
-			
 	
-	data.items[item_name][3] -= 1
-	if data.items[item_name][3] <= 0:
-		data.items.erase(item_name)
+	var index = -1
+	var i = 0
+	for item in data.items:
+		if(item.name == current_item.name):
+			item.amount -= 1
+		if(item.amount <= 0):
+			index = i
+		i += 1
+	
+	if(index != -1):
+		data.items.remove_at(index)
 	
 	var file = FileAccess.open("res://Data/party_data.json", FileAccess.WRITE)
 	
-	file.store_string(JSON.stringify(data, "\t"))
+	file.store_string(JSON.stringify(data, "\t", false))
 	file.close()
 	itemDone.emit()
 	for child in get_children():
 		if child.has_node("CharacterBody2D"):
 			child.load_data()
+
 
 func _on_menu_save_eq(entity_name):
 	for child in get_children():
@@ -198,6 +202,7 @@ func load_level():
 	CurrentLevelInstance.start_npc_dialog.connect(_on_npc_show_dialog)
 	
 	$Player.get_node("PlayerBody").position = Vector2(LevelsData[CurrentLevel].player_position[0],LevelsData[CurrentLevel].player_position[1])
+
 
 func save_level_data(switching_levels):
 	var file = FileAccess.open("res://Data/level_saves.json", FileAccess.WRITE)

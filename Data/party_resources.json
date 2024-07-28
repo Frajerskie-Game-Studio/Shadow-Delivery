@@ -1,14 +1,14 @@
 {
 	"magnesium": {
-		"ammount": 33,
+		"amount": 23,
 		"texture": ""
 	},
 	"gel": {
-		"ammount": 41,
+		"amount": 29,
 		"texture": ""
 	},
 	"skeleton_powder": {
-		"ammount": 44,
+		"ammount": 45,
 		"texture": ""
 	}
 }

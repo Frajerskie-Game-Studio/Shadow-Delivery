@@ -15,20 +15,19 @@ func _init():
 	character_file_path = "res://Data/lucjan_data.json"
 	
 func _ready():
-	#hp, max_hp, mele_skills, range_skills, ammo, ammo_texture_path
+	#hp, max_hp, melee_skills, range_skills, ammo, ammo_texture_path
 	load_data()
 	load_items()
 	load_res()
 	reload_menu()
 	if in_battle:
 		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
-		$AttackMenu.visible =true
+		$AttackMenu.visible = true
 		if KnockedUp:
 			can_be_attacked = false
 			animationState.travel("knocked_down")
-
-		elif current_style == "mele":
-			animationState.travel("mele_idle")
+		elif current_style == "melee":
+			animationState.travel("melee_idle")
 		elif current_style == "range":
 			animationState.travel("range_idle")
 	else:
@@ -39,11 +38,11 @@ func reload_menu():
 	$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
 
 
-func get_dmg(attack):
+func get_damage(attack):
 	if wait_timer != null:
 		wait_timer.set_paused(true)
-	animationState.travel("get_dmg")
-	Hp -= attack.dmg
+	animationState.travel("get_damage")
+	Hp -= attack.damage
 	if Hp < 0:
 		Hp = 0
 	
@@ -85,7 +84,7 @@ func _process(delta):
 		
 		if timer != null:
 			if duringSkillCheck:
-				if current_style == "mele":
+				if current_style == "melee":
 					if Input.is_action_just_pressed(skillChecks[skillCheckStep]):
 						print("Siadło")
 						skillCheckFailed = false
@@ -119,48 +118,49 @@ func _process(delta):
 func _on_attack_menu_i_will_attack(args):
 	ready_to_attack_bool = true
 	lock_buttons()
-	if args == null:
 		#------------------podstawowy atak zależny od stylu----------------------
+	var attack_index = 0
+	if args == null:
+		for attack in Attacks:
+				if(attack.type == current_style):
+					attack_index = Attacks.find(attack)
+		var current_attack = Attacks[attack_index]
+		
+		# Jeżeli aktualny efekt == "stronger" to zwiększ damage tego ataku
 		if current_effect_working != null and current_effect_working == "stronger":
-			Attack[current_style].dmg = Attack[current_style].dmg * effect_multipler
+			current_attack.damage *= effect_multipler
 			effect_counter -= 1
 			if effect_counter <= 0:
 				current_effect_working = null
 				effect_multipler = null
 				effect_counter = 0
-		ready_to_attack.emit(Attack[current_style], self)
+				
+		ready_to_attack.emit(current_attack, self)
 	else:
-		#------------------używany jest item-----------------------
-		if len(args) == 2:
-			if len(args[0]) == 5:
-				#używany jest item z efektem (w naszym przypadku revive)
-				ready_to_attack.emit({"dmg": args[0][1], "wait_time": 3, "heal": args[0][2], "key": args[1], "effect": args[0][4]}, self)
+		if args.has("effect"):
+			if args.effect == "revive":
+				ready_to_attack.emit({"name": args.name, "damage": args.damage, "wait_time": 3, "heal": args.heal, "key": args.name, "effect": args.effect}, self)
+			elif args.effect == "stronger":
+				ready_to_attack.emit({"wait_time": args.wait_time, "effect": args.effect, "effect_duration": args.turn_duration, "effect_multipler": args.attack_multiplier}, self)
 			else:
-				#używany jest item bez efektu (np red brew)
-				ready_to_attack.emit({"dmg": args[0][1], "wait_time": 3, "heal": args[0][2], "key": args[1]}, self)
+				ready_to_attack.emit({"name": args.name, "damage": args.damage, "wait_time": 3, "heal": args.heal, "key": args.name, "effect": args.effect},  self)
 		else:
-			#-------------------------------------używany jest skill-----------------------------
-			var dmg = args[1]
+			var damage = args.damage
 			if current_effect_working != null and current_effect_working == "stronger":
-				#-----------------------monitorowanie czy efekt (w naszym przypadkus stronger dalej powinien działać, jak nie to jest usuwany)------------------
-				dmg = dmg * effect_multipler
+				damage = damage * effect_multipler
 				effect_counter -= 1
 				if effect_counter <= 0:
 					current_effect_working = null
 					effect_multipler = null
 					effect_counter = 0
-			if len(args) == 6:
-				#-----------używany jest skill atakujący z jakimś efektem (w naszym przypadku all)
-				ready_to_attack.emit({"dmg": dmg, "wait_time": args[3], "effect": args[5]}, self)
-			elif len(args) == 8:
-				#--------------------używany jest skill nakładający efekt na rzucającego (w tym przypadku stronger)
-				#blokada użycia stronger, gdy efekt już działa (żeby się nie stackowały)
-				if args[5] != current_effect_working:
-					ready_to_attack.emit({"dmg": dmg, "wait_time": args[3], "effect": args[5], "effect_duration": args[7], "effect_multipler": args[6]}, self)
+			if len(args) == 8:
+				ready_to_attack.emit({"damage": damage, "wait_time": args.wait_time, "effect": args.effect}, self)
+			elif len(args) == 9:
+				if args.effect != current_effect_working:
+					ready_to_attack.emit({"damage": damage, "wait_time": args.wait_time, "effect": args.effect, "effect_duration": args.turn_duration, "effect_multipler": args.attack_multiplier}, self)
 			else:
-				#-----------------------------------------------użycie standardowego skilla atakującego (np strzał z pistoletu z większym dmg (co nie jest wprowadzone))
-				ready_to_attack.emit({"dmg": dmg, "wait_time": args[3]}, self)
-				
+				ready_to_attack.emit({"damage": damage, "wait_time": args.wait_time}, self)
+
 func start_attack(attack):
 	print("ATTACKING")
 	ready_to_attack_bool = false
@@ -169,7 +169,7 @@ func start_attack(attack):
 	timer.wait_time = float(attack.wait_time)
 	timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
-	if current_style == "mele":
+	if current_style == "melee":
 		if !attack.has("effect"):
 			$MeleSkillCheck.visible = true
 			skillCheckStep = 0
@@ -247,7 +247,7 @@ func _on_timer_timeout():
 		#print("FAILED")
 		skillCheckFailed = true
 		duringSkillCheck = false
-		attacking.emit({"dmg": 0})
+		attacking.emit({"damage": 0})
 		if current_style == "range":
 			decrement_ammo()
 			$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "", Items)
@@ -267,7 +267,7 @@ func _on_timer_timeout():
 			else:
 				$BattleSounds.stream = load("res://Music/Sfx/Combat/Melee_combat_sfx.wav")
 				$BattleSounds.play()
-				animationState.travel("mele_attack")
+				animationState.travel("melee_attack")
 			$RangeSKillCheck.started = false
 			$RangeSKillCheck.visible = false
 			timer.queue_free()
@@ -322,9 +322,9 @@ func _on_wait_time_timeout():
 	if changing_style:
 		set_style()
 		changing_style = false
-		if current_style == "mele":
+		if current_style == "melee":
 			if Name != "Shadow":
-				animationState.travel("show_mele")
+				animationState.travel("show_melee")
 	if current_style == "range":
 		animationState.travel("show_range")
 		
@@ -345,10 +345,9 @@ func _on_attack_menu_change_style():
 	timebar.value = 0
 	waiting = true
 	wait_timer.start()
-	
-	if current_style == "mele":
+	if current_style == "melee":
 		if Name != "Shadow":
-			animationState.travel("hide_mele")
+			animationState.travel("hide_melee")
 	else:
 		animationState.travel("hide_range")
 	
@@ -357,24 +356,38 @@ func revive(heal):
 	KnockedUp = false
 	animationState.travel(str(current_style) + "_idle")
 	
-func use_item(item):
-	if item.has("effect"):
-		if item.effect == "revive":
-			KnockedUp = false
-	if !KnockedUp:
-		if item.dmg != 0:
-			Hp -= item.dmg
-		elif item.heal != 0:
-			$BattleSounds.stream = load("res://Music/Sfx/Combat/Heal_sfx.wav")
-			$BattleSounds.play()
-			Hp += item.heal
-			if Hp > MaxHp:
-				Hp = MaxHp
-		Items[item.key][3] -= 1
-		if Items[item.key][3] <= 0:
-			Items.erase(item.key)
+func use_item(item_to_use):
+	if(item_to_use.has("effect")):
+		if item_to_use.effect == ("revive"):
+			revive(item_to_use.heal)
+	
+	if(item_to_use.has("attack")):
+		if item_to_use.damage != 0:
+			Hp -= item_to_use.damage
+		
+	elif item_to_use.heal != 0:
+		$BattleSounds.stream = load("res://Music/Sfx/Combat/Heal_sfx.wav")
+		$BattleSounds.play()
+		Hp += item_to_use.heal
+		if Hp > MaxHp:
+			Hp = MaxHp
+	
+	
+	var index = -1
+	var i = 0
+	for item in Items:
+		if(item.name == item_to_use.name):
+			item.amount -= 1
+		if(item.amount <= 0):
+			index = i
+		i += 1
+	
+	if(index != -1):
+		Items.remove_at(index)
+	
 	on_mouse_cursor = false
 	can_be_checked = false
+	
 	save_data()
 	save_items()
 	load_items()
@@ -402,35 +415,35 @@ func lock_buttons():
 	$AttackMenu.lock_buttons()
 
 func _on_animation_tree_animation_finished(anim_name):
-	if anim_name == "hide_mele" or anim_name == "hide_range":
+	if anim_name == "hide_melee" or anim_name == "hide_range":
 		animationState.travel("change_style")
-	elif anim_name == "show_mele":
-		animationState.travel("mele_idle")
+	elif anim_name == "show_melee":
+		animationState.travel("melee_idle")
 	elif anim_name == "show_range":
 		animationState.travel("range_idle")
-	elif anim_name == "mele_attack":
+	elif anim_name == "melee_attack":
 		can_be_attacked = true
-		animationState.travel("mele_idle")
+		animationState.travel("melee_idle")
 	elif anim_name == "range_attack":
 		can_be_attacked = true
 		if Name != "Mikut" and Name != "Shadow":
 			animationState.travel("reload")
 		else:
 			animationState.travel("change_style")
-	elif anim_name == "get_dmg":
-		if current_style == "mele":
-			animationState.travel("mele_idle")
+	elif anim_name == "get_damage":
+		if current_style == "melee":
+			animationState.travel("melee_idle")
 		else:
 			if waiting:
 				animationState.travel("change_style")
 			else:
 				animationState.travel("range_idle")
 	elif anim_name == "use_item":
-		if current_style == "mele":
+		if current_style == "melee":
 			if waiting:
 				animationState.travel("change_style")
 			else:
-				animationState.travel("mele_idle")
+				animationState.travel("melee_idle")
 		else:
 			if waiting:
 				animationState.travel("change_style")
