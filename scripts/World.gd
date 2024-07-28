@@ -28,8 +28,6 @@ func _ready():
 	party_items = temp_data["items"]
 	$Menu.refresh_data()
 	load_level()
-	
-	start_fight()
 
 func _process(delta):
 	if !in_dialog and !$Player.in_battle:

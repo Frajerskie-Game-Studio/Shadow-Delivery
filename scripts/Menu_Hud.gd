@@ -411,8 +411,8 @@ func _on_craft_button_pressed():
 
 	#usuwanie resourców z lokalnej ZMiennej partyResource
 	for c in temp_recipe.components:
-		PartyResources[c].ammount -= 1
-		if PartyResources[c].ammount <= 0:
+		PartyResources[c].amount -= 1
+		if PartyResources[c].amount <= 0:
 			PartyResources.erase(c)
 
 	if temp_recipe.type != "item":
@@ -421,39 +421,41 @@ func _on_craft_button_pressed():
 			for teammate in Teammates:
 				var text = FileAccess.get_file_as_string(teammate)
 				var temp_data = JSON.parse_string(text)
-				if temp_data.equipment.Range_weapon[0] == temp_recipe.data[0]:
-					temp_data.equipment.Range_weapon[3] += 1
+				if temp_data.equipment.Range_weapon.name == temp_recipe.data[0]:
+					temp_data.equipment.Range_weapon.ammo += 1
 					var file = FileAccess.open(teammate, FileAccess.WRITE)
 					file.store_string(JSON.stringify(temp_data, "\t", false))
 					file.close()
 					has_weapon = true
-			for e in PartyEq:	
-				if e == temp_recipe.data[0].replace(" ", "_"):
-					PartyEq[e][3] += 1
+			for i in range(len(PartyEq)):	
+				if PartyEq[i].name == temp_recipe.data[0]:
+					PartyEq[i].ammo += 1
 					has_weapon = true
 			if !has_weapon:
-				PartyEq[temp_recipe.data[0].replace(" ", "_")] = [temp_recipe.data[1], temp_recipe.type, temp_recipe.data[2], 1]
+				PartyEq.append({"name": temp_recipe.data[0], "description": temp_recipe.data[1],"type": temp_recipe.type, "damage": temp_recipe.data[2], "amount": 1})
 		elif temp_recipe.type == "resource":
 			var has_resource = false
 			for res in PartyResources:
 				if res == temp_recipe.data[0]:
-					PartyResources[res].ammount += 1
+					PartyResources[res].amount += 1
 					has_resource = true
 			if !has_resource:
-				PartyResources[temp_recipe.data[0]] = {"ammount": 1, "texture": temp_recipe.texture}
+				PartyResources[temp_recipe.data[0]] = {"amount": 1, "texture": temp_recipe.texture}
 		else:
-			PartyEq[temp_recipe.data[0].replace(" ", "_")] = [temp_recipe.data[1], temp_recipe.type, temp_recipe.data[2]]
+			PartyEq.append({"name" : temp_recipe.data[0], "description": temp_recipe.data[1], "type": temp_recipe.type, "damage": temp_recipe.data[2]})
 	else:
 		var has_item = false
-		for item in Items:
-			if item == temp_recipe.data[0]:
+		for i in range(len(Items)):
+			if Items[i].name == temp_recipe.data[0]:
 				has_item = true
-				Items[item][3] += 1
+				Items[i].amount += 1
 		if !has_item:
 			if len(temp_recipe.data) == 4:
-				Items[temp_recipe.data[0]] = [temp_recipe.data[1], temp_recipe.data[2], temp_recipe.data[3], 1]
+				Items.append({"name": temp_recipe.data[0], "description": temp_recipe.data[1], "icon_path": "", "damage": temp_recipe.data[2], "heal": temp_recipe.data[3], "amount": 1})
 			else:
-				Items[temp_recipe.data[0]] = [temp_recipe.data[1], temp_recipe.data[2], temp_recipe.data[3], 1, temp_recipe.data[4]]
+				Items.append({"name": temp_recipe.data[0], "description": temp_recipe.data[1], "icon_path": "", "damage": temp_recipe.data[2], "heal": temp_recipe.data[3], "effect": temp_recipe.data[3], "amount": 1})
+
+	
 	save_data()
 	refresh_data()
 	add_resources()

@@ -14,7 +14,7 @@
 			"icon_path": "res://Graphics/Items/flintlock_icon.png",
 			"damage": 0,
 			"heal": 20,
-			"amount": 1,
+			"amount": 2,
 			"effect": "no_effect_fuck_you"
 		},
 		{
@@ -23,7 +23,7 @@
 			"icon_path": "res://Graphics/Items/healing_potion.png",
 			"damage": 0,
 			"heal": 20,
-			"amount": 7,
+			"amount": 3,
 			"effect": ""
 		},
 		{
@@ -32,26 +32,18 @@
 			"icon_path": "",
 			"damage": 0,
 			"heal": 25,
-			"amount": 43,
+			"amount": 20,
 			"effect": "revive"
 		}
 	],
 	"equipment": [
-		{
-			"name": "Dix pistol",
-			"description": "A little old, but reliable",
-			"icon_path": "",
-			"type": "Range_weapon",
-			"damage": 60,
-			"ammo": 6
-		},
 		{
 			"name": "Fuck u pistol",
 			"description": "Fuck u stronger than ever",
 			"icon_path": "",
 			"type": "Range_weapon",
 			"damage": 50,
-			"ammo": 2
+			"ammo": 4
 		},
 		{
 			"name": "Dixer uniform",
@@ -59,6 +51,20 @@
 			"icon_path": "",
 			"type": "Armor",
 			"armor": 15
+		},
+		{
+			"name": "Penis armor",
+			"description": "Freaky armor for freaky people",
+			"type": "Armor",
+			"damage": 16
+		},
+		{
+			"name": "Dix pistol",
+			"description": "A little old, but reliable",
+			"icon_path": "",
+			"type": "Range_weapon",
+			"damage": 60,
+			"ammo": 6
 		}
 	]
 }

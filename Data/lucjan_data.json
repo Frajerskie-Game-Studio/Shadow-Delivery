@@ -50,7 +50,7 @@
 			"name": "Dix armor",
 			"description": "Freaky armor for freaky people",
 			"icon_path": "",
-			"type": "armor",
+			"type": "Armor",
 			"armor": 16
 		}
 	}

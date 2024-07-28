@@ -1,7 +1,7 @@
 {
 	"name": "Mikut",
 	"texture": "res://Graphics/Mikut/MikutDialogSprite.png",
-	"hp": 70,
+	"hp": 90,
 	"max_hp": 100,
 	"knocked_up": false,
 	"attacks": [
@@ -42,7 +42,7 @@
 			"icon_path": "",
 			"type": "Range_weapon",
 			"damage": 50,
-			"ammo": 2
+			"ammo": 4
 		},
 		"Armor": {
 			"name": "Penis armor",
