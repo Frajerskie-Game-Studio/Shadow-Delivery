@@ -107,24 +107,29 @@ func _on_attack_menu_i_will_attack(args):
 	ready_to_attack_bool = true
 	var attack_index = 0
 	if args == null:
-		if current_effect_working != null and current_effect_working == "stronger":
-			for attack in Attacks:
+		for attack in Attacks:
 				if(attack.type == current_style):
 					attack_index = Attacks.find(attack)
-			
-			Attacks[attack_index].damage = Attacks[attack_index].damage * effect_multipler
+		var current_attack = Attacks[attack_index]
+		
+		# Jeżeli aktualny efekt == "stronger" to zwiększ damage tego ataku
+		if current_effect_working != null and current_effect_working == "stronger":
+			current_attack.damage *= effect_multipler
 			effect_counter -= 1
 			if effect_counter <= 0:
 				current_effect_working = null
 				effect_multipler = null
 				effect_counter = 0
-		ready_to_attack.emit(Attacks[attack_index], self)
+				
+		ready_to_attack.emit(current_attack, self)
 	else:
 		if args.has("effect"):
 			if args.effect == "revive":
-				ready_to_attack.emit({"name": args.name, "damage": args.damage, "wait_time": 3, "heal": args.heal, "key": args.name, "effects": args.effect}, self)
+				ready_to_attack.emit({"name": args.name, "damage": args.damage, "wait_time": 3, "heal": args.heal, "key": args.name, "effect": args.effect}, self)
+			elif args.effect == "stronger":
+				ready_to_attack.emit({"wait_time": args.wait_time, "effect": args.effect, "effect_duration": args.turn_duration, "effect_multipler": args.attack_multiplier}, self)
 			else:
-				ready_to_attack.emit({"name": args.name, "damage": args.damage, "wait_time": 3, "heal": args.heal, "key": args.name, "effects": []},  self)
+				ready_to_attack.emit({"name": args.name, "damage": args.damage, "wait_time": 3, "heal": args.heal, "key": args.name, "effect": args.effect},  self)
 		else:
 			var damage = args.damage
 			if current_effect_working != null and current_effect_working == "stronger":
@@ -333,12 +338,13 @@ func revive(heal):
 	animationState.travel(str(current_style) + "_idle")
 	
 func use_item(item_to_use):
-	if(item_to_use.has("effects")):
-		if item_to_use.effects.find("revive"):
-			KnockedUp = false
-		
-	if item_to_use.damage != 0:
-		Hp -= item_to_use.damage
+	if(item_to_use.has("effect")):
+		if item_to_use.effect == ("revive"):
+			revive(item_to_use.heal)
+	
+	if(item_to_use.has("attack")):
+		if item_to_use.damage != 0:
+			Hp -= item_to_use.damage
 		
 	elif item_to_use.heal != 0:
 		$BattleSounds.stream = load("res://Music/Sfx/Combat/Heal_sfx.wav")

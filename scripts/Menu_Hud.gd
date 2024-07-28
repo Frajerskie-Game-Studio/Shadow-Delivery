@@ -73,7 +73,7 @@ func add_resources():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources/ScrollContainer/VBoxContainer/ResourcesList.clear()
 	for key in PartyResources:
 		var temp_resource = PartyResources[key]
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources/ScrollContainer/VBoxContainer/ResourcesList.add_item(str(key).replace("_", " ") + " " + str(PartyResources[key].ammount) + "x")
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources/ScrollContainer/VBoxContainer/ResourcesList.add_item(str(key).replace("_", " ") + " " + str(PartyResources[key].amount) + "x")
 
 func add_recipies():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Recipes/ScrollContainer/VBoxContainer/RecipesList.clear()

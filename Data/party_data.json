@@ -23,7 +23,7 @@
 			"icon_path": "res://Graphics/Items/healing_potion.png",
 			"damage": 0,
 			"heal": 20,
-			"amount": 1,
+			"amount": 7,
 			"effect": ""
 		},
 		{
@@ -32,17 +32,18 @@
 			"icon_path": "",
 			"damage": 0,
 			"heal": 25,
-			"amount": 42,
+			"amount": 43,
 			"effect": "revive"
 		}
 	],
 	"equipment": [
 		{
-			"name": "Dixer uniform",
-			"description": "Average factory outfit for couriers",
+			"name": "Dix pistol",
+			"description": "A little old, but reliable",
 			"icon_path": "",
-			"type": "Armor",
-			"armor": 15
+			"type": "Range_weapon",
+			"damage": 60,
+			"ammo": 6
 		},
 		{
 			"name": "Fuck u pistol",
@@ -53,12 +54,11 @@
 			"ammo": 2
 		},
 		{
-			"name": "Dix pistol",
-			"description": "A little old, but reliable",
+			"name": "Dixer uniform",
+			"description": "Average factory outfit for couriers",
 			"icon_path": "",
-			"type": "Range_weapon",
-			"damage": 60,
-			"ammo": 6
+			"type": "Armor",
+			"armor": 15
 		}
 	]
 }

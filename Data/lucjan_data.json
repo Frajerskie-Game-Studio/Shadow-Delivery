@@ -1,7 +1,7 @@
 {
 	"name": "Lucjan",
 	"texture": "res://Graphics/Lucjan/LucjanDialogSprite.png",
-	"hp": 20,
+	"hp": 85,
 	"max_hp": 100,
 	"knocked_up": false,
 	"attacks": [
@@ -44,7 +44,7 @@
 			"icon_path": "",
 			"type": "Range_weapon",
 			"damage": 60,
-			"ammo": 2
+			"ammo": 3
 		},
 		"Armor": {
 			"name": "Dix armor",
