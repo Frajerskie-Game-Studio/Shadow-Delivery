@@ -6,7 +6,7 @@ extends Node2D
 var Name
 var Hp
 var MaxHp
-var Attack
+var Attacks
 var Skills
 var Drop
 var EnemyTexture
@@ -29,7 +29,7 @@ func start_attacking_process():
 	WaiTimeBar.visible = true
 	WaiTimeBar.value = 0
 	wait_timer = Timer.new()
-	wait_timer.wait_time = Attack.wait_time
+	wait_timer.wait_time = Attacks.wait_time
 	wait_timer.one_shot = true
 	wait_timer.timeout.connect(_on_wait_timer_timeout)
 	add_child(wait_timer)
@@ -43,7 +43,7 @@ func _ready():
 	$Sprite2D.hframes = 12
 	$AnimationPlayer.play("idle")
 
-func _process(delta):	
+func _process(_delta):	
 	pass
 
 func _physics_process(delta):
@@ -85,7 +85,7 @@ func load_data(json_path):
 	Hp = temp_data["hp"]
 	MaxHp = temp_data["hp"]
 	Skills = temp_data["skills"]
-	Attack = temp_data["attack"]
+	Attacks = temp_data["attack"]
 	Drop = temp_data["drop"]
 	EnemyTexture = temp_data["texture"]
 	data_loaded = true
@@ -102,15 +102,15 @@ func get_hp():
 func get_max_hp():
 	return MaxHp
 	
-func deal_dmg():
+func deal_damage():
 	pass
 	
-func get_dmg(attack):
-	Hp -= attack.dmg
+func get_damage(attack):
+	Hp -= attack.damage
 	HealthBar.value = Hp
 	wait_timer.set_paused(false)
 	attack_danger = false
-	$AnimationPlayer.play("dmg")
+	$AnimationPlayer.play("damage")
 	$BattleSounds.stream = load("res://Music/Sfx/Combat/Getting_damage_2_sfx.wav")
 	$BattleSounds.play()
 	if Hp <= 0:
@@ -124,12 +124,12 @@ func _on_wait_timer_timeout():
 	waiting = false
 
 func attack_entity():
-	var can_be_attacked = get_parent().get_can_be_attack_entities()
+	can_be_attacked = get_parent().get_can_be_attack_entities()
 	if len(can_be_attacked) > 0:
 		$EnemyWaitTimer.visible = false
 		var random = RandomNumberGenerator.new()
 		var attacked_entity = can_be_attacked[random.randi_range(0, len(can_be_attacked) -1)]
-		enemy_attacking.emit(attacked_entity, Attack)
+		enemy_attacking.emit(attacked_entity, Attacks)
 		can_attack = false
 		#attack_danger = false
 		wait_timer.queue_free()
@@ -142,16 +142,11 @@ func get_drop():
 	
 	if state >= 1 and state <= 40:
 		drop = Drop.common
-		drop.data.ammount = randomNumberGenerator.randi_range(1, 5)
-	elif state > 40 and state <= 64:
-		drop = Drop.rare
-		drop.data[3] = randomNumberGenerator.randi_range(1, 3)
-	elif state > 64 and state <= 88:
-		return null
+		drop.amount = randomNumberGenerator.randi_range(1, 5)
 	else:
-		drop = [Drop.common, Drop.rare]
-		drop[0].data.ammount = randomNumberGenerator.randi_range(1, 5)
-		drop[1].data[3] = randomNumberGenerator.randi_range(1, 3)
+		drop = Drop.rare
+		drop.amount = randomNumberGenerator.randi_range(1, 3)
+	
 	return drop
 	
 func _on_area_2d_mouse_entered():

@@ -13,7 +13,8 @@ func load_data(data):
 
 func _ready():	
 	get_parent().switch_zoom(2,2)
-	var resource = {"skeleton_powder": {
+	var resource = {
+		"skeleton_powder": {
 		"ammount": 45,
 		"texture": ""
 	}}
@@ -34,9 +35,11 @@ func _on_desk_dialog_start_dialog(path, d, action):
 	if deletedPointers.find(d.name) == -1 and d.Deletable:
 		deletedPointers.append(d.name)
 
+
 func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc, action):
 	start_npc_dialog.emit(npc_name, dialog_dict, dialog_npc, action)
-	
+
+
 func dix():
 	get_parent().play_switch_animation()
 	$Master.visible = true

@@ -4,7 +4,7 @@ func _init():
 	character_file_path = "res://Data/mikut_data.json"
 
 func _ready():
-	#hp, max_hp, mele_skills, range_skills, ammo, ammo_texture_path
+	#hp, max_hp, melee_skills, range_skills, ammo, ammo_texture_path
 	print($AttackMenu.visible)
 	load_data()
 	load_items()
@@ -17,14 +17,12 @@ func _ready():
 			can_be_attacked = false
 			animationState.travel("knocked_down")
 
-		elif current_style == "mele":
-			animationState.travel("mele_idle")
+		elif current_style == "melee":
+			animationState.travel("melee_idle")
 		elif current_style == "range":
 			animationState.travel("range_idle")
 	else:
 		$AttackMenu.visible = false
-
-
 
 
 func unlock():
@@ -38,6 +36,6 @@ func lock():
 func reload_menu():
 	$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
 
-		
+
 func get_animation_tree():
 	return $AnimationTree

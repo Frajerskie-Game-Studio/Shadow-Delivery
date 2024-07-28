@@ -1,38 +1,45 @@
 {
 	"name": "Krzychu",
-	"texture": "res://Graphics/Michal/SeconBaseCourierDialogSprite.png",
-	"hp": 85,
+	"texture": "res://Graphics/Krzychu/BaseCourierDialogSprite.png",
+	"hp": 100,
 	"max_hp": 100,
 	"knocked_up": false,
-	"attack": {
-		"mele": {
-			"dmg": 45,
+	"attacks": [
+		{
+			"type": "melee",
+			"damage": 45,
 			"wait_time": 3
 		},
-		"range": {
-			"dmg": 45,
+		{
+			"type": "range",
+			"damage": 45,
 			"wait_time": 5
 		}
-	},
-	"skills": {
-
-	},
+	],
+	"skills": [],
 	"equipment": {
-		"Mele_weapon": [
-			"Pocket knife",
-			"With Krzychu name engraved",
-			30
-		],
-		"Range_weapon": [
-			"Krzychu company flintlock",
-			"Same flintlock give to all alchemy couriers...",
-			50,
-			49
-		],
-		"Armor": [
-			"Penis armor",
-			"Freaky armor for freaky people",
-			16
-		]
+		"Mele_weapon": {
+			"name": "Pocket knife",
+			"description": "With Krzychu name engraved",
+			"icon_path": "",
+			"type": "Mele_weapon",
+			"damage": 30,
+			"ammo": "none"
+		},
+		"Range_weapon": {
+			"name": "Krzychu company flintlock",
+			"description": "Same flintlock give to all alchemy couriers...",
+			"icon_path": "",
+			"type": "Range_weapon",
+			"damage": 50,
+			"ammo": 49
+		},
+		"Armor": {
+			"name": "Penis armor",
+			"description": "Freaky armor for freaky people",
+			"icon_path": "",
+			"type": "Armor",
+			"armor": 16
+		}
 	}
 }

@@ -3,6 +3,7 @@ extends  MarginContainer
 @onready var Name 
 @onready var Hp 
 @onready var MaxHp 
+@onready var KnockedUp
 var choosingUnlocked = false
 var ableToChoose = false
 var choosingAction = ""
@@ -27,21 +28,26 @@ func _process(delta):
 	else:
 		if $Panel.has_theme_stylebox_override("panel"):
 			$Panel.remove_theme_stylebox_override("panel")
-	
-func load_data(e_name, e_hp, e_maxHp, texture):
+
+
+func load_data(e_name, e_hp, e_maxHp, texture, e_knockedUp):
 	Name = e_name
 	Hp = e_hp
 	MaxHp = e_maxHp
+	KnockedUp = e_knockedUp
 	$MarginContainer/HBoxContainer/TextureRect.texture = load(texture)
-	
+
+
 func unlock_choosing(cAction):
 	choosingUnlocked = true
 	choosingAction = cAction
+
 
 func lock_choosing():
 	choosingUnlocked = false
 	ableToChoose = false
 	choosingAction = ""
+
 
 func _on_mouse_entered():
 	if choosingUnlocked:
