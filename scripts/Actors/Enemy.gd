@@ -57,7 +57,7 @@ func _physics_process(delta):
 				$CheckSprite.visible = false
 				
 		if can_attack and !waiting:
-			$CheckSprite.visible = false
+			#$CheckSprite.visible = false
 			WaiTimeBar.visible =false
 			$AnimationPlayer.play("attack")
 			$BattleSounds.stream = load("res://Music/Sfx/Combat/Melee_combat_sfx.wav")
@@ -73,6 +73,9 @@ func all_attack():
 	wait_timer.set_paused(true)
 	being_attacked.emit(self)
 	on_cursor = false
+	$CheckSprite.visible = false
+	
+func unshow_checksprite():
 	$CheckSprite.visible = false
 
 func load_data(json_path):
@@ -128,7 +131,7 @@ func attack_entity():
 		var attacked_entity = can_be_attacked[random.randi_range(0, len(can_be_attacked) -1)]
 		enemy_attacking.emit(attacked_entity, Attack)
 		can_attack = false
-		attack_danger = false
+		#attack_danger = false
 		wait_timer.queue_free()
 		start_attacking_process()
 		

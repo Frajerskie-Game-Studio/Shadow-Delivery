@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://ckmkp7micklsg"]
+[gd_scene load_steps=62 format=3 uid="uid://ckmkp7micklsg"]
 
 [ext_resource type="Script" path="res://scripts/Actors/Shadow.gd" id="1_3iany"]
 [ext_resource type="Texture2D" uid="uid://b73vu1r57vapa" path="res://Graphics/Shadow/Shadow-spritesheetaseprite-Sheet.png" id="1_drdqn"]
@@ -337,9 +337,13 @@ tracks/0/keys = {
 "values": [40, 41, 42, 43, 44, 45, 46, 47, 48]
 }
 
+[sub_resource type="Animation" id="Animation_bc4qh"]
+resource_name = "dixer"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lu4nw"]
 _data = {
 "RESET": SubResource("Animation_qetah"),
+"dixer": SubResource("Animation_bc4qh"),
 "get_dmg": SubResource("Animation_c8o5b"),
 "hide_range": SubResource("Animation_esm6d"),
 "knocked_down": SubResource("Animation_qexuv"),
@@ -446,13 +450,13 @@ states/mele_idle/position = Vector2(482, 523)
 states/range_attack/node = SubResource("AnimationNodeAnimation_w3vq8")
 states/range_attack/position = Vector2(1154, 100)
 states/range_idle/node = SubResource("AnimationNodeAnimation_i5pxf")
-states/range_idle/position = Vector2(1197, 513)
+states/range_idle/position = Vector2(1198, 513)
 states/show_range/node = SubResource("AnimationNodeAnimation_yh8hu")
 states/show_range/position = Vector2(924, 354)
 states/use_item/node = SubResource("AnimationNodeAnimation_um8ku")
 states/use_item/position = Vector2(646, 34)
 transitions = ["mele_attack", "mele_idle", SubResource("AnimationNodeStateMachineTransition_lye6b"), "mele_idle", "mele_attack", SubResource("AnimationNodeStateMachineTransition_g26mp"), "mele_idle", "get_dmg", SubResource("AnimationNodeStateMachineTransition_8xnct"), "get_dmg", "knocked_down", SubResource("AnimationNodeStateMachineTransition_g6m7g"), "get_dmg", "mele_idle", SubResource("AnimationNodeStateMachineTransition_ok4x2"), "use_item", "mele_idle", SubResource("AnimationNodeStateMachineTransition_nmwuq"), "mele_idle", "use_item", SubResource("AnimationNodeStateMachineTransition_hdipr"), "mele_idle", "knocked_down", SubResource("AnimationNodeStateMachineTransition_uoocx"), "knocked_down", "mele_idle", SubResource("AnimationNodeStateMachineTransition_ht0e2"), "show_range", "range_idle", SubResource("AnimationNodeStateMachineTransition_q4kea"), "range_idle", "hide_range", SubResource("AnimationNodeStateMachineTransition_ndyya"), "range_idle", "range_attack", SubResource("AnimationNodeStateMachineTransition_4infj"), "range_idle", "Idle", SubResource("AnimationNodeStateMachineTransition_q5fps"), "Idle", "range_idle", SubResource("AnimationNodeStateMachineTransition_6h4rj"), "mele_idle", "Idle", SubResource("AnimationNodeStateMachineTransition_xc6nb"), "Idle", "mele_idle", SubResource("AnimationNodeStateMachineTransition_wrehy"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_70p1h"), "mele_idle", "show_range", SubResource("AnimationNodeStateMachineTransition_o4rsg"), "hide_range", "mele_idle", SubResource("AnimationNodeStateMachineTransition_j522a"), "range_attack", "mele_idle", SubResource("AnimationNodeStateMachineTransition_xnr8q")]
-graph_offset = Vector2(211, 45)
+graph_offset = Vector2(74, 20)
 
 [node name="Shadow" type="Node2D"]
 script = ExtResource("1_3iany")

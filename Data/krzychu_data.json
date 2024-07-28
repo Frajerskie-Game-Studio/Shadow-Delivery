@@ -1,7 +1,7 @@
 {
 	"name": "Krzychu",
 	"texture": "res://Graphics/Michal/SeconBaseCourierDialogSprite.png",
-	"hp": 10,
+	"hp": 85,
 	"max_hp": 100,
 	"knocked_up": false,
 	"attack": {
@@ -27,7 +27,7 @@
 			"Krzychu company flintlock",
 			"Same flintlock give to all alchemy couriers...",
 			50,
-			1
+			49
 		],
 		"Armor": [
 			"Penis armor",

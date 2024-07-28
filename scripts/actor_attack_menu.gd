@@ -126,4 +126,13 @@ func _on_items_list_item_activated(index):
 		$HBoxContainer/RightMenu/ItemsMenu/ItemsList.clear()
 		$HBoxContainer/RightMenu/ItemsMenu/Panel/HBoxContainer/ItemDesc.text = ""
 		$HBoxContainer/RightMenu/ItemsMenu/Panel/HBoxContainer/ItemAmmount.text = ""
-
+		
+func lock_buttons():
+	$HBoxContainer/LeftMenu/AttackButton.disabled = true
+	$HBoxContainer/LeftMenu/SkillsButton.disabled = true
+	$HBoxContainer/LeftMenu/ItemsButton.disabled = true
+	
+func unlock_buttons():
+	$HBoxContainer/LeftMenu/AttackButton.disabled = false
+	$HBoxContainer/LeftMenu/SkillsButton.disabled = false
+	$HBoxContainer/LeftMenu/ItemsButton.disabled = false

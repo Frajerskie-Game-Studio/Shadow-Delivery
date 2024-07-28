@@ -1,7 +1,7 @@
 {
 	"name": "Michał",
 	"texture": "res://Graphics/Michal/SeconBaseCourierDialogSprite.png",
-	"hp": 55,
+	"hp": 10,
 	"max_hp": 100,
 	"knocked_up": false,
 	"attack": {
@@ -27,7 +27,7 @@
 			"Michals company flintlock",
 			"Same knife give to all alchemy couriers...",
 			50,
-			0
+			49
 		],
 		"Armor": [
 			"Penis armor",

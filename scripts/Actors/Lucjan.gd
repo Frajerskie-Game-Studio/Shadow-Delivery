@@ -58,9 +58,11 @@ func get_dmg(attack):
 		can_be_attacked = false
 	else:
 		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
-		
+	
+	print(ready_to_attack_bool)
 	if ready_to_attack_bool:
 		reset_attack.emit()
+		unlock_buttons()
 		$AttackMenu/HBoxContainer/LeftMenu/AttackButton.release_focus()
 		$AttackMenu/HBoxContainer/LeftMenu/SkillsButton.release_focus()
 		$AttackMenu/HBoxContainer/LeftMenu/ItemsButton.release_focus()
@@ -74,7 +76,13 @@ func _process(delta):
 			animationState.travel("knocked_down")
 		else:
 			$AttackMenu.visible = true
-
+		
+		if ready_to_attack_bool:
+			if Input.is_action_just_pressed("cancel"):
+				reset_attack.emit()
+				unlock_buttons()
+				
+		
 		if timer != null:
 			if duringSkillCheck:
 				if current_style == "mele":
@@ -109,8 +117,8 @@ func _process(delta):
 #dla skilla cały obiekt skilla
 #dla ataku null
 func _on_attack_menu_i_will_attack(args):
-	print(args)
 	ready_to_attack_bool = true
+	lock_buttons()
 	if args == null:
 		#------------------podstawowy atak zależny od stylu----------------------
 		if current_effect_working != null and current_effect_working == "stronger":
@@ -208,6 +216,7 @@ func start_attack(attack):
 	timer.start()
 	
 func start_using_item():
+	unlock_buttons()
 	can_be_checked = false
 	ready_to_attack_bool = false
 	var item = get_parent().possible_attack
@@ -283,6 +292,7 @@ func _on_timer_timeout():
 			
 func _on_attack_done():
 	print("DONE")
+	unlock_buttons()
 	$AttackMenu/HBoxContainer/LeftMenu/SkillsButton.visible = false
 	$AttackMenu/HBoxContainer/LeftMenu/ItemsButton.visible = false
 	$AttackMenu/HBoxContainer/LeftMenu/AttackButton.visible = false
@@ -351,17 +361,18 @@ func use_item(item):
 	if item.has("effect"):
 		if item.effect == "revive":
 			KnockedUp = false
-	if item.dmg != 0:
-		Hp -= item.dmg
-	elif item.heal != 0:
-		$BattleSounds.stream = load("res://Music/Sfx/Combat/Heal_sfx.wav")
-		$BattleSounds.play()
-		Hp += item.heal
-		if Hp > MaxHp:
-			Hp = MaxHp
-	Items[item.key][3] -= 1
-	if Items[item.key][3] <= 0:
-		Items.erase(item.key)
+	if !KnockedUp:
+		if item.dmg != 0:
+			Hp -= item.dmg
+		elif item.heal != 0:
+			$BattleSounds.stream = load("res://Music/Sfx/Combat/Heal_sfx.wav")
+			$BattleSounds.play()
+			Hp += item.heal
+			if Hp > MaxHp:
+				Hp = MaxHp
+		Items[item.key][3] -= 1
+		if Items[item.key][3] <= 0:
+			Items.erase(item.key)
 	on_mouse_cursor = false
 	can_be_checked = false
 	save_data()
@@ -380,8 +391,15 @@ func _on_character_body_2d_mouse_exited():
 	if can_be_checked:
 		on_mouse_cursor = false
 		$CheckSprite.visible = false
-	
+		
+func unshow_checksprite():
+	$CheckSprite.visible = false
 
+func unlock_buttons():
+	$AttackMenu.unlock_buttons()
+	
+func lock_buttons():
+	$AttackMenu.lock_buttons()
 
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name == "hide_mele" or anim_name == "hide_range":
@@ -395,7 +413,7 @@ func _on_animation_tree_animation_finished(anim_name):
 		animationState.travel("mele_idle")
 	elif anim_name == "range_attack":
 		can_be_attacked = true
-		if Name == "Lucjan":
+		if Name != "Mikut" and Name != "Shadow":
 			animationState.travel("reload")
 		else:
 			animationState.travel("change_style")

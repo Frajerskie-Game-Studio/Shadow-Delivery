@@ -71,44 +71,57 @@ func _on_entity_ready_to_attack(attack, attacker):
 	possible_attacker = attacker
 	
 	
-	if !possible_attack.has("heal") and possible_attack.effect != "stronger":
-		#if sprawdzający czy nie jest używany item, jak nie jest to przeciwnicy są gotowi do oznaczenia (zaatakowania
-		for e in Enemies:
-			e.attack_danger = true
-	else:
+	#if !possible_attack.has("heal"):
+		##if sprawdzający czy nie jest używany item, jak nie jest to przeciwnicy są gotowi do oznaczenia (zaatakowania
+		#for e in Enemies:
+			#e.attack_danger = true
+	#
+	if possible_attack.has("heal"):
 		#w przeciwnym wypadku oznaczani będą teammate'ci		
 		for p in Party:
 			#sprawdzenie czy używany item zawiera efekt revive, jeżeli tak, itemu będzie można użyć to na KnockedDown teammate'ach
 			if possible_attack.has("effect") and possible_attack.effect == "revive":
 				if p.KnockedUp:
 					p.can_be_checked = true
-			else:
+			elif !p.KnockedUp:
 			#w przeciwnym wypadku item może zostać użyty na wszystkich teammate'ach
 				p.can_be_checked = true
-	
-	#if obsługujący skille z efektami
-	if possible_attack.has("effect"):
-		#jeżeli skill zawiera atak all to wszyscy przeciwnicy są zaatakowani bez skillcheck'u
-		if possible_attack.effect == "all":
+				
+	else:	
+		#if obsługujący skille z efektami
+		if possible_attack.has("effect"):
+			#jeżeli skill zawiera atak all to wszyscy przeciwnicy są zaatakowani bez skillcheck'u
+			if possible_attack.effect == "all":
+				for e in Enemies:
+					e.all_attack()
+			#jeżeli zawiera efekt stronger, skill używany jest od razu na rzucającym, pomijając wszystkie inne fazy i od razu przechodząc do fazy czekania
+			elif possible_attack.effect == "stronger":
+				possible_attacker.start_attack(possible_attack)
+			else:
+				for e in Enemies:
+					e.attack_danger = true
+		else:
 			for e in Enemies:
-				e.all_attack()
-		#jeżeli zawiera efekt stronger, skill używany jest od razu na rzucającym, pomijając wszystkie inne fazy i od razu przechodząc do fazy czekania
-		elif possible_attack.effect == "stronger":
-			possible_attacker.start_attack(possible_attack)
+				e.attack_danger = true
 		
 
 func _on_reset_ready_to_attack():
 	if possible_attacker != null and !possible_attacker.KnockedUp:
 		possible_attack = null
 		possible_attacker.can_be_attacked = true
+		possible_attacker.ready_to_attack_bool = false
+		possible_attacker.unlock_buttons()
 		possible_attacker = null
 
 	for e in Enemies:
 		e.attack_danger = false
+		e.unshow_checksprite()
 	
 	for p in Party:
 		p.can_be_checked = false
 		p.on_mouse_cursor = false
+		p.unshow_checksprite()
+		
 		
 func _on_entity_being_attacked(entity):
 	print("ATTACKED")
@@ -135,6 +148,11 @@ func _on_item_being_used(entity):
 	entity.use_item(possible_attack)
 	entity.reload_menu()
 	possible_attacker.start_using_item()
+	possible_attacker = null
+	possible_attack = null
+	
+	for p in Party:
+		p.can_be_checked = false
 
 func _on_enemy_attacking(target, attack):
 	target.get_dmg(attack)
