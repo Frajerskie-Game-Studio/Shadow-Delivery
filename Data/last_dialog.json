@@ -18,8 +18,133 @@
 		],
 		[
 			"Shadow",
-			"There is no time for explanetion, we need to take care of this guys",
+			"Now I can properly introduce myself",
 			"res://Graphics/Shadow/ShadowDialogSprite.png"
 		],
+		[
+			"Shadow",
+			"I am your shadow, the one that followed you from the day of your birth",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+		[
+			"Shadow",
+			"We, shadows, are concious beings, existing in your world",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+		[
+			"Shadow",
+			"But we normally don't have free will, and we're not able to communicate with you",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+		[
+			"Shadow",
+			"But when strong shadow magic is released, our worlds are able to connect with each other, but only for a split second",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+		[
+			"Shadow",
+			"This happened right now, when the minerals you were mining exploded",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"So how am I able to still communicate with you, and why are we fine explosion",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Shadow",
+			"The mystery mineral you just mined is able to absorb high ammount of strong shadow power, and slowly release it",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+		[
+			"Shadow",
+			"The mystery mineral you just mined is able to absorb high ammount of strong shadow power, and slowly release it",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+		[
+			"Shadow",
+			"Lucjan, your friend from childhood, was just lucky enough to stand behind you",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Mikut please stop mumbling and help me! If we help them fast enough, we'll be able to make it!",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Shadow",
+			"Tell him it won't do anything",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"Lucjan, my shadow tells me they're done",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Screw you stupid ass shadow, I will save them!",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"Lucjan, I'm sorry...",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Shadow",
+			"Now you need to leave this place, and then go to the Shadow Gate",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"What the hell are you talking about, Shadow Gate is just a conspiracy theory!",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Mikut you freaking lunatic, stop mubling and help me!",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Shadow",
+			"You couldn't be more wrong. It exist, and all these bad things are beacuse of this",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+		[
+			"Shadow",
+			"And the biggest manufacturers all know about this. That's how they gain power so fast",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"How in the world am I supposed to find it, huh?!",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"And how do you imagine me fighing big manufacturers, HUH?!",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Shadow",
+			"First you need to meet the person who has the knowledge",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"Ania...",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Shit, I'm done!",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"We're screwed...",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		]
 	]
 }
