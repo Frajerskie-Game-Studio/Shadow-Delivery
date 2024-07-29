@@ -613,7 +613,7 @@ layer_0/tile_data = PackedInt32Array(458755, 196608, 1, 393219, 327680, 1, 32768
 
 [node name="ConveyorBelt" type="StaticBody2D" parent="."]
 z_index = 1
-position = Vector2(905, 179)
+position = Vector2(901, 147)
 
 [node name="Sprite2D" type="Sprite2D" parent="ConveyorBelt"]
 position = Vector2(401, 60)
