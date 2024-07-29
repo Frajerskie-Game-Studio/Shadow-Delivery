@@ -21,7 +21,7 @@
 		"Mele_weapon": {
 			"name": "Scyzoryk",
 			"description": "Tak na mnie wołają",
-			"icon_path": "res://Graphics/Items/default_texture.png",
+			"icon_path": "res://Graphics/Items/Knife.png",
 			"type": "Mele_weapon",
 			"damage": 30,
 			"ammo": "none"
@@ -37,7 +37,7 @@
 		"Armor": {
 			"name": "Penis armor",
 			"description": "Freaky armor for freaky people",
-			"icon_path": "res://Graphics/Items/default_texture.png",
+			"icon_path": "res://Graphics/Items/uniform.png",
 			"type": "Armor",
 			"armor": 16
 		}
