@@ -20,7 +20,8 @@ func _ready():
 	get_parent().switch_zoom(2,2)
 	#path, clickable, deletable, action, multi_state
 	$Dialogs/TutorialFight.load_data("user://Data/start_tutorial_battle_dialog.json", false, true, get_parent().start_tutorial_fight, false)
-	$Dialogs/AddPartyDialog.load_data("res://Data/after_tutorial_dialog.json", false, false, dixer, false)
+	$Dialogs/AddPartyDialog.load_data("user://Data/after_tutorial_dialog.json", false, true, dixer, false)
+	$Dialogs/ExitLevelDialog.load_data("user://Data/enter_cave_dialog.json", false, false, get_parent().switch_level, false)
 
 
 func _process(delta):
@@ -29,7 +30,11 @@ func _process(delta):
 		emit_add_party_signal = false
 
 func _on_desk_dialog_start_dialog(path, d, action):
-	print(str(d) + " I AM EMMITING SHITHEAD")
+	if d.name == "ExitLevelDialog":
+		get_parent().play_switch_animation()
+		$PartyMembers.global_position = $TeammatesExitPosition.global_position
+		$PartyMembers/AnimationPlayer.play("idle_up")
+		$PartyMembers.visible = true
 	start_dialog.emit(path, d, action)
 	if deletedPointers.find(d.name) == -1 and d.Deletable:
 		deletedPointers.append(d.name)

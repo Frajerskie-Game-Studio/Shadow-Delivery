@@ -1,0 +1,29 @@
+{
+	"currentDialogState": 0,
+	"dialogStates": [
+		"one"
+	],
+	"name": "Lucjan",
+	"one": [
+		[
+			"Mikut",
+			"Here we are i guess...",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Right...",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Krzychu",
+			"Hell yeah I love this adrenaline",
+			"res://Graphics/Krzychu/BaseCourierDialogSprite.png"
+		],
+		[
+			"Michał",
+			"Time is running, let's get this done quick",
+			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
+		],
+	]
+}

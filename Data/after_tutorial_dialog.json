@@ -5,7 +5,7 @@
 	],
 	"name": "Lucjan",
 	"one": [
-        [
+		[
 			"Mikut",
 			"Damn that was tiring",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
@@ -20,12 +20,12 @@
 			"If we've got this cover let's head to the mining site",
 			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
 		],
-        [
+		[
 			"Krzychu",
 			"Righty right! All that stuff ain't gonna mine itself",
 			"res://Graphics/Krzychu/BaseCourierDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Aight, let's go!",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
@@ -35,13 +35,13 @@
 			"Lucjan was added to your party",
 			""
 		],
-        [
+		[
 			"***",
 			"Michał was added to your party",
 			""
 		]
-        ,
-        [
+		,
+		[
 			"***",
 			"Krzychu was added to your party",
 			""

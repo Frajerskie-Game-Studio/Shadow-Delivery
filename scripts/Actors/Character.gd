@@ -119,6 +119,11 @@ func _ready():
 	load_everything()
 	can_be_attacked = true
 
+func has_teammate(teammate):
+	for t in Party_Data.teammates:
+		if t == teammate:
+			return true
+	return false
 
 func get_ammo():
 	return Equipment.Range_weapon.ammo

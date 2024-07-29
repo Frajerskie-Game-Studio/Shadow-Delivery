@@ -65,9 +65,10 @@ func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc, action):
 			current_dialog_npc = dialog_npc
 
 func add_teammate(teammate, teammate_node):
-	$Player.add_teammates(teammate, teammate_node)
-	$Player.save_everything()
-	$Player.load_everything()
+	if !$Player.has_teammate(teammate):
+		$Player.add_teammates(teammate, teammate_node)
+		$Player.save_everything()
+		$Player.load_everything()
 	$Menu.refresh_data()
 
 #ending dialog
