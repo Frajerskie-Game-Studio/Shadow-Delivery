@@ -77,12 +77,12 @@ func add_resources():
 	var res_file = FileAccess.get_file_as_string("user://Data/party_resources.json")
 	for key in PartyResources:
 		var temp_resource = PartyResources[key]
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources/ScrollContainer/VBoxContainer/ResourcesList.add_item(str(key) + " " + "x " + str(temp_resource.amount))
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources/ScrollContainer/VBoxContainer/ResourcesList.add_item(str(key) + " " + "x " + str(temp_resource.amount), load(temp_resource.texture))
 
 func add_recipies():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Recipes/ScrollContainer/VBoxContainer/RecipesList.clear()
 	for key in CraftingRecipies:
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Recipes/ScrollContainer/VBoxContainer/RecipesList.add_item(str(key).replace("_", " "))
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Recipes/ScrollContainer/VBoxContainer/RecipesList.add_item(str(key).replace("_", " "), load(CraftingRecipies[key].texture))
 
 func _ready():
 	var text = FileAccess.get_file_as_string("user://Data/party_data.json")
@@ -408,12 +408,12 @@ func _on_recipes_list_item_clicked(index, at_position, mouse_button_index):
 		var component = temp_recipe.components[i]
 		if PartyResources.has(component):
 			crafting_components_data[i].desc.text = component
-			crafting_components_data[i].texture.texture = null #tutaj będzie tekstura z PatyResources[component].texture
+			crafting_components_data[i].texture.texture = load(PartyResources[component].texture) #tutaj będzie tekstura z PatyResources[component].texture
 		else:
 			crafting_components_data[i].desc.text = str(component) + "\nnot avilable"
 			return
 	crafting_components_data[2].desc.text = key
-	crafting_components_data[2].texture.texture = null #tutaj będzie texture pobierany z temp_recipe
+	crafting_components_data[2].texture.texture = load(temp_recipe.texture) #tutaj będzie texture pobierany z temp_recipe
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Middle/CraftButton.disabled = false
 
 
@@ -457,7 +457,7 @@ func _on_craft_button_pressed():
 			if !has_resource:
 				PartyResources[temp_recipe.data[0]] = {"amount": 1, "texture": temp_recipe.texture}
 		else:
-			PartyEq.append({"name" : temp_recipe.data[0], "description": temp_recipe.data[1], "type": temp_recipe.type, "damage": temp_recipe.data[2]})
+			PartyEq.append({"name" : temp_recipe.data[0], "description": temp_recipe.data[1], "icon_path": temp_recipe.texture, "type": temp_recipe.type, "damage": temp_recipe.data[2]})
 	else:
 		var has_item = false
 		for i in range(len(Items)):

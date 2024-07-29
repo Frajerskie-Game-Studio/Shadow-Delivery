@@ -5,7 +5,7 @@
 			"skeleton_powder"
 		],
 		"type": "Range_weapon",
-		"texture": "",
+		"texture": "res://Graphics/Items/default_texture.png",
 		"data": [
 			"Magnesium grenade",
 			"Crude design, explosive effect",
@@ -18,7 +18,7 @@
 			"chitin exoskeleton"
 		],
 		"type": "resource",
-		"texture": "",
+		"texture": "res://Graphics/Items/default_texture.png",
 		"data": [
 			"skeleton_powder"
 		]

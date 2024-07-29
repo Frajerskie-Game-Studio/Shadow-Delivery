@@ -166,12 +166,11 @@ size_flags_horizontal = 3
 [node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top/Res1"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.8
+size_flags_stretch_ratio = 4.0
 
 [node name="Desc" type="Label" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top/Res1"]
 layout_mode = 2
 size_flags_vertical = 2
-size_flags_stretch_ratio = 0.2
 
 [node name="Res2" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top"]
 layout_mode = 2
@@ -180,12 +179,11 @@ size_flags_horizontal = 3
 [node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top/Res2"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.8
+size_flags_stretch_ratio = 4.0
 
 [node name="Desc" type="Label" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top/Res2"]
 layout_mode = 2
 size_flags_vertical = 2
-size_flags_stretch_ratio = 0.2
 
 [node name="Output" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top"]
 layout_mode = 2
@@ -194,12 +192,11 @@ size_flags_horizontal = 3
 [node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top/Output"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.8
+size_flags_stretch_ratio = 4.0
 
 [node name="Desc" type="Label" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Top/Output"]
 layout_mode = 2
 size_flags_vertical = 2
-size_flags_stretch_ratio = 0.2
 
 [node name="Middle" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft"]
 layout_mode = 2
@@ -209,6 +206,7 @@ size_flags_stretch_ratio = 0.2
 [node name="CraftButton" type="Button" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Middle"]
 layout_mode = 2
 size_flags_horizontal = 6
+mouse_default_cursor_shape = 2
 disabled = true
 text = "Craft Item"
 
