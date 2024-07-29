@@ -7,7 +7,7 @@
 size = Vector2(58, 47)
 
 [node name="DialogPointer" type="Area2D"]
-collision_layer = 7
+collision_layer = 3
 script = ExtResource("1_jkaym")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -2,10 +2,10 @@
 	"currentDialogState": 0,
 	"dialogStates": [
 		"one",
-        "two",
-        "three",
-        "four",
-        "five"
+		"two",
+		"three",
+		"four",
+		"five"
 	],
 	"name": "Lucjan",
 	"one": [
@@ -14,214 +14,214 @@
 			"This is battle field",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"As you can see, you have some action menu next to your sprite",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"This menu will only show if you are ready to attack",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"This is really important because after every action, you will need to wait some time to do another action",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Different actions have different wait time",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Your enemies will also need to wait to attack, now enemy timer is paused so you can learn, but it won't be so easy in real battle",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Another important thing is, if enemy attacks you, when you're choosing your action, your action will be canceled, so you need to think fast",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Also basic attacks have skill checks",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Mele skill check works really simple",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Above your head direction arrows will appear",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"When this happens you need to click button corresponding to movement direction same as arrow show",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"For example for arrow pointing up you need to click [W]",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Arrows can repeat itself so if you click correct button and arrow is still pointing in the same direction it means it is another skill check, and you need to click the same button againg",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"You also have time limit for this so you need to be fast",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Right now lets try attacking enemy",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		]
 	],
-    "two": [
-        [
+	"two": [
+		[
 			"Lucjan",
 			"So now you attacked enemy with your current fighting style, which is mele at the start of every fight",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Every character has two fighting styles, mele and range",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"You can switch between them during fights, but rember you will need to wait some time after click change style button",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Attacks from different styles are dealing different damage and have different skill checks",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Range skill check works is a little bit different than mele one",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"When you click attack viewfinder will appear in random position",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"It will move to choosed enemy position",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"When viewfinder is on the enemy you need to click [SPACEBAR]",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"If you miss you won't perform attack and you will need to wait same time as if you had attacked",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Now lets try changing your fighting style to range, and attack enemy again",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		]
-    ],
-    "three": [
-        [
+	],
+	"three": [
+		[
 			"Lucjan",
 			"So now you know how to attack enemies with basic attack and change style",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Now let's learn how to use skills",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Skills are special abilities of character",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Important thing is, some skills are dedicated to fighting styles",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"So for example if your character has range type skill it won't be shown on the menu if you have mele fighting style set",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Also some skills have different effects, for example your skill has all effect. It means it will work on all enemies, and i won't be having a skill check",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"You can check all skills list of character in menu",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Your skill is range type, so you will be able to use it right now",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        
-        [
+		
+		[
 			"Lucjan",
 			"Let's try doing this",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		]
-    ],
-    "four": [
-        [
+	],
+	"four": [
+		[
 			"Lucjan",
 			"Okay so if have this covered now let's learn how to use item",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"We have two kinds of items - healing and reviving",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"You can only use healing item on characters who are not knocked down",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"And reviving only on knocked down enemies",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Now let's try using red brew potion which master gave us",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		]
-    ],
-    "five": [
-        [
+	],
+	"five": [
+		[
 			"Lucjan",
 			"And that's all",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"Now you know how to fight",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		]
-    ]
+	]
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://0lo2jbvd58y3"]
+[gd_scene load_steps=34 format=3 uid="uid://0lo2jbvd58y3"]
 
 [ext_resource type="Script" path="res://scripts/Factory.gd" id="1_hetmy"]
 [ext_resource type="Texture2D" uid="uid://danm4j4v6n62f" path="res://Graphics/Levels/Factory/FactoryTileSetButBigger2.png" id="1_lxvvm"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b20lpqud30hbe" path="res://Graphics/Levels/Factory/EmptyCrate.png" id="9_xp5ke"]
 [ext_resource type="AudioStream" uid="uid://kvptbakix8ix" path="res://Music/Factory_Ambient.wav" id="10_2ukti"]
 [ext_resource type="Texture2D" uid="uid://wwx54d0ook04" path="res://Graphics/Krzychu/SecondBaseCourierSpriteSheetV2-Sheet1.png" id="10_651r8"]
+[ext_resource type="Texture2D" uid="uid://ck1whsvqbf7w8" path="res://Graphics/Master/MasterSpriteSheet.png" id="10_tns7u"]
 [ext_resource type="Texture2D" uid="uid://btgb1jpxyjlvh" path="res://Graphics/Michal/BaseCourierSpriteSheetV2(1)-Sheet.png" id="11_08i50"]
 [ext_resource type="PackedScene" uid="uid://bf573cy58a5wu" path="res://Scenes/dialog_pointer.tscn" id="11_k2450"]
 
@@ -770,8 +771,8 @@ position = Vector2(2434, -60)
 
 [node name="Sprite2D" type="Sprite2D" parent="Master"]
 scale = Vector2(3, 3)
-texture = ExtResource("10_651r8")
-hframes = 90
+texture = ExtResource("10_tns7u")
+hframes = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Master"]
 

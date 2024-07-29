@@ -8,12 +8,12 @@
 		[
 			"Master",
 			"Sorry for making you wait...",
-			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+			"res://Graphics/Master/MasterDialogSprite.png"
 		],
 		[
 			"Master",
 			"Is this our new alchemy courier",
-			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+			"res://Graphics/Master/MasterDialogSprite.png"
 		],
 		[
 			"Lucjan",
@@ -21,19 +21,19 @@
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
-			"Mikut",
+			"Master",
 			"How curious...",
-			"res://Graphics/Mikut/MikutDialogSprite.png"
+			"res://Graphics/Master/MasterDialogSprite.png"
 		],
 		[
 			"Master",
 			"Here's your mining site localization, and here are some healing potions",
-			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+			"res://Graphics/Master/MasterDialogSprite.png"
 		],
 		[
 			"Master",
-			"Hope you'll manage, Mikut",
-			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+			"Hope you'll manage, Mikut...",
+			"res://Graphics/Master/MasterDialogSprite.png"
 		],
 		[
 			"Mikut",

@@ -7,15 +7,6 @@
 	],
 	"items": [
 		{
-			"name": "Dicker potion",
-			"description": "Potion that does nothing because ur being a dick",
-			"icon_path": "res://Graphics/Items/flintlock_icon.png",
-			"damage": 0,
-			"heal": 20,
-			"amount": 2,
-			"effect": "no_effect_fuck_you"
-		},
-		{
 			"name": "Revive",
 			"description": "Weak reviving potion",
 			"icon_path": "",
@@ -23,16 +14,6 @@
 			"heal": 25,
 			"amount": 17,
 			"effect": "revive"
-		},
-		{
-			"name": "Red brew",
-			"description": "Very weak healing potion",
-			"icon_path": "res://Graphics/Items/healing_potion.png",
-			"damage": 0,
-			"heal": 20,
-			"amount": 2,
-			"effect": "",
-			"type": "item"
 		}
 	],
 	"equipment": [

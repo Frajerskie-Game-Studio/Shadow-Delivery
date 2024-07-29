@@ -47,6 +47,7 @@ func refresh_data():
 	PartyResources = temp_res
 	CraftingRecipies = temp_craft
 	add_items()
+	load_profiles()
 
 func save_data():
 	var file = FileAccess.open("user://Data/party_data.json", FileAccess.WRITE)

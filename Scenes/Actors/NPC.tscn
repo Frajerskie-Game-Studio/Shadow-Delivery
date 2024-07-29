@@ -150,8 +150,8 @@ _data = {
 [node name="NPC" type="StaticBody2D"]
 scale = Vector2(1, 1.00454)
 disable_mode = 1
-collision_layer = 7
-collision_mask = 7
+collision_layer = 3
+collision_mask = 3
 input_pickable = true
 script = ExtResource("1_8lub0")
 

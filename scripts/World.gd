@@ -32,6 +32,7 @@ func _ready():
 	party_items = temp_data["items"]
 	$Menu.refresh_data()
 	load_level()
+	start_fight()
 	#start_fight()
 
 func _process(delta):
@@ -66,10 +67,17 @@ func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc, action):
 
 func add_teammate(teammate, teammate_node):
 	if !$Player.has_teammate(teammate):
+		print("ADDING TEAMMATE")
 		$Player.add_teammates(teammate, teammate_node)
 		$Player.save_everything()
 		$Player.load_everything()
+		$Menu.refresh_data()
+	else:
+		print("HAS TEAMMATE")
 	$Menu.refresh_data()
+	
+func add_something(object, object_type):
+	$Player.add_something(object, object_type)
 
 #ending dialog
 func end_dialog(action):

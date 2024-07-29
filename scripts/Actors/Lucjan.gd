@@ -244,9 +244,10 @@ func _on_timer_timeout():
 	#print("KONIEC")
 	$MeleSkillCheck.visible = false
 	if skillCheckFailed:
-		#print("FAILED")
+		print("FAILED")
 		skillCheckFailed = true
 		duringSkillCheck = false
+		can_be_attacked = true
 		attacking.emit({"damage": 0})
 		if current_style == "range":
 			decrement_ammo()
@@ -257,7 +258,7 @@ func _on_timer_timeout():
 	else:
 		if skillCheckStep == len(skillChecks) - 1 or skillCheckStep == -1:
 			duringSkillCheck = false
-			#print("CORRECT")
+			print("CORRECT")
 			attacking.emit(selected_attack)
 			if current_style == "range":
 				$RangeSound.play()

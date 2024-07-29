@@ -291,8 +291,8 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSet" id="TileSet_jkrdl"]
 tile_size = Vector2i(64, 64)
-physics_layer_0/collision_layer = 7
-physics_layer_0/collision_mask = 7
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_cxvrm")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xedfy"]
@@ -437,6 +437,7 @@ layer_0/tile_data = PackedInt32Array(-589833, 458752, 4, -524297, 458752, 4, -45
 
 [node name="PartyMembers" type="StaticBody2D" parent="."]
 position = Vector2(-452, 374)
+collision_layer = 3
 
 [node name="Lucjan" type="Sprite2D" parent="PartyMembers"]
 position = Vector2(16, 38)

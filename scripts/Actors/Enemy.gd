@@ -60,9 +60,6 @@ func _physics_process(delta):
 		if can_attack and !waiting and !in_tutorial:
 			#$CheckSprite.visible = false
 			WaiTimeBar.visible =false
-			$AnimationPlayer.play("attack")
-			$BattleSounds.stream = load("res://Music/Sfx/Combat/Melee_combat_sfx.wav")
-			$BattleSounds.play()
 			attack_entity()
 		elif !can_attack and waiting and !wait_timer.is_paused():
 			WaiTimeBar.visible = true
@@ -126,6 +123,7 @@ func _on_wait_timer_timeout():
 
 func attack_entity():
 	can_be_attacked = get_parent().get_can_be_attack_entities()
+	print(can_be_attacked)
 	if len(can_be_attacked) > 0:
 		$EnemyWaitTimer.visible = false
 		var random = RandomNumberGenerator.new()
@@ -134,7 +132,14 @@ func attack_entity():
 		can_attack = false
 		#attack_danger = false
 		wait_timer.queue_free()
+		$AnimationPlayer.play("attack")
+		$BattleSounds.stream = load("res://Music/Sfx/Combat/Melee_combat_sfx.wav")
+			#print("ATTACKING")
+		$BattleSounds.play()
 		start_attacking_process()
+	else:
+		print("NO ONE TO ATTACK")
+		pass
 
 func toggle_in_tutorial():
 	in_tutorial = true

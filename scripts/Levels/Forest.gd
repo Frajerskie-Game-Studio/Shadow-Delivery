@@ -26,8 +26,8 @@ func _ready():
 
 func _process(delta):
 	if emit_add_party_signal:
-		$Dialogs/AddPartyDialog.emit_signal_via_code()
 		emit_add_party_signal = false
+		$Dialogs/AddPartyDialog.emit_signal_via_code()
 
 func _on_desk_dialog_start_dialog(path, d, action):
 	if d.name == "ExitLevelDialog":

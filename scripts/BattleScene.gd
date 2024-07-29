@@ -112,9 +112,6 @@ func _on_reset_ready_to_attack():
 
 
 func _on_entity_being_attacked(entity):
-	print("ATTACKED")
-	print(possible_attacker)
-	
 	possible_attacker.can_be_attacked = false
 	for e in Enemies:
 		e.attack_danger = false

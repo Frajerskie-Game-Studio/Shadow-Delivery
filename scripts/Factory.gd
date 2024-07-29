@@ -45,7 +45,20 @@ func dix():
 	$Master.visible = true
 	$Dialogs/MasterDialog.visible = true
 	$Dialogs/MasterDialog.monitoring = true
+	var item = {
+			"name": "Red brew",
+			"description": "Very weak healing potion",
+			"icon_path": "res://Graphics/Items/healing_potion.png",
+			"damage": 0,
+			"heal": 20,
+			"amount": 56,
+			"effect": "",
+			"type": "item"
+	}
+	
+	get_parent().add_something(item, "item")
 	$Dialogs/MasterDialog.emit_signal_via_code()
+
 	#tutaj będzie dodanie potek leczących
 	#var item = {}
 	#get_parent().add_object_to_player()
