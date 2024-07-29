@@ -4,16 +4,16 @@
 		"one"
 	],
 	"name": "Master",
-    "one": [
-        [
-            "Mikut",
-            "This is what alchemy is about now...",
-            "res://Graphics/Mikut/MikutDialogSprite.png"
-        ],
-        [
-            "Mikut",
-            "Instead of handmade art we have soulless mass production.",
-            "res://Graphics/Mikut/MikutDialogSprite.png"
-        ]
-    ]
+	"one": [
+		[
+			"Mikut",
+			"This is what alchemy is about now...",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"Instead of handmade art we have soulless mass production.",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		]
+	]
 }

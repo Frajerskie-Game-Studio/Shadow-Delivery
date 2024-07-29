@@ -19,12 +19,12 @@ func _ready():
 		"texture": ""
 	}}
 	$ConveyorBelt/AnimationPlayer.play("Convbelt")
-	$Dialogs/NPC.load_data("res://Data/factory_lucjan_dialog.json", "res://Graphics/Lucjan/LucjanSpriteSheet.png", 92, [get_parent().add_object_to_player.bind(resource, "resource"), dix], false)
+	$Dialogs/NPC.load_data("user://Data/factory_lucjan_dialog.json", "user://Graphics/Lucjan/LucjanSpriteSheet.png", 92, [get_parent().add_object_to_player.bind(resource, "resource"), dix], false)
 	#path, clickable, deletable, action, multi_state
-	$Dialogs/HealthFurnanceDialogPointer.load_data("res://Data/health_furnance_dialog.json", true, false, null, false)
-	$Dialogs/ToxicFurnancePointer.load_data("res://Data/toxic_furnance_dialog.json", true, false, null, false)
+	$Dialogs/HealthFurnanceDialogPointer.load_data("user://Data/health_furnance_dialog.json", true, false, null, false)
+	$Dialogs/ToxicFurnancePointer.load_data("user://Data/toxic_furnance_dialog.json", true, false, null, false)
 	$PartyMembers/AnimationPlayer.play("Idle")
-	$Dialogs/MasterDialog.load_data("res://Data/factory_master_dialog.json", false, true, get_parent().switch_level, false)
+	$Dialogs/MasterDialog.load_data("user://Data/factory_master_dialog.json", false, true, get_parent().switch_level, false)
 
 func _process(delta):
 	pass

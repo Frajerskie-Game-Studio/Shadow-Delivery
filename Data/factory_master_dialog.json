@@ -4,46 +4,46 @@
 		"one"
 	],
 	"name": "Master",
-    "one": [
-        [
+	"one": [
+		[
 			"Master",
 			"Sorry for making you wait...",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Master",
 			"Is this our new alchemy courier",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"That's right",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
-            "Mikut",
-            "How curious...",
-            "res://Graphics/Mikut/MikutDialogSprite.png"
-        ],
-        [
+		[
+			"Mikut",
+			"How curious...",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
 			"Master",
 			"Here's your mining site localization, and here are some healing potions",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Master",
 			"Hope you'll manage, Mikut",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-        [
+		[
 			"Mikut",
 			"Right...",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
-        [
+		[
 			"Lucjan",
 			"I guess we should get going",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		]
-    ]
+	]
 }

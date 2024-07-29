@@ -32,9 +32,9 @@ func load_profiles():
 		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.add_child(new_profile)
 		
 func refresh_data():
-	var text = FileAccess.get_file_as_string("res://Data/party_data.json")
-	var res_text = FileAccess.get_file_as_string("res://Data/party_resources.json")
-	var craft_text = FileAccess.get_file_as_string("res://Data/crafting_recipies.json") 
+	var text = FileAccess.get_file_as_string("user://Data/party_data.json")
+	var res_text = FileAccess.get_file_as_string("user://Data/party_resources.json")
+	var craft_text = FileAccess.get_file_as_string("user://Data/crafting_recipies.json") 
 	
 	var temp_data = JSON.parse_string(text)
 	var temp_res = JSON.parse_string(res_text)
@@ -49,8 +49,8 @@ func refresh_data():
 	add_items()
 
 func save_data():
-	var file = FileAccess.open("res://Data/party_data.json", FileAccess.WRITE)
-	var res_file = FileAccess.open("res://Data/party_resources.json", FileAccess.WRITE)
+	var file = FileAccess.open("user://Data/party_data.json", FileAccess.WRITE)
+	var res_file = FileAccess.open("user://Data/party_resources.json", FileAccess.WRITE)
 	var temp_data = {
 		"teammates": Teammates,
 		"teammates_nodes": TeammatesNodes,
@@ -81,7 +81,7 @@ func add_recipies():
 		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Recipes/ScrollContainer/VBoxContainer/RecipesList.add_item(str(key).replace("_", " "))
 
 func _ready():
-	var text = FileAccess.get_file_as_string("res://Data/party_data.json")
+	var text = FileAccess.get_file_as_string("user://Data/party_data.json")
 	var temp_data = JSON.parse_string(text)
 	Items = temp_data["items"]
 	Teammates = temp_data["teammates"]
@@ -165,11 +165,17 @@ func showEq(entity_name):
 	var load_name = entity_name
 	if entity_name == "Mikut":
 		load_name = "Player"
+	print(load_name + str(" dix dixer rrrrrr"))
+	print(entity_name + str("WOWOOW SISIAKO"))
 
 	for teammate in Teammates:
+		print(teammate.contains(entity_name.to_lower()))
+		print(entity_name.to_lower())
 		if teammate.contains(entity_name.to_lower()):
 			var temp_teammate = load("res://Scenes/Actors/"+str(load_name)+".tscn")
+			
 			eq_temp_person = temp_teammate.instantiate()
+			print(eq_temp_person.character_file_path)
 			eq_temp_person.load_data()
 			PersonEq = eq_temp_person.get_eq()
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.clear()
@@ -177,7 +183,7 @@ func showEq(entity_name):
 			for item_type in PersonEq:
 				var item = PersonEq[item_type]
 				$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.add_item(str(item_type) + ": " + item.name)
-			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/EqProfile.load_data(eq_temp_person.get_entity_name(), eq_temp_person.get_hp(), eq_temp_person.get_max_hp(), eq_temp_person.ProfileTexture, eq_temp_person.knocked_up)
+			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/EqProfile.load_data(eq_temp_person.get_entity_name(), eq_temp_person.get_hp(), eq_temp_person.get_max_hp(), eq_temp_person.ProfileTexture, eq_temp_person.KnockedUp)
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/EqProfile.set_values()
 	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
 		profile.lock_choosing()

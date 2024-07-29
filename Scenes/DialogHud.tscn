@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://btwspjfodubbu"]
 
-[ext_resource type="Script" path="res://Scripts/DialogHud.gd" id="1_raomp"]
+[ext_resource type="Script" path="res://scripts/DialogHud.gd" id="1_r5po3"]
 [ext_resource type="AudioStream" uid="uid://bbo8cjmmnu4e5" path="res://Music/Dialog_sfx2.wav" id="2_eanwb"]
 
 [node name="Control" type="Control"]
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_raomp")
+script = ExtResource("1_r5po3")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

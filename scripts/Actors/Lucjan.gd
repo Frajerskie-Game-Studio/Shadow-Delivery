@@ -12,7 +12,7 @@ var possible_target_position
 var current_effect_working
 
 func _init():
-	character_file_path = "res://Data/lucjan_data.json"
+	character_file_path = "user://Data/lucjan_data.json"
 	
 func _ready():
 	#hp, max_hp, melee_skills, range_skills, ammo, ammo_texture_path

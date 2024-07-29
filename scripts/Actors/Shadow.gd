@@ -2,7 +2,7 @@ extends "Lucjan.gd"
 
 func _init():
 	#zmień plik
-	character_file_path = "res://Data/shadow_data.json"
+	character_file_path = "user://Data/shadow_data.json"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

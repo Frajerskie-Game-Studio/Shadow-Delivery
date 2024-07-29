@@ -1,14 +1,14 @@
 {
-    "currentDialogState": 0,
-    "dialogStates": [
-        "one"
-    ],
-        "name": "Door",
-        "one": [
-        [
-            "Mikut",
-            "Ok let's head out.",
-            "res://Graphics/Mikut/MikutDialogSprite.png"
-        ]
-    ]
+	"currentDialogState": 0,
+	"dialogStates": [
+		"one"
+	],
+		"name": "Door",
+		"one": [
+		[
+			"Mikut",
+			"Ok let's head out.",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		]
+	]
 }

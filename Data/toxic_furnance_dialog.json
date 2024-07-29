@@ -4,21 +4,21 @@
 		"one"
 	],
 	"name": "Master",
-    "one": [
-        [
-            "Mikut",
-            "Of course manufacturers wouldn't be so rich without toxic alchemy weapons sale.",
-            "res://Graphics/Mikut/MikutDialogSprite.png"
-        ],
-        [
-            "Mikut",
-            "Poor people are dying from toxic gases, rich people are getting richer from toxic gases",
-            "res://Graphics/Mikut/MikutDialogSprite.png"
-        ],
-        [
-            "Mikut",
-            "And don't forget about funeral houses. They're also getting richer...",
-            "res://Graphics/Mikut/MikutDialogSprite.png"
-        ]
-    ]
+	"one": [
+		[
+			"Mikut",
+			"Of course manufacturers wouldn't be so rich without toxic alchemy weapons sale.",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"Poor people are dying from toxic gases, rich people are getting richer from toxic gases",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"And don't forget about funeral houses. They're also getting richer...",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		]
+	]
 }

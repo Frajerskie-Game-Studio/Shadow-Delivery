@@ -1,8 +1,8 @@
 [gd_scene load_steps=90 format=3 uid="uid://bnls0har28lt"]
 
-[ext_resource type="Script" path="res://Scripts/Actors/Player.gd" id="1_231py"]
-[ext_resource type="Script" path="res://Scripts/Player_movement.gd" id="1_ymo11"]
+[ext_resource type="Script" path="res://scripts/Actors/Player.gd" id="1_ybys1"]
 [ext_resource type="PackedScene" uid="uid://cpsu8wxbqyj34" path="res://Scenes/Menus/actor_attack_menu.tscn" id="2_5m8o5"]
+[ext_resource type="Script" path="res://scripts/Player_movement.gd" id="2_46smi"]
 [ext_resource type="Texture2D" uid="uid://bowm0m24aq1p7" path="res://Graphics/Mikut/MikutSpriteSheet.png" id="3_h60i7"]
 [ext_resource type="Script" path="res://Scenes/Actors/RangeSKillCheck.gd" id="5_8f850"]
 [ext_resource type="Texture2D" uid="uid://dfr7wyx8hve7f" path="res://Graphics/celownik.png" id="6_63nti"]
@@ -582,12 +582,12 @@ _data = {
 
 [node name="Player" type="Node2D"]
 clip_children = 1
-script = ExtResource("1_231py")
+script = ExtResource("1_ybys1")
 
 [node name="PlayerBody" type="CharacterBody2D" parent="."]
 collision_mask = 6
 input_pickable = true
-script = ExtResource("1_ymo11")
+script = ExtResource("2_46smi")
 
 [node name="Collision" type="CollisionShape2D" parent="PlayerBody"]
 position = Vector2(1.5, 0)

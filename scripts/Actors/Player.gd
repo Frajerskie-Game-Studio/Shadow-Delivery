@@ -1,7 +1,7 @@
 extends "Lucjan.gd"
 
 func _init():
-	character_file_path = "res://Data/mikut_data.json"
+	character_file_path = "user://Data/mikut_data.json"
 
 func _ready():
 	#hp, max_hp, melee_skills, range_skills, ammo, ammo_texture_path

@@ -36,7 +36,7 @@ signal item_being_used()
 
 
 func save_items():
-	var file = FileAccess.open("res://Data/party_data.json", FileAccess.WRITE)
+	var file = FileAccess.open("user://Data/party_data.json", FileAccess.WRITE)
 	var temp_data = {
 		"teammates": Party_Data.teammates,
 		"teammates_nodes": Party_Data.teammates_nodes,
@@ -47,7 +47,7 @@ func save_items():
 	file.close()
 	
 func save_resources():
-	var file = FileAccess.open("res://Data/party_resources.json", FileAccess.WRITE)
+	var file = FileAccess.open("user://Data/party_resources.json", FileAccess.WRITE)
 	file.store_string(JSON.stringify(Resources, "\t", false))
 	file.close()
 
@@ -86,13 +86,13 @@ func load_data():
 
 
 func load_items():
-	var text = FileAccess.get_file_as_string("res://Data/party_data.json")
+	var text = FileAccess.get_file_as_string("user://Data/party_data.json")
 	var temp_data = JSON.parse_string(text)
 	Items = temp_data.items
 	Party_Data = temp_data
 	
 func load_res():
-	var text = FileAccess.get_file_as_string("res://Data/party_resources.json")
+	var text = FileAccess.get_file_as_string("user://Data/party_resources.json")
 	var temp_data = JSON.parse_string(text)
 	Resources = temp_data
 	
@@ -112,9 +112,7 @@ func add_something(object, object_type):
 
 func _ready():
 	print("READY")
-	load_data()
-	load_items()
-	load_res()
+	load_everything()
 	can_be_attacked = true
 
 

@@ -14,9 +14,9 @@ func load_data(data):
 
 func _ready():	
 	get_parent().switch_zoom(3.13,3.13)
-	$Dialogs/DeskDialog.load_data("res://Data/desk.json", true, false, null, true)
-	$Dialogs/BedDialog.load_data("res://Data/wake_up_dialog.json", false, true, get_parent().start_fight, false)
-	$Dialogs/DoorDialog.load_data("res://Data/door_dialog.json", true, false, get_parent().switch_level, false)
+	$Dialogs/DeskDialog.load_data("user://Data/desk.json", true, false, null, true)
+	$Dialogs/BedDialog.load_data("user://Data/wake_up_dialog.json", false, true, null, false)
+	$Dialogs/DoorDialog.load_data("user://Data/door_dialog.json", true, false, get_parent().switch_level, false)
 
 func _process(delta):
 	pass

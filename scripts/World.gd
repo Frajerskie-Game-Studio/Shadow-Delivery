@@ -6,10 +6,11 @@ const DialogLoader = preload("res://scripts/DialogLoader.gd")
 @onready var battle_scene = preload("res://Scenes/BattleScene.tscn")
 @onready var mikutroom = preload("res://Scenes/Levels/MikutRoom.tscn")
 
+
 var CurrentLevel
 var LevelsData
 var CurrentLevelInstance
-
+var Player
 
 var current_dialog_npc
 var in_dialog = false
@@ -21,14 +22,15 @@ var battlefield
 signal itemDone
 
 func _ready():
+	print("I AM IN THE WORLD")
 	play_switch_animation()
-	var text = FileAccess.get_file_as_string("res://Data/party_data.json")
+	var text = FileAccess.get_file_as_string("user://Data/party_data.json")
 	var temp_data = JSON.parse_string(text)
+	print(temp_data)
 	data = temp_data
 	party_items = temp_data["items"]
 	$Menu.refresh_data()
 	load_level()
-	
 	#start_fight()
 
 func _process(delta):
@@ -107,7 +109,7 @@ func _on_canvas_layer_item_used(current_item, entity_name):
 	if(index != -1):
 		data.items.remove_at(index)
 	
-	var file = FileAccess.open("res://Data/party_data.json", FileAccess.WRITE)
+	var file = FileAccess.open("user://Data/party_data.json", FileAccess.WRITE)
 	
 	file.store_string(JSON.stringify(data, "\t", false))
 	file.close()
@@ -155,7 +157,7 @@ func start_fight():
 			c.save_resources()
 	add_child(battlefield)
 	$Player.get_node("PlayerBody").get_node("Camera2D").enabled = false
-	battlefield.load_entities($Player.Party_Data.teammates_nodes, ["res://Data/darkslime_data.json", "res://Data/darkslime_data.json"])
+	battlefield.load_entities($Player.Party_Data.teammates_nodes, ["user://Data/darkslime_data.json", "user://Data/darkslime_data.json"])
 	
 func add_object_to_player(object, object_type):
 	$Player.add_something(object, object_type)
@@ -185,9 +187,8 @@ func end_battle():
 	$Menu.refresh_data()
 
 func load_level():
-	var level_text = FileAccess.get_file_as_string("res://Data/level_saves.json")
+	var level_text = FileAccess.get_file_as_string("user://Data/level_saves.json")
 	var temp_level_data = JSON.parse_string(level_text)
-	
 	if CurrentLevelInstance != null:
 		CurrentLevelInstance.queue_free()
 	CurrentLevel = temp_level_data.currentLevel
@@ -205,7 +206,7 @@ func load_level():
 
 
 func save_level_data(switching_levels):
-	var file = FileAccess.open("res://Data/level_saves.json", FileAccess.WRITE)
+	var file = FileAccess.open("user://Data/level_saves.json", FileAccess.WRITE)
 	
 	LevelsData[CurrentLevel].deleted_pointers = CurrentLevelInstance.deletedPointers
 	LevelsData[CurrentLevel].player_position = [$Player.get_node("PlayerBody").position.x, $Player.get_node("PlayerBody").position.y]

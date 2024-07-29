@@ -14,10 +14,10 @@ func load_data(data):
 
 func _ready():
 	get_parent().switch_zoom(1.8,1.8)
-	$Dialogs/OutsidePlayerDoor.load_data("res://Data/outside_door_dialog.json", true, false, null, true)
-	$Dialogs/InvisibleWall.load_data("res://Data/town_invisible_wall_dialog.json", false, false, null, false)
-	$Dialogs/ShopDoor.load_data("res://Data/town_shop_dialog.json", true, false, null, true)
-	$Dialogs/LevelChanger.load_data("res://Data/town_change_scene.json", false, false, get_parent().switch_level, false)
+	$Dialogs/OutsidePlayerDoor.load_data("user://Data/outside_door_dialog.json", true, false, null, true)
+	$Dialogs/InvisibleWall.load_data("user://Data/town_invisible_wall_dialog.json", false, false, null, false)
+	$Dialogs/ShopDoor.load_data("user://Data/town_shop_dialog.json", true, false, null, true)
+	$Dialogs/LevelChanger.load_data("user://Data/town_change_scene.json", false, false, get_parent().switch_level, false)
 
 func _process(delta):
 	pass

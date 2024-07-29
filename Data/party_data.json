@@ -1,9 +1,9 @@
 {
 	"teammates": [
-		"./Data/mikut_data.json",
-		"./Data/lucjan_data.json",
-		"./Data/michal_data.json",
-		"./Data/krzychu_data.json"
+		"user://Data/mikut_data.json",
+		"user://Data/lucjan_data.json",
+		"user://Data/michal_data.json",
+		"user://Data/krzychu_data.json"
 	],
 	"teammates_nodes": [
 		"res://Scenes/Actors/Player.tscn",
@@ -36,7 +36,7 @@
 			"icon_path": "res://Graphics/Items/healing_potion.png",
 			"damage": 0,
 			"heal": 20,
-			"amount": 1,
+			"amount": 2,
 			"effect": "",
 			"type": "item"
 		}
