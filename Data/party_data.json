@@ -9,7 +9,7 @@
 		{
 			"name": "Revive",
 			"description": "Weak reviving potion",
-			"icon_path": "",
+			"icon_path": "res://Graphics/Items/default_texture.png",
 			"damage": 0,
 			"heal": 25,
 			"amount": 17,
@@ -20,7 +20,7 @@
 		{
 			"name": "Dix pistol",
 			"description": "A little old, but reliable",
-			"icon_path": "",
+			"icon_path": "res://Graphics/Items/default_texture.png",
 			"type": "Range_weapon",
 			"damage": 60,
 			"ammo": 6
@@ -28,7 +28,7 @@
 		{
 			"name": "Fuck u pistol",
 			"description": "Fuck u stronger than ever",
-			"icon_path": "",
+			"icon_path": "res://Graphics/Items/default_texture.png",
 			"type": "Range_weapon",
 			"damage": 50,
 			"ammo": 6
@@ -36,7 +36,7 @@
 		{
 			"name": "Dixer uniform",
 			"description": "Average factory outfit for couriers",
-			"icon_path": "",
+			"icon_path": "res://Graphics/Items/default_texture.png",
 			"type": "Armor",
 			"armor": 15
 		}

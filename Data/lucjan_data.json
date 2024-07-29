@@ -49,7 +49,7 @@
 		"Armor": {
 			"name": "Dix armor",
 			"description": "Freaky armor for freaky people",
-			"icon_path": "",
+			"icon_path": "res://Graphics/Items/default_texture.png",
 			"type": "Armor",
 			"armor": 16
 		}

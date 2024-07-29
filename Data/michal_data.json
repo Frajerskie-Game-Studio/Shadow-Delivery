@@ -21,15 +21,15 @@
 		"Mele_weapon": {
 			"name": "Scyzoryk",
 			"description": "Tak na mnie wołają",
-			"icon_path": "",
+			"icon_path": "res://Graphics/Items/default_texture.png",
 			"type": "Mele_weapon",
 			"damage": 30,
 			"ammo": "none"
 		},
 		"Range_weapon": {
 			"name": "Michals company flintlock",
-			"description": "Same knife give to all alchemy couriers...",
-			"icon_path": "",
+			"description": "Same pistol given to all alchemy couriers...",
+			"icon_path": "res://Graphics/Items/flintlock_icon.png",
 			"type": "Range_weapon",
 			"damage": 50,
 			"ammo": 49
@@ -37,7 +37,7 @@
 		"Armor": {
 			"name": "Penis armor",
 			"description": "Freaky armor for freaky people",
-			"icon_path": "",
+			"icon_path": "res://Graphics/Items/default_texture.png",
 			"type": "Armor",
 			"armor": 16
 		}
