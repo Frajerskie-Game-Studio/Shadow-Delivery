@@ -33,13 +33,19 @@ theme_override_constants/separation = 30
 layout_mode = 2
 texture = ExtResource("2_e0shl")
 
-[node name="StartButton" type="Button" parent="Control/VBoxContainer"]
+[node name="NewGameButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
-text = "Start"
+text = "New Game"
+
+[node name="ContinueButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Continue
+"
 
 [node name="Exit" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 text = "Exit"
 
-[connection signal="pressed" from="Control/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

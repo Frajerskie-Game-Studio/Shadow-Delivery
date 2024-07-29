@@ -1,59 +1,50 @@
 extends Node
 
 
-
-
 func _ready():
-	var files_to_create = [
-		"user://Data/battle_dialog.json",
-		"user://Data/crafting_recipies.json",
-		"user://Data/darkslime_data.json",
-		"user://Data/desk.json",
-		"user://Data/door_dialog.json",
-		"user://Data/factory_lucjan_dialog.json",
-		"user://Data/factory_master_dialog.json",
-		"user://Data/health_furnance_dialog.json",
-		"user://Data/krzychu_data.json",
-		"user://Data/level_saves.json",
-		"user://Data/lucjan_data.json",
-		"user://Data/michal_data.json",
-		"user://Data/mikut_data.json",
-		"user://Data/npc_test.json",
-		"user://Data/outside_door_dialog.json",
-		"user://Data/party_data.json",
-		"user://Data/party_resources.json",
-		"user://Data/shadow_data.json",
-		"user://Data/town_change_scene.json",
-		"user://Data/town_invisible_wall_dialog.json",
-		"user://Data/town_shop_dialog.json",
-		"user://Data/toxic_furnance_dialog.json",
-		"user://Data/wake_up_dialog.json",
-		"user://Data/start_tutorial_battle_dialog.json",
-		"user://Data/tutorial_dialog.json",
-		"user://Data/after_tutorial_dialog.json",
-		"user://Data/enter_cave_dialog.json",
-		"user://Data/tutorial_enemy.json"
-	]
+	print("Is user ffile system persistent: " + str(OS.is_userfs_persistent()))
 	
 	var dir = DirAccess.open("user://")
-	print(dir.dir_exists("Data"))
 	if !dir.dir_exists("Data"):
-		dir.make_dir_recursive("user://Data")
-	
-	for path in files_to_create:
-		if !FileAccess.file_exists(path):
-			var f = FileAccess.open(path, FileAccess.WRITE)
-			var text = FileAccess.get_file_as_string(path.replace("user", "res"))
-			var temp_data = JSON.parse_string(text)
-			f.store_string(JSON.stringify(temp_data, "\t", false))
-			f.close()
-			FileAccess.file_exists(path)
+		dir.make_dir("Data")
+
 
 func _process(delta):
 	pass
 
 
-func _on_start_button_pressed():
+func get_initial_data_files():
+	var initial_data_dir = DirAccess.open("res://Data")
+	return initial_data_dir.get_files()
+
+
+func create_user_data_file(file_name):
+	var text = FileAccess.get_file_as_string(file_name.replace("user", "res"))
+	var temp_data = JSON.parse_string(text)
+	
+	var new_file = FileAccess.open(file_name, FileAccess.WRITE)
+	new_file.store_string(JSON.stringify(temp_data, "\t", false))
+	new_file.close()
+
+
+func _on_new_game_button_pressed():
+	var files_to_create = get_initial_data_files()
+	
+	for path in files_to_create:
+		var user_file_path = "user://Data/" + path
+		create_user_data_file(user_file_path)
+	
+	get_tree().change_scene_to_file("res://Scenes/World.tscn")
+
+
+func _on_continue_button_pressed():
+	var files_to_check = get_initial_data_files()
+	
+	for path in files_to_check:
+		var user_file_path = "user://Data/" + path
+		if !FileAccess.file_exists(user_file_path):
+			create_user_data_file(user_file_path)
+	
 	get_tree().change_scene_to_file("res://Scenes/World.tscn")
 
 

@@ -30,11 +30,12 @@ func load_profiles():
 		new_profile.selectTeammate.connect(_on_entityChossed)
 		
 		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.add_child(new_profile)
-		
+
+
 func refresh_data():
 	var text = FileAccess.get_file_as_string("user://Data/party_data.json")
 	var res_text = FileAccess.get_file_as_string("user://Data/party_resources.json")
-	var craft_text = FileAccess.get_file_as_string("user://Data/crafting_recipies.json") 
+	var craft_text = FileAccess.get_file_as_string("user://Data/crafting_recipies.json")
 	
 	var temp_data = JSON.parse_string(text)
 	var temp_res = JSON.parse_string(res_text)
@@ -48,6 +49,7 @@ func refresh_data():
 	CraftingRecipies = temp_craft
 	add_items()
 	load_profiles()
+
 
 func save_data():
 	var file = FileAccess.open("user://Data/party_data.json", FileAccess.WRITE)
@@ -72,9 +74,11 @@ func add_items():
 
 func add_resources():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources/ScrollContainer/VBoxContainer/ResourcesList.clear()
+	var res_file = FileAccess.get_file_as_string("user://Data/party_resources.json")
+	
 	for key in PartyResources:
 		var temp_resource = PartyResources[key]
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources/ScrollContainer/VBoxContainer/ResourcesList.add_item(str(key) + " " + str(PartyResources[key].amount) + "x")
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources/ScrollContainer/VBoxContainer/ResourcesList.add_item(str(key) + " " + str(temp_resource.amount) + "x")
 
 func add_recipies():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Recipes/ScrollContainer/VBoxContainer/RecipesList.clear()
@@ -166,8 +170,6 @@ func showEq(entity_name):
 	var load_name = entity_name
 	if entity_name == "Mikut":
 		load_name = "Player"
-	print(load_name + str(" dix dixer rrrrrr"))
-	print(entity_name + str("WOWOOW SISIAKO"))
 
 	for teammate in Teammates:
 		print(teammate.contains(entity_name.to_lower()))
