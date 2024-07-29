@@ -108,11 +108,16 @@ func load_everything():
 
 func add_something(object, object_type):
 	if object_type == "item":
+		print("ADDING ITEM")
 		Items.append(object)
+		print(Items)
+
 	elif object_type == "resource":
 		Resources[object.keys()[0]] = object[object.keys()[0]] 
 	elif object_type == "equipment":
 		Equipment.append(object)
+	save_everything()
+	load_data()
 
 func _ready():
 	print("READY")

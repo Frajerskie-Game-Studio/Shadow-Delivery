@@ -198,6 +198,7 @@ func start_tutorial_fight():
 	battlefield.load_entities($Player.Party_Data.teammates_nodes, ["user://Data/tutorial_enemy.json", "user://Data/tutorial_enemy.json"])
 	
 func add_object_to_player(object, object_type):
+	print("ADDING OBJECT")
 	$Player.add_something(object, object_type)
 	$Player.save_everything()
 	$Player.load_everything()
@@ -241,6 +242,7 @@ func load_level():
 	CurrentLevelInstance.start_npc_dialog.connect(_on_npc_show_dialog)
 	
 	$Player.get_node("PlayerBody").position = Vector2(LevelsData[CurrentLevel].player_position[0],LevelsData[CurrentLevel].player_position[1])
+	$Menu.refresh_data()
 
 
 

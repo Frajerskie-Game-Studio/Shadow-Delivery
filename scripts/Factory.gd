@@ -48,7 +48,7 @@ func dix():
 	var item = {
 			"name": "Red brew",
 			"description": "Very weak healing potion",
-			"icon_path": "res://Graphics/Items/healing_potion.png",
+			"icon_path": "res://Graphics/Items/healing_potion_icon.png",
 			"damage": 0,
 			"heal": 20,
 			"amount": 56,
