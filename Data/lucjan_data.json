@@ -33,7 +33,7 @@
 		"Mele_weapon": {
 			"name": "Pickaxe",
 			"description": "Iconic",
-			"icon_path": "",
+			"icon_path": "res://Graphics/Items/pickaxe_icon.png",
 			"type": "Mele_weapon",
 			"damage": 45,
 			"ammo": "none"
@@ -41,7 +41,7 @@
 		"Range_weapon": {
 			"name": "Cheap flintlock",
 			"description": "A little old, but reliable",
-			"icon_path": "",
+			"icon_path": "res://Graphics/Items/flintlock_icon.png",
 			"type": "Range_weapon",
 			"damage": 60,
 			"ammo": 1
