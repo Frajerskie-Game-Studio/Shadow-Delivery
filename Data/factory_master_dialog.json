@@ -12,7 +12,7 @@
 		],
 		[
 			"Master",
-			"Is this our new alchemy courier",
+			"Is this our new alchemy courier?",
 			"res://Graphics/Master/MasterDialogSprite.png"
 		],
 		[
@@ -27,12 +27,12 @@
 		],
 		[
 			"Master",
-			"Here's your mining site localization, and here are some healing potions",
+			"Anyhow, here is your mining site localization, and here are some healing potions",
 			"res://Graphics/Master/MasterDialogSprite.png"
 		],
 		[
 			"Master",
-			"Hope you'll manage, Mikut...",
+			"Hope you will manage, Mikut...",
 			"res://Graphics/Master/MasterDialogSprite.png"
 		],
 		[

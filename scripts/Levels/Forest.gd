@@ -14,6 +14,8 @@ func load_data(data):
 			print(child.name)
 			if child.name == "TutorialFight":
 				emit_add_party_signal = true
+			if child.name == "AddPartyDialog":
+				emit_add_party_signal = false
 			child.queue_free()
 
 func _ready():	

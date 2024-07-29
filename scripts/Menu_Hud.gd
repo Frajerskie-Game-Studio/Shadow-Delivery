@@ -18,8 +18,8 @@ signal itemUsed(item_name, entity_name)
 signal saveEq(entity_name)
 
 func load_profiles():
-	for child in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.remove_child(child)
+	for child in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.get_children():
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.remove_child(child)
 	
 	for teammate in Teammates:
 		var text = FileAccess.get_file_as_string(teammate)
@@ -29,7 +29,7 @@ func load_profiles():
 		new_profile.load_data(temp_data.name, temp_data.hp, temp_data.max_hp, temp_data.texture, temp_data.knocked_up)
 		new_profile.selectTeammate.connect(_on_entityChossed)
 		
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.add_child(new_profile)
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.add_child(new_profile)
 		
 func refresh_data():
 	var text = FileAccess.get_file_as_string("user://Data/party_data.json")
@@ -65,9 +65,9 @@ func save_data():
 	res_file.close()
 
 func add_items():
-	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList.clear()
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ScrollContainer/ItemList.clear()
 	for item in Items:
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList.add_item(item.name, load(item.icon_path))
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ScrollContainer/ItemList.add_item(item.name, load(item.icon_path))
 
 
 func add_resources():
@@ -97,7 +97,7 @@ func _process(delta):
 
 func unshowCards():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items.visible = false
-	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = false
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.visible = false
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills.visible = false
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq.visible = false
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft.visible = false
@@ -121,17 +121,17 @@ func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 func _on_item_list_item_activated(index):
 	item_to_use = Items[index]
 	using_item = true
-	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
+	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.get_children():
 		profile.unlock_choosing("item")
 	unshowCards()
-	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = true
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.visible = true
 
 
 func _on_button_pressed():
 	if !using_item:
 		if $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items.visible:
 			unshowCards()
-			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = true
+			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.visible = true
 			$Control/MarginContainer/HBoxContainer/Buttons/Button.release_focus()
 		else:
 			unshowCards()
@@ -156,7 +156,7 @@ func showSkills(entity_name):
 			for skill in Skills:
 				$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/SkillList.add_item(str(skill.name))
 			
-	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
+	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.get_children():
 		profile.lock_choosing()
 	unshowCards()
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills.visible = true
@@ -186,7 +186,7 @@ func showEq(entity_name):
 				$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.add_item(str(item_type) + ": " + item.name)
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/EqProfile.load_data(eq_temp_person.get_entity_name(), eq_temp_person.get_hp(), eq_temp_person.get_max_hp(), eq_temp_person.ProfileTexture, eq_temp_person.KnockedUp)
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/EqProfile.set_values()
-	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
+	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.get_children():
 		profile.lock_choosing()
 	unshowCards()
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq.visible = true
@@ -205,10 +205,10 @@ func _on_entityChossed(entity_name, choosingActions):
 func _on_world_item_done():
 	using_item = false
 	unshowCards()
-	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = true
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.visible = true
 	refresh_data()
 	
-	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
+	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.get_children():
 		
 		profile.lock_choosing()
 		for teammate in Teammates:
@@ -222,13 +222,13 @@ func _on_world_item_done():
 
 func _on_skills_pressed():
 	if !$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills.visible:
-		for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
+		for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.get_children():
 			profile.unlock_choosing("skill")
 		unshowCards()
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = true
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.visible = true
 	else:
 		unshowCards()
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = true
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.visible = true
 		$Control/MarginContainer/HBoxContainer/Buttons/Skills.release_focus()
 
 
@@ -240,13 +240,13 @@ func _on_skill_list_item_clicked(index, at_position, mouse_button_index):
 
 func _on_eq_pressed():
 	if !$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq.visible:
-		for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.get_children():
+		for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.get_children():
 			profile.unlock_choosing("eq")
 		unshowCards()
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = true
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.visible = true
 	else:
 		unshowCards()
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = true
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.visible = true
 		$Control/MarginContainer/HBoxContainer/Buttons/EqB.release_focus()
 
 
@@ -371,7 +371,7 @@ func _on_equipment_item_activated(index):
 func _on_craft_pressed():
 	if $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft.visible:
 		unshowCards()
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.visible = true
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.visible = true
 		$Control/MarginContainer/HBoxContainer/Buttons/Craft.release_focus()
 	else:
 		unshowCards()

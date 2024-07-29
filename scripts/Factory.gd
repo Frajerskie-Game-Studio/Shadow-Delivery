@@ -15,7 +15,7 @@ func _ready():
 	get_parent().switch_zoom(2,2)
 	var resource = {
 		"skeleton_powder": {
-		"ammount": 45,
+		"amount": 45,
 		"texture": ""
 	}}
 	$ConveyorBelt/AnimationPlayer.play("Convbelt")

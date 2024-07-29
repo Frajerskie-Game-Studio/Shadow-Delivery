@@ -71,16 +71,26 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 15
 
-[node name="Profiles" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer"]
 layout_mode = 2
+
+[node name="Profiles" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 35
 
 [node name="Items" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer"]
 visible = false
 layout_mode = 2
 
-[node name="ItemList" type="ItemList" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemList" type="ItemList" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items"]
@@ -261,8 +271,8 @@ size_flags_vertical = 3
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Buttons/EqB" to="." method="_on_eq_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Buttons/Craft" to="." method="_on_craft_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Buttons/Exit" to="." method="_on_exit_button_pressed"]
-[connection signal="item_activated" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList" to="." method="_on_item_list_item_activated"]
-[connection signal="item_clicked" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ItemList" to="." method="_on_item_list_item_clicked"]
+[connection signal="item_activated" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ScrollContainer/ItemList" to="." method="_on_item_list_item_activated"]
+[connection signal="item_clicked" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Items/ScrollContainer/ItemList" to="." method="_on_item_list_item_clicked"]
 [connection signal="item_clicked" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Skills/SkillList" to="." method="_on_skill_list_item_clicked"]
 [connection signal="item_activated" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment" to="." method="_on_self_equipment_item_activated"]
 [connection signal="item_activated" from="Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment" to="." method="_on_equipment_item_activated"]
