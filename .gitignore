@@ -2,3 +2,5 @@
 .godot/
 launch.json
 settings.json
+export/
+export.zip
