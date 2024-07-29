@@ -75,10 +75,9 @@ func add_items():
 func add_resources():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources/ScrollContainer/VBoxContainer/ResourcesList.clear()
 	var res_file = FileAccess.get_file_as_string("user://Data/party_resources.json")
-	
 	for key in PartyResources:
 		var temp_resource = PartyResources[key]
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources/ScrollContainer/VBoxContainer/ResourcesList.add_item(str(key) + " " + str(temp_resource.amount) + "x")
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources/ScrollContainer/VBoxContainer/ResourcesList.add_item(str(key) + " " + "x " + str(temp_resource.amount))
 
 func add_recipies():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Recipes/ScrollContainer/VBoxContainer/RecipesList.clear()
@@ -185,7 +184,7 @@ func showEq(entity_name):
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.clear()
 			for item_type in PersonEq:
 				var item = PersonEq[item_type]
-				$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.add_item(str(item_type) + ": " + item.name)
+				$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.add_item(str(item_type).replace("_" , " ") + ": " + item.name)
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/EqProfile.load_data(eq_temp_person.get_entity_name(), eq_temp_person.get_hp(), eq_temp_person.get_max_hp(), eq_temp_person.ProfileTexture, eq_temp_person.KnockedUp)
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/EqProfile.set_values()
 	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.get_children():
@@ -445,7 +444,7 @@ func _on_craft_button_pressed():
 					PartyEq[i].ammo += 1
 					has_weapon = true
 			if !has_weapon:
-				PartyEq.append({"name": temp_recipe.data[0], "description": temp_recipe.data[1],"type": temp_recipe.type, "damage": temp_recipe.data[2], "amount": 1})
+				PartyEq.append({"name": temp_recipe.data[0], "description": temp_recipe.data[1], "icon_path": temp_recipe.texture, "type": temp_recipe.type, "damage": temp_recipe.data[2], "amount": 1})
 		elif temp_recipe.type == "resource":
 			var has_resource = false
 			for res in PartyResources:
@@ -464,9 +463,9 @@ func _on_craft_button_pressed():
 				Items[i].amount += 1
 		if !has_item:
 			if len(temp_recipe.data) == 4:
-				Items.append({"name": temp_recipe.data[0], "description": temp_recipe.data[1], "icon_path": "", "damage": temp_recipe.data[2], "heal": temp_recipe.data[3], "amount": 1})
+				Items.append({"name": temp_recipe.data[0], "description": temp_recipe.data[1], "icon_path": temp_recipe.texture, "damage": temp_recipe.data[2], "heal": temp_recipe.data[3], "amount": 1})
 			else:
-				Items.append({"name": temp_recipe.data[0], "description": temp_recipe.data[1], "icon_path": "", "damage": temp_recipe.data[2], "heal": temp_recipe.data[3], "effect": temp_recipe.data[3], "amount": 1})
+				Items.append({"name": temp_recipe.data[0], "description": temp_recipe.data[1], "icon_path": "", "damage": temp_recipe.texture, "heal": temp_recipe.data[3], "effect": temp_recipe.data[3], "amount": 1})
 
 	
 	save_data()

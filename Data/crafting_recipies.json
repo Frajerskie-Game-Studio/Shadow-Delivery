@@ -31,7 +31,7 @@
 			"skeleton_powder"
 		],
 		"type": "item",
-		"texture": "",
+		"texture": "res://Graphics/Items/healing_potion_icon.png",
 		"data": [
 			"Red brew",
 			"Weak healing potion",
