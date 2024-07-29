@@ -83,6 +83,10 @@ func load_data():
 	Attacks = temp_data.attacks
 	KnockedUp = temp_data.knocked_up
 	ProfileTexture = temp_data.texture
+	
+func add_teammates(teammate, teammate_node):
+	Party_Data.teammates.append(teammate)
+	Party_Data.teammates_nodes.append(teammate_node)
 
 
 func load_items():

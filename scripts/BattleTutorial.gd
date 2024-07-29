@@ -30,9 +30,6 @@ signal end_whole_battle
 
 
 func _ready():
-	print("REEEEEEEEEEAAAAAAAAAAAADY")
-	#user://Data/tutorial_dialog.json
-	#path, clickable, deletable, action, multi_state
 	$Dialogs/BattleTutorialDialog.load_data("user://Data/tutorial_dialog.json", false, false, [attack_tutorial, range_attack_tutorial, skills_tutorial, items_tutorial, end_battle], true)
 	$Dialogs/BattleTutorialDialog.emit_signal_via_code()	
 

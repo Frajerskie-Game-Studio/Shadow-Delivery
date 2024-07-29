@@ -435,4 +435,10 @@ libraries = {
 position = Vector2(-441, 579)
 scale = Vector2(-1.96761, 11.278)
 
+[node name="AddPartyDialog" parent="Dialogs" instance=ExtResource("3_eh3mq")]
+position = Vector2(-443, 590)
+scale = Vector2(2.07731, 10.6516)
+monitoring = false
+
 [connection signal="start_dialog" from="Dialogs/TutorialFight" to="." method="_on_desk_dialog_start_dialog"]
+[connection signal="start_dialog" from="Dialogs/AddPartyDialog" to="." method="_on_desk_dialog_start_dialog"]

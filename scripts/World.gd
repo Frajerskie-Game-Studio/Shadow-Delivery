@@ -64,6 +64,11 @@ func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc, action):
 		if dialog_npc != null:
 			current_dialog_npc = dialog_npc
 
+func add_teammate(teammate, teammate_node):
+	$Player.add_teammates(teammate, teammate_node)
+	$Player.save_everything()
+	$Player.load_everything()
+	$Menu.refresh_data()
 
 #ending dialog
 func end_dialog(action):
@@ -229,6 +234,7 @@ func load_level():
 	CurrentLevelInstance.start_npc_dialog.connect(_on_npc_show_dialog)
 	
 	$Player.get_node("PlayerBody").position = Vector2(LevelsData[CurrentLevel].player_position[0],LevelsData[CurrentLevel].player_position[1])
+
 
 
 func save_level_data(switching_levels):
