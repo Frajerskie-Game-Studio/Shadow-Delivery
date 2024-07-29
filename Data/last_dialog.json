@@ -1,0 +1,25 @@
+{
+	"currentDialogState": 0,
+	"dialogStates": [
+		"one",
+		"two"
+	],
+	"name": "Lucjan",
+	"one": [
+		[
+			"Lucjan",
+			"Okay what the hell is going on! Why were the enemies hitted by nothingness",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"My shadow... I can talk with my shadow",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Shadow",
+			"There is no time for explanetion, we need to take care of this guys",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+	]
+}

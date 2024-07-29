@@ -1,0 +1,19 @@
+{
+	"currentDialogState": 0,
+	"dialogStates": [
+		"one"
+	],
+	"name": "Lucjan",
+	"one": [
+		[
+			"Lucjan",
+			"I guess we have some company",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Michał",
+			"Let's start the party!",
+			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
+		]
+	]
+}

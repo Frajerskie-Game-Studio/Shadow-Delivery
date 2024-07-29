@@ -1,0 +1,44 @@
+{
+	"currentDialogState": 0,
+	"dialogStates": [
+		"one"
+	],
+	"name": "Lucjan",
+	"one": [
+		[
+			"Mikut",
+			"It's kinda dark here...",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Michał",
+			"It sure is",
+			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
+		],
+		[
+			"Krzychu",
+			"Are you afraid of the darkness?",
+			"res://Graphics/Krzychu/BaseCourierDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"Not really, more like scared of losing my life because of some freaking haunted slime",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Haha, not need to worry my friend, we've got your back, am I right?",
+			"res://Graphics/Krzychu/BaseCourierDialogSprite.png"
+		],
+		[
+			"Krzychu",
+			"Righty right! With us you won't event scratch your knee!",
+			"res://Graphics/Krzychu/BaseCourierDialogSprite.png"
+		],
+		[
+			"Krzychu",
+			"Or arm, or ankle, or something else you can scratch...",
+			"res://Graphics/Krzychu/BaseCourierDialogSprite.png"
+		],
+	]
+}

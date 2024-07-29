@@ -1,0 +1,77 @@
+{
+	"currentDialogState": 0,
+	"dialogStates": [
+		"one",
+		"two"
+	],
+	"name": "Lucjan",
+	"one": [
+		[
+			"Lucjan",
+			"Alright now it's time for some rock and stone",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Michał, Krzychu take care of the top wall",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Mikut, you go to the wall ahead of you, i'll take care of the rest",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Krzychu",
+			"Roger that!",
+			"res://Graphics/Krzychu/BaseCourierDialogSprite.png"
+		],
+		[
+			"Michał",
+			"Let's get going",
+			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"No time to waste...",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		]
+	],
+	"two":[
+		[
+			"Lucjan",
+			"Is everyone done",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Michał",
+			"Yes...",
+			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
+		],
+		[
+			"Krzychu",
+			"Sure is boss",
+			"res://Graphics/Krzychu/BaseCourierDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"I found some weird mineral, do you recognize it?",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Krzychu",
+			"Not really, Michał have you seen this one before?",
+			"res://Graphics/Krzychu/BaseCourierDialogSprite.png"
+		],
+		[
+			"Michał",
+			"I haven't seen anything like this in my life...",
+			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Put it in your bag, Master will take care of it",
+			"res://Graphics/Lucjan/LucjanDialogSprite.pngg"
+		],
+	]
+}

@@ -1,0 +1,113 @@
+{
+	"currentDialogState": 0,
+	"dialogStates": [
+		"one",
+		"two"
+	],
+	"name": "Lucjan",
+	"one": [
+		[
+			"Lucjan",
+			"And i guess there were the last ones",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"Damn this job is really tiring... and stressful",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Michał",
+			"That's not the end. We need to finish mining, and bout this...",
+			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
+		],
+		[
+			"Michał",
+			"I think we hit a freaking jackpot!",
+			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
+		],
+		[
+			"Krzychu",
+			"There are so many of them",
+			"res://Graphics/Krzychu/BaseCourierDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Be careful, these ones are highly explosive",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Michał",
+			"I think we will manage",
+			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Okay, you guys go again for the top wall",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Mikut you go with me to the side wall",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"Now I fell like a third wheel...",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+
+	],
+	"two":[
+		[
+			"Mikut",
+			"Shit what was that",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Explosion! Is everyone alright",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"I am but...",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Shit! Michał, Krzychu! Are you alright!",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"Wait who are you?!",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Shadow",
+			"I am your shadow, Mikut",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"Wait, what?!",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Mikut, you airhead, stop talking to yourself and help me with Michał and Krzychu",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"Shadow",
+			"There is no time for explanetion, we need to take care of this guys",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+		[
+			"Lucjan",
+			"Shit there's more of them!",
+			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		]
+	]
+}

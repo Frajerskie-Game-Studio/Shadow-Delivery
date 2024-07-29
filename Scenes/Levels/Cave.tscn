@@ -1,9 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://cx5646c831t5u"]
+[gd_scene load_steps=30 format=3 uid="uid://cx5646c831t5u"]
 
 [ext_resource type="Texture2D" uid="uid://b44kidxlyq5dp" path="res://Graphics/Levels/Cave/ShadowZoneInsideTileSetButBigger2.png" id="1_11gha"]
+[ext_resource type="Script" path="res://scripts/Levels/Cave.gd" id="1_hb0gl"]
 [ext_resource type="Texture2D" uid="uid://3u7vd0dwliwu" path="res://Graphics/Levels/Cave/ShadowZoneInsideTileSetDecorButBigger.png" id="2_6rkdc"]
 [ext_resource type="Texture2D" uid="uid://dotpua8jjxg06" path="res://Graphics/Levels/Cave/ShadowCrystal.png" id="3_3e61t"]
 [ext_resource type="Texture2D" uid="uid://b75wp8c7kev" path="res://Graphics/Levels/Cave/WeirdCrystal.png" id="4_qrv5j"]
+[ext_resource type="Texture2D" uid="uid://j7fi50cmuycs" path="res://Graphics/Enemys/SkeletonSpriteSheett.png" id="5_05twi"]
+[ext_resource type="Texture2D" uid="uid://tufvqajdym2o" path="res://Graphics/Enemys/ShellBugSpriteSheet.png" id="5_uiq44"]
+[ext_resource type="Texture2D" uid="uid://y66dnmjfjqwd" path="res://Graphics/Enemys/SlimeSpriteSheet.png" id="7_71kka"]
+[ext_resource type="PackedScene" uid="uid://bf573cy58a5wu" path="res://Scenes/dialog_pointer.tscn" id="8_ha4pv"]
+[ext_resource type="Texture2D" uid="uid://dmbf2o8frdgk2" path="res://Graphics/Lucjan/LucjanSpriteSheet.png" id="9_1otd7"]
+[ext_resource type="Texture2D" uid="uid://btgb1jpxyjlvh" path="res://Graphics/Michal/BaseCourierSpriteSheetV2(1)-Sheet.png" id="10_fcrip"]
+[ext_resource type="Texture2D" uid="uid://wwx54d0ook04" path="res://Graphics/Krzychu/SecondBaseCourierSpriteSheetV2-Sheet1.png" id="11_rrxs2"]
+[ext_resource type="Texture2D" uid="uid://b73vu1r57vapa" path="res://Graphics/Shadow/Shadow-spritesheetaseprite-Sheet.png" id="12_dlon5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4vn66"]
 texture = ExtResource("1_11gha")
@@ -270,7 +279,304 @@ physics_layer_0/collision_layer = 3
 physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_s1bsp")
 
-[node name="Node" type="Node"]
+[sub_resource type="Animation" id="Animation_4upn2"]
+resource_name = "idle"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemies1/Skeleton:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Enemies1/Slime:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Enemies1/Bug:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_13h4c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemies1/Skeleton:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Enemies1/Bug:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Enemies1/Slime:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5cpgd"]
+_data = {
+"RESET": SubResource("Animation_13h4c"),
+"idle": SubResource("Animation_4upn2")
+}
+
+[sub_resource type="Animation" id="Animation_jnlfk"]
+resource_name = "idle"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bug:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Slime:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_fqiyp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bug:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Slime:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nbqkt"]
+_data = {
+"RESET": SubResource("Animation_fqiyp"),
+"idle": SubResource("Animation_jnlfk")
+}
+
+[sub_resource type="Animation" id="Animation_ofxnm"]
+resource_name = "idle"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lucjan:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Michal:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Krzychu:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_wvslr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lucjan:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Michal:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Krzychu:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_enkye"]
+_data = {
+"RESET": SubResource("Animation_wvslr"),
+"idle": SubResource("Animation_ofxnm")
+}
+
+[sub_resource type="Animation" id="Animation_66xsn"]
+resource_name = "idle"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_d45l3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sh85d"]
+_data = {
+"RESET": SubResource("Animation_d45l3"),
+"idle": SubResource("Animation_66xsn")
+}
+
+[node name="Cave" type="Node"]
+script = ExtResource("1_hb0gl")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_0j464")
@@ -348,3 +654,122 @@ position = Vector2(4020, -324)
 rotation = 1.5708
 scale = Vector2(3, 3)
 texture = ExtResource("3_3e61t")
+
+[node name="Enemies1" type="Node2D" parent="."]
+
+[node name="Skeleton" type="Sprite2D" parent="Enemies1"]
+position = Vector2(1848, -645)
+scale = Vector2(3, 3)
+texture = ExtResource("5_05twi")
+hframes = 12
+frame = 1
+
+[node name="Bug" type="Sprite2D" parent="Enemies1"]
+position = Vector2(1984, -696)
+scale = Vector2(3, 3)
+texture = ExtResource("5_uiq44")
+hframes = 12
+frame = 1
+
+[node name="Slime" type="Sprite2D" parent="Enemies1"]
+position = Vector2(2128, -638)
+scale = Vector2(3, 3)
+texture = ExtResource("7_71kka")
+hframes = 12
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemies1"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_5cpgd")
+}
+
+[node name="Enemies2" type="Node2D" parent="."]
+
+[node name="Skeleton" type="Sprite2D" parent="Enemies2"]
+position = Vector2(3249, -530)
+scale = Vector2(3, 3)
+texture = ExtResource("5_05twi")
+hframes = 12
+frame = 1
+
+[node name="Bug" type="Sprite2D" parent="Enemies2"]
+position = Vector2(3236, -299)
+scale = Vector2(3, 3)
+texture = ExtResource("5_uiq44")
+hframes = 12
+frame = 1
+
+[node name="Slime" type="Sprite2D" parent="Enemies2"]
+position = Vector2(3382, -463)
+scale = Vector2(3, 3)
+texture = ExtResource("7_71kka")
+hframes = 12
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemies2"]
+libraries = {
+"": SubResource("AnimationLibrary_nbqkt")
+}
+
+[node name="Dialogs" type="Node2D" parent="."]
+
+[node name="EnterCave" parent="Dialogs" instance=ExtResource("8_ha4pv")]
+
+[node name="Fight1Pointer" parent="Dialogs" instance=ExtResource("8_ha4pv")]
+position = Vector2(1684, -492)
+scale = Vector2(1.66909, 10.7433)
+
+[node name="Fight2Pointer" parent="Dialogs" instance=ExtResource("8_ha4pv")]
+position = Vector2(3048, -312)
+scale = Vector2(1, 15.72)
+
+[node name="Mine1Pointer" parent="Dialogs" instance=ExtResource("8_ha4pv")]
+position = Vector2(1790, -500)
+
+[node name="Mine2Pointer" parent="Dialogs" instance=ExtResource("8_ha4pv")]
+position = Vector2(3137, -398)
+
+[node name="LastDialog" parent="Dialogs" instance=ExtResource("8_ha4pv")]
+position = Vector2(3687, -442)
+
+[node name="Teammates" type="Node2D" parent="."]
+
+[node name="Lucjan" type="Sprite2D" parent="Teammates"]
+position = Vector2(1907, -479)
+scale = Vector2(3, 3)
+texture = ExtResource("9_1otd7")
+hframes = 92
+
+[node name="Michal" type="Sprite2D" parent="Teammates"]
+position = Vector2(2020, -604)
+scale = Vector2(3, 3)
+texture = ExtResource("10_fcrip")
+hframes = 90
+
+[node name="Krzychu" type="Sprite2D" parent="Teammates"]
+position = Vector2(1922, -643)
+scale = Vector2(3, 3)
+texture = ExtResource("11_rrxs2")
+hframes = 90
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Teammates"]
+libraries = {
+"": SubResource("AnimationLibrary_enkye")
+}
+
+[node name="TeammatesSecondPosition" type="Marker2D" parent="."]
+position = Vector2(3384, -390)
+
+[node name="Shadow" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Shadow"]
+position = Vector2(3301, -300)
+scale = Vector2(3, 3)
+texture = ExtResource("12_dlon5")
+hframes = 78
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Shadow"]
+libraries = {
+"": SubResource("AnimationLibrary_sh85d")
+}
