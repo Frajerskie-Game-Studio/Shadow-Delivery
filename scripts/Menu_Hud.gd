@@ -29,21 +29,13 @@ func load_profiles():
 		new_profile.load_data(temp_data.name, temp_data.hp, temp_data.max_hp, temp_data.texture, temp_data.knocked_up)
 		new_profile.selectTeammate.connect(_on_entityChossed)
 		
-<<<<<<< Updated upstream
 		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.add_child(new_profile)
-		
-=======
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Profiles.add_child(new_profile)
 
 
->>>>>>> Stashed changes
 func refresh_data():
-	print("refreshing data")
 	var text = FileAccess.get_file_as_string("user://Data/party_data.json")
 	var res_text = FileAccess.get_file_as_string("user://Data/party_resources.json")
 	var craft_text = FileAccess.get_file_as_string("user://Data/crafting_recipies.json")
-	
-	print("Plik istnieje: " + str(FileAccess.file_exists("user://Data/party_resources.json")))
 	
 	var temp_data = JSON.parse_string(text)
 	var temp_res = JSON.parse_string(res_text)
@@ -83,11 +75,6 @@ func add_items():
 func add_resources():
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Resources/ScrollContainer/VBoxContainer/ResourcesList.clear()
 	var res_file = FileAccess.get_file_as_string("user://Data/party_resources.json")
-	print("Test")
-	print(res_file)
-	
-	PartyResources = JSON.parse_string(res_file)
-	print(PartyResources)
 	
 	for key in PartyResources:
 		var temp_resource = PartyResources[key]
