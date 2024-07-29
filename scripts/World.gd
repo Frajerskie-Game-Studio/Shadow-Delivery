@@ -195,7 +195,7 @@ func start_tutorial_fight():
 			c.save_resources()
 	add_child(battlefield)
 	$Player.get_node("PlayerBody").get_node("Camera2D").enabled = false
-	battlefield.load_entities($Player.Party_Data.teammates_nodes, ["user://Data/darkslime_data.json", "user://Data/darkslime_data.json"])
+	battlefield.load_entities($Player.Party_Data.teammates_nodes, ["user://Data/tutorial_enemy.json", "user://Data/tutorial_enemy.json"])
 	
 func add_object_to_player(object, object_type):
 	$Player.add_something(object, object_type)

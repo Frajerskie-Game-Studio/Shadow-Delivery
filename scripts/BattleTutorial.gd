@@ -85,7 +85,7 @@ func load_entities(party, enemies):
 		add_child(Party[index])	
 		
 	for index in range(len(enemies)):
-		var temp_load = load("res://Scenes/Actors/Enemy.tscn")
+		var temp_load = load("res://Scenes/Actors/TutorialEnemy.tscn")
 		Enemies.append(temp_load.instantiate())
 		Enemies[index].load_data(enemies[index])
 		Enemies[index].position = Positions.enemy[index].position
