@@ -177,14 +177,15 @@ func showEq(entity_name):
 			var temp_teammate = load("res://Scenes/Actors/"+str(load_name)+".tscn")
 			
 			eq_temp_person = temp_teammate.instantiate()
-			print(eq_temp_person.character_file_path)
 			eq_temp_person.load_data()
 			PersonEq = eq_temp_person.get_eq()
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.clear()
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.clear()
 			for item_type in PersonEq:
 				var item = PersonEq[item_type]
-				$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.add_item(str(item_type).replace("_" , " ") + ": " + item.name)
+				var item_type_text = str(item_type).replace("_" , " ")
+				var icon = load(item.icon_path)
+				$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.add_item(item_type_text + ": " + item.name, icon)
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/EqProfile.load_data(eq_temp_person.get_entity_name(), eq_temp_person.get_hp(), eq_temp_person.get_max_hp(), eq_temp_person.ProfileTexture, eq_temp_person.KnockedUp)
 			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/EqProfile.set_values()
 	for profile in $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/Profiles.get_children():
@@ -254,7 +255,7 @@ func _on_eq_pressed():
 func _on_self_equipment_item_activated(index):
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.clear()
 	Eq_to_be_changed_index = index
-	var eq_category = $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.get_item_text(index).split(":")[0]
+	var eq_category = $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.get_item_text(index).split(":")[0].replace(" ", "_")
 	
 	for item in PartyEq:
 		if item.type == eq_category: 
@@ -268,7 +269,7 @@ func _on_equipment_item_activated(index):
 	var item_to_equip = null
 	var item_to_unequip = null
 
-	var type_to_switch = full_name_to_unequip.split(":")[0].dedent()
+	var type_to_switch = full_name_to_unequip.split(":")[0].dedent().replace(" ", "_")
 	var name_to_unequip = full_name_to_unequip.split(":")[1].dedent()
 
 	for item in PartyEq:
@@ -280,7 +281,8 @@ func _on_equipment_item_activated(index):
 			item_to_unequip = PersonEq[item]
 	
 	if(item_to_equip != null):
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_text(Eq_to_be_changed_index, type_to_switch + ": " + item_to_equip.name)
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_text(Eq_to_be_changed_index, type_to_switch.replace("_", " ") + ": " + item_to_equip.name)
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_icon(Eq_to_be_changed_index, load(item_to_equip.icon_path))
 
 		if(type_to_switch == "Armor"):
 			if(name_to_unequip.dedent() != ""):
@@ -321,7 +323,8 @@ func _on_equipment_item_activated(index):
 				}
 
 	else:
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_text(Eq_to_be_changed_index, type_to_switch + ": ")
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_text(Eq_to_be_changed_index, type_to_switch.replace("_", " ") + ": ")
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_icon(Eq_to_be_changed_index, null)
 
 		PersonEq[type_to_switch] = {
 					"name" : " ",
@@ -350,7 +353,7 @@ func _on_equipment_item_activated(index):
 						"ammo" : item_to_unequip.ammo
 					})
 
-	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.set_item_text(index, name_to_unequip)
+	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.set_item_text(index, name_to_unequip.replace("_", " "))
 	for i in range(len(PartyEq)):
 		if(PartyEq[i].name == name_to_equip):
 			PartyEq.remove_at(i)
