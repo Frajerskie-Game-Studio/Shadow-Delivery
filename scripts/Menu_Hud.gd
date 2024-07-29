@@ -259,7 +259,7 @@ func _on_self_equipment_item_activated(index):
 	
 	for item in PartyEq:
 		if item.type == eq_category: 
-			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.add_item(item.name)
+			$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.add_item(item.name, load(item.icon_path))
 	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/Equipment.add_item(" ")
 
 
@@ -324,7 +324,7 @@ func _on_equipment_item_activated(index):
 
 	else:
 		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_text(Eq_to_be_changed_index, type_to_switch.replace("_", " ") + ": ")
-		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_icon(Eq_to_be_changed_index, null)
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Eq/HBoxContainer/SelfEquipment.set_item_icon(Eq_to_be_changed_index, load("res://Graphics/Items/default_texture.png"))
 
 		PersonEq[type_to_switch] = {
 					"name" : " ",
