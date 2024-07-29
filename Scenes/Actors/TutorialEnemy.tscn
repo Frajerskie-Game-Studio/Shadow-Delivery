@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://rjy115dqfjqa"]
+
+[ext_resource type="Script" path="res://scripts/Actors/TutorialEnemy.gd" id="1_11ufj"]
+[ext_resource type="Texture2D" uid="uid://ba26m2vpq03y3" path="res://Graphics/IndicatorOg.png" id="2_jibx2"]
+[ext_resource type="Texture2D" uid="uid://b2kqablq42vcj" path="res://Graphics/Menus/white_circle_small.png" id="3_lhk5w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qvtnt"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0k16b"]
+bg_color = Color(0.980392, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xigag"]
+size = Vector2(220, 332)
+
+[node name="TutorialEnemy" type="Node2D"]
+script = ExtResource("1_11ufj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -89.0
+offset_top = -102.0
+offset_right = 90.0
+offset_bottom = -75.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_qvtnt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0k16b")
+value = 50.0
+
+[node name="CheckSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -145)
+scale = Vector2(4, 4)
+texture = ExtResource("2_jibx2")
+
+[node name="Area2D" type="Area2D" parent="."]
+light_mask = 8
+visibility_layer = 6
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, -93)
+shape = SubResource("RectangleShape2D_xigag")
+
+[node name="EnemyWaitTimer" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = 49.0
+offset_top = -67.0
+offset_right = 90.0
+offset_bottom = -26.0
+fill_mode = 5
+texture_under = ExtResource("3_lhk5w")
+texture_progress = ExtResource("3_lhk5w")
+tint_under = Color(0.243137, 0.231373, 0.262745, 1)
+tint_progress = Color(0, 0.784314, 0, 1)
+
+[node name="BattleSounds" type="AudioStreamPlayer" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

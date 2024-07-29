@@ -1,0 +1,30 @@
+{
+	"name": "Definetly a slime",
+	"texture": "res://Graphics/Enemys/DefinetlyASlime.png",
+	"hp": 75,
+	"max_hp": 75,
+	"attack": {"damage": 0, "wait_time": 5},
+	"skills": {},
+	"drop": {
+		"common": {
+			"name": "Red brew",
+			"description": "Very weak healing potion",
+			"icon_path": "res://Graphics/Items/healing_potion.png",
+			"damage": 0,
+			"heal": 20,
+			"amount": 1,
+			"effect": "",
+			"type": "item"
+		},
+		"rare": {
+			"name": "Red brew",
+			"description": "Very weak healing potion",
+			"icon_path": "res://Graphics/Items/healing_potion.png",
+			"damage": 0,
+			"heal": 20,
+			"amount": 1,
+			"effect": "",
+			"type": "item"
+		}
+	}
+}

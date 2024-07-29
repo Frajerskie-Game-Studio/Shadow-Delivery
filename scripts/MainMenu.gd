@@ -31,7 +31,8 @@ func _ready():
 		"user://Data/start_tutorial_battle_dialog.json",
 		"user://Data/tutorial_dialog.json",
 		"user://Data/after_tutorial_dialog.json",
-		"user://Data/enter_cave_dialog.json"
+		"user://Data/enter_cave_dialog.json",
+		"user://Data/tutorial_enemy.json"
 	]
 	
 	var dir = DirAccess.open("user://")
