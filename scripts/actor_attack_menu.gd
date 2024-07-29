@@ -61,10 +61,15 @@ func _on_change_style_pressed():
 
 
 func _on_skills_button_pressed():
+	print("SKILLL BUTTON PRESSED")
+	print(CurrentStyle)
 	$HBoxContainer/RightMenu/SkillsMenu/SkillsList.clear()
 	$HBoxContainer/RightMenu/SkillsMenu/Panel/SkillDesc.text = ""
+	print($HBoxContainer/RightMenu/SkillsMenu.visible)
+	print(Skills)
 	if !$HBoxContainer/RightMenu/SkillsMenu.visible:
 		for skill in Skills:
+			print(skill)
 			if skill.type == CurrentStyle or skill.type == "other":
 				$HBoxContainer/RightMenu/SkillsMenu/SkillsList.add_item(skill.name)
 		$HBoxContainer/RightMenu/ItemsMenu.visible = false
@@ -128,10 +133,26 @@ func _on_items_list_item_activated(index):
 		
 func lock_buttons():
 	$HBoxContainer/LeftMenu/AttackButton.disabled = true
+	$HBoxContainer/LeftMenu/AttackButton.release_focus()
 	$HBoxContainer/LeftMenu/SkillsButton.disabled = true
+	$HBoxContainer/RightMenu/SkillsMenu.release_focus()
 	$HBoxContainer/LeftMenu/ItemsButton.disabled = true
+	$HBoxContainer/LeftMenu/ItemsButton.release_focus()
 	
 func unlock_buttons():
 	$HBoxContainer/LeftMenu/AttackButton.disabled = false
 	$HBoxContainer/LeftMenu/SkillsButton.disabled = false
 	$HBoxContainer/LeftMenu/ItemsButton.disabled = false
+	
+func lock_change_style():
+	$HBoxContainer/RightMenu/ChangeAndTime/ChangeStyle.disabled = true
+
+func unlock_specific_button(button_name):
+	if button_name == "attack":
+		$HBoxContainer/LeftMenu/AttackButton.disabled = false
+	elif button_name == "skills":
+		$HBoxContainer/LeftMenu/SkillsButton.disabled = false
+	elif button_name == "items":
+		$HBoxContainer/LeftMenu/ItemsButton.disabled = false
+	elif button_name == "change":
+		$HBoxContainer/RightMenu/ChangeAndTime/ChangeStyle.disabled = false

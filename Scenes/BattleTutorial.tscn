@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi5i8ishayuu3"]
+
+[ext_resource type="Script" path="res://scripts/BattleTutorial.gd" id="1_c5oi3"]
+[ext_resource type="PackedScene" uid="uid://bf573cy58a5wu" path="res://Scenes/dialog_pointer.tscn" id="2_3q3ox"]
+[ext_resource type="PackedScene" uid="uid://cc8e0vp4psqw" path="res://Scenes/Menus/DropMenu.tscn" id="2_d0pwa"]
+[ext_resource type="AudioStream" uid="uid://bom6ekqts8xkg" path="res://Music/Battle_soundtrack_v2.wav" id="3_5n11t"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_c5oi3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DropMenu" parent="CanvasLayer" instance=ExtResource("2_d0pwa")]
+visible = false
+
+[node name="Party_First_Position" type="Marker2D" parent="."]
+position = Vector2(75, 181)
+
+[node name="Party_Second_Position" type="Marker2D" parent="."]
+position = Vector2(398, 276)
+
+[node name="Party_Third_Position" type="Marker2D" parent="."]
+position = Vector2(69, 414)
+
+[node name="Party_Fourth_Position" type="Marker2D" parent="."]
+position = Vector2(383, 563)
+
+[node name="Enemy_First_Position" type="Marker2D" parent="."]
+position = Vector2(839, 200)
+
+[node name="Enemy_Second_Position" type="Marker2D" parent="."]
+position = Vector2(1043, 316)
+
+[node name="Enemy_Third_Position" type="Marker2D" parent="."]
+position = Vector2(841, 425)
+
+[node name="Enemy_Fourth_Position" type="Marker2D" parent="."]
+position = Vector2(1004, 563)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_5n11t")
+autoplay = true
+
+[node name="BattleCamera" type="Camera2D" parent="."]
+position = Vector2(576, 326)
+
+[node name="Dialogs" type="Node2D" parent="."]
+
+[node name="BattleTutorialDialog" parent="Dialogs" instance=ExtResource("2_3q3ox")]
+
+[connection signal="endFight" from="CanvasLayer/DropMenu" to="." method="_on_drop_menu_end_fight"]
+[connection signal="start_dialog" from="Dialogs/BattleTutorialDialog" to="." method="_on_desk_dialog_start_dialog"]

@@ -250,7 +250,7 @@ func _on_timer_timeout():
 		attacking.emit({"damage": 0})
 		if current_style == "range":
 			decrement_ammo()
-			$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "", Items)
+			$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
 			$RangeSKillCheck.started = false
 			$RangeSKillCheck.visible = false
 		timer.queue_free()
@@ -262,7 +262,7 @@ func _on_timer_timeout():
 			if current_style == "range":
 				$RangeSound.play()
 				decrement_ammo()
-				$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "", Items)
+				$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
 				animationState.travel("range_attack")
 			else:
 				$BattleSounds.stream = load("res://Music/Sfx/Combat/Melee_combat_sfx.wav")
@@ -413,6 +413,12 @@ func unlock_buttons():
 	
 func lock_buttons():
 	$AttackMenu.lock_buttons()
+	
+func unlock_specific_button(name):
+	$AttackMenu.unlock_specific_button(name)
+	
+func lock_change_button():
+	$AttackMenu.lock_change_style()
 
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name == "hide_melee" or anim_name == "hide_range":

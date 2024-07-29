@@ -18,6 +18,7 @@ var can_attack = false
 var data_loaded = false
 var waiting = false
 var on_crossair = false 
+var in_tutorial = false
 
 var wait_timer
 
@@ -56,7 +57,7 @@ func _physics_process(delta):
 				on_cursor = false
 				$CheckSprite.visible = false
 				
-		if can_attack and !waiting:
+		if can_attack and !waiting and !in_tutorial:
 			#$CheckSprite.visible = false
 			WaiTimeBar.visible =false
 			$AnimationPlayer.play("attack")
@@ -134,7 +135,10 @@ func attack_entity():
 		#attack_danger = false
 		wait_timer.queue_free()
 		start_attacking_process()
-		
+
+func toggle_in_tutorial():
+	in_tutorial = true
+
 func get_drop():
 	var randomNumberGenerator = RandomNumberGenerator.new()
 	var state = randomNumberGenerator.randi_range(1, 100)

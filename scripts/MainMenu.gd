@@ -27,7 +27,9 @@ func _ready():
 		"user://Data/town_invisible_wall_dialog.json",
 		"user://Data/town_shop_dialog.json",
 		"user://Data/toxic_furnance_dialog.json",
-		"user://Data/wake_up_dialog.json"
+		"user://Data/wake_up_dialog.json",
+		"user://Data/start_tutorial_battle_dialog.json",
+		"user://Data/tutorial_dialog.json"
 	]
 	
 	var dir = DirAccess.open("user://")

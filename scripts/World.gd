@@ -5,6 +5,7 @@ const DialogLoader = preload("res://scripts/DialogLoader.gd")
 @onready var d = preload("res://Scenes/Actors/Player.tscn")
 @onready var battle_scene = preload("res://Scenes/BattleScene.tscn")
 @onready var mikutroom = preload("res://Scenes/Levels/MikutRoom.tscn")
+@onready var tutorial_battle_scene = preload("res://Scenes/BattleTutorial.tscn")
 
 
 var CurrentLevel
@@ -53,7 +54,7 @@ func play_switch_animation():
 
 #showing dialog window (signal from NPC)
 func _on_npc_show_dialog(npc_name, dialog_dict, dialog_npc, action):
-	if !in_menu:
+	if !in_menu and !in_dialog:
 		in_dialog = true
 		$Player.lock()
 		var this_dialog = dialog_hud.instantiate()
@@ -147,6 +148,31 @@ func start_fight():
 				else:
 					in_c.playing = false
 	battlefield= battle_scene.instantiate()
+	battlefield.end_whole_battle.connect(end_battle)
+	$Player.lock()
+	$Player.in_battle = true
+	for c in get_children():
+		if c.get_class() == "Node2D":
+			c.save_data()
+			c.save_items()
+			c.save_resources()
+	add_child(battlefield)
+	$Player.get_node("PlayerBody").get_node("Camera2D").enabled = false
+	battlefield.load_entities($Player.Party_Data.teammates_nodes, ["user://Data/darkslime_data.json", "user://Data/darkslime_data.json"])
+	
+func start_tutorial_fight():
+	in_dialog = false
+	for c in get_children():
+		if c.get_class() != "Node":
+			c.visible = false
+		else:
+			for in_c in c.get_children():
+				if in_c.get_class() != "AudioStreamPlayer":
+					in_c.visible = false
+				else:
+					in_c.playing = false
+	battlefield= tutorial_battle_scene.instantiate()
+	battlefield.start_dialog.connect(_on_dialog_pointer_start_dialog)
 	battlefield.end_whole_battle.connect(end_battle)
 	$Player.lock()
 	$Player.in_battle = true

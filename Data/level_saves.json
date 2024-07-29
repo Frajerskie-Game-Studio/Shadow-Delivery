@@ -24,6 +24,14 @@
 				0
 			],
 			"deleted_pointers": []
+		},
+		{
+			"path": "res://Scenes/Levels/Forest.tscn",
+			"player_position": [
+				0,
+				0
+			],
+			"deleted_pointers": []
 		}
 	]
 }

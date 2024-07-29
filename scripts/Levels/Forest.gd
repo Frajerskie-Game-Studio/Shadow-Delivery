@@ -7,16 +7,19 @@ signal start_npc_dialog(npc_name, dialog_dict, dialog_npc, action)
 
 func load_data(data):
 	deletedPointers = data.deleted_pointers
+	print(deletedPointers)
 	for child in $Dialogs.get_children():
 		if child.Deletable and deletedPointers.find(child.name) != -1:
+			print(child)
 			child.queue_free()
 
 func _ready():	
 	get_parent().switch_zoom(2,2)
+	#path, clickable, deletable, action, multi_state
+	$Dialogs/TutorialFight.load_data("user://Data/start_tutorial_battle_dialog.json", false, true, get_parent().start_tutorial_fight, false)
 
 func _process(delta):
 	pass
-
 
 func _on_desk_dialog_start_dialog(path, d, action):
 	start_dialog.emit(path, d, action)

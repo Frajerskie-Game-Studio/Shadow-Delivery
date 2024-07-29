@@ -7,6 +7,7 @@ var possible_attack
 var possible_attacker
 var possible_target
 var possible_effect
+signal start_dialog(path)
 
 var battle_drop = []
 
@@ -29,8 +30,38 @@ signal end_whole_battle
 
 
 func _ready():
-	pass
+	print("REEEEEEEEEEAAAAAAAAAAAADY")
+	#user://Data/tutorial_dialog.json
+	#path, clickable, deletable, action, multi_state
+	$Dialogs/BattleTutorialDialog.load_data("user://Data/tutorial_dialog.json", false, false, [attack_tutorial, range_attack_tutorial, skills_tutorial, items_tutorial, end_battle], true)
+	$Dialogs/BattleTutorialDialog.emit_signal_via_code()	
 
+func _on_desk_dialog_start_dialog(path, d, action):
+	start_dialog.emit(path, d, action)
+	
+func attack_tutorial():
+	print("attack tutorial")
+	Party[0].lock_buttons()
+	Party[0].lock_change_button()
+	Party[0].unlock_specific_button("attack")
+	
+func range_attack_tutorial():
+	print("range tutorial")
+	Party[0].lock_buttons()
+	Party[0].unlock_specific_button("change")
+	Party[0].unlock_specific_button("attack")
+	
+func skills_tutorial():
+	print("skills tutorial")
+	Party[0].lock_buttons()
+	Party[0].lock_change_button()
+	Party[0].unlock_specific_button("skills")
+	
+func items_tutorial():
+	print("items tutorial")
+	Party[0].lock_buttons()
+	Party[0].lock_change_button()
+	Party[0].unlock_specific_button("items")
 
 func _process(delta):
 	var counter = 0
@@ -64,6 +95,7 @@ func load_entities(party, enemies):
 		Enemies[index].being_attacked.connect(_on_entity_being_attacked)
 		Enemies[index].enemy_attacking.connect(_on_enemy_attacking)
 		Enemies[index].dying.connect(_on_enemy_dying)
+		Enemies[index].toggle_in_tutorial()
 		add_child(Enemies[index])
 		battle_drop.append(Enemies[index].get_drop())
 		Enemies[index].start_attacking_process()
@@ -71,25 +103,22 @@ func load_entities(party, enemies):
 func _on_entity_ready_to_attack(attack, attacker):
 	possible_attack = attack
 	possible_attacker = attacker
-	print(possible_attack)
-	if !possible_attack.has("effect"):
-		print("normal attaclk")
+	
+	if(!possible_attack.has("effect")):
 		for enemy in Enemies:
 			enemy.attack_danger = true
 	else:
 		if possible_attack.heal != 0:
 			for p in Party:
-				if possible_attack.effect == "revive":
+				if(possible_attack.effect == "revive"):
 					if(p.KnockedUp):
 						p.can_be_checked = true
 				elif(!p.KnockedUp and possible_attack.effect != "stronger"):
 					p.can_be_checked = true
-		elif possible_attack.effect == "all":
-			print("READY TO ATTACK")
+		elif(possible_attack.effect == "all"):
 			for enemy in Enemies:
 				enemy.all_attack()
 		elif(possible_attack.effect == "stronger"):
-			print("stronger")
 			possible_attacker.start_attack(possible_attack)
 
 
@@ -114,17 +143,16 @@ func _on_reset_ready_to_attack():
 func _on_entity_being_attacked(entity):
 	print("ATTACKED")
 	print(possible_attacker)
-	
 	possible_attacker.can_be_attacked = false
 	for e in Enemies:
 		e.attack_danger = false
 	possible_target = entity
-	
 	possible_attacker.start_attack(possible_attack)
 	
 func _on_attacking_entity(attack):
 	possible_target.get_damage(attack)
 	possible_attacker._on_attack_done()
+	$Dialogs/BattleTutorialDialog.emit_signal_via_code()
 	
 func get_can_be_attack_entities():
 	var can_be_attacked_array = []
@@ -134,6 +162,7 @@ func get_can_be_attack_entities():
 	return can_be_attacked_array
 	
 func _on_item_being_used(entity):
+	$Dialogs/BattleTutorialDialog.emit_signal_via_code()
 	entity.use_item(possible_attack)
 	entity.reload_menu()
 	possible_attacker.start_using_item()
