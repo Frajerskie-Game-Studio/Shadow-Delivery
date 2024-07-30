@@ -4,7 +4,10 @@ extends Node
 func _ready():
 	print("Is user ffile system persistent: " + str(OS.is_userfs_persistent()))
 	
-	var volume_slider = $Control/SettingsContainer/AudioContainer/AudioSlider.value
+	$Controls/CanvasLayer.visible = false
+	$Controls/CanvasLayer/Control/MarginContainer/BackButton.pressed.connect(_controls_back_button_pressed)
+	
+	var volume_slider = $MainMenu/SettingsContainer/AudioContainer/AudioSlider.value
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(volume_slider))
 	
 	var dir = DirAccess.open("user://")
@@ -38,12 +41,12 @@ func create_user_data_file(file_name):
 func _on_new_game_button_pressed():
 	var files_to_create = get_user_data_files()
 	
-	$Control/Modal/NewGameConfirmDialog.get_ok_button().pressed.connect(new_game_confirmed.bind(files_to_create))
-	$Control/Modal/NewGameConfirmDialog.get_cancel_button().pressed.connect(new_game_cancelled)
+	$MainMenu/Modal/NewGameConfirmDialog.get_ok_button().pressed.connect(new_game_confirmed.bind(files_to_create))
+	$MainMenu/Modal/NewGameConfirmDialog.get_cancel_button().pressed.connect(new_game_cancelled)
 	
 	if(files_to_create.size() > 0):
-		$Control/Modal.visible = true
-		$Control/Modal/NewGameConfirmDialog.visible = true
+		$MainMenu/Modal.visible = true
+		$MainMenu/Modal/NewGameConfirmDialog.visible = true
 	else:
 		new_game_confirmed(get_initial_data_files())
 
@@ -57,8 +60,8 @@ func new_game_confirmed(files_to_create):
 
 
 func new_game_cancelled():
-	$Control/Modal.visible = false
-	$Control/Modal/NewGameConfirmDialog.visible = false
+	$MainMenu/Modal.visible = false
+	$MainMenu/Modal/NewGameConfirmDialog.visible = false
 
 
 func _on_continue_button_pressed():
@@ -81,4 +84,10 @@ func _on_exit_pressed():
 
 
 func _on_controls_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/ControlsMenu.tscn")
+	$MainMenu.visible = false
+	$Controls/CanvasLayer.visible = true
+
+
+func _controls_back_button_pressed():
+	$MainMenu.visible = true
+	$Controls/CanvasLayer.visible = false

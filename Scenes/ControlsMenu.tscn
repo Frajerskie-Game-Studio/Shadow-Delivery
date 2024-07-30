@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt8qr304yomyi"]
+[gd_scene load_steps=5 format=3 uid="uid://dumkbuq4xbx3h"]
 
 [ext_resource type="Script" path="res://scripts/ControlsMenu.gd" id="1_js3st"]
 [ext_resource type="Texture2D" uid="uid://by3syl737jfpg" path="res://Graphics/Controls.png" id="1_vhhmw"]
@@ -9,6 +9,7 @@
 script = ExtResource("1_js3st")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -41,7 +42,7 @@ theme_override_constants/margin_bottom = 100
 layout_mode = 2
 texture = ExtResource("1_vhhmw")
 
-[node name="Button" type="Button" parent="CanvasLayer/Control/MarginContainer"]
+[node name="BackButton" type="Button" parent="CanvasLayer/Control/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -54,6 +55,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Label" type="Label" parent="CanvasLayer/Control2"]
+layout_mode = 0
 offset_left = 198.0
 offset_top = 51.0
 offset_right = 302.0
@@ -61,6 +63,7 @@ offset_bottom = 74.0
 text = "Cancel action"
 
 [node name="Label2" type="Label" parent="CanvasLayer/Control2"]
+layout_mode = 0
 offset_left = 205.0
 offset_top = 162.0
 offset_right = 296.0
@@ -68,6 +71,7 @@ offset_bottom = 185.0
 text = "Open menu"
 
 [node name="Label3" type="Label" parent="CanvasLayer/Control2"]
+layout_mode = 0
 offset_left = 219.0
 offset_top = 307.0
 offset_right = 266.0
@@ -75,6 +79,7 @@ offset_bottom = 330.0
 text = "Sprint"
 
 [node name="Label4" type="Label" parent="CanvasLayer/Control2"]
+layout_mode = 0
 offset_left = 381.0
 offset_top = 149.0
 offset_right = 450.0
@@ -82,6 +87,7 @@ offset_bottom = 172.0
 text = "Move Up"
 
 [node name="Label5" type="Label" parent="CanvasLayer/Control2"]
+layout_mode = 0
 offset_left = 378.0
 offset_top = 373.0
 offset_right = 468.0
@@ -89,6 +95,7 @@ offset_bottom = 396.0
 text = "Move down"
 
 [node name="Label6" type="Label" parent="CanvasLayer/Control2"]
+layout_mode = 0
 offset_left = 286.0
 offset_top = 373.0
 offset_right = 359.0
@@ -96,6 +103,7 @@ offset_bottom = 396.0
 text = "Move left"
 
 [node name="Label7" type="Label" parent="CanvasLayer/Control2"]
+layout_mode = 0
 offset_left = 486.0
 offset_top = 373.0
 offset_right = 570.0
@@ -104,6 +112,7 @@ text = "Move right
 "
 
 [node name="Label8" type="Label" parent="CanvasLayer/Control2"]
+layout_mode = 0
 offset_left = 730.0
 offset_top = 373.0
 offset_right = 775.0
@@ -112,6 +121,7 @@ text = "Shoot
 "
 
 [node name="Label9" type="Label" parent="CanvasLayer/Control2"]
+layout_mode = 0
 offset_left = 1000.0
 offset_top = 113.0
 offset_right = 1104.0
@@ -122,4 +132,4 @@ text = "Accept action"
 stream = ExtResource("3_mpn64")
 autoplay = true
 
-[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/BackButton" to="." method="_on_button_pressed"]
