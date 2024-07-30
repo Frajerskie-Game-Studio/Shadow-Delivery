@@ -19,6 +19,7 @@ func load_data(data):
 			
 			if child.name == "Mine1Pointer":
 				after_fist_fight = false
+				$Crystals1.visible = false
 				
 			if child.name == "Fight2Pointer":
 				$Enemies2.visible = false
@@ -26,10 +27,11 @@ func load_data(data):
 				
 			if child.name == "Mine2Pointer":
 				last_dialog_emit = true
+				$Crystals2.visible = false
 			child.queue_free()
 
 func _ready():	
-	get_parent().switch_zoom(0.6,0.6)
+	get_parent().switch_zoom(1,1)
 	#path, clickable, deletable, action, multi_state
 	$Teammates/AnimationPlayer.play("idle")
 	$Enemies1/AnimationPlayer.play("idle")
@@ -69,10 +71,12 @@ func _process(delta):
 
 func mining_interaction():
 	get_parent().play_switch_animation()
+	$Crystals1.visible = false
 	if has_node("Dialogs/Mine1Pointer"):
 		$Dialogs/Mine1Pointer.emit_signal_via_code()
 	
 func shadow_interaction():
+	$Crystals2.visible = false
 	get_parent().delete_teammate("user://Data/michal_data.json", "res://Scenes/Actors/Michal.tscn")
 	get_parent().delete_teammate("user://Data/krzychu_data.json", "res://Scenes/Actors/Krzychu.tscn")
 	$Teammates/AnimationPlayer.play("AfterExplosion")

@@ -1,16 +1,16 @@
 {
-	"name": "Darkslime",
-	"texture": "res://Graphics/Enemys/SlimeSpriteSheet.png",
-	"hp": 75,
-	"max_hp": 75,
-	"attack": {"damage": 15, "wait_time": 5},
+	"name": "Shieldbug",
+	"texture": "res://Graphics/Enemys/ShellBugSpriteSheet.png",
+	"hp": 85,
+	"max_hp": 85,
+	"attack": {"damage": 17, "wait_time": 6},
 	"skills": {},
 	"drop": {
 		"common": {
-			"name": "gel",
-			"description": "A sticky gel... that's it.",
+			"name": "chitin_exoskeleton",
+			"description": "It has nice color",
 			"amount": 0,
-			"texture": "res://Graphics/Items/SlimeGel.png",
+			"texture": "res://Graphics/Items/HitinShell.png",
 			"type": "resource"
 		},
 		"rare": {

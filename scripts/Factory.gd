@@ -16,7 +16,7 @@ func _ready():
 	var resource = {
 		"skeleton_powder": {
 		"amount": 45,
-		"texture": ""
+		"texture": "res://Graphics/Items/BonePowder.png"
 	}}
 	$ConveyorBelt/AnimationPlayer.play("Convbelt")
 	$Dialogs/NPC.load_data("user://Data/factory_lucjan_dialog.json", "res://Graphics/Lucjan/LucjanSpriteSheet.png", 92, [get_parent().add_object_to_player.bind(resource, "resource"), dix], false)

@@ -1,8 +1,7 @@
 {
 	"currentDialogState": 0,
 	"dialogStates": [
-		"one",
-		"two"
+		"one"
 	],
 	"name": "Lucjan",
 	"one": [

@@ -144,7 +144,7 @@ func _on_attack_menu_i_will_attack(args):
 			if args.effect == "revive":
 				ready_to_attack.emit({"name": args.name, "damage": args.damage, "wait_time": 3, "heal": args.heal, "key": args.name, "effect": args.effect}, self)
 			elif args.effect == "stronger":
-				ready_to_attack.emit({"wait_time": args.wait_time, "effect": args.effect, "effect_duration": args.turn_duration, "effect_multipler": args.attack_multiplier}, self)
+				ready_to_attack.emit({"wait_time": args.wait_time, "effect": args.effect, "heal": args.heal, "effect_duration": args.turn_duration, "effect_multipler": args.attack_multiplier}, self)
 			else:
 				ready_to_attack.emit({"name": args.name, "damage": args.damage, "wait_time": 3, "heal": args.heal, "key": args.name, "effect": args.effect},  self)
 		else:

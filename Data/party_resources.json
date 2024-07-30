@@ -1,14 +1,6 @@
 {
 	"magnesium": {
-		"amount": 23,
+		"amount": 5,
 		"texture": "res://Graphics/Items/Magnesium.png"
 	},
-	"gel": {
-		"amount": 32,
-		"texture": "res://Graphics/Items/SlimeGel.png"
-	},
-	"skeleton_powder": {
-		"amount": 45,
-		"texture": "res://Graphics/Items/BonePowder.png"
-	}
 }

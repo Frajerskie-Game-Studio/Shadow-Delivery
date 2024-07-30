@@ -20,6 +20,8 @@ var party_items
 var data
 var battlefield
 
+var EnemiesArray = ["user://Data/darkslime_data.json", "user://Data/skeleton_data.json", "user://Data/shieldbug_data.json"]
+
 signal itemDone
 
 func _ready():
@@ -177,7 +179,12 @@ func start_fight():
 			c.save_resources()
 	add_child(battlefield)
 	$Player.get_node("PlayerBody").get_node("Camera2D").enabled = false
-	battlefield.load_entities($Player.Party_Data.teammates_nodes, ["user://Data/darkslime_data.json", "user://Data/darkslime_data.json"])
+	var random_enemy = RandomNumberGenerator.new()
+	var enemy_array = []
+	var random_enemy_number = random_enemy.randi_range(2, 4)
+	for i in range(random_enemy_number):
+		enemy_array.append(EnemiesArray[random_enemy.randi_range(0, len(EnemiesArray) - 1)])
+	battlefield.load_entities($Player.Party_Data.teammates_nodes, enemy_array)
 	
 func start_tutorial_fight():
 	in_dialog = false
@@ -209,6 +216,7 @@ func add_object_to_player(object, object_type):
 	$Player.add_something(object, object_type)
 	$Player.save_everything()
 	$Player.load_everything()
+	$Menu.refresh_data()
 	
 func end_battle():
 	battlefield.queue_free()

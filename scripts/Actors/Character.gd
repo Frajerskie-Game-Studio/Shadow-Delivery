@@ -141,7 +141,8 @@ func get_ammo():
 
 func decrement_ammo():
 	Equipment.Range_weapon.ammo -= 1
-
+	if Equipment.Range_weapon.ammo < 0:
+		Equipment.Range_weapon.ammo = 0
 
 func add_ammo():
 	Equipment.Range_weapon.ammo += 1

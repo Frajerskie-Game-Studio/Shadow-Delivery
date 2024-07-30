@@ -1,0 +1,28 @@
+{
+	"name": "Skeleton",
+	"texture": "res://Graphics/Enemys/SkeletonSpriteSheett.png",
+	"hp": 100,
+	"max_hp": 100,
+	"attack": {"damage": 21, "wait_time": 7},
+	"skills": {},
+	"drop": {
+		"common": {
+			"name": "bones",
+			"description": "Just a bunch of skeleton bones",
+			"amount": 0,
+			"texture": "res://Graphics/Items/SkeletonBone.png",
+			"type": "resource"
+		},
+		"rare": {
+			"name": "Revive",
+			"description": "It can really give a new lease of life to you",
+			"icon_path": "res://Graphics/Items/default_texture.png",
+			"damage": 0,
+			"heal": 20,
+			"amount": 1,
+			"effect": "",
+			"type": "item"
+		}
+		
+	}
+}
