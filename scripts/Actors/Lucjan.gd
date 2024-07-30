@@ -11,6 +11,8 @@ var skillCheckStep = 0
 var possible_target_position
 var current_effect_working
 
+signal knocked_down_signal(target)
+
 func _init():
 	character_file_path = "user://Data/lucjan_data.json"
 	
@@ -55,6 +57,7 @@ func get_damage(attack):
 	if Hp <= 0:
 		KnockedUp = true
 		can_be_attacked = false
+		knocked_down_signal.emit(self)
 	else:
 		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
 	

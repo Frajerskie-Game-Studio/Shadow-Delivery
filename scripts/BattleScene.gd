@@ -50,6 +50,7 @@ func load_entities(party, enemies):
 		Party[index].attacking.connect(_on_attacking_entity)
 		Party[index].reset_attack.connect(_on_reset_ready_to_attack)
 		Party[index].item_being_used.connect(_on_item_being_used)
+		Party[index].knocked_down_signal.connect(_on_knocked_up)
 		if(Party[index].has_method("lock")):
 			Party[index].lock()
 		Party[index].load_items()
@@ -92,6 +93,19 @@ func _on_entity_ready_to_attack(attack, attacker):
 			print("stronger")
 			possible_attacker.start_attack(possible_attack)
 
+func _on_knocked_up(target):
+	if target.Name == "Mikut":
+		for p in Party:
+			if p.Name == "Shadow":
+				p.KnockedUp = true
+				p.Hp = 0
+				p.can_be_attacked = false
+	elif target.Name == "Shadow":
+		for p in Party:
+			if p.Name == "Mikut":
+				p.KnockedUp = true
+				p.Hp = 0
+				p.can_be_attacked = false
 
 func _on_reset_ready_to_attack():
 	if possible_attacker != null and !possible_attacker.KnockedUp:
@@ -133,6 +147,16 @@ func get_can_be_attack_entities():
 func _on_item_being_used(entity):
 	entity.use_item(possible_attack)
 	entity.reload_menu()
+	if entity.Name == "Mikut":
+		for p in Party:
+			if p.Name == "Shadow":
+				p.use_item(possible_attack)
+				p.reload_menu()
+	elif entity.Name == "Shadow":
+		for p in Party:
+			if p.Name == "Mikut":
+				p.use_item(possible_attack)
+				p.reload_menu()
 	possible_attacker.start_using_item()
 	possible_attacker = null
 	possible_attack = null
@@ -142,6 +166,14 @@ func _on_item_being_used(entity):
 
 func _on_enemy_attacking(target, attack):
 	target.get_damage(attack)
+	if target.Name == "Mikut":
+		for p in Party:
+			if p.Name == "Shadow":
+				p.get_damage(attack)
+	elif target.Name == "Shadow":
+		for p in Party:
+			if p.Name == "Mikut":
+				p.get_damage(attack)
 	
 func _on_enemy_dying(entity):
 	for e in Enemies:
