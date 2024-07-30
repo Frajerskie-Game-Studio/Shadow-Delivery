@@ -74,6 +74,13 @@ func add_teammate(teammate, teammate_node):
 		print("HAS TEAMMATE")
 	$Menu.refresh_data()
 	
+func delete_teammate(teammate, teammate_node):
+	print("DELETE WORLD")
+	print("AFTER IF")
+	$Player.delete_teammate(teammate, teammate_node)
+	$Player.save_everything()
+	$Player.load_everything()
+	$Menu.refresh_data()
 func add_something(object, object_type):
 	$Player.add_something(object, object_type)
 

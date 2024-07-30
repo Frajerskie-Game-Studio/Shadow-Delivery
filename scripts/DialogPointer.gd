@@ -54,7 +54,6 @@ func _on_body_entered(body):
 			start_dialog.emit(Path, self, Action)
 
 func emit_signal_via_code():
-	print("emmiting signal")
 	if typeof(Action) == TYPE_ARRAY:
 		start_dialog.emit(Path, self, Action[currentDialogState])
 	else:

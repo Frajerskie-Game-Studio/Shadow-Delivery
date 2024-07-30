@@ -87,6 +87,11 @@ func load_data():
 func add_teammates(teammate, teammate_node):
 	Party_Data.teammates.append(teammate)
 	Party_Data.teammates_nodes.append(teammate_node)
+	
+func delete_teammate(teammate, teammate_node):
+	print("DELETING TEAMMATE")
+	Party_Data.teammates.erase(teammate)
+	Party_Data.teammates_nodes.erase(teammate_node)
 
 
 func load_items():
