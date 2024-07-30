@@ -73,12 +73,15 @@ func mining_interaction():
 		$Dialogs/Mine1Pointer.emit_signal_via_code()
 	
 func shadow_interaction():
+	get_parent().delete_teammate("user://Data/michal_data.json", "res://Scenes/Actors/Michal.tscn")
+	get_parent().delete_teammate("user://Data/krzychu_data.json", "res://Scenes/Actors/Krzychu.tscn")
 	$Teammates/AnimationPlayer.play("AfterExplosion")
 	$Shadow/AnimationPlayer.play("idle")
 	$Shadow.visible = true
 	$Dialogs/Mine2Pointer.emit_signal_via_code()
 	
 func shadow_interaction2():
+	get_parent().add_teammate("user://Data/shadow_data.json", "res://Scenes/Actors/Shadow.tscn")
 	get_parent().start_fight()
 	deletedPointers.append($Dialogs/Mine2Pointer.name)
 	$Dialogs/Mine2Pointer.queue_free()

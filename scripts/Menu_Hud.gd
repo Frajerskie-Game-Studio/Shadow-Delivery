@@ -171,8 +171,6 @@ func showEq(entity_name):
 		load_name = "Player"
 
 	for teammate in Teammates:
-		print(teammate.contains(entity_name.to_lower()))
-		print(entity_name.to_lower())
 		if teammate.contains(entity_name.to_lower()):
 			var temp_teammate = load("res://Scenes/Actors/"+str(load_name)+".tscn")
 			
@@ -200,7 +198,6 @@ func _on_entityChossed(entity_name, choosingActions):
 	elif choosingActions == "skill":
 		showSkills(entity_name)
 	elif choosingActions == "eq":
-		print(entity_name)
 		showEq(entity_name)
 
 
