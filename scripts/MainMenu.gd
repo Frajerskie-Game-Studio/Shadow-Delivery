@@ -4,6 +4,9 @@ extends Node
 func _ready():
 	print("Is user ffile system persistent: " + str(OS.is_userfs_persistent()))
 	
+	var volume_slider = $Control/SettingsContainer/AudioContainer/AudioSlider.value
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(volume_slider))
+	
 	var dir = DirAccess.open("user://")
 	if !dir.dir_exists("Data"):
 		dir.make_dir("Data")
@@ -67,6 +70,10 @@ func _on_continue_button_pressed():
 			create_user_data_file(user_file_path)
 	
 	get_tree().change_scene_to_file("res://Scenes/World.tscn")
+
+
+func _on_audio_slider_value_changed(value):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(value))
 
 
 func _on_exit_pressed():
