@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cx5646c831t5u"]
+[gd_scene load_steps=31 format=3 uid="uid://cx5646c831t5u"]
 
 [ext_resource type="Texture2D" uid="uid://b44kidxlyq5dp" path="res://Graphics/Levels/Cave/ShadowZoneInsideTileSetButBigger2.png" id="1_11gha"]
 [ext_resource type="Script" path="res://scripts/Levels/Cave.gd" id="1_hb0gl"]
@@ -531,8 +531,50 @@ tracks/2/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_hkadk"]
+resource_name = "AfterExplosion"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lucjan:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Michal:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [88, 89]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Krzychu:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [88, 89]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_enkye"]
 _data = {
+"AfterExplosion": SubResource("Animation_hkadk"),
 "RESET": SubResource("Animation_wvslr"),
 "idle": SubResource("Animation_ofxnm")
 }
@@ -715,6 +757,8 @@ libraries = {
 [node name="Dialogs" type="Node2D" parent="."]
 
 [node name="EnterCave" parent="Dialogs" instance=ExtResource("8_ha4pv")]
+position = Vector2(-7, 72)
+scale = Vector2(4.04, 10.72)
 
 [node name="Fight1Pointer" parent="Dialogs" instance=ExtResource("8_ha4pv")]
 position = Vector2(1684, -492)
@@ -725,7 +769,7 @@ position = Vector2(3048, -312)
 scale = Vector2(1, 15.72)
 
 [node name="Mine1Pointer" parent="Dialogs" instance=ExtResource("8_ha4pv")]
-position = Vector2(1790, -500)
+position = Vector2(2023, -496)
 
 [node name="Mine2Pointer" parent="Dialogs" instance=ExtResource("8_ha4pv")]
 position = Vector2(3137, -398)
@@ -734,21 +778,23 @@ position = Vector2(3137, -398)
 position = Vector2(3687, -442)
 
 [node name="Teammates" type="Node2D" parent="."]
+visible = false
+position = Vector2(1836, -591)
 
 [node name="Lucjan" type="Sprite2D" parent="Teammates"]
-position = Vector2(1907, -479)
+position = Vector2(50, 47)
 scale = Vector2(3, 3)
 texture = ExtResource("9_1otd7")
 hframes = 92
 
 [node name="Michal" type="Sprite2D" parent="Teammates"]
-position = Vector2(2020, -604)
+position = Vector2(-22, -81)
 scale = Vector2(3, 3)
 texture = ExtResource("10_fcrip")
 hframes = 90
 
 [node name="Krzychu" type="Sprite2D" parent="Teammates"]
-position = Vector2(1922, -643)
+position = Vector2(49, -79)
 scale = Vector2(3, 3)
 texture = ExtResource("11_rrxs2")
 hframes = 90
@@ -762,6 +808,7 @@ libraries = {
 position = Vector2(3384, -390)
 
 [node name="Shadow" type="Node2D" parent="."]
+visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Shadow"]
 position = Vector2(3301, -300)
@@ -773,3 +820,10 @@ hframes = 78
 libraries = {
 "": SubResource("AnimationLibrary_sh85d")
 }
+
+[connection signal="start_dialog" from="Dialogs/EnterCave" to="." method="_on_desk_dialog_start_dialog"]
+[connection signal="start_dialog" from="Dialogs/Fight1Pointer" to="." method="_on_desk_dialog_start_dialog"]
+[connection signal="start_dialog" from="Dialogs/Fight2Pointer" to="." method="_on_desk_dialog_start_dialog"]
+[connection signal="start_dialog" from="Dialogs/Mine1Pointer" to="." method="_on_desk_dialog_start_dialog"]
+[connection signal="start_dialog" from="Dialogs/Mine2Pointer" to="." method="_on_desk_dialog_start_dialog"]
+[connection signal="start_dialog" from="Dialogs/LastDialog" to="." method="_on_desk_dialog_start_dialog"]

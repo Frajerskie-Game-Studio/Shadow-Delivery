@@ -32,6 +32,14 @@
 				0
 			],
 			"deleted_pointers": []
+		},
+		{
+			"path": "res://Scenes/Levels/Cave.tscn",
+			"player_position": [
+				0,
+				0
+			],
+			"deleted_pointers": []
 		}
 	]
 }

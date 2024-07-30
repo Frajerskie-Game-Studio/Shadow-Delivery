@@ -37,7 +37,7 @@
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		]
 	],
-	"two":[
+	"two": [
 		[
 			"Lucjan",
 			"Is everyone done",
@@ -72,6 +72,6 @@
 			"Lucjan",
 			"Put it in your bag, Master will take care of it",
 			"res://Graphics/Lucjan/LucjanDialogSprite.pngg"
-		],
+		]
 	]
 }
