@@ -7,7 +7,7 @@
 	"one": [
 		[
 			"Mikut",
-			"Here we are i guess...",
+			"Here we are I guess...",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
 		[
@@ -17,12 +17,12 @@
 		],
 		[
 			"Krzychu",
-			"Hell yeah I love this adrenaline",
+			"Hell yeah, yet another place that looks like it's about to collapse!",
 			"res://Graphics/Krzychu/BaseCourierDialogSprite.png"
 		],
 		[
 			"Michał",
-			"Time is running, let's get this done quick",
+			"Time is running, let's get this over with",
 			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
 		],
 	]

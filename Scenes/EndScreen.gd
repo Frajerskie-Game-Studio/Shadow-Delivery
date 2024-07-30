@@ -17,7 +17,3 @@ func _on_back_to_menu_pressed():
 func _on_leave_pressed():
 	JavaScriptBridge.eval("window.close()")
 	get_tree().quit()
-
-
-func _on_animation_player_animation_finished(anim_name):
-	$Panel.visible = false

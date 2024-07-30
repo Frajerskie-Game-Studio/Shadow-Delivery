@@ -8,12 +8,12 @@
 	"one": [
 		[
 			"Mikut",
-			"I don't have time for shopping",
+			"Can't spare any time for shopping...",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
 		[
 			"Mikut",
-			"And even if I had, I'm totally broke...",
+			"And even if I could, I'm totally broke...",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		]
 	],

@@ -13,17 +13,17 @@
 		],
 		[
 			"Mikut",
-			"Not like I had any option",
+			"Not like I had other options",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
 		[
 			"Mikut",
-			"If you don't consider starving to death as an option",
+			"If You don't consider starving to death",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
 		[
 			"Lucjan",
-			"Ha ha, you're right",
+			"Ha ha, You're right",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -38,7 +38,7 @@
 		],
 		[
 			"Michał",
-			"Lucjan told us you know somethin bout alchemy",
+			"Lucjan told us you know somethin about alchemy",
 			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
 		],
 		[
@@ -48,7 +48,7 @@
 		],
 		[
 			"Lucjan",
-			"Oh right bout this. Here are stuff you asked me for",
+			"Aaand I got you the thing You asked for.",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -73,24 +73,24 @@
 		],
 		[
 			"Mikut",
-			"Not really. This could be made by any wanna be terrorist in basement",
+			"Not really. This could be made by any wanna be terrorist in basement.",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
 		[
 			"***",
-			"Press [Tab] to access menu and craft magnesium grenade",
+			"Press [Tab] to access menu and craft magnesium grenade.",
 			""
 		]
 	],
 	"two": [
 		[
 			"Lucjan",
-			"So you're done with your alchemy mambo jumbo",
+			"Your done? Great.",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
 			"Michał",
-			"We should wait for Master and get our todays job",
+			"We should wait for Master to give us the location of todays mining",
 			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
 		]
 	]
