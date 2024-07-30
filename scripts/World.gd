@@ -106,6 +106,10 @@ func end_dialog(action):
 func _on_canvas_layer_item_used(current_item, entity_name):
 	#tu się kompletnie zesrałem na kod XDDDDDD
 	#to ja posporzątam :)
+	
+	var text = FileAccess.get_file_as_string("user://Data/party_data.json")
+	var temp_data = JSON.parse_string(text)
+	data = temp_data
 	for teammate in data.teammates:
 		if teammate.contains(entity_name.to_lower()):
 			if entity_name == "Mikut":
@@ -181,7 +185,7 @@ func start_fight():
 	$Player.get_node("PlayerBody").get_node("Camera2D").enabled = false
 	var random_enemy = RandomNumberGenerator.new()
 	var enemy_array = []
-	var random_enemy_number = random_enemy.randi_range(2, 4)
+	var random_enemy_number = random_enemy.randi_range(2, 3)
 	for i in range(random_enemy_number):
 		enemy_array.append(EnemiesArray[random_enemy.randi_range(0, len(EnemiesArray) - 1)])
 	battlefield.load_entities($Player.Party_Data.teammates_nodes, enemy_array)
@@ -289,5 +293,13 @@ func switch_level():
 func switch_zoom(x, y):
 	$Player/PlayerBody/Camera2D.zoom = Vector2(x,y)
 
+func play_explosion_animation():
+	$CanvasLayer.visible = true
+	$CanvasLayer/Control/BackgroundAnimation.play("hide_level")
+
 func _on_background_animation_animation_finished(anim_name):
 	$CanvasLayer.visible = false
+
+
+func _on_menu_crafted_something():
+	$Player.load_everything()

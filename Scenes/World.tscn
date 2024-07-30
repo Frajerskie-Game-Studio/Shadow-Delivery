@@ -24,6 +24,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_fumfg"]
 resource_name = "hide_level"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -31,10 +32,10 @@ tracks/0/path = NodePath("Panel:theme_override_styles/panel:bg_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 1, 1.2, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_waesu"]
@@ -104,6 +105,7 @@ libraries = {
 }
 
 [connection signal="itemDone" from="." to="Menu" method="_on_world_item_done"]
+[connection signal="crafted_something" from="Menu" to="." method="_on_menu_crafted_something"]
 [connection signal="itemUsed" from="Menu" to="." method="_on_canvas_layer_item_used"]
 [connection signal="saveEq" from="Menu" to="." method="_on_menu_save_eq"]
 [connection signal="animation_finished" from="CanvasLayer/Control/BackgroundAnimation" to="." method="_on_background_animation_animation_finished"]

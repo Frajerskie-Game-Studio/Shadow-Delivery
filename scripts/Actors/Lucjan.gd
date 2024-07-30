@@ -12,7 +12,6 @@ var possible_target_position
 var current_effect_working
 var in_tutorial = false
 
-signal knocked_down_signal(target)
 signal tutorial_change_signal
 
 func _init():
@@ -25,7 +24,7 @@ func _ready():
 	load_res()
 	reload_menu()
 	if in_battle:
-		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
+		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "res://Graphics/Items/flintlock_ammo_sprite.png", Items)
 		$AttackMenu.visible = true
 		if KnockedUp:
 			can_be_attacked = false
@@ -59,19 +58,21 @@ func get_damage(attack):
 	if Hp <= 0:
 		KnockedUp = true
 		can_be_attacked = false
-		knocked_down_signal.emit(self)
 	else:
 		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
 	
 	print(ready_to_attack_bool)
 	if ready_to_attack_bool:
 		reset_attack.emit()
-		unlock_buttons()
+		if !in_tutorial:
+			unlock_buttons()
 		$AttackMenu/HBoxContainer/LeftMenu/AttackButton.release_focus()
 		$AttackMenu/HBoxContainer/LeftMenu/SkillsButton.release_focus()
 		$AttackMenu/HBoxContainer/LeftMenu/ItemsButton.release_focus()
 
 func _process(delta):
+	if in_tutorial:
+		$AttackMenu.in_tutorial = true
 	if in_battle:
 		$PlayerBody/Collision.disabled = false
 		$PlayerBody/LevelCollider.disabled = true
@@ -221,7 +222,8 @@ func start_attack(attack):
 	timer.start()
 	
 func start_using_item():
-	unlock_buttons()
+	if !in_tutorial:
+		unlock_buttons()
 	can_be_checked = false
 	ready_to_attack_bool = false
 	var item = get_parent().possible_attack
@@ -298,7 +300,8 @@ func _on_timer_timeout():
 			
 func _on_attack_done():
 	print("DONE")
-	unlock_buttons()
+	if !in_tutorial:
+		unlock_buttons()
 	$AttackMenu/HBoxContainer/LeftMenu/SkillsButton.visible = false
 	$AttackMenu/HBoxContainer/LeftMenu/ItemsButton.visible = false
 	$AttackMenu/HBoxContainer/LeftMenu/AttackButton.visible = false

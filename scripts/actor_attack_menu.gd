@@ -27,7 +27,7 @@ func load_data(hp, max_hp, skills, ammo, ammo_texture_path, items):
 	Ammo = ammo
 	AmmoLabel.text = str(ammo)
 	Items = items
-	#AmmoTexture.texture = ammo_texture_path
+	AmmoTexture.texture = load(ammo_texture_path)
 
 func _ready():
 	pass

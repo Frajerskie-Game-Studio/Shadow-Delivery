@@ -50,7 +50,6 @@ func load_entities(party, enemies):
 		Party[index].attacking.connect(_on_attacking_entity)
 		Party[index].reset_attack.connect(_on_reset_ready_to_attack)
 		Party[index].item_being_used.connect(_on_item_being_used)
-		Party[index].knocked_down_signal.connect(_on_knocked_up)
 		if(Party[index].has_method("lock")):
 			Party[index].lock()
 		Party[index].load_items()
@@ -92,20 +91,6 @@ func _on_entity_ready_to_attack(attack, attacker):
 		elif(possible_attack.effect == "stronger"):
 			print("stronger")
 			possible_attacker.start_attack(possible_attack)
-
-func _on_knocked_up(target):
-	if target.Name == "Mikut":
-		for p in Party:
-			if p.Name == "Shadow":
-				p.KnockedUp = true
-				p.Hp = 0
-				p.can_be_attacked = false
-	elif target.Name == "Shadow":
-		for p in Party:
-			if p.Name == "Mikut":
-				p.KnockedUp = true
-				p.Hp = 0
-				p.can_be_attacked = false
 
 func _on_reset_ready_to_attack():
 	if possible_attacker != null and !possible_attacker.KnockedUp:

@@ -14,6 +14,7 @@ var item_to_use
 var Eq_to_be_changed_index
 var using_item = false
 var temp_recipe
+signal crafted_something
 signal itemUsed(item_name, entity_name)
 signal saveEq(entity_name)
 
@@ -356,8 +357,8 @@ func _on_equipment_item_activated(index):
 			PartyEq.remove_at(i)
 			break
 
-	$AudioStreamPlayer2D.stream = load("res://Music/Sfx/Dressing_sfx.wav")
-	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer.stream = load("res://Music/Sfx/Dressing_sfx.wav")
+	$AudioStreamPlayer.play()
 	save_data()
 	refresh_data()
 	
@@ -474,13 +475,15 @@ func _on_craft_button_pressed():
 				Items.append({"name": temp_recipe.data[0], "description": temp_recipe.data[1], "icon_path": temp_recipe.texture, "damage": temp_recipe.data[2], "heal": temp_recipe.data[3], "amount": 1})
 			else:
 				Items.append({"name": temp_recipe.data[0], "description": temp_recipe.data[1], "icon_path": "", "damage": temp_recipe.texture, "heal": temp_recipe.data[3], "effect": temp_recipe.data[3], "amount": 1})
-
+	
+	$AudioStreamPlayer.stream = load("res://Music/Sfx/Crafting_sfx.wav")
+	$AudioStreamPlayer.play()
 	save_data()
 	refresh_data()
 	add_resources()
 	add_recipies()
 	load_profiles()
-
+	crafted_something.emit()
 
 func _on_exit_button_pressed():
 	get_tree().quit()

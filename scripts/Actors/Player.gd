@@ -11,7 +11,7 @@ func _ready():
 	load_res()
 	reload_menu()
 	if in_battle:
-		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
+		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "res://Graphics/Items/MagnesiumGranade.png", Items)
 		$AttackMenu.visible =true
 		if KnockedUp:
 			can_be_attacked = false

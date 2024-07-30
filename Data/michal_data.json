@@ -35,8 +35,8 @@
 			"ammo": 49
 		},
 		"Armor": {
-			"name": "Penis armor",
-			"description": "Freaky armor for freaky people",
+			"name": "Michal courier uniform",
+			"description": "Basic courier uniform",
 			"icon_path": "res://Graphics/Items/uniform.png",
 			"type": "Armor",
 			"armor": 16

@@ -45,8 +45,8 @@
 			"ammo": 4
 		},
 		"Armor": {
-			"name": "Penis armor",
-			"description": "Freaky armor for freaky people",
+			"name": "Mikut courier uniform",
+			"description": "Basic courier uniform",
 			"icon_path": "res://Graphics/Items/uniform.png",
 			"type": "Armor",
 			"armor": 16

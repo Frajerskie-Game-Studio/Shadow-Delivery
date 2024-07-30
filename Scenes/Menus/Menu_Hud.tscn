@@ -264,7 +264,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Buttons/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/HBoxContainer/Buttons/Skills" to="." method="_on_skills_pressed"]

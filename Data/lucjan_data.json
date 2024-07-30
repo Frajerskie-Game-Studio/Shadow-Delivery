@@ -47,8 +47,8 @@
 			"ammo": 1
 		},
 		"Armor": {
-			"name": "Dix armor",
-			"description": "Freaky armor for freaky people",
+			"name": "Lucjan courier uniform",
+			"description": "Basic courier uniform",
 			"icon_path": "res://Graphics/Items/uniform.png",
 			"type": "Armor",
 			"armor": 16
