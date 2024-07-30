@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b8l7r4gx580xe"]
+[gd_scene load_steps=15 format=3 uid="uid://b8l7r4gx580xe"]
 
 [ext_resource type="Texture2D" uid="uid://hx7la2nvtry5" path="res://Graphics/Levels/BeforeIncident/ShadowZoneOutsideTileSetButBigger.png" id="1_6j2qp"]
 [ext_resource type="Script" path="res://scripts/Levels/Forest.gd" id="1_k6n13"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dmbf2o8frdgk2" path="res://Graphics/Lucjan/LucjanSpriteSheet.png" id="4_vs5un"]
 [ext_resource type="Texture2D" uid="uid://wwx54d0ook04" path="res://Graphics/Krzychu/SecondBaseCourierSpriteSheetV2-Sheet1.png" id="5_o3c0x"]
 [ext_resource type="Texture2D" uid="uid://btgb1jpxyjlvh" path="res://Graphics/Michal/BaseCourierSpriteSheetV2(1)-Sheet.png" id="6_ce6bm"]
+[ext_resource type="AudioStream" uid="uid://dt0qdqh02surv" path="res://Music/Forest_Soundtrack.wav" id="7_ls86o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cxvrm"]
 texture = ExtResource("1_6j2qp")
@@ -486,6 +487,10 @@ scale = Vector2(4.35255, 2.79896)
 
 [node name="TeammatesExitPosition" type="Marker2D" parent="."]
 position = Vector2(-1245, 74)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ls86o")
+autoplay = true
 
 [connection signal="start_dialog" from="Dialogs/TutorialFight" to="." method="_on_desk_dialog_start_dialog"]
 [connection signal="start_dialog" from="Dialogs/AddPartyDialog" to="." method="_on_desk_dialog_start_dialog"]

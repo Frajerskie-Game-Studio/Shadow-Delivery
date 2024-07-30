@@ -486,4 +486,4 @@ func _on_craft_button_pressed():
 	crafted_something.emit()
 
 func _on_exit_button_pressed():
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://MainMenu.tscn")
