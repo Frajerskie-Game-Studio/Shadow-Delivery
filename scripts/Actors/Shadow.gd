@@ -1,16 +1,8 @@
 extends "Lucjan.gd"
 
 func _init():
-	#zmień plik
 	character_file_path = "user://Data/shadow_data.json"
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 	
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name == "hide_range":

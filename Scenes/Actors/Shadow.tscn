@@ -43,6 +43,9 @@ tracks/1/keys = {
 "values": [Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_bc4qh"]
+resource_name = "dixer"
+
 [sub_resource type="Animation" id="Animation_c8o5b"]
 resource_name = "get_damage"
 length = 0.4
@@ -337,9 +340,6 @@ tracks/0/keys = {
 "values": [40, 41, 42, 43, 44, 45, 46, 47, 48]
 }
 
-[sub_resource type="Animation" id="Animation_bc4qh"]
-resource_name = "dixer"
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lu4nw"]
 _data = {
 "RESET": SubResource("Animation_qetah"),
@@ -462,7 +462,7 @@ graph_offset = Vector2(74, 20)
 script = ExtResource("1_3iany")
 
 [node name="PlayerBody" type="CharacterBody2D" parent="."]
-collision_mask = 6
+collision_mask = 2
 input_pickable = true
 
 [node name="Collision" type="CollisionShape2D" parent="PlayerBody"]
@@ -485,7 +485,7 @@ debug_color = Color(1.05888e-06, 0.645056, 0.268252, 0.42)
 [node name="RangeSKillCheck" type="CharacterBody2D" parent="."]
 visible = false
 collision_layer = 8
-collision_mask = 6
+collision_mask = 8
 motion_mode = 1
 platform_floor_layers = 4294901760
 script = ExtResource("2_b85s0")
@@ -534,4 +534,6 @@ parameters/Idle/blend_position = Vector2(0.274793, -0.276507)
 [node name="RangeSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_gfd1l")
 
+[connection signal="change_style" from="AttackMenu" to="." method="_on_attack_menu_change_style"]
+[connection signal="i_will_attack" from="AttackMenu" to="." method="_on_attack_menu_i_will_attack"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
