@@ -66,9 +66,41 @@ dialog_text = "This will override Your previous saves!
 Continue?"
 dialog_close_on_escape = false
 
+[node name="SettingsContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -171.0
+offset_bottom = 50.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="Control/SettingsContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="AudioContainer" type="HBoxContainer" parent="Control/SettingsContainer"]
+layout_mode = 2
+
+[node name="MinLabel" type="Label" parent="Control/SettingsContainer/AudioContainer"]
+layout_mode = 2
+text = "Min"
+
+[node name="AudioSlider" type="HSlider" parent="Control/SettingsContainer/AudioContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 0.6
+
+[node name="MaxLabel" type="Label" parent="Control/SettingsContainer/AudioContainer"]
+layout_mode = 2
+text = "Max"
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_0rd4a")
 
 [connection signal="pressed" from="Control/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="value_changed" from="Control/SettingsContainer/AudioContainer/AudioSlider" to="." method="_on_audio_slider_value_changed"]
