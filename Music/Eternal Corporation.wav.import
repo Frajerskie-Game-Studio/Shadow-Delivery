@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cgm5fwpogjxb0"
-path="res://.godot/imported/SPOILER_Eternal Corporation.wav-0e338bcbbc764c8039e29e5a3850176c.sample"
+path="res://.godot/imported/Eternal Corporation.wav-0dba296f72352d6816862f4e5122871a.sample"
 
 [deps]
 
-source_file="res://Music/SPOILER_Eternal Corporation.wav"
-dest_files=["res://.godot/imported/SPOILER_Eternal Corporation.wav-0e338bcbbc764c8039e29e5a3850176c.sample"]
+source_file="res://Music/Eternal Corporation.wav"
+dest_files=["res://.godot/imported/Eternal Corporation.wav-0dba296f72352d6816862f4e5122871a.sample"]
 
 [params]
 
