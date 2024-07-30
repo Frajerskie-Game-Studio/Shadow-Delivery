@@ -15,6 +15,7 @@ func _on_back_to_menu_pressed():
 
 
 func _on_leave_pressed():
+	JavaScriptBridge.eval("window.close()")
 	get_tree().quit()
 
 

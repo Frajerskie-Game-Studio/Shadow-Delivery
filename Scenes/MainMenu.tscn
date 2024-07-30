@@ -76,10 +76,10 @@ color = Color(0.313726, 0.313726, 0.313726, 1)
 title = "Are You sure?"
 initial_position = 1
 size = Vector2i(311, 106)
+popup_window = true
 ok_button_text = "Yes"
 dialog_text = "This will override Your previous saves!
 Continue?"
-dialog_close_on_escape = false
 
 [node name="SettingsContainer" type="VBoxContainer" parent="MainMenu"]
 layout_mode = 1

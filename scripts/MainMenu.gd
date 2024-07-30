@@ -6,6 +6,7 @@ func _ready():
 	
 	$Controls/CanvasLayer.visible = false
 	$Controls/CanvasLayer/Control/MarginContainer/BackButton.pressed.connect(_controls_back_button_pressed)
+	$MainMenu/Modal/NewGameConfirmDialog.add_theme_icon_override("close", Texture2D.new())
 	
 	var volume_slider = $MainMenu/SettingsContainer/AudioContainer/AudioSlider.value
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(volume_slider))
@@ -80,6 +81,7 @@ func _on_audio_slider_value_changed(value):
 
 
 func _on_exit_pressed():
+	JavaScriptBridge.eval("window.close()")
 	get_tree().quit()
 
 
