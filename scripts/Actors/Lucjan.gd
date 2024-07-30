@@ -10,8 +10,10 @@ var possibleSkillChecks = ["move_left", "move_right", "move_up", "move_down"]
 var skillCheckStep = 0
 var possible_target_position
 var current_effect_working
+var in_tutorial = false
 
 signal knocked_down_signal(target)
+signal tutorial_change_signal
 
 func _init():
 	character_file_path = "user://Data/lucjan_data.json"
@@ -82,7 +84,7 @@ func _process(delta):
 		if ready_to_attack_bool:
 			if Input.is_action_just_pressed("cancel"):
 				reset_attack.emit()
-				unlock_buttons()
+				#unlock_buttons()
 				
 		
 		if timer != null:
@@ -354,7 +356,11 @@ func _on_attack_menu_change_style():
 			animationState.travel("hide_melee")
 	else:
 		animationState.travel("hide_range")
-	
+	print("FUCKING EMIT")
+	print(in_tutorial)
+	if in_tutorial:
+		print("FUCKING EMIT")
+		tutorial_change_signal.emit()
 		
 func revive(heal):
 	KnockedUp = false

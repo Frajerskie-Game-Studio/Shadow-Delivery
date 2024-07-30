@@ -1,6 +1,6 @@
 {
 	"name": "Shadow",
-	"texture": "res://Graphics/Lucjan/LucjanDialogSprite.png",
+	"texture": "res://Graphics/Shadow/ShadowDialogSprite.png",
 	"hp": 100,
 	"max_hp": 100,
 	"knocked_up": false,

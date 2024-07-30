@@ -134,8 +134,9 @@ func _on_entity_being_attacked(entity):
 	possible_attacker.start_attack(possible_attack)
 	
 func _on_attacking_entity(attack):
-	possible_target.get_damage(attack)
-	possible_attacker._on_attack_done()
+	if possible_target != null and possible_attacker != null:
+		possible_target.get_damage(attack)
+		possible_attacker._on_attack_done()
 	
 func get_can_be_attack_entities():
 	var can_be_attacked_array = []

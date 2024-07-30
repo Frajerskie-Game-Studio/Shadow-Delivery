@@ -10,11 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://bsjtbmksd570f" path="res://Graphics/Levels/Factory/CratePile2.png" id="6_5sqv0"]
 [ext_resource type="Texture2D" uid="uid://bt0wj0ajlwgny" path="res://Graphics/Levels/Factory/CrateWithResources.png" id="7_3erye"]
 [ext_resource type="Texture2D" uid="uid://b20lpqud30hbe" path="res://Graphics/Levels/Factory/EmptyCrate.png" id="9_xp5ke"]
-[ext_resource type="AudioStream" uid="uid://kvptbakix8ix" path="res://Music/Factory_Ambient.wav" id="10_2ukti"]
 [ext_resource type="Texture2D" uid="uid://wwx54d0ook04" path="res://Graphics/Krzychu/SecondBaseCourierSpriteSheetV2-Sheet1.png" id="10_651r8"]
 [ext_resource type="Texture2D" uid="uid://ck1whsvqbf7w8" path="res://Graphics/Master/MasterSpriteSheet.png" id="10_tns7u"]
 [ext_resource type="Texture2D" uid="uid://btgb1jpxyjlvh" path="res://Graphics/Michal/BaseCourierSpriteSheetV2(1)-Sheet.png" id="11_08i50"]
 [ext_resource type="PackedScene" uid="uid://bf573cy58a5wu" path="res://Scenes/dialog_pointer.tscn" id="11_k2450"]
+[ext_resource type="AudioStream" uid="uid://cgm5fwpogjxb0" path="res://Music/Eternal Corporation.wav" id="15_hng8g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xm74q"]
 texture = ExtResource("1_lxvvm")
@@ -822,7 +822,7 @@ monitoring = false
 position = Vector2(2711, -19)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_2ukti")
+stream = ExtResource("15_hng8g")
 autoplay = true
 
 [connection signal="start_dialog" from="Dialogs/ToxicFurnancePointer" to="." method="_on_desk_dialog_start_dialog"]

@@ -385,6 +385,7 @@ func _on_craft_pressed():
 func _on_recipes_list_item_clicked(index, at_position, mouse_button_index):
 	var key = $Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Bottom/Recipes/ScrollContainer/VBoxContainer/RecipesList.get_item_text(index)
 	var recipe = CraftingRecipies[key]
+	var able_to_craft = true
 	temp_recipe = recipe
 	var crafting_components_data = [
 		{
@@ -402,16 +403,23 @@ func _on_recipes_list_item_clicked(index, at_position, mouse_button_index):
 	]
 	
 	for i in range(len(temp_recipe.components)):
+		crafting_components_data[i].desc.text = ""
+		crafting_components_data[i].texture.texture = null
+		
 		var component = temp_recipe.components[i]
 		if PartyResources.has(component):
 			crafting_components_data[i].desc.text = component
 			crafting_components_data[i].texture.texture = load(PartyResources[component].texture) #tutaj będzie tekstura z PatyResources[component].texture
 		else:
 			crafting_components_data[i].desc.text = str(component) + "\nnot avilable"
-			return
+			able_to_craft = false
 	crafting_components_data[2].desc.text = key
 	crafting_components_data[2].texture.texture = load(temp_recipe.texture) #tutaj będzie texture pobierany z temp_recipe
-	$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Middle/CraftButton.disabled = false
+	
+	if able_to_craft:
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Middle/CraftButton.disabled = false
+	else:
+		$Control/MarginContainer/HBoxContainer/Panel/MarginContainer/Craft/Middle/CraftButton.disabled = true
 
 
 func _on_craft_button_pressed():
@@ -467,7 +475,6 @@ func _on_craft_button_pressed():
 			else:
 				Items.append({"name": temp_recipe.data[0], "description": temp_recipe.data[1], "icon_path": "", "damage": temp_recipe.texture, "heal": temp_recipe.data[3], "effect": temp_recipe.data[3], "amount": 1})
 
-	
 	save_data()
 	refresh_data()
 	add_resources()

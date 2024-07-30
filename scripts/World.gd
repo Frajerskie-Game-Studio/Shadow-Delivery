@@ -235,6 +235,8 @@ func end_battle():
 					in_c.playing = true
 	save_level_data(false)
 	load_level()
+	if $Player.in_tutorial:
+		$Player.in_tutorial = false
 	$Player.unlock()
 	$Player.get_node("PlayerBody").get_node("Camera2D").enabled = true
 	$Player.in_battle = false

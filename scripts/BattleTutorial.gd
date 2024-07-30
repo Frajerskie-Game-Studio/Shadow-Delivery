@@ -10,6 +10,7 @@ var possible_effect
 signal start_dialog(path)
 
 var battle_drop = []
+var unlocked_buttons = []
 
 signal end_whole_battle
 
@@ -41,24 +42,31 @@ func attack_tutorial():
 	Party[0].lock_buttons()
 	Party[0].lock_change_button()
 	Party[0].unlock_specific_button("attack")
+	unlocked_buttons.clear()
+	unlocked_buttons.append("attack")
 	
 func range_attack_tutorial():
 	print("range tutorial")
 	Party[0].lock_buttons()
 	Party[0].unlock_specific_button("change")
-	Party[0].unlock_specific_button("attack")
+	unlocked_buttons.clear()
+	unlocked_buttons.append("change")
 	
 func skills_tutorial():
 	print("skills tutorial")
 	Party[0].lock_buttons()
 	Party[0].lock_change_button()
 	Party[0].unlock_specific_button("skills")
+	unlocked_buttons.clear()
+	unlocked_buttons.append("skills")
 	
 func items_tutorial():
 	print("items tutorial")
 	Party[0].lock_buttons()
 	Party[0].lock_change_button()
 	Party[0].unlock_specific_button("items")
+	unlocked_buttons.clear()
+	unlocked_buttons.append("items")
 
 func _process(delta):
 	var counter = 0
@@ -73,11 +81,13 @@ func load_entities(party, enemies):
 		var temp_load = load(party[index])
 		Party.append(temp_load.instantiate())
 		Party[index].in_battle = true
+		Party[index].in_tutorial = true
 		Party[index].position = Positions.party[index].position
 		Party[index].ready_to_attack.connect(_on_entity_ready_to_attack)
 		Party[index].attacking.connect(_on_attacking_entity)
 		Party[index].reset_attack.connect(_on_reset_ready_to_attack)
 		Party[index].item_being_used.connect(_on_item_being_used)
+		Party[index].tutorial_change_signal.connect(_turn_on_attack_button)
 		if(Party[index].has_method("lock")):
 			Party[index].lock()
 		Party[index].load_items()
@@ -124,7 +134,9 @@ func _on_reset_ready_to_attack():
 		possible_attack = null
 		possible_attacker.can_be_attacked = true
 		possible_attacker.ready_to_attack_bool = false
-		possible_attacker.unlock_buttons()
+		print(unlocked_buttons)
+		for button in unlocked_buttons:
+			possible_attacker.unlock_specific_button(button)
 		possible_attacker = null
 
 	for e in Enemies:
@@ -222,3 +234,8 @@ func end_battle():
 func _on_drop_menu_end_fight():
 	$BattleCamera.enabled = false
 	end_whole_battle.emit()
+	
+func _turn_on_attack_button():
+	print("UNLOCKING ATTACK")
+	Party[0].unlock_specific_button("attack")
+	unlocked_buttons.append("attack")

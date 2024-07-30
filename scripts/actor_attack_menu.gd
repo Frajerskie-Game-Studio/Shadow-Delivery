@@ -15,6 +15,7 @@ var CurrentStyle = "melee"
 var WaitTime
 var Ammo
 var Items
+var in_tutorial = false
 
 signal i_will_attack(args)
 signal change_style
@@ -36,14 +37,15 @@ func _process(delta):
 		visible = true
 	else:
 		visible = false
-		
-	if CurrentStyle == "range":
-		if Ammo <= 0:
-			AttackButton.disabled = true
+	
+	if !in_tutorial:
+		if CurrentStyle == "range":
+			if Ammo <= 0:
+				AttackButton.disabled = true
+			else:
+				AttackButton.disabled = false
 		else:
 			AttackButton.disabled = false
-	else:
-		AttackButton.disabled = false
 
 
 func _on_attack_button_pressed():
@@ -58,7 +60,6 @@ func _on_change_style_pressed():
 		CurrentStyle = "range"
 	else:
 		CurrentStyle = "melee"
-
 
 func _on_skills_button_pressed():
 	print("SKILLL BUTTON PRESSED")
