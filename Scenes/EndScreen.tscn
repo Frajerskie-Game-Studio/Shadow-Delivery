@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2noirw6gsjse"]
+[gd_scene load_steps=8 format=3 uid="uid://c2noirw6gsjse"]
 
+[ext_resource type="Script" path="res://Scenes/EndScreen.gd" id="1_4r4qu"]
 [ext_resource type="Texture2D" uid="uid://bhq0wybg67add" path="res://Graphics/ShadowDeliveryLogo.png" id="1_onwa3"]
+[ext_resource type="AudioStream" uid="uid://1g7au3or2la8" path="res://Music/Dark_Cave_Soundtrack.wav" id="3_pgbty"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h263r"]
 bg_color = Color(0, 0, 0, 1)
@@ -42,6 +44,7 @@ _data = {
 }
 
 [node name="EndScreen" type="Node"]
+script = ExtResource("1_4r4qu")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -110,3 +113,8 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pgbty")
+autoplay = true
+
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/LogoConatiner/BackToMenu" to="." method="_on_back_to_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/LogoConatiner/Leave" to="." method="_on_leave_pressed"]

@@ -62,6 +62,8 @@ func _process(delta):
 				$Soundtrack.stream = load("res://Music/Dark_Cave_Soundtrack.wav")
 				$Soundtrack.play()
 				$Shadow.visible = true
+				$Dialogs/Mine2Pointer.emit_signal_via_code()
+				after_second_fight = false
 			$Dialogs/Mine2Pointer.emit_signal_via_code()
 			after_second_fight = false
 	if last_dialog_emit:
@@ -72,7 +74,7 @@ func _process(delta):
 			$Shadow/AnimationPlayer.play("idle")
 			$Shadow/AnimationPlayer.play("idle")
 			$Shadow.visible = true
-			$Soundtrack.stream = load("res://Music/Dark_Cave_Soundtrack.wav")
+			$Soundtrack.stream = load("res://Music/Incident_Theme.wav")
 			$Soundtrack.play()
 			$Dialogs/LastDialog.emit_signal_via_code()
 			last_dialog_emit = false

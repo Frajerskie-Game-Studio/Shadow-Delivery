@@ -13,7 +13,6 @@ config_version=5
 config/name="Shadow Delivery"
 run/main_scene="res://Scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-boot_splash/bg_color=Color(0.0253638, 0.0253638, 0.0253638, 1)
 config/icon="res://icon.svg"
 
 [display]

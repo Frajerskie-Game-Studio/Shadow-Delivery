@@ -1,0 +1,125 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt8qr304yomyi"]
+
+[ext_resource type="Script" path="res://scripts/ControlsMenu.gd" id="1_js3st"]
+[ext_resource type="Texture2D" uid="uid://by3syl737jfpg" path="res://Graphics/Controls.png" id="1_vhhmw"]
+[ext_resource type="Texture2D" uid="uid://cp8rqbimk3s2x" path="res://Graphics/MainMenu.png" id="2_o7wle"]
+[ext_resource type="AudioStream" uid="uid://dwndlhmn4prrj" path="res://Music/Main_Menu_theme.wav" id="3_mpn64"]
+
+[node name="Controls" type="Node"]
+script = ExtResource("1_js3st")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_o7wle")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 100
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_vhhmw")
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Back to menu"
+
+[node name="Control2" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control2"]
+offset_left = 198.0
+offset_top = 51.0
+offset_right = 302.0
+offset_bottom = 74.0
+text = "Cancel action"
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control2"]
+offset_left = 205.0
+offset_top = 162.0
+offset_right = 296.0
+offset_bottom = 185.0
+text = "Open menu"
+
+[node name="Label3" type="Label" parent="CanvasLayer/Control2"]
+offset_left = 219.0
+offset_top = 307.0
+offset_right = 266.0
+offset_bottom = 330.0
+text = "Sprint"
+
+[node name="Label4" type="Label" parent="CanvasLayer/Control2"]
+offset_left = 381.0
+offset_top = 149.0
+offset_right = 450.0
+offset_bottom = 172.0
+text = "Move Up"
+
+[node name="Label5" type="Label" parent="CanvasLayer/Control2"]
+offset_left = 378.0
+offset_top = 373.0
+offset_right = 468.0
+offset_bottom = 396.0
+text = "Move down"
+
+[node name="Label6" type="Label" parent="CanvasLayer/Control2"]
+offset_left = 286.0
+offset_top = 373.0
+offset_right = 359.0
+offset_bottom = 396.0
+text = "Move left"
+
+[node name="Label7" type="Label" parent="CanvasLayer/Control2"]
+offset_left = 486.0
+offset_top = 373.0
+offset_right = 570.0
+offset_bottom = 396.0
+text = "Move right
+"
+
+[node name="Label8" type="Label" parent="CanvasLayer/Control2"]
+offset_left = 730.0
+offset_top = 373.0
+offset_right = 775.0
+offset_bottom = 396.0
+text = "Shoot
+"
+
+[node name="Label9" type="Label" parent="CanvasLayer/Control2"]
+offset_left = 1000.0
+offset_top = 113.0
+offset_right = 1104.0
+offset_bottom = 136.0
+text = "Accept action"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_mpn64")
+autoplay = true
+
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/Button" to="." method="_on_button_pressed"]
