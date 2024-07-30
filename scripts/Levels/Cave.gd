@@ -41,7 +41,7 @@ func _ready():
 	$Dialogs/Mine1Pointer.load_data("user://Data/first_mining_dialog.json", false, false, [mining_interaction, unshown_teammates],true)
 	$Dialogs/Fight2Pointer.load_data("user://Data/second_fight_dialog.json", false, true, get_parent().start_fight, false)
 	$Dialogs/Mine2Pointer.load_data("user://Data/second_mine.json", false, false, [shadow_interaction, shadow_interaction2], true)
-	$Dialogs/LastDialog.load_data("user://Data/last_dialog.json", false, false, null, true)
+	$Dialogs/LastDialog.load_data("user://Data/last_dialog.json", false, false, move_to_end_screen, true)
 	
 	
 
@@ -121,3 +121,7 @@ func _on_explosion_finished():
 	$Dialogs/Mine2Pointer.emit_signal_via_code()
 	$Soundtrack.stream = load("res://Music/Dark_Cave_Soundtrack.wav")
 	$Soundtrack.play()
+
+
+func move_to_end_screen():
+	get_tree().change_scene_to_file("res://Scenes/EndScreen.tscn")

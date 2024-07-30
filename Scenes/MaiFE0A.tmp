@@ -1,0 +1,126 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2mk3mqwh450d"]
+
+[ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_8scpk"]
+[ext_resource type="Texture2D" uid="uid://cp8rqbimk3s2x" path="res://Graphics/MainMenu.png" id="2_c38f1"]
+[ext_resource type="Texture2D" uid="uid://bhq0wybg67add" path="res://Graphics/ShadowDeliveryLogo.png" id="2_e0shl"]
+[ext_resource type="AudioStream" uid="uid://dwndlhmn4prrj" path="res://Music/Main_Menu_theme.wav" id="3_0rd4a"]
+[ext_resource type="PackedScene" uid="uid://dumkbuq4xbx3h" path="res://Scenes/ControlsMenu.tscn" id="4_gopjg"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_8scpk")
+
+[node name="MainMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_c38f1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_e0shl")
+
+[node name="NewGameButton" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "New Game"
+
+[node name="ContinueButton" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Continue
+"
+
+[node name="ControlsButton" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Controls"
+
+[node name="Exit" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[node name="Modal" type="ColorRect" parent="MainMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.313726, 0.313726, 0.313726, 1)
+
+[node name="NewGameConfirmDialog" type="ConfirmationDialog" parent="MainMenu/Modal"]
+title = "Are You sure?"
+initial_position = 1
+size = Vector2i(311, 106)
+ok_button_text = "Yes"
+dialog_text = "This will override Your previous saves!
+Continue?"
+dialog_close_on_escape = false
+
+[node name="SettingsContainer" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -171.0
+offset_bottom = 50.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="MainMenu/SettingsContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="AudioContainer" type="HBoxContainer" parent="MainMenu/SettingsContainer"]
+layout_mode = 2
+
+[node name="MinLabel" type="Label" parent="MainMenu/SettingsContainer/AudioContainer"]
+layout_mode = 2
+text = "Min"
+
+[node name="AudioSlider" type="HSlider" parent="MainMenu/SettingsContainer/AudioContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 0.6
+
+[node name="MaxLabel" type="Label" parent="MainMenu/SettingsContainer/AudioContainer"]
+layout_mode = 2
+text = "Max"
+
+[node name="Controls" parent="." instance=ExtResource("4_gopjg")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0rd4a")
+autoplay = true
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="value_changed" from="MainMenu/SettingsContainer/AudioContainer/AudioSlider" to="." method="_on_audio_slider_value_changed"]
+[connection signal="back_button_clicked" from="Controls" to="." method="_controls_back_button_pressed"]

@@ -16,7 +16,7 @@
 		"rare": {
 			"name": "Revive",
 			"description": "It can really give a new lease of life to you",
-			"icon_path": "res://Graphics/Items/default_texture.png",
+			"icon_path": "res://Graphics/Items/revivePotion.png",
 			"damage": 0,
 			"heal": 20,
 			"amount": 1,

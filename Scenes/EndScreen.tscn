@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2noirw6gsjse"]
+[gd_scene load_steps=8 format=3 uid="uid://mqdbuihjjvoe"]
 
 [ext_resource type="Script" path="res://Scenes/EndScreen.gd" id="1_4r4qu"]
 [ext_resource type="Texture2D" uid="uid://bhq0wybg67add" path="res://Graphics/ShadowDeliveryLogo.png" id="1_onwa3"]
@@ -6,21 +6,6 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h263r"]
 bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_7a2y7"]
-resource_name = "ShowAnimation"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel:theme_override_styles/panel:bg_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_k64j1"]
 length = 0.001
@@ -35,6 +20,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7a2y7"]
+resource_name = "ShowAnimation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qcche"]
@@ -61,6 +61,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -150.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 10
@@ -70,11 +71,12 @@ theme_override_constants/margin_bottom = 10
 
 [node name="LogoConatiner" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/MarginContainer/LogoConatiner"]
+custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.8
 texture = ExtResource("1_onwa3")
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/LogoConatiner"]
@@ -85,20 +87,6 @@ theme_override_font_sizes/font_size = 40
 text = "To be continued"
 horizontal_alignment = 1
 
-[node name="BackToMenu" type="Button" parent="CanvasLayer/Control/MarginContainer/LogoConatiner"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-size_flags_stretch_ratio = 0.2
-text = "Back to menu"
-
-[node name="Leave" type="Button" parent="CanvasLayer/Control/MarginContainer/LogoConatiner"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-size_flags_stretch_ratio = 0.2
-text = "Leave"
-
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,6 +94,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_h263r")
+
+[node name="BackToMenu" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 2
+offset_left = 518.0
+offset_top = 509.0
+offset_right = 633.0
+offset_bottom = 540.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.2
+text = "Back to menu"
+
+[node name="Leave" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 2
+offset_left = 549.0
+offset_top = 586.0
+offset_right = 602.0
+offset_bottom = 617.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.2
+text = "Leave"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
 libraries = {
@@ -116,5 +126,6 @@ libraries = {
 stream = ExtResource("3_pgbty")
 autoplay = true
 
-[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/LogoConatiner/BackToMenu" to="." method="_on_back_to_menu_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/LogoConatiner/Leave" to="." method="_on_leave_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/BackToMenu" to="." method="_on_back_to_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/Leave" to="." method="_on_leave_pressed"]
+[connection signal="animation_finished" from="CanvasLayer/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

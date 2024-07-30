@@ -2,7 +2,7 @@ extends Node
 
 
 func _ready():
-	print("Is user ffile system persistent: " + str(OS.is_userfs_persistent()))
+	print("Is user file system persistent: " + str(OS.is_userfs_persistent()))
 	
 	$Controls/CanvasLayer.visible = false
 	$Controls/CanvasLayer/Control/MarginContainer/BackButton.pressed.connect(_controls_back_button_pressed)
