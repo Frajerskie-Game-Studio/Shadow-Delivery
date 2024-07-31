@@ -32,7 +32,7 @@
 			"icon_path": "res://Graphics/Items/flintlock_icon.png",
 			"type": "Range_weapon",
 			"damage": 50,
-			"ammo": 49
+			"ammo": 2
 		},
 		"Armor": {
 			"name": "Michal courier uniform",
