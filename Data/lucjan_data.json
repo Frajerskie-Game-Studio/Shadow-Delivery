@@ -44,7 +44,7 @@
 			"icon_path": "res://Graphics/Items/flintlock_icon.png",
 			"type": "Range_weapon",
 			"damage": 60,
-			"ammo": 1
+			"ammo": 2
 		},
 		"Armor": {
 			"name": "Lucjan courier uniform",
