@@ -7,12 +7,17 @@
 	"one": [
 		[
 			"Master",
-			"Sorry for making you wait...",
+			"Sorry You had to wait...",
 			"res://Graphics/Master/MasterDialogSprite.png"
 		],
 		[
 			"Master",
-			"Is this our new alchemy courier?",
+			"The factory owner was rumbling about delays and...",
+			"res://Graphics/Master/MasterDialogSprite.png"
+		],
+		[
+			"Master",
+			"is this our new alchemy courier?",
 			"res://Graphics/Master/MasterDialogSprite.png"
 		],
 		[
@@ -27,17 +32,17 @@
 		],
 		[
 			"Master",
-			"Anyhow, here is your mining site localization, and here are some healing potions",
+			"Alright, here is your mining site localization, and here are some healing potions",
 			"res://Graphics/Master/MasterDialogSprite.png"
 		],
 		[
 			"Master",
-			"Hope you will manage, Mikut...",
+			"Hope you will manage, Mikut?",
 			"res://Graphics/Master/MasterDialogSprite.png"
 		],
 		[
 			"Mikut",
-			"Right...",
+			"Yes, I will.",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
 		[
