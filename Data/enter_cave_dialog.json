@@ -12,7 +12,7 @@
 		],
 		[
 			"Lucjan",
-			"Right...",
+			"This mine was abandoned years ago. We should tread carefully.",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -22,7 +22,7 @@
 		],
 		[
 			"Michał",
-			"Time is running, let's get this over with",
+			"Time is running, let's get this over with.",
 			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
 		],
 	]

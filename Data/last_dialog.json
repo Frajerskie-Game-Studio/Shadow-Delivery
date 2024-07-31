@@ -7,7 +7,7 @@
 	"one": [
 		[
 			"Lucjan",
-			"Okay what the hell is going on! Why were the enemies hitted by nothingness",
+			"Okay what the hell is going on! What happend to those suckers?!",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -17,52 +17,52 @@
 		],
 		[
 			"Shadow",
-			"Now I can properly introduce myself",
+			"Well, since we have that sorted out I can introduce myself.",
 			"res://Graphics/Shadow/ShadowDialogSprite.png"
 		],
 		[
 			"Shadow",
-			"I am your shadow, the one that followed you from the day of your birth",
+			"I am your shadow, the one that followed you from the day of your birth.",
 			"res://Graphics/Shadow/ShadowDialogSprite.png"
 		],
 		[
 			"Shadow",
-			"We, shadows, are concious beings, existing in your world",
+			"We, shadows, are concious beings, existing in your world.",
 			"res://Graphics/Shadow/ShadowDialogSprite.png"
 		],
 		[
 			"Shadow",
-			"But we normally don't have free will, and we're not able to communicate with you",
+			"But You cannot communicate with us, as we don't have the free will.",
 			"res://Graphics/Shadow/ShadowDialogSprite.png"
 		],
 		[
 			"Shadow",
-			"But when strong shadow magic is released, our worlds are able to connect with each other, but only for a split second",
+			"But when strong shadow magic is released, our worlds are able to connect with each other only for a split second.",
 			"res://Graphics/Shadow/ShadowDialogSprite.png"
 		],
 		[
 			"Shadow",
-			"This happened right now, when the minerals you were mining exploded",
+			"In that moment shadows can pass through and take form in Your world.",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+		[
+			"Shadow",
+			"That's what happened and now I am here.",
 			"res://Graphics/Shadow/ShadowDialogSprite.png"
 		],
 		[
 			"Mikut",
-			"So how am I able to still communicate with you, and why are we fine explosion",
+			"But, why are You still here, why are We even alive?",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
 		[
 			"Shadow",
-			"The mystery mineral you just mined is able to absorb high ammount of strong shadow power, and slowly release it",
+			"The mysterious mineral you just mined is able to absorb high ammount of strong shadow power and store it indefinetly.",
 			"res://Graphics/Shadow/ShadowDialogSprite.png"
 		],
 		[
 			"Shadow",
-			"The mystery mineral you just mined is able to absorb high ammount of strong shadow power, and slowly release it",
-			"res://Graphics/Shadow/ShadowDialogSprite.png"
-		],
-		[
-			"Shadow",
-			"Lucjan, your friend from childhood, was just lucky enough to stand behind you",
+			"Your friend, was lucky enough to stand close to You",
 			"res://Graphics/Shadow/ShadowDialogSprite.png"
 		],
 		[
@@ -72,17 +72,17 @@
 		],
 		[
 			"Shadow",
-			"Tell him it won't do anything",
+			"Tell him it won't do anything.",
 			"res://Graphics/Shadow/ShadowDialogSprite.png"
 		],
 		[
 			"Mikut",
-			"Lucjan, my shadow tells me they're done",
+			"Lucjan, my shadow tells me they're done.",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
 		[
 			"Lucjan",
-			"Screw you stupid ass shadow, I will save them!",
+			"Screw your stupid ass shadow, I will save them!",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -92,12 +92,22 @@
 		],
 		[
 			"Shadow",
-			"Now you need to leave this place, and then go to the Shadow Gate",
+			"Now you need to leave this place quickly and then You need to help me...",
 			"res://Graphics/Shadow/ShadowDialogSprite.png"
 		],
 		[
 			"Mikut",
-			"What the hell are you talking about, Shadow Gate is just a conspiracy theory!",
+			"With what can I help a shadow?!",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Shadow",
+			"You must go to the Shadow Gate as soon as possible",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+		[
+			"Mikut",
+			"What the hell are You talking about, Shadow Gate is just a conspiracy theory!",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
 		[
@@ -107,12 +117,12 @@
 		],
 		[
 			"Shadow",
-			"You couldn't be more wrong. It exist, and all these bad things are beacuse of this",
+			"You couldn't be more wrong. It exist, and all these bad things are beacuse of this.",
 			"res://Graphics/Shadow/ShadowDialogSprite.png"
 		],
 		[
 			"Shadow",
-			"And the biggest manufacturers all know about this. That's how they gain power so fast",
+			"And the biggest industrialists all know about this. That's how they gain power so fast",
 			"res://Graphics/Shadow/ShadowDialogSprite.png"
 		],
 		[
@@ -122,7 +132,7 @@
 		],
 		[
 			"Mikut",
-			"And how do you imagine me fighing big manufacturers, HUH?!",
+			"And how do you imagine me fighing corporations that own everything, HUH?!",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
 		[
@@ -132,12 +142,17 @@
 		],
 		[
 			"Mikut",
-			"Ania...",
+			"You don't mean...",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
 		[
+			"Shadow",
+			"Yes, Ania.",
+			"res://Graphics/Shadow/ShadowDialogSprite.png"
+		],
+		[
 			"Lucjan",
-			"Shit, I'm done!",
+			"THE STRUCTURE IS COLLAPSING!",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[

@@ -8,12 +8,12 @@
 	"one": [
 		[
 			"Lucjan",
-			"And i guess there were the last ones",
+			"And I guess that was the last of them.",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
 			"Mikut",
-			"Damn this job is really tiring... and stressful",
+			"Damn this job really is dangerous... and stressful.",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
 		[
@@ -28,12 +28,12 @@
 		],
 		[
 			"Krzychu",
-			"There are so many of them",
+			"There are so many of them...",
 			"res://Graphics/Krzychu/BaseCourierDialogSprite.png"
 		],
 		[
 			"Lucjan",
-			"Be careful, these ones are highly explosive",
+			"Be careful, these ones are highly volatile.",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -61,12 +61,12 @@
 	"two":[
 		[
 			"Mikut",
-			"Shit what was that",
+			"Damn! What was that?!",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
 		[
 			"Lucjan",
-			"Explosion! Is everyone alright",
+			"Explosion! Is everyone alright?",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -86,22 +86,27 @@
 		],
 		[
 			"Shadow",
-			"I am your shadow, Mikut",
+			"You can see me?",
 			"res://Graphics/Shadow/ShadowDialogSprite.png"
 		],
 		[
 			"Mikut",
-			"Wait, what?!",
+			"Wait, what?",
+			"res://Graphics/Mikut/MikutDialogSprite.png"
+		],
+		[
+			"Shadow",
+			"He can see me...",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
 		[
 			"Lucjan",
-			"Mikut, you airhead, stop talking to yourself and help me with Michał and Krzychu",
+			"Mikut, you dumbass, stop talking to yourself and help me with Michał and Krzychu",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
 			"Shadow",
-			"There is no time for explanetion, we need to take care of this guys",
+			"There is no time for explanation, we need to take care of those guys.",
 			"res://Graphics/Shadow/ShadowDialogSprite.png"
 		],
 		[

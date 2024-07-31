@@ -7,12 +7,12 @@
 	"one": [
 		[
 			"Mikut",
-			"It's kinda dark here...",
+			"It's kinda dark in here...",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
 		[
 			"Michał",
-			"It sure is",
+			"It sure is.",
 			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
 		],
 		[
@@ -22,12 +22,12 @@
 		],
 		[
 			"Mikut",
-			"Not really, more like scared of losing my life because of some freaking haunted slime",
+			"Not really, more like scared of losing my life because of some bloodthirsty bug.",
 			"res://Graphics/Mikut/MikutDialogSprite.png"
 		],
 		[
 			"Lucjan",
-			"Haha, not need to worry my friend, we've got your back, am I right?",
+			"Haha, no need to worry my friend, we've got your back, am I right?",
 			"res://Graphics/Krzychu/BaseCourierDialogSprite.png"
 		],
 		[
