@@ -1,7 +1,10 @@
 extends "Lucjan.gd"
 
+
+
 func _init():
 	character_file_path = "user://Data/mikut_data.json"
+	ammo_path = "res://Graphics/Items/MagnesiumGranade.png"
 
 func _ready():
 	#hp, max_hp, melee_skills, range_skills, ammo, ammo_texture_path
@@ -11,7 +14,7 @@ func _ready():
 	load_res()
 	reload_menu()
 	if in_battle:
-		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "res://Graphics/Items/MagnesiumGranade.png", Items)
+		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), ammo_path, Items)
 		$AttackMenu.visible =true
 		if KnockedUp:
 			can_be_attacked = false
@@ -34,7 +37,7 @@ func lock():
 
 
 func reload_menu():
-	$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
+	$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), ammo_path, Items)
 
 
 func get_animation_tree():

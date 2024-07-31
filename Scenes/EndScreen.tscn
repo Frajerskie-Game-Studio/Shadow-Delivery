@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://mqdbuihjjvoe"]
+[gd_scene load_steps=8 format=3 uid="uid://c2noirw6gsjse"]
 
 [ext_resource type="Script" path="res://Scenes/EndScreen.gd" id="1_4r4qu"]
 [ext_resource type="Texture2D" uid="uid://bhq0wybg67add" path="res://Graphics/ShadowDeliveryLogo.png" id="1_onwa3"]

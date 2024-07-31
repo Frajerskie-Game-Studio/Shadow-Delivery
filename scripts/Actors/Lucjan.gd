@@ -11,6 +11,7 @@ var skillCheckStep = 0
 var possible_target_position
 var current_effect_working
 var in_tutorial = false
+var ammo_path = "res://Graphics/Items/flintlock_ammo_sprite.png"
 
 signal tutorial_change_signal
 
@@ -24,7 +25,7 @@ func _ready():
 	load_res()
 	reload_menu()
 	if in_battle:
-		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "res://Graphics/Items/flintlock_ammo_sprite.png", Items)
+		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), ammo_path, Items)
 		$AttackMenu.visible = true
 		if KnockedUp:
 			can_be_attacked = false
@@ -38,7 +39,7 @@ func _ready():
 
 
 func reload_menu():
-	$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
+	$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), ammo_path, Items)
 
 
 func get_damage(attack):
@@ -59,7 +60,7 @@ func get_damage(attack):
 		KnockedUp = true
 		can_be_attacked = false
 	else:
-		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
+		$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), ammo_path, Items)
 	
 	print(ready_to_attack_bool)
 	if ready_to_attack_bool:
@@ -188,7 +189,7 @@ func start_attack(attack):
 				current_effect_working = attack.effect
 				effect_multipler = attack.effect_multipler
 				effect_counter = attack.effect_duration
-				$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "", Items)
+				$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), ammo_path, Items)
 				_on_attack_done()
 				return
 	elif current_style == "range":
@@ -206,14 +207,14 @@ func start_attack(attack):
 				selected_attack = attack
 				attacking.emit(selected_attack)
 				decrement_ammo()
-				$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "", Items)
+				$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), ammo_path, Items)
 				return
 			elif attack.effect == "stronger":
 				selected_attack = attack
 				current_effect_working = attack.effect
 				effect_multipler = attack.effect_multipler
 				effect_counter = attack.effect_duration
-				$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "", Items)
+				$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), ammo_path, Items)
 				_on_attack_done()
 				return
 				
@@ -228,7 +229,7 @@ func start_using_item():
 	ready_to_attack_bool = false
 	var item = get_parent().possible_attack
 	load_items()
-	$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), "", Items)
+	$AttackMenu.load_data(Hp, MaxHp, {}, get_ammo(), ammo_path, Items)
 	can_be_attacked = true
 	$AttackMenu/HBoxContainer/LeftMenu/SkillsButton.visible = false
 	$AttackMenu/HBoxContainer/LeftMenu/ItemsButton.visible = false
@@ -258,7 +259,7 @@ func _on_timer_timeout():
 		attacking.emit({"damage": 0})
 		if current_style == "range":
 			decrement_ammo()
-			$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
+			$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), ammo_path, Items)
 			$RangeSKillCheck.started = false
 			$RangeSKillCheck.visible = false
 		timer.queue_free()
@@ -270,7 +271,7 @@ func _on_timer_timeout():
 			if current_style == "range":
 				$RangeSound.play()
 				decrement_ammo()
-				$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), "", Items)
+				$AttackMenu.load_data(Hp, MaxHp, Skills, get_ammo(), ammo_path, Items)
 				animationState.travel("range_attack")
 			else:
 				$BattleSounds.stream = load("res://Music/Sfx/Combat/Melee_combat_sfx.wav")

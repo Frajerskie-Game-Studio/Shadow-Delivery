@@ -293,7 +293,7 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="TileSet_jkrdl"]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 2
-physics_layer_0/collision_mask = 3
+physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_cxvrm")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xedfy"]

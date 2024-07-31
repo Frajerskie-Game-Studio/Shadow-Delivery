@@ -237,5 +237,8 @@ func _on_drop_menu_end_fight():
 	
 func _turn_on_attack_button():
 	print("UNLOCKING ATTACK")
+	Party[0].lock_buttons()
+	Party[0].lock_change_button()
+	unlocked_buttons.clear()
 	Party[0].unlock_specific_button("attack")
 	unlocked_buttons.append("attack")

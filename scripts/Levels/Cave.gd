@@ -62,8 +62,6 @@ func _process(delta):
 				$Soundtrack.stream = load("res://Music/Dark_Cave_Soundtrack.wav")
 				$Soundtrack.play()
 				$Shadow.visible = true
-				$Dialogs/Mine2Pointer.emit_signal_via_code()
-				after_second_fight = false
 			$Dialogs/Mine2Pointer.emit_signal_via_code()
 			after_second_fight = false
 	if last_dialog_emit:
