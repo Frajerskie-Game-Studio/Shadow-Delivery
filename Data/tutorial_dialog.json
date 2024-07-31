@@ -11,12 +11,12 @@
 	"one": [
 		[
 			"Lucjan",
-			"This is battle field",
+			"This is the battlefield",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
 			"Lucjan",
-			"As you can see, you have some action menu next to your sprite",
+			"As You can see, you have some action menu next to your sprite",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -26,7 +26,7 @@
 		],
 		[
 			"Lucjan",
-			"This is really important because after every action, you will need to wait some time to do another action",
+			"This is really important because after every action, You will need to wait some time to do another action",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -51,7 +51,7 @@
 		],
 		[
 			"Lucjan",
-			"Mele skill check works really simple",
+			"Mele skill checks work really simple",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -61,17 +61,17 @@
 		],
 		[
 			"Lucjan",
-			"When this happens you need to click button corresponding to movement direction same as arrow show",
+			"When this happens you need to click the button corresponding to movement direction same as an arrow shows",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
 			"Lucjan",
-			"For example for arrow pointing up you need to click [W]",
+			"For example, when the arrow is pointing up you need to click [W]",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
 			"Lucjan",
-			"Arrows can repeat itself so if you click correct button and arrow is still pointing in the same direction it means it is another skill check, and you need to click the same button again",
+			"Arrows can repeat itself so if you click correct button and arrow is still pointing in the same direction it means that it is another skill check, and you need to click the same button again",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -81,24 +81,24 @@
 		],
 		[
 			"Lucjan",
-			"Right now lets try attacking enemy",
+			"Right now lets try attacking an enemy",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		]
 	],
 	"two": [
 		[
 			"Lucjan",
-			"So now you attacked enemy with your current fighting style, which is mele at the start of every fight",
+			"So now you attacked enemy with your current fighting style, which is melee at the start of every fight",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
 			"Lucjan",
-			"Every character has two fighting styles, mele and range",
+			"Every character has two fighting styles, melee and range",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
 			"Lucjan",
-			"You can switch between them during fights, but rember you will need to wait some time after click change style button",
+			"You can switch between them during fights, but remember You will need to wait some time after click change style button",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -108,12 +108,12 @@
 		],
 		[
 			"Lucjan",
-			"Range skill check works is a little bit different than mele one",
+			"Range skill check works a little bit different than the melee one",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
 			"Lucjan",
-			"When you click attack viewfinder will appear in random position",
+			"When you click attack crosshair will appear in random position on the screen",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -123,7 +123,7 @@
 		],
 		[
 			"Lucjan",
-			"When viewfinder is on the enemy you need to click [SPACEBAR]",
+			"When the crosshair is on the enemy, you need to click [SPACEBAR]",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -133,14 +133,14 @@
 		],
 		[
 			"Lucjan",
-			"Now lets try changing your fighting style to range, and attack enemy again",
+			"Now lets try changing your fighting style to range, and attack the enemy again",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		]
 	],
 	"three": [
 		[
 			"Lucjan",
-			"So now you know how to attack enemies with basic attack and change style",
+			"So now you know how to attack enemies with basic attacks and change style",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -150,27 +150,27 @@
 		],
 		[
 			"Lucjan",
-			"Skills are special abilities of character",
+			"Skills are special abilities of a character",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
 			"Lucjan",
-			"Important thing is, some skills are dedicated to fighting styles",
+			"The important thing is, some skills are dedicated to specific fighting styles",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
 			"Lucjan",
-			"So for example if your character has range type skill it won't be shown on the menu if you have mele fighting style set",
+			"So for example if your character has range type skill it won't be shown on the menu if you have melee fighting style set",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
 			"Lucjan",
-			"Also some skills have different effects, for example your skill has all effect. It means it will work on all enemies, and i won't be having a skill check",
+			"Also some skills have different effects, for example your skill has an 'all' effect. It means it will work on all enemies, and it won't require a skill check",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
 			"Lucjan",
-			"You can check all skills list of character in menu",
+			"You can check all skills of a character in the menu",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -178,7 +178,6 @@
 			"Your skill is range type, so you will be able to use it right now",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
-		
 		[
 			"Lucjan",
 			"Let's try doing this",
@@ -188,7 +187,7 @@
 	"four": [
 		[
 			"Lucjan",
-			"Okay so if have this covered now let's learn how to use item",
+			"Okay so if have this covered now let's learn how to use items",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -203,13 +202,18 @@
 		],
 		[
 			"Lucjan",
-			"And reviving only on knocked down enemies",
+			"And reviving works only on teammates that are knocked down",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
 			"Lucjan",
 			"Now let's try using red brew potion which master gave us",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
+		],
+		[
+			"***",
+			"(If You select the wrong item or attack, You can press [Escape] to cancel the action.)",
+			""
 		]
 	],
 	"five": [
@@ -220,7 +224,7 @@
 		],
 		[
 			"Lucjan",
-			"Now you know how to fight",
+			"Now you hopefully know how to fight.",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		]
 	]

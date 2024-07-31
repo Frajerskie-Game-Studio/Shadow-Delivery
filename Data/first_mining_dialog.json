@@ -13,12 +13,12 @@
 		],
 		[
 			"Lucjan",
-			"Michał, Krzychu take care of the top wall",
+			"Michał, Krzychu take care of the top wall.",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
 			"Lucjan",
-			"Mikut, you go to the wall ahead of you, i'll take care of the rest",
+			"Mikut, you go to the wall ahead of you, I'll take care of the rest.",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -28,7 +28,7 @@
 		],
 		[
 			"Michał",
-			"Let's get going",
+			"Let's get going.",
 			"res://Graphics/Michal/SeconBaseCourierDialogSprite.png"
 		],
 		[
@@ -40,7 +40,7 @@
 	"two": [
 		[
 			"Lucjan",
-			"Is everyone done",
+			"Is everyone done.",
 			"res://Graphics/Lucjan/LucjanDialogSprite.png"
 		],
 		[
@@ -50,7 +50,7 @@
 		],
 		[
 			"Krzychu",
-			"Sure is boss",
+			"Sure is boss.",
 			"res://Graphics/Krzychu/BaseCourierDialogSprite.png"
 		],
 		[
@@ -70,7 +70,7 @@
 		],
 		[
 			"Lucjan",
-			"Put it in your bag, Master will take care of it",
+			"Put it in your bag, Master will take care of it when we return to the factory.",
 			"res://Graphics/Lucjan/LucjanDialogSprite.pngg"
 		]
 	]
