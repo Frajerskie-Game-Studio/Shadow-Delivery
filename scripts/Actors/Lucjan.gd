@@ -11,12 +11,13 @@ var skillCheckStep = 0
 var possible_target_position
 var current_effect_working
 var in_tutorial = false
-var ammo_path = "res://Graphics/Items/flintlock_ammo_sprite.png"
+var ammo_path
 
 signal tutorial_change_signal
 
 func _init():
 	character_file_path = "user://Data/lucjan_data.json"
+	ammo_path = "res://Graphics/Items/flintlock_ammo_sprite.png"
 	
 func _ready():
 	#hp, max_hp, melee_skills, range_skills, ammo, ammo_texture_path

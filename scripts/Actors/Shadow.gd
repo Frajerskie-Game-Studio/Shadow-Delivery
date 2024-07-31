@@ -2,6 +2,7 @@ extends "Lucjan.gd"
 
 func _init():
 	character_file_path = "user://Data/shadow_data.json"
+	ammo_path = "res://Graphics/Items/flintlock_ammo_sprite.png"
 
 	
 func _on_animation_tree_animation_finished(anim_name):
