@@ -20,7 +20,7 @@
 	"equipment": {
 		"Mele_weapon": {
 			"name": "Scyzoryk",
-			"description": "Tak na mnie wołają",
+			"description": "That's how they call me",
 			"icon_path": "res://Graphics/Items/Knife.png",
 			"type": "Mele_weapon",
 			"damage": 30,
