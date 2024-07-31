@@ -199,12 +199,12 @@ func end_battle():
 	temp_entity.save_resources()
 	temp_entity.save_items()
 	for t in Party:
-		t.load_data()
-		t.load_res()
-		t.load_items()
 		t.save_data()
 		t.save_resources()
 		t.save_items()
+		t.load_data()
+		t.load_res()
+		t.load_items()
 		t.in_battle = false
 	$CanvasLayer/DropMenu.visible = true
 
