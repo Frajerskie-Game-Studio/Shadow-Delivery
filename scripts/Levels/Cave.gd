@@ -64,6 +64,9 @@ func _process(delta):
 				$Shadow.visible = true
 				$Dialogs/Mine2Pointer.emit_signal_via_code()
 				after_second_fight = false
+			else:
+				$Dialogs/Mine2Pointer.emit_signal_via_code()
+				after_second_fight = false
 	if last_dialog_emit:
 		if has_node("Dialogs/LastDialog"):
 			$Teammates.global_position = $TeammatesSecondPosition.global_position
